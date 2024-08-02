@@ -93,8 +93,7 @@ public class JFMenu extends javax.swing.JFrame {
     public JFMenu(Recepcionista recepcionista) {
         initComponents();
         this.recepcionista = recepcionista;
-        setIconImage(new ImageIcon(getClass().
-                getResource("/iconos/AjustesBest.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
 
         setLocationRelativeTo(null);
         String fecha = "dd-MM-yyyy";
