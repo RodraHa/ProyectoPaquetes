@@ -97,6 +97,10 @@ public class JFMenu extends javax.swing.JFrame {
     public JFMenu(Recepcionista recepcionista) {
         ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
         Asignacion.obtenerInstancia().agregarConductores(conductores);
+        Asignacion.obtenerInstancia().cargarVehiculos();
+        Asignacion.obtenerInstancia().cargarConductores();
+        Asignacion.obtenerInstancia().cargarRelacionConductores();
+
         initComponents();
         this.recepcionista = recepcionista;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
