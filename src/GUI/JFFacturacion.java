@@ -453,7 +453,7 @@ public class JFFacturacion extends javax.swing.JFrame {
                 jBGenerarFacturaActionPerformed(evt);
             }
         });
-        jPRegistrarFactura.add(jBGenerarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 530, -1, -1));
+        jPRegistrarFactura.add(jBGenerarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 550, -1, -1));
         jPRegistrarFactura.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 360, 1190, 10));
 
         jLabel67.setText("$");
