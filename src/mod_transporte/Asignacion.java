@@ -24,8 +24,8 @@ public class Asignacion {
     private ArrayList<Vehiculo> vehiculos;
 
     private Asignacion() {
-        asignacionConductores = new HashMap<>();
-        asignacionPaquetes = new HashMap<>();
+        asignacionConductores = new HashMap<Conductor, Vehiculo>();
+        asignacionPaquetes = new HashMap<Vehiculo, ArrayList<Paquete>>();
         conductores = new ArrayList<Conductor>();
         vehiculos = new ArrayList<Vehiculo>();
     }
@@ -107,6 +107,7 @@ public class Asignacion {
             return;
         }
         asignacionConductores.put(conductor, vehiculo);
+        guardarRelacionConductores();
     }
 
     public ArrayList<Paquete> obtenerPaquetesConductor(Conductor conductor) {
@@ -127,16 +128,10 @@ public class Asignacion {
     }
     
     public void guardarVehiculo() {
-        String filePath = "src\\archivos\\FlotaVehiculos.ser";
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
-            oos.writeObject(vehiculos);
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        conexionConSer(vehiculos,"FlotaVehiculos");
     }
     
-    public void cargarVehiculo() {
+    public void cargarVehiculos() {
         String filePath = "src\\archivos\\FlotaVehiculos.ser";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             vehiculos = (ArrayList<Vehiculo>) ois.readObject();
@@ -147,13 +142,7 @@ public class Asignacion {
     }
     
     public void guardarConductores() {
-        String filePath = "src\\archivos\\Conductores.ser";
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
-            oos.writeObject(conductores);
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        conexionConSer(conductores,"Conductores");
     }
     
     public void cargarConductores() {
@@ -165,7 +154,36 @@ public class Asignacion {
             System.out.println("No existe el archivo");
         }
     }
-
+    public void guardarRelacionConductores() {
+        String filePath = "src\\archivos\\AsignacionConductores.ser";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(asignacionConductores);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void cargarRelacionConductores() {
+        String filePath = "src\\archivos\\AsignacionConductores.ser";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            asignacionConductores = (HashMap<Conductor,Vehiculo>) ois.readObject();
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No existe el archivo");
+        }
+    }
+    
+    public void conexionConSer(ArrayList array, String ruta){
+        String filePath = "src\\archivos\\"+ruta+".ser";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(array);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public HashMap<Conductor, Vehiculo> getAsignacionConductores() {
         return asignacionConductores;
     }
