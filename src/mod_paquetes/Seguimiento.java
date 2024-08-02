@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Seguimiento implements Serializable {
     private EstadoDelPaquete estadoActual;
     private ArrayList<String> estadosAnteriores;
+    private String incidente;
 
     public Seguimiento(EstadoDelPaquete estado) {
         this.estadoActual = estado;

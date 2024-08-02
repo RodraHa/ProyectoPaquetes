@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
 import mod_paquetes.Provincia;
+import mod_transporte.Asignacion;
 import validaciones.*;
 
 
@@ -508,13 +509,15 @@ public class JFConductores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, clave, nombreUsuario, clave, recepcionista.obtenerSucursal());
+        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, recepcionista.obtenerSucursal());
         JOptionPane.showMessageDialog(
             null,
             "El registro del conductor ha sido exitoso",
             "Registro Exitoso",
             JOptionPane.INFORMATION_MESSAGE
         );
+        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
+        Asignacion.obtenerInstancia().agregarConductor(conductor);
         vaciarCampos();
         cargarConductores();
     }//GEN-LAST:event_jBRegistrarConductorActionPerformed
