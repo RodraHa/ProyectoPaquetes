@@ -111,7 +111,7 @@ public class Paquete implements Serializable {
                 "Destinatario = " + nombreDestinatario + "\n";
     }
 
-    public Object getContenido() {
+    public String getContenido() {
         return this.contenido;
     }
 }

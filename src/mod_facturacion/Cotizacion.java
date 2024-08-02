@@ -29,6 +29,17 @@ public final class Cotizacion {
     public void emitirFacturaPaquete(Paquete paquete) {
         Precio precio = new Precio(
                 paquete, new PrecioPaquete(5, 5), new PrecioDistancia(0.2), new Impuesto(0.12));
-        facturas.add(new Factura(paquete, precio));
+        facturas.add(new Factura(String.valueOf(facturas.size()+1) ,paquete, precio));
+        
     }
+    
+     public String getSiguienteCodigoFactura() {
+        if (facturas.isEmpty()) {
+            return "1";
+        }
+        int codigo = Integer.parseInt(facturas.get(facturas.size() - 1).obtenerCodigo());
+        codigo++;
+        return String.valueOf(codigo);
+    }
+    
 }

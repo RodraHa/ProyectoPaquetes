@@ -237,7 +237,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTFApeliidosCliente">
+                    <Component class="javax.swing.JTextField" name="jTApellidosCliente">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -257,7 +257,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="correoCli">
+                    <Component class="javax.swing.JTextField" name="jTcorreoCli">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -277,7 +277,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTCIDelCliente1">
+                    <Component class="javax.swing.JTextField" name="jTCedulaCliente">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -410,7 +410,6 @@
                 <Component class="javax.swing.JTextField" name="jTPrecioImpuesto">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="15"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTPrecioImpuestoActionPerformed"/>
@@ -538,7 +537,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTCIDelCliente">
+                    <Component class="javax.swing.JTextField" name="jTNombreDestinatario">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>

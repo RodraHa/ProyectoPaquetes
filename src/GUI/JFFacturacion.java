@@ -17,8 +17,15 @@ import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import com.toedter.calendar.JTextFieldDateEditor;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
+import mod_administracion.Usuario;
+import mod_facturacion.CalculoPrecio;
+import mod_facturacion.Cotizacion;
+import mod_facturacion.Precio;
+import mod_paquetes.Inventario;
+import mod_paquetes.Paquete;
 import validaciones.*;
 
 /**
@@ -56,7 +63,7 @@ public class JFFacturacion extends javax.swing.JFrame {
     public JFFacturacion(Connection cnx) {
         initComponents();
         this.cnx=cnx;
-        setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/factura.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
         this.visibilidadManager = new VisibilidadManager();
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -132,11 +139,11 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTFnumerofactura.setEnabled(false);
         jDateChooserFecha.setEnabled(false);
 
-        jTCIDelCliente.setEnabled(false);
-        jTFApeliidosCliente.setEnabled(false);
+        jTNombreDestinatario.setEnabled(false);
+        jTApellidosCliente.setEnabled(false);
         jTTelefonoCliente.setEnabled(false);
         jTDireccionCliente.setEnabled(false);
-        correoCli.setEnabled(false);
+        jTcorreoCli.setEnabled(false);
         jTNombreCliente.setEnabled(false);
         // Habilitar los componentes
         jTCodigoPaquete.setEnabled(true);
@@ -149,12 +156,12 @@ public class JFFacturacion extends javax.swing.JFrame {
 
     private void limpiarYCambiarCampos() {
         jDateChooserFecha.setEnabled(true);
-        jTCIDelCliente.setEnabled(true);
+        jTNombreDestinatario.setEnabled(true);
         jTNombreCliente.setEnabled(true);
-        jTFApeliidosCliente.setEnabled(true);
+        jTApellidosCliente.setEnabled(true);
         jTTelefonoCliente.setEnabled(true);
         jTDireccionCliente.setEnabled(true);
-        correoCli.setEnabled(true);
+        jTcorreoCli.setEnabled(true);
 
         jTCodigoPaquete.setEnabled(false);
 
@@ -163,12 +170,12 @@ public class JFFacturacion extends javax.swing.JFrame {
         jBGenerarFactura.setEnabled(false);
 
  
-        jTCIDelCliente.setText("");
+        jTNombreDestinatario.setText("");
         jTNombreCliente.setText("");
-        jTFApeliidosCliente.setText("");
+        jTApellidosCliente.setText("");
         jTTelefonoCliente.setText("");
         jTDireccionCliente.setText("");
-        correoCli.setText("");
+        jTcorreoCli.setText("");
         jTPrecioPaquete.setText("");
         jTTotal.setText("");
         jTCodigoPaquete.setText("");
@@ -182,12 +189,12 @@ public class JFFacturacion extends javax.swing.JFrame {
     private void fillClientFields(String id, String nombre, String apellido, String telefono, String direccion, String esExtranjero, String tipo, String correo) {
 
 
-        jTCIDelCliente.setText(id);
+        jTNombreDestinatario.setText(id);
         jTNombreCliente.setText(nombre);
-        jTFApeliidosCliente.setText(apellido);
+        jTApellidosCliente.setText(apellido);
         jTTelefonoCliente.setText(telefono);
         jTDireccionCliente.setText(direccion);
-        correoCli.setText(correo);
+        jTcorreoCli.setText(correo);
     }
   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -211,11 +218,11 @@ public class JFFacturacion extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jTDireccionCliente = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
-        jTFApeliidosCliente = new javax.swing.JTextField();
+        jTApellidosCliente = new javax.swing.JTextField();
         jLabel85 = new javax.swing.JLabel();
-        correoCli = new javax.swing.JTextField();
+        jTcorreoCli = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        jTCIDelCliente1 = new javax.swing.JTextField();
+        jTCedulaCliente = new javax.swing.JTextField();
         jPDatosFactura = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jTFnumerofactura = new javax.swing.JTextField();
@@ -235,7 +242,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         jLabel64 = new javax.swing.JLabel();
         jTContenidoPaquete = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        jTCIDelCliente = new javax.swing.JTextField();
+        jTNombreDestinatario = new javax.swing.JTextField();
         jBGenerarFactura = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel67 = new javax.swing.JLabel();
@@ -324,20 +331,20 @@ public class JFFacturacion extends javax.swing.JFrame {
         jLabel45.setText("Apellidos:");
         jPDatosCliente.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        jTFApeliidosCliente.setEditable(false);
-        jPDatosCliente.add(jTFApeliidosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, -1));
+        jTApellidosCliente.setEditable(false);
+        jPDatosCliente.add(jTApellidosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 250, -1));
 
         jLabel85.setText("Correo:");
         jPDatosCliente.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 43, -1));
 
-        correoCli.setEditable(false);
-        jPDatosCliente.add(correoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 250, -1));
+        jTcorreoCli.setEditable(false);
+        jPDatosCliente.add(jTcorreoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 250, -1));
 
         jLabel31.setText("Nombres:");
         jPDatosCliente.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
-        jTCIDelCliente1.setEditable(false);
-        jPDatosCliente.add(jTCIDelCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 250, -1));
+        jTCedulaCliente.setEditable(false);
+        jPDatosCliente.add(jTCedulaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 250, -1));
 
         jPRegistrarFactura.add(jPDatosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 450, 270));
 
@@ -381,7 +388,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         jPRegistrarFactura.add(jTPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 440, 151, -1));
 
         jTPrecioImpuesto.setEditable(false);
-        jTPrecioImpuesto.setText("15");
         jTPrecioImpuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTPrecioImpuestoActionPerformed(evt);
@@ -440,8 +446,8 @@ public class JFFacturacion extends javax.swing.JFrame {
         jLabel29.setText("Nombre Destinatario");
         jPPaquete.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        jTCIDelCliente.setEditable(false);
-        jPPaquete.add(jTCIDelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 30));
+        jTNombreDestinatario.setEditable(false);
+        jPPaquete.add(jTNombreDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 30));
 
         jPRegistrarFactura.add(jPPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 250, 230));
         jPPaquete.getAccessibleContext().setAccessibleName("Paquete");
@@ -557,6 +563,46 @@ public class JFFacturacion extends javax.swing.JFrame {
 
     private void btnBuscarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPaqueteActionPerformed
         
+        String codigoTracking = jTCodigoPaquete.getText();
+        
+        Inventario inventario = Inventario.obtenerInstancia();
+        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+        
+        String contenidoPaquete = paquete.getContenido();
+        String nombreDestinatario = paquete.getNombreDestinatario();
+        
+        Usuario remitente = paquete.getRemitente();
+        String nombresRemitente = remitente.getNombres();
+        String apellidosRemitente = remitente.getApellidos();
+        String cedulaRemitente = remitente.getCedula();
+        String telefonoRemitente = remitente.getTelefono();
+        String direccionRemitente = remitente.getDireccion();
+        String correoRemitente = remitente.getEmail();
+        
+        Cotizacion cotizacion = Cotizacion.obtenerInstancia();
+        String codigoFactura = cotizacion.getSiguienteCodigoFactura();
+        Precio precioDelPaquete = cotizacion.obtenerPrecioPaquete(paquete);
+        ArrayList<CalculoPrecio> preciosIndividuales = precioDelPaquete.obtenerPreciosIndividuales();
+        double precioPaquete = preciosIndividuales.get(0).obtenerMonto();
+        double precioDistancia = preciosIndividuales.get(1).obtenerMonto();
+        double precioImpuesto = preciosIndividuales.get(2).obtenerMonto();
+        double precioTotal = precioDelPaquete.getPrecioTotalPaquete();
+        
+        jTNombreDestinatario.setText(nombreDestinatario);
+        jTContenidoPaquete.setText(contenidoPaquete);
+        jTFnumerofactura.setText(codigoFactura);
+        jTCedulaCliente.setText(cedulaRemitente);
+        jTNombreCliente.setText(nombresRemitente);
+        jTApellidosCliente.setText(apellidosRemitente);
+        jTTelefonoCliente.setText(telefonoRemitente);
+        jTDireccionCliente.setText(direccionRemitente);
+        jTcorreoCli.setText(correoRemitente);
+        jTPrecioDistancia.setText(String.valueOf(precioPaquete));
+        jTPrecioImpuesto.setText(String.valueOf(precioImpuesto));
+        jTPrecioPaquete.setText(String.valueOf(precioPaquete));
+        jTTotal.setText(String.valueOf(precioTotal));
+          
+        
     }//GEN-LAST:event_btnBuscarPaqueteActionPerformed
 
     private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteKeyReleased
@@ -612,6 +658,8 @@ public class JFFacturacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTPrecioImpuestoActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -654,7 +702,6 @@ public class JFFacturacion extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarFactura;
     private javax.swing.JButton btnBuscarPaquete;
     private javax.swing.JButton btnExit;
-    private javax.swing.JTextField correoCli;
     private javax.swing.JButton jBGenerarFactura;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jError6;
@@ -687,15 +734,15 @@ public class JFFacturacion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTCIDelCliente;
-    private javax.swing.JTextField jTCIDelCliente1;
+    private javax.swing.JTextField jTApellidosCliente;
+    private javax.swing.JTextField jTCedulaCliente;
     private javax.swing.JTextField jTCodigoFactura;
     private javax.swing.JTextField jTCodigoPaquete;
     private javax.swing.JTextField jTContenidoPaquete;
     private javax.swing.JTextField jTDireccionCliente;
-    private javax.swing.JTextField jTFApeliidosCliente;
     private javax.swing.JTextField jTFnumerofactura;
     private javax.swing.JTextField jTNombreCliente;
+    private javax.swing.JTextField jTNombreDestinatario;
     private javax.swing.JTextField jTPrecioDistancia;
     private javax.swing.JTextField jTPrecioImpuesto;
     private javax.swing.JTextField jTPrecioPaquete;
@@ -703,5 +750,6 @@ public class JFFacturacion extends javax.swing.JFrame {
     private javax.swing.JTextField jTTotal;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTablaRegistrarFactura;
+    private javax.swing.JTextField jTcorreoCli;
     // End of variables declaration//GEN-END:variables
 }
