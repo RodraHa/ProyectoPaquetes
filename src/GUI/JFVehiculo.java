@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import mod_administracion.Conductor;
+import mod_paquetes.Paquete;
 import mod_paquetes.Provincia;
 import mod_transporte.Asignacion;
 import mod_transporte.Vehiculo;
@@ -52,6 +53,7 @@ public class JFVehiculo extends javax.swing.JFrame {
     private Provincia sucursal;
     //Conexion
     Connection cnx;
+    DefaultTableModel modelo;
     //Mouse
     int xMouse, yMouse; 
     public JFVehiculo(Connection cnx, Provincia sucursal) {
@@ -63,8 +65,16 @@ public class JFVehiculo extends javax.swing.JFrame {
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
         cargarProvincias();
+        refrescarVehiculos();
+
         this.sucursal = sucursal;
         // Opcional: Deshabilita la edición manual del campo de texto
+        modelo = new DefaultTableModel();
+        jInventarioVehiculo.setModel(modelo);
+        String[] columnNames = {
+            "Codigo", "Contenido", "Destinatario","Provincia Destino"
+        };
+        modelo.setColumnIdentifiers(columnNames);
 
     }
     
@@ -86,12 +96,58 @@ public class JFVehiculo extends javax.swing.JFrame {
         }
     }    
   
-   private String getValueAtSelectedRow(DefaultTableModel model, int selectedRow, String columnName) {
+    private String getValueAtSelectedRow(DefaultTableModel model, int selectedRow, String columnName) {
         int colIndex = model.findColumn(columnName);
         return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
     }
-   
+    private void refrescarVehiculos() {
+        DefaultTableModel model = new DefaultTableModel();
+        jTablaVehiculos.setModel(model);
+        String[] columnNames = {
+            "Placa", "Capacidad", "Nombre Conductor","Identificacion", "Telefono"
+        };
+        model.setColumnIdentifiers(columnNames);
+        Asignacion asignacion = Asignacion.obtenerInstancia();
+        model.setRowCount(0);
+        for (Vehiculo vehiculo : asignacion.obtenerVehiculos()) {
+            Conductor conductor = asignacion.obtenerConductorDeVehiculo(vehiculo);
+            if(conductor != null){
+                model.addRow(new Object[]{
+                vehiculo.getNumeroPlaca(),
+                vehiculo.getCapacidad(),
+                conductor.getNombres() +" "+ conductor.getApellidos(),
+                conductor.getCedula(),
+                conductor.getTelefono()
+            });
+            }else{
+                model.addRow(new Object[]{
+                    vehiculo.getNumeroPlaca(),
+                    vehiculo.getCapacidad(),
+                    "NAN",
+                    "NAN",
+                    "NAN"
+                });
+            }
+        }
+    }
 
+    private void refrescarInventario() {
+
+        Asignacion asignacion = Asignacion.obtenerInstancia();
+        Vehiculo vehiculo = asignacion.obtenerVehiculo(jTPlacaVehiculo3.getText());
+        ArrayList<Paquete> paquetes = asignacion.obtenerRelacionPaqueteVehiculo().get(vehiculo);
+        
+        modelo.setRowCount(0);
+        for (Paquete paquete : paquetes) {
+                modelo.addRow(new Object[]{
+                paquete.obtenerCodigo(),
+                paquete.getContenido(),
+                paquete.getNombreDestinatario(),
+                paquete.getProvinciaDestino().name()
+            });
+        }
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -110,7 +166,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jTPlacaVehiculo = new javax.swing.JTextField();
         jPCE = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTableEmpleadosAcutalizar2 = new javax.swing.JTable();
+        jTablaVehiculos = new javax.swing.JTable();
         jTPlacaVehiculo1 = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
@@ -142,7 +198,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         BActualizar = new javax.swing.JButton();
         jPEE = new javax.swing.JPanel();
         jScrollPane25 = new javax.swing.JScrollPane();
-        jTableEmpleadosAcutalizar3 = new javax.swing.JTable();
+        jInventarioVehiculo = new javax.swing.JTable();
         JComboDestino1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jTPlacaVehiculo3 = new javax.swing.JTextField();
@@ -268,7 +324,7 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jTPEmpleados.addTab("Registrar Vehiculo", jPRE);
 
-        jTableEmpleadosAcutalizar2.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -279,7 +335,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane6.setViewportView(jTableEmpleadosAcutalizar2);
+        jScrollPane6.setViewportView(jTablaVehiculos);
 
         jTPlacaVehiculo1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -552,7 +608,7 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jTPEmpleados.addTab("Asignar Vehiculo", jPAE);
 
-        jTableEmpleadosAcutalizar3.setModel(new javax.swing.table.DefaultTableModel(
+        jInventarioVehiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -563,7 +619,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane25.setViewportView(jTableEmpleadosAcutalizar3);
+        jScrollPane25.setViewportView(jInventarioVehiculo);
 
         JComboDestino1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino1.addActionListener(new java.awt.event.ActionListener() {
@@ -774,7 +830,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             jTTelefono1.setText(conductor.getTelefono());
             jTCorreo1.setText(conductor.getEmail());
             asignacion.asignarConductorAVehiculo(conductor,vehiculo);
-
+            refrescarVehiculos();
         }
     }//GEN-LAST:event_BActualizarActionPerformed
 
@@ -903,6 +959,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         Vehiculo vehiculo = new Vehiculo(jTPlacaVehiculo.getText(),capacidad, sucursal);
         asignacion.agregarVehiculo(vehiculo);
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
+        refrescarVehiculos();
     }//GEN-LAST:event_bRegistrarVehiculoActionPerformed
 
     private void jTCapacidadVehiculoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoKeyReleased
@@ -930,18 +987,24 @@ public class JFVehiculo extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String placa = jTPlacaVehiculo1.getText();
+        String placa = jTPlacaVehiculo3.getText();
         if(placa.isEmpty()){
             JOptionPane.showMessageDialog(this, "El campo de la placa está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!ValidadorDeRegistros.validarPlaca(placa)) {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         } else {
             Asignacion asignacion = Asignacion.obtenerInstancia();
             Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
-            asignacion.asignarPaquetesAVehiculo(vehiculo, destino);
+            if(!asignacion.asignarPaquetesAVehiculo(vehiculo, destino)){
+                JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
+        refrescarInventario();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTPlacaVehiculo3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3FocusLost
@@ -1005,6 +1068,7 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JButton bSeleccionarConductor;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton1;
+    private javax.swing.JTable jInventarioVehiculo;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1053,8 +1117,7 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JTextField jTPlacaVehiculo3;
     private javax.swing.JTextField jTTelefono;
     private javax.swing.JTextField jTTelefono1;
-    private javax.swing.JTable jTableEmpleadosAcutalizar2;
-    private javax.swing.JTable jTableEmpleadosAcutalizar3;
+    private javax.swing.JTable jTablaVehiculos;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

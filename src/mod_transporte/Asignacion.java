@@ -64,13 +64,15 @@ public class Asignacion {
         return null;
     }
     
-    public void asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
+    public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
         ArrayList<Paquete> paquetesPendientes  = Inventario.obtenerInstancia().obtenerPaquetesPendientes();
         ArrayList<Paquete> paquetes;
+        int conteoPaquetes = 0;
         if (paquetesPendientes.isEmpty()) {
-            return;
+            return false;
         } else if (asignacionPaquetes.containsKey(vehiculo)) {
             paquetes = asignacionPaquetes.get(vehiculo);
+            conteoPaquetes = paquetes.size();
         } else {
             paquetes = new ArrayList<>();
             asignacionPaquetes.put(vehiculo, paquetes);
@@ -88,9 +90,15 @@ public class Asignacion {
                 break;
             }
         }
+        if(paquetes == null || paquetes.size()== conteoPaquetes){
+            return false;
+        }
         vehiculo.setCapacidad(capacidad);
+        return true;
     }
-
+    public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo(){
+        return asignacionPaquetes;
+    }
     public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
         if (asignacionConductores.containsKey(conductor)) {
             return;
@@ -196,6 +204,10 @@ public class Asignacion {
 
     public ArrayList<Conductor> obtenerConductores() {
         return conductores;
+    }
+
+    public Iterable<Vehiculo> obtenerVehiculos() {
+        return vehiculos;
     }
     
 }
