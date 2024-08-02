@@ -130,6 +130,37 @@ public class DataBase {
         }
     } 
 
+    
+    public Conductor obtenerConductorPorCedula(String cedula) {
+        String query = "SELECT nombres, apellidos, cedula AS identificacion, direccion, telefono, email " +
+                       "FROM Usuario " +
+                       "WHERE cedula = ?";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+            stmt.setString(1, cedula);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Conductor(
+                        rs.getString("nombres"),
+                        rs.getString("apellidos"),
+                        rs.getString("identificacion"),
+                        rs.getString("direccion"),
+                        rs.getString("telefono"),
+                        rs.getString("email")
+                    );
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    } 
+    
+    
+    
     public void registrarCliente(String nombres, String apellidos, String cedula, String direccion, String telefono, String email) {
         String query = "INSERT INTO Usuario (nombres, apellidos, cedula, direccion, telefono, email) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
