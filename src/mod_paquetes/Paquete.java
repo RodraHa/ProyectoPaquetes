@@ -16,10 +16,11 @@ public class Paquete implements Serializable {
     private Provincia provinciaOrigen;
     private Provincia provinciaDestino;
     private String direccionDestino;
+    private String nombreDestinatario;
     private EstadoDelPaquete estado;
     private Seguimiento seguimiento;
 
-    public Paquete(String codigoTracking, double volumen, double peso, String contenido, Usuario remitente, Provincia provinciaOrigen, Provincia provinciaDestino, String direccionDestino) {
+    public Paquete(String codigoTracking, double volumen, double peso, String contenido, Usuario remitente, Provincia provinciaOrigen, Provincia provinciaDestino, String direccionDestino, String nombreDestinatario) {
         this.codigoTracking = codigoTracking;
         this.volumen = volumen;
         this.peso = peso;
@@ -28,6 +29,7 @@ public class Paquete implements Serializable {
         this.provinciaOrigen = provinciaOrigen;
         this.provinciaDestino = provinciaDestino;
         this.direccionDestino = direccionDestino;
+        this.nombreDestinatario = nombreDestinatario;
         this.estado = new Pendiente(this);
         this.seguimiento = new Seguimiento(estado);
     }
@@ -90,6 +92,9 @@ public class Paquete implements Serializable {
         return direccionDestino;
     }
     
+    public String getNombreDestinatario() {
+        return nombreDestinatario;
+    }
 
     public String toString() {
         return "Paquete: \n" +
@@ -102,7 +107,8 @@ public class Paquete implements Serializable {
                 "Provincia de Destino = " + provinciaDestino.name() + "\n" +
                 "Dirección de Destino = '" + direccionDestino + '\'' + "\n" +
                 "Estado = " + estado + "\n" +
-                "Distancia Estimada = " + calcularDistancia() + " Km";
+                "Distancia Estimada = " + calcularDistancia() + " Km\n" +
+                "Destinatario = " + nombreDestinatario + "\n";
     }
 
     public Object getContenido() {

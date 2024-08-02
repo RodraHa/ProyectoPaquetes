@@ -50,6 +50,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private boolean remitenteValidar = false;
     private boolean contenidoValidar=false;
     private boolean direccionValidar = false;
+    private boolean destinatarioValidar = false;
     private Inventario inventario;
     private Recepcionista recepcionista;
     
@@ -130,13 +131,14 @@ public class JFPaquetes extends javax.swing.JFrame {
         TextPrompt texto2 = new TextPrompt("Obligatorio", jTVolumen);
         TextPrompt texto3 = new TextPrompt("Obligatorio", jTPeso);
         TextPrompt texto = new TextPrompt("Obligatorio", jTRemitente);
-        TextPrompt texto4 = new TextPrompt("Obligatorio", jTDireccion);
+        TextPrompt texto5 = new TextPrompt("Obligatorio", jTDireccion1);
+        TextPrompt texto4 = new TextPrompt("Obligatorio", jTDestinatario);
     }    
      
     public void desvanecerP() {
         JLabel[] labels = {
              errorInventario1, errorInventario2, errorInventario3,
-            errorInventario4, errorInventario6, errorInventario7};
+            errorInventario4, errorInventario6, errorInventario7, errorInventario8};
         for (JLabel label : labels) {
             label.setVisible(false);
         }
@@ -172,7 +174,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         errorInventario3 = new javax.swing.JLabel();
         errorInventario6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTDireccion = new javax.swing.JTextField();
+        jTDestinatario = new javax.swing.JTextField();
         errorInventario7 = new javax.swing.JLabel();
         jBEliminar = new javax.swing.JButton();
         jLabelPrecioPaquete = new javax.swing.JLabel();
@@ -181,6 +183,9 @@ public class JFPaquetes extends javax.swing.JFrame {
         JLabelPrecioTotal = new javax.swing.JLabel();
         JComboDestino = new javax.swing.JComboBox<>();
         jBRegistrarPAInventario = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTDireccion1 = new javax.swing.JTextField();
+        errorInventario8 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         jTablaInventario = new javax.swing.JTable();
@@ -336,9 +341,9 @@ public class JFPaquetes extends javax.swing.JFrame {
 
         jLabel1.setText("Dirección");
 
-        jTDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTDestinatario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTDireccionFocusLost(evt);
+                jTDestinatarioFocusLost(evt);
             }
         });
 
@@ -373,6 +378,17 @@ public class JFPaquetes extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Destinatario");
+
+        jTDireccion1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTDireccion1FocusLost(evt);
+            }
+        });
+
+        errorInventario8.setForeground(new java.awt.Color(255, 0, 51));
+        errorInventario8.setText("Destinatario no válido");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -387,33 +403,6 @@ public class JFPaquetes extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel13)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel60)
-                                .addGap(64, 64, 64)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel53)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(errorInventario4)
-                                    .addComponent(jTRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(errorInventario6))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTDireccion, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTContenidoPaquete, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
-                                .addGap(214, 214, 214))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(errorInventario7)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(errorInventario2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -422,18 +411,49 @@ public class JFPaquetes extends javax.swing.JFrame {
                                     .addComponent(jTVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel61)))
-                        .addContainerGap(606, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errorInventario3)
-                            .addComponent(JComboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jTPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel13)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel60)
+                                        .addGap(64, 64, 64)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel53)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel2))
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTDireccion1)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(errorInventario4)
+                                            .addComponent(errorInventario6)
+                                            .addComponent(errorInventario7))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jTContenidoPaquete)
+                                    .addComponent(jTRemitente)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(126, 126, 126)
                                 .addComponent(jBRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(63, 63, 63)
                                 .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(errorInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 389, Short.MAX_VALUE))))
+                            .addComponent(errorInventario1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JComboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(errorInventario3))
+                                .addGap(173, 173, 173)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTDestinatario)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(errorInventario8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 112, Short.MAX_VALUE)))))
+                        .addGap(214, 214, 214))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -479,7 +499,7 @@ public class JFPaquetes extends javax.swing.JFrame {
                                         .addComponent(jTPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel60)
                                         .addComponent(jLabel1)
-                                        .addComponent(jTDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jTDireccion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addComponent(jTContenidoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -498,9 +518,14 @@ public class JFPaquetes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel63)
-                    .addComponent(JComboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(JComboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jTDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorInventario3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorInventario3)
+                    .addComponent(errorInventario8))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBRegistrar)
@@ -612,10 +637,10 @@ public class JFPaquetes extends javax.swing.JFrame {
     }//GEN-LAST:event_jTPesoKeyReleased
 
     private void jBRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarActionPerformed
-        JTextField[] campos = {jTVolumen,jTPeso,jTRemitente, jTDireccion, jTContenidoPaquete};
-        Boolean[] booleanItem = {volumenValidar,pesoValidar,remitenteValidar, direccionValidar, contenidoValidar};
-        JLabel[] labels = {errorInventario1, errorInventario2, errorInventario4,errorInventario7,errorInventario6};
-        String[] nombresCampos = {"Volumen", "Peso", "Remitente","Direccion", "Contenido del paquete"};
+        JTextField[] campos = {jTVolumen,jTPeso,jTRemitente, jTDestinatario, jTContenidoPaquete, jTDestinatario};
+        Boolean[] booleanItem = {volumenValidar,pesoValidar,remitenteValidar, direccionValidar, contenidoValidar, destinatarioValidar};
+        JLabel[] labels = {errorInventario1, errorInventario2, errorInventario4,errorInventario7,errorInventario6, errorInventario8};
+        String[] nombresCampos = {"Volumen", "Peso", "Remitente","Direccion", "Contenido del paquete", "Destinatario"};
         List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
         errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, labels, nombresCampos));
         String estado = "Pendiente";
@@ -646,8 +671,9 @@ public class JFPaquetes extends javax.swing.JFrame {
             String contenido = jTContenidoPaquete.getText();
             Cliente cliente = DataBase.obtenerInstancia().obtenerDatosPorCedula(jTRemitente.getText());
             Provincia origen = recepcionista.obtenerSucursal();
-            String direccion = jTDireccion.getText();
-            Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion);
+            String direccion = jTDestinatario.getText();
+            String destinatario = jTDestinatario.getText();
+            Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion, destinatario);
             recepcionista.registrarPaquete(paquete);
             jTCodigoTracking.setText(codigo);
             mostrarPrecio();
@@ -704,9 +730,9 @@ public class JFPaquetes extends javax.swing.JFrame {
        contenidoValidar = validarRegistroF.camposDeRegistros(jTContenidoPaquete, errorInventario6, "d");
     }//GEN-LAST:event_jTContenidoPaqueteFocusLost
 
-    private void jTDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccionFocusLost
-        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion, errorInventario7, "d");
-    }//GEN-LAST:event_jTDireccionFocusLost
+    private void jTDestinatarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDestinatarioFocusLost
+        destinatarioValidar = validarRegistroF.camposDeRegistros(jTDestinatario, errorInventario8, "d");
+    }//GEN-LAST:event_jTDestinatarioFocusLost
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         vaciarCampos();
@@ -774,6 +800,10 @@ public class JFPaquetes extends javax.swing.JFrame {
         jBEliminarPaquete.setVisible(true);
     }//GEN-LAST:event_jBConsultarPaquete1ActionPerformed
 
+    private void jTDireccion1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccion1FocusLost
+        direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, errorInventario7, "d");
+    }//GEN-LAST:event_jTDireccion1FocusLost
+
     private void vaciarCampos() {
         recepcionista.eliminarPaqueteRegistrado();
         jLabelPrecioPaquete.setText("Precio Paquete : ");
@@ -785,7 +815,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         jTPeso.setText("");
         jTRemitente.setText("");
         jTContenidoPaquete.setText("");
-        jTDireccion.setText("");
+        jTDestinatario.setText("");
         jBRegistrarPAInventario.setVisible(false);
     }
 
@@ -800,6 +830,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private javax.swing.JLabel errorInventario4;
     private javax.swing.JLabel errorInventario6;
     private javax.swing.JLabel errorInventario7;
+    private javax.swing.JLabel errorInventario8;
     private javax.swing.JButton jBConsultarPaquete1;
     private javax.swing.JButton jBEliminar;
     private javax.swing.JButton jBEliminarPaquete;
@@ -809,6 +840,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel53;
@@ -832,7 +864,8 @@ public class JFPaquetes extends javax.swing.JFrame {
     private javax.swing.JTextField jTCodigoEliminar;
     private javax.swing.JTextField jTCodigoTracking;
     private javax.swing.JTextField jTContenidoPaquete;
-    private javax.swing.JTextField jTDireccion;
+    private javax.swing.JTextField jTDestinatario;
+    private javax.swing.JTextField jTDireccion1;
     private javax.swing.JTextField jTPeso;
     private javax.swing.JTextField jTRemitente;
     private javax.swing.JTextField jTVolumen;
