@@ -4,10 +4,14 @@
  */
 package incidentes;
 
+import mod_paquetes.Paquete;
+
 /**
  *
  * @author Rodrigo Haro
  */
 public class GestorIncidente {
     
+    public void crearIncidente(Incidente incidente, Paquete paquete) {
+    }
 }

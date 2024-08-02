@@ -46,10 +46,12 @@ public class Asignacion {
 
     public void agregarConductor(Conductor usuario) {
         conductores.add(usuario);
+        guardarConductores();
     }
 
     public void agregarVehiculo(Vehiculo vehiculo) {
         vehiculos.add(vehiculo);
+        guardarVehiculo();
     }
 
     public void eliminarVehiculo(Vehiculo vehiculo) {
@@ -137,6 +139,26 @@ public class Asignacion {
         String filePath = "src\\archivos\\FlotaVehiculos.ser";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             vehiculos = (ArrayList<Vehiculo>) ois.readObject();
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No existe el archivo");
+        }
+    }
+    
+    public void guardarConductores() {
+        String filePath = "src\\archivos\\Conductores.ser";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(conductores);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void cargarConductores() {
+        String filePath = "src\\archivos\\Conductores.ser";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            conductores = (ArrayList<Conductor>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("No existe el archivo");
