@@ -128,7 +128,7 @@ public class JFFacturacion extends javax.swing.JFrame {
       
       private void deshabilitarCampos() {
         // Deshabilitar los componentes
-        jBRegistrarFactura.setEnabled(false);
+
         jTFnumerofactura.setEnabled(false);
         jDateChooserFecha.setEnabled(false);
 
@@ -139,9 +139,9 @@ public class JFFacturacion extends javax.swing.JFrame {
         correoCli.setEnabled(false);
         jTNombreCliente.setEnabled(false);
         // Habilitar los componentes
-        idItemFactura.setEnabled(true);
+        jTCodigoPaquete.setEnabled(true);
 
-        btnBuscar.setEnabled(true);
+        btnBuscarPaquete.setEnabled(true);
 
         jBGenerarFactura.setEnabled(true);
 
@@ -155,10 +155,10 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTTelefonoCliente.setEnabled(true);
         jTDireccionCliente.setEnabled(true);
         correoCli.setEnabled(true);
-        jBRegistrarFactura.setEnabled(true);
-        idItemFactura.setEnabled(false);
 
-        btnBuscar.setEnabled(false);
+        jTCodigoPaquete.setEnabled(false);
+
+        btnBuscarPaquete.setEnabled(false);
 
         jBGenerarFactura.setEnabled(false);
 
@@ -169,10 +169,10 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTTelefonoCliente.setText("");
         jTDireccionCliente.setText("");
         correoCli.setText("");
-        jTFSubtotal.setText("");
-        jTextField5.setText("");
-        idItemFactura.setText("");
-        idItemFactura.setText("");
+        jTPrecioPaquete.setText("");
+        jTTotal.setText("");
+        jTCodigoPaquete.setText("");
+        jTCodigoPaquete.setText("");
 
         jDateChooserFecha.setDate(null);
 
@@ -206,41 +206,46 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTablaRegistrarFactura = new javax.swing.JTable();
         jPRegistrarFactura = new javax.swing.JPanel();
         jPDatosCliente = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
         jTNombreCliente = new javax.swing.JTextField();
         jLabel30 = new javax.swing.JLabel();
         jTTelefonoCliente = new javax.swing.JTextField();
         jLCITipoCliente = new javax.swing.JLabel();
-        jTCIDelCliente = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jTDireccionCliente = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         jTFApeliidosCliente = new javax.swing.JTextField();
-        jBRegistrarFactura = new javax.swing.JButton();
         jLabel85 = new javax.swing.JLabel();
         correoCli = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        jTCIDelCliente1 = new javax.swing.JTextField();
         jPDatosFactura = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jTFnumerofactura = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
         jDateChooserFecha = new com.toedter.calendar.JDateChooser();
         jError6 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jTFSubtotal = new javax.swing.JTextField();
-        IVAText = new javax.swing.JTextField();
-        jLabel49 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        jLPrecioPaquete = new javax.swing.JLabel();
+        jLPrecioImpuesto = new javax.swing.JLabel();
+        jTPrecioPaquete = new javax.swing.JTextField();
+        jTPrecioImpuesto = new javax.swing.JTextField();
+        jLTotal = new javax.swing.JLabel();
+        jTTotal = new javax.swing.JTextField();
         jPPaquete = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
-        idItemFactura = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
+        jTCodigoPaquete = new javax.swing.JTextField();
+        btnBuscarPaquete = new javax.swing.JButton();
         jLabel64 = new javax.swing.JLabel();
-        nombreProducto = new javax.swing.JTextField();
+        jTContenidoPaquete = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jTCIDelCliente = new javax.swing.JTextField();
         jBGenerarFactura = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
+        jLPrecioDistancia = new javax.swing.JLabel();
+        jLabel70 = new javax.swing.JLabel();
+        jTPrecioDistancia = new javax.swing.JTextField();
+        jLabel71 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
@@ -253,17 +258,27 @@ public class JFFacturacion extends javax.swing.JFrame {
         JPFyV.setBackground(new java.awt.Color(245, 245, 245));
         JPFyV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPConsultarFactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jTablaRegistrarFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Código", "Remitente", "Destinario", "Dirección Origen", "Dirección Destino", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTablaRegistrarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTablaRegistrarFacturaMouseClicked(evt);
@@ -271,22 +286,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         });
         jScrollPane26.setViewportView(jTablaRegistrarFactura);
 
-        javax.swing.GroupLayout jPConsultarFacturaLayout = new javax.swing.GroupLayout(jPConsultarFactura);
-        jPConsultarFactura.setLayout(jPConsultarFacturaLayout);
-        jPConsultarFacturaLayout.setHorizontalGroup(
-            jPConsultarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPConsultarFacturaLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 729, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(347, Short.MAX_VALUE))
-        );
-        jPConsultarFacturaLayout.setVerticalGroup(
-            jPConsultarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPConsultarFacturaLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
-        );
+        jPConsultarFactura.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 1000, 142));
 
         jTabbedPane1.addTab("Consultar facturas", jPConsultarFactura);
 
@@ -294,9 +294,6 @@ public class JFFacturacion extends javax.swing.JFrame {
 
         jPDatosCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del cliente"));
         jPDatosCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel29.setText("Nombres:");
-        jPDatosCliente.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jTNombreCliente.setEditable(false);
         jPDatosCliente.add(jTNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 170, -1));
@@ -310,9 +307,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         jLCITipoCliente.setText("CI:");
         jPDatosCliente.add(jLCITipoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        jTCIDelCliente.setEditable(false);
-        jPDatosCliente.add(jTCIDelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 170, -1));
-
         jLabel33.setText("Dirección:");
         jPDatosCliente.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
@@ -325,20 +319,17 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTFApeliidosCliente.setEditable(false);
         jPDatosCliente.add(jTFApeliidosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 170, -1));
 
-        jBRegistrarFactura.setText("Registrar datos básicos");
-        jBRegistrarFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBRegistrarFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBRegistrarFacturaActionPerformed(evt);
-            }
-        });
-        jPDatosCliente.add(jBRegistrarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 238, -1, -1));
-
         jLabel85.setText("Correo:");
         jPDatosCliente.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 43, -1));
 
         correoCli.setEditable(false);
         jPDatosCliente.add(correoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 170, -1));
+
+        jLabel31.setText("Nombres:");
+        jPDatosCliente.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        jTCIDelCliente1.setEditable(false);
+        jPDatosCliente.add(jTCIDelCliente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 170, -1));
 
         jPRegistrarFactura.add(jPDatosCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 450, 270));
 
@@ -370,70 +361,81 @@ public class JFFacturacion extends javax.swing.JFrame {
 
         jPRegistrarFactura.add(jPDatosFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 190, 180));
 
-        jLabel44.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel44.setText("Subtotal");
-        jPRegistrarFactura.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 310, 71, -1));
+        jLPrecioPaquete.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLPrecioPaquete.setText("Precio Paquete");
+        jPRegistrarFactura.add(jLPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 120, -1));
 
-        jLabel46.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel46.setText("IVA (%)");
-        jPRegistrarFactura.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 340, -1, -1));
+        jLPrecioImpuesto.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLPrecioImpuesto.setText("IVA (%)");
+        jPRegistrarFactura.add(jLPrecioImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, -1, -1));
 
-        jTFSubtotal.setEditable(false);
-        jPRegistrarFactura.add(jTFSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 151, -1));
+        jTPrecioPaquete.setEditable(false);
+        jPRegistrarFactura.add(jTPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 151, -1));
 
-        IVAText.setEditable(false);
-        IVAText.setText("12");
-        jPRegistrarFactura.add(IVAText, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 151, -1));
-
-        jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel49.setText("Total");
-        jPRegistrarFactura.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 370, -1, -1));
-
-        jTextField5.setEditable(false);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        jTPrecioImpuesto.setEditable(false);
+        jTPrecioImpuesto.setText("15");
+        jTPrecioImpuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                jTPrecioImpuestoActionPerformed(evt);
             }
         });
-        jPRegistrarFactura.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 370, 151, -1));
+        jPRegistrarFactura.add(jTPrecioImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 370, 151, -1));
+
+        jLTotal.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLTotal.setText("Total");
+        jPRegistrarFactura.add(jLTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
+
+        jTTotal.setEditable(false);
+        jTTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTTotalActionPerformed(evt);
+            }
+        });
+        jPRegistrarFactura.add(jTTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 400, 151, -1));
 
         jPPaquete.setBorder(javax.swing.BorderFactory.createTitledBorder("Paquete"));
         jPPaquete.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel37.setText("Código paquete");
-        jPPaquete.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 18, -1, -1));
+        jPPaquete.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        idItemFactura.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTCodigoPaquete.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                idItemFacturaKeyReleased(evt);
+                jTCodigoPaqueteKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                idItemFacturaKeyTyped(evt);
+                jTCodigoPaqueteKeyTyped(evt);
             }
         });
-        jPPaquete.add(idItemFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 36, 142, -1));
+        jPPaquete.add(jTCodigoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 142, -1));
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarPaquete.setText("Buscar");
+        btnBuscarPaquete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarPaquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnBuscarPaqueteActionPerformed(evt);
             }
         });
-        jPPaquete.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        jPPaquete.add(btnBuscarPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         jLabel64.setText("Contenido");
-        jPPaquete.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        jPPaquete.add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        nombreProducto.setEditable(false);
-        nombreProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTContenidoPaquete.setEditable(false);
+        jTContenidoPaquete.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                nombreProductoKeyReleased(evt);
+                jTContenidoPaqueteKeyReleased(evt);
             }
         });
-        jPPaquete.add(nombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 190, 50));
+        jPPaquete.add(jTContenidoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 200, 30));
 
-        jPRegistrarFactura.add(jPPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 250, 220));
+        jLabel29.setText("Nombre Destinatario");
+        jPPaquete.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+
+        jTCIDelCliente.setEditable(false);
+        jPPaquete.add(jTCIDelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 30));
+
+        jPRegistrarFactura.add(jPPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 250, 230));
         jPPaquete.getAccessibleContext().setAccessibleName("Paquete");
 
         jBGenerarFactura.setText("Generar Factura");
@@ -443,14 +445,32 @@ public class JFFacturacion extends javax.swing.JFrame {
                 jBGenerarFacturaActionPerformed(evt);
             }
         });
-        jPRegistrarFactura.add(jBGenerarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 400, -1, -1));
+        jPRegistrarFactura.add(jBGenerarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 430, -1, -1));
         jPRegistrarFactura.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 293, 1190, 10));
 
         jLabel67.setText("$");
-        jPRegistrarFactura.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 310, -1, -1));
+        jPRegistrarFactura.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 400, -1, -1));
 
         jLabel68.setText("$");
         jPRegistrarFactura.add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 370, -1, -1));
+
+        jLPrecioDistancia.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLPrecioDistancia.setText("Precio Distancia");
+        jPRegistrarFactura.add(jLPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 310, 120, -1));
+
+        jLabel70.setText("$");
+        jPRegistrarFactura.add(jLabel70, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 310, 10, -1));
+
+        jTPrecioDistancia.setEditable(false);
+        jTPrecioDistancia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPrecioDistanciaActionPerformed(evt);
+            }
+        });
+        jPRegistrarFactura.add(jTPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 151, -1));
+
+        jLabel71.setText("$");
+        jPRegistrarFactura.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 340, 10, -1));
 
         jTabbedPane1.addTab("Registrar factura", jPRegistrarFactura);
 
@@ -509,38 +529,31 @@ public class JFFacturacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBRegistrarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarFacturaActionPerformed
-
-
-     
-
-    }//GEN-LAST:event_jBRegistrarFacturaActionPerformed
-
     private void jDateChooserFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooserFechaMouseClicked
         jDateChooserFecha.setBackground(new Color(255, 204, 204)); // Color blanco
     }//GEN-LAST:event_jDateChooserFechaMouseClicked
 
-    private void idItemFacturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idItemFacturaKeyReleased
+    private void jTCodigoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoPaqueteKeyReleased
 
-    }//GEN-LAST:event_idItemFacturaKeyReleased
+    }//GEN-LAST:event_jTCodigoPaqueteKeyReleased
 
-    private void idItemFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idItemFacturaKeyTyped
+    private void jTCodigoPaqueteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoPaqueteKeyTyped
         char variable = evt.getKeyChar();
         if (Character.isLetter(variable)) {
             getToolkit().beep();
             evt.consume();
-            idItemFactura.requestFocus();
+            jTCodigoPaquete.requestFocus();
             JOptionPane.showMessageDialog(null, "Ingrese solo números");
         }
-    }//GEN-LAST:event_idItemFacturaKeyTyped
+    }//GEN-LAST:event_jTCodigoPaqueteKeyTyped
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void btnBuscarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPaqueteActionPerformed
         
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_btnBuscarPaqueteActionPerformed
 
-    private void nombreProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nombreProductoKeyReleased
+    private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteKeyReleased
 
-    }//GEN-LAST:event_nombreProductoKeyReleased
+    }//GEN-LAST:event_jTContenidoPaqueteKeyReleased
 
     private void jBGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarFacturaActionPerformed
 
@@ -579,9 +592,17 @@ public class JFFacturacion extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void jTTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_jTTotalActionPerformed
+
+    private void jTPrecioDistanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPrecioDistanciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTPrecioDistanciaActionPerformed
+
+    private void jTPrecioImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPrecioImpuestoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTPrecioImpuestoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -620,31 +641,32 @@ public class JFFacturacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IVAText;
     private javax.swing.JPanel JPFyV;
-    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnBuscarPaquete;
     private javax.swing.JButton btnExit;
     private javax.swing.JTextField correoCli;
-    private javax.swing.JTextField idItemFactura;
     private javax.swing.JButton jBGenerarFactura;
-    private javax.swing.JButton jBRegistrarFactura;
     private com.toedter.calendar.JDateChooser jDateChooserFecha;
     private javax.swing.JLabel jError6;
     private javax.swing.JLabel jLCITipoCliente;
+    private javax.swing.JLabel jLPrecioDistancia;
+    private javax.swing.JLabel jLPrecioImpuesto;
+    private javax.swing.JLabel jLPrecioPaquete;
+    private javax.swing.JLabel jLTotal;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
     private javax.swing.JLabel jLabel69;
+    private javax.swing.JLabel jLabel70;
+    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel85;
     private javax.swing.JPanel jPConsultarFactura;
     private javax.swing.JPanel jPDatosCliente;
@@ -655,15 +677,19 @@ public class JFFacturacion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTCIDelCliente;
+    private javax.swing.JTextField jTCIDelCliente1;
+    private javax.swing.JTextField jTCodigoPaquete;
+    private javax.swing.JTextField jTContenidoPaquete;
     private javax.swing.JTextField jTDireccionCliente;
     private javax.swing.JTextField jTFApeliidosCliente;
-    private javax.swing.JTextField jTFSubtotal;
     private javax.swing.JTextField jTFnumerofactura;
     private javax.swing.JTextField jTNombreCliente;
+    private javax.swing.JTextField jTPrecioDistancia;
+    private javax.swing.JTextField jTPrecioImpuesto;
+    private javax.swing.JTextField jTPrecioPaquete;
     private javax.swing.JTextField jTTelefonoCliente;
+    private javax.swing.JTextField jTTotal;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTablaRegistrarFactura;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField nombreProducto;
     // End of variables declaration//GEN-END:variables
 }
