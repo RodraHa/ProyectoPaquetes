@@ -64,7 +64,7 @@ public class Asignacion {
         return null;
     }
     
-    public void asignarPaquetesAVehiculo(Vehiculo vehiculo) {
+    public void asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
         ArrayList<Paquete> paquetesPendientes  = Inventario.obtenerInstancia().obtenerPaquetesPendientes();
         ArrayList<Paquete> paquetes;
         if (paquetesPendientes.isEmpty()) {
@@ -75,28 +75,20 @@ public class Asignacion {
             paquetes = new ArrayList<>();
             asignacionPaquetes.put(vehiculo, paquetes);
         }
-        double capacidadDisponible = vehiculo.getCapacidad();
-
-        HashMap<Provincia, ArrayList<Paquete>> paquetesPorProvincia = new HashMap<>();
+        double capacidad = vehiculo.getCapacidad();
 
         for (Paquete paquete : paquetesPendientes) {
-            Provincia provincia = paquete.getProvinciaDestino();
-            paquetesPorProvincia.putIfAbsent(provincia, new ArrayList<>());
-            paquetesPorProvincia.get(provincia).add(paquete);
-        }
-
-        for (Map.Entry<Provincia, ArrayList<Paquete>> entry : paquetesPorProvincia.entrySet()) {
-            ArrayList<Paquete> paquetesProvincia = entry.getValue();
-            for (Paquete paquete : paquetesProvincia) {
-                if (capacidadDisponible >= paquete.getVolumen()) {
-                    paquetes.add(paquete);
-                    paquete.cambiarEstado(new EnCurso(paquete));
-                    capacidadDisponible -= paquete.getVolumen();
-                } else {
-                    break;
+            if (capacidad >= paquete.getVolumen() ) {
+                if(paquete.getProvinciaDestino() == destino){
+                paquetes.add(paquete);
+                paquete.cambiarEstado(new EnCurso(paquete));
+                capacidad -= paquete.getVolumen();
                 }
+            }else{
+                break;
             }
         }
+        vehiculo.setCapacidad(capacidad);
     }
 
     public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {

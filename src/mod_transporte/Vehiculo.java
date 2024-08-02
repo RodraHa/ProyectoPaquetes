@@ -37,4 +37,9 @@ public class Vehiculo implements Serializable {
                 "numeroPlaca='" + numeroPlaca + '\'' +
                 '}';
     }
+
+    public void setCapacidad(double capacidad) {
+        this.capacidad = capacidad;
+    }
+    
 }
