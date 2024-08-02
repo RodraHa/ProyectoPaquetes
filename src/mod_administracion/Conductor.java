@@ -8,7 +8,7 @@ import mod_transporte.Asignacion;
 import java.util.ArrayList;
 
 public class Conductor extends Usuario {
-    public Conductor(String nombres, String apellidos, String identificacion, String direccion, String telefono, String email, String licencia) {
+    public Conductor(String nombres, String apellidos, String identificacion, String direccion, String telefono, String email) {
         super(nombres, apellidos, identificacion, direccion, telefono, email);
     }
 
