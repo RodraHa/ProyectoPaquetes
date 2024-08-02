@@ -41,7 +41,7 @@ public class ValidadorDeRegistros {
             case "telefono" ->
                 valor = texto.matches("^\\d{10}$");
             case "cedula" ->
-                valor = ValidadorCedulas.validarCedula(texto);
+                valor = validarCedula(texto);
             case "precio" ->
                 valor = validarMaximoDosDecimales(texto);
             case "v" ->
@@ -133,5 +133,51 @@ public class ValidadorDeRegistros {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+    
+    public static boolean validarCedula(String cedula) {
+        // Verificar si la cédula tiene 10 dígitos
+        if (cedula.length() != 10) {
+            return false;
+        }
+
+        // Extraer los primeros 9 dígitos de la cédula
+        String digitosCedula = cedula.substring(0, 9);
+
+        // Verificar si los primeros 9 dígitos son numéricos
+        if (!digitosCedula.matches("[0-9]+")) {
+            return false;
+        }
+
+        // Convertir los dígitos a un array de enteros
+        int[] numeros = new int[9];
+        for (int i = 0; i < 9; i++) {
+            numeros[i] = Integer.parseInt(digitosCedula.substring(i, i + 1));
+        }
+
+        // Calcular el dígito verificador
+        int digitoVerificador = Integer.parseInt(cedula.substring(9));
+        int suma = 0;
+        for (int i = 0; i < 9; i++) {
+            int numero = numeros[i];
+            if (i % 2 == 0) {
+                numero *= 2;
+                if (numero > 9) {
+                    numero -= 9;
+                }
+            }
+            suma += numero;
+        }
+        int digitoCalculado = 10 - (suma % 10);
+        if (digitoCalculado == 10) {
+            digitoCalculado = 0;
+        }
+
+        // Comparar el dígito verificador calculado con el proporcionado
+        return digitoCalculado == digitoVerificador;
+    }
+    
+    public static boolean validarNombres(String nombres) {
+        return nombres.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$");
     }
 }
