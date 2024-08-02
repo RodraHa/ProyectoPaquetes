@@ -178,5 +178,14 @@ public class Asignacion {
         }
         return null;
     }
+
+    public void agregarConductores(ArrayList usuario) {
+        conductores.addAll(usuario);
+        guardarConductores();
+    }
+
+    public ArrayList<Conductor> obtenerConductores() {
+        return conductores;
+    }
     
 }
