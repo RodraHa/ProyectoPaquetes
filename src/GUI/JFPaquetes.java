@@ -664,6 +664,8 @@ public class JFPaquetes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Escoja un destino", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (destino.equals(recepcionista.obtenerSucursal())) {
             JOptionPane.showMessageDialog(null, "El Destino debe ser otra provincia distinta a la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!DataBase.obtenerInstancia().clienteExiste(jTRemitente.getText())) {
+            JOptionPane.showMessageDialog(null, "El cliente no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             String codigo = inventario.getSiguienteCodigoTracking();
             double volumen = Double.parseDouble(jTVolumen.getText());

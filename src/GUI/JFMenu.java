@@ -104,8 +104,8 @@ public class JFMenu extends javax.swing.JFrame {
 
         resultado = mostrarFechaHora(fechaYHora, fecha, localM);
         //jDateChooserFecha.setText(resultado);
-        txtID.setText("Usuario     :" + "Recepcionista");
-        txtDateLog.setText("Fecha      : " + resultado);
+        txtID.setText("Usuario\t: " + "Recepcionista " + recepcionista.obtenerSucursal().name());
+        txtDateLog.setText("Fecha\t: " + resultado);
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         contenido = (CardLayout) (panelContent.getLayout());
@@ -1753,7 +1753,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card6");
         cambiarSeccionMenu(5);
         menuIncidentes.setBackground(Color.decode("#494848"));
-        JFrame ventanaIncidentes = new JFIncidente(cnx);
+        JFrame ventanaIncidentes = new JFIncidente(recepcionista);
         VentanaManager.getInstance().mostrarVentana("inventario", ventanaIncidentes);
 
     }//GEN-LAST:event_menuIncidentesMouseClicked
