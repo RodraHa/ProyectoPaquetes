@@ -114,6 +114,15 @@ public class Asignacion {
         return asignacionPaquetes.get(vehiculo);
     }
     
+    public Conductor obtenerConductorDeVehiculo(Vehiculo vehiculo){
+        for (Map.Entry<Conductor, Vehiculo> entry : asignacionConductores.entrySet()) {
+            if (entry.getValue().getNumeroPlaca().equals(vehiculo.getNumeroPlaca())) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+    
     public void guardarVehiculo() {
         String filePath = "src\\archivos\\FlotaVehiculos.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
@@ -132,6 +141,19 @@ public class Asignacion {
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("No existe el archivo");
         }
+    }
+
+    public HashMap<Conductor, Vehiculo> getAsignacionConductores() {
+        return asignacionConductores;
+    }
+
+    public Vehiculo obtenerVehiculo(String placa) {
+        for(Vehiculo vehiculo: vehiculos){
+            if(vehiculo.getNumeroPlaca().equals(placa)){
+                return vehiculo;
+            }
+        }
+        return null;
     }
     
 }

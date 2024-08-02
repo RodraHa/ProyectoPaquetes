@@ -22,6 +22,14 @@ public class Vehiculo {
         return capacidad;
     }
 
+    public String getNumeroPlaca() {
+        return numeroPlaca;
+    }
+
+    public Provincia getUbicacion() {
+        return ubicacion;
+    }
+
     @Override
     public String toString() {
         return "Vehiculo{" +
