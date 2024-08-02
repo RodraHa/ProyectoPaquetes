@@ -20,6 +20,11 @@ import javax.swing.JTextField;
  */
 public class ValidadorDeRegistros {
 
+    public static boolean validarPlaca(String placa) {
+        String patron = "^[A-Z]{3}\\d{3}$";
+        return placa.matches(patron);
+    }
+
     ValidadorCedulas validarDocumentos = new ValidadorCedulas();
 
     public boolean camposDeRegistros(JTextField textField, JLabel label, String caso) {

@@ -54,7 +54,7 @@ public class JFRecepcionista extends javax.swing.JFrame {
     int xMouse, yMouse; 
     public JFRecepcionista(Connection cnx, Provincia sucursal) {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Monitor_32px.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png")).getImage());
         this.cnx=cnx;
         //All Files	C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
         JFrame frame = new JFrame();
@@ -879,7 +879,7 @@ public class JFRecepcionista extends javax.swing.JFrame {
         jLabel69.setText("Reccepcionista");
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/power_24dp.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -914,7 +914,7 @@ public class JFRecepcionista extends javax.swing.JFrame {
             jPEmpleadosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPEmpleadosTabLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(39, 39, 39)
                 .addComponent(jTPEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -922,9 +922,8 @@ public class JFRecepcionista extends javax.swing.JFrame {
             jPEmpleadosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPEmpleadosTabLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTPEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jTPEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jPEmpleadosTab, "card2");
@@ -1252,7 +1251,7 @@ public class JFRecepcionista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El campo de la placa está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!ValidadorCedulas.validarPlaca()) {
+        if (!ValidadorDeRegistros.validarPlaca(placa)) {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             Asignacion asignacion = Asignacion.obtenerInstancia();
