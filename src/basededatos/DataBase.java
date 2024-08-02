@@ -323,4 +323,32 @@ public class DataBase {
         }
         return false; // Si ocurre un error, asumimos que no es único para evitar errores en la lógica de la aplicación
     }
+    
+    public ArrayList<Conductor> obtenerTodosLosConductores() {
+        ArrayList<Conductor> conductores = new ArrayList<>();
+        String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email " +
+                       "FROM Usuario u " +
+                       "JOIN Credencial c ON u.id = c.usuario_id " +
+                       "WHERE c.rol = 'conductor'";
+
+        try (PreparedStatement stmt = conexion.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String nombres = rs.getString("nombres");
+                String apellidos = rs.getString("apellidos");
+                String identificacion = rs.getString("identificacion");
+                String direccion = rs.getString("direccion");
+                String telefono = rs.getString("telefono");
+                String email = rs.getString("email");
+
+                Conductor conductor = new Conductor(nombres, apellidos, identificacion, direccion, telefono, email);
+                conductores.add(conductor);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return conductores;
+    }
 }

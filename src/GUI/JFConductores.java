@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import basededatos.DataBase;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
 import javax.swing.JOptionPane;
@@ -12,7 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import java.util.List;
 import javax.swing.JLabel;
+import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
+import mod_paquetes.Provincia;
 import validaciones.*;
 
 
@@ -52,12 +57,8 @@ public class JFConductores extends javax.swing.JFrame {
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
+        cargarConductores();
      }
-
-    private String getValueAtSelectedRow(DefaultTableModel model, int selectedRow, String columnName) {
-        int colIndex = model.findColumn(columnName);
-        return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -92,19 +93,6 @@ public class JFConductores extends javax.swing.JFrame {
         jTClaveConductor = new javax.swing.JTextField();
         jTNombreUsuario1 = new javax.swing.JTextField();
         jBRegistrarConductor = new javax.swing.JButton();
-        jPPA = new javax.swing.JPanel();
-        jPActualizarProovedores = new javax.swing.JPanel();
-        jPanel25 = new javax.swing.JPanel();
-        jPanel24 = new javax.swing.JPanel();
-        jTCedulaDespachadorAct = new javax.swing.JTextField();
-        jTNombreDespachadorAct = new javax.swing.JTextField();
-        jTApellidoDespachadorAct = new javax.swing.JTextField();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jTTelefonoConductorActualizar = new javax.swing.JTextField();
-        errorProveedores7 = new javax.swing.JLabel();
         jPPC = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
@@ -137,7 +125,7 @@ public class JFConductores extends javax.swing.JFrame {
         });
         jScrollPane11.setViewportView(jTConductores);
 
-        jPPR.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 975, 220));
+        jPPR.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 975, 210));
 
         jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos conductor"));
         jPanel15.setToolTipText("");
@@ -235,6 +223,9 @@ public class JFConductores extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTClaveConductorKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTClaveConductorKeyTyped(evt);
+            }
         });
 
         jTNombreUsuario1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -245,6 +236,9 @@ public class JFConductores extends javax.swing.JFrame {
         jTNombreUsuario1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTNombreUsuario1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTNombreUsuario1KeyTyped(evt);
             }
         });
 
@@ -362,149 +356,6 @@ public class JFConductores extends javax.swing.JFrame {
 
         jPGP.addTab("Registrar Conductor", jPPR);
 
-        jPPA.setPreferredSize(new java.awt.Dimension(790, 459));
-        jPPA.setLayout(new java.awt.CardLayout());
-
-        jPActualizarProovedores.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jPActualizarProovedores.setToolTipText("");
-        jPActualizarProovedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jPanel25.setBorder(javax.swing.BorderFactory.createTitledBorder("Actualizar proveedor"));
-
-        jPanel24.setBorder(javax.swing.BorderFactory.createTitledBorder("Despachador"));
-
-        jTCedulaDespachadorAct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTCedulaDespachadorAct.setEnabled(false);
-
-        jTNombreDespachadorAct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTNombreDespachadorAct.setEnabled(false);
-
-        jTApellidoDespachadorAct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTApellidoDespachadorAct.setEnabled(false);
-
-        jCheckBox3.setSelected(true);
-        jCheckBox3.setText("Cédula");
-        jCheckBox3.setEnabled(false);
-
-        jCheckBox4.setSelected(true);
-        jCheckBox4.setText("Nombre");
-        jCheckBox4.setEnabled(false);
-
-        jCheckBox5.setSelected(true);
-        jCheckBox5.setText("Apellido");
-        jCheckBox5.setEnabled(false);
-
-        jCheckBox8.setText("Teléfono");
-        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox8ActionPerformed(evt);
-            }
-        });
-
-        jTTelefonoConductorActualizar.setEnabled(false);
-        jTTelefonoConductorActualizar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTTelefonoConductorActualizarFocusLost(evt);
-            }
-        });
-        jTTelefonoConductorActualizar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTTelefonoConductorActualizarKeyReleased(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
-        jPanel24.setLayout(jPanel24Layout);
-        jPanel24Layout.setHorizontalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTCedulaDespachadorAct, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                            .addComponent(jTNombreDespachadorAct)
-                            .addComponent(jTApellidoDespachadorAct)))
-                    .addGroup(jPanel24Layout.createSequentialGroup()
-                        .addComponent(jCheckBox8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTTelefonoConductorActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel24Layout.setVerticalGroup(
-            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel24Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTCedulaDespachadorAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTNombreDespachadorAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTApellidoDespachadorAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jTTelefonoConductorActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-
-        errorProveedores7.setForeground(new java.awt.Color(255, 0, 51));
-        errorProveedores7.setText("Teléfono móvil inválido");
-
-        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
-        jPanel25.setLayout(jPanel25Layout);
-        jPanel25Layout.setHorizontalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel25Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorProveedores7)
-                .addContainerGap(238, Short.MAX_VALUE))
-        );
-        jPanel25Layout.setVerticalGroup(
-            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
-                        .addComponent(errorProveedores7)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel25Layout.createSequentialGroup()
-                        .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-
-        javax.swing.GroupLayout jPActualizarProovedoresLayout = new javax.swing.GroupLayout(jPActualizarProovedores);
-        jPActualizarProovedores.setLayout(jPActualizarProovedoresLayout);
-        jPActualizarProovedoresLayout.setHorizontalGroup(
-            jPActualizarProovedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPActualizarProovedoresLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(309, 309, 309))
-        );
-        jPActualizarProovedoresLayout.setVerticalGroup(
-            jPActualizarProovedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPActualizarProovedoresLayout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
-                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234))
-        );
-
-        jPPA.add(jPActualizarProovedores, "cardActualizar");
-
-        jPGP.addTab("Asignar Conductor a Vehiculo", jPPA);
-
         javax.swing.GroupLayout jPPCLayout = new javax.swing.GroupLayout(jPPC);
         jPPC.setLayout(jPPCLayout);
         jPPCLayout.setHorizontalGroup(
@@ -610,20 +461,63 @@ public class JFConductores extends javax.swing.JFrame {
     }//GEN-LAST:event_jTTelefonoConductorKeyReleased
 
     private void jBRegistrarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarConductorActionPerformed
-        
+        String cedula = jTCedulaConductor.getText();
+        if (!ValidadorDeRegistros.validarCedula(cedula)) {
+            JOptionPane.showMessageDialog(this, "Cédula es inválida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (DataBase.obtenerInstancia().clienteExiste(cedula)) {
+            JOptionPane.showMessageDialog(this, "Cédula ya registrada", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String nombres = jTNombreConductor.getText();
+        if (!ValidadorDeRegistros.validarNombres(nombres)) {
+            JOptionPane.showMessageDialog(this, "Los nombres son inválidos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String apellidos = jTApellidoConductor.getText();
+        if (!ValidadorDeRegistros.validarNombres(apellidos)) {
+            JOptionPane.showMessageDialog(this, "Los apellidos son inválidos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String telefono = jTTelefonoConductor.getText();
+        if (!ValidadorDeRegistros.validarTelefono(telefono)) {
+            JOptionPane.showMessageDialog(this, "El teléfono es inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String correo = jTCorreoConductor.getText();
+        if (!ValidadorDeRegistros.validarEmail(correo)) {
+            JOptionPane.showMessageDialog(this, "El correo es inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String direccion = jTDireccionConductor.getText();
+        if (!ValidadorDeRegistros.validarDireccion(direccion)) {
+            JOptionPane.showMessageDialog(this, "La dirección es inválida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String nombreUsuario = jTNombreUsuario1.getText();
+        if (nombreUsuario.isEmpty() || nombreUsuario.length() < 5) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario es inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        String clave = jTClaveConductor.getText();
+        if (clave.isEmpty() || clave.length() < 5) {
+            JOptionPane.showMessageDialog(this, "La clave es inválida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else if (!DataBase.obtenerInstancia().esNombreUsuarioUnico(nombreUsuario)) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, clave, nombreUsuario, clave, recepcionista.obtenerSucursal());
+        JOptionPane.showMessageDialog(
+            null,
+            "El registro del conductor ha sido exitoso",
+            "Registro Exitoso",
+            JOptionPane.INFORMATION_MESSAGE
+        );
+        vaciarCampos();
+        cargarConductores();
     }//GEN-LAST:event_jBRegistrarConductorActionPerformed
-
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
-        validadorCheck.actualizarCampo(jCheckBox8, jTTelefonoConductorActualizar, telefonoProve1, errorProveedores7);
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
-
-    private void jTTelefonoConductorActualizarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTTelefonoConductorActualizarFocusLost
-        telefonoProve1 = validarRegistroF.camposDeRegistros(jTTelefonoConductorActualizar, errorProveedores7, "telefono");
-    }//GEN-LAST:event_jTTelefonoConductorActualizarFocusLost
-
-    private void jTTelefonoConductorActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTTelefonoConductorActualizarKeyReleased
-        telefonoProve1 = validarRegistroF.camposDeRegistros(jTTelefonoConductorActualizar, errorProveedores7, "telefono");
-    }//GEN-LAST:event_jTTelefonoConductorActualizarKeyReleased
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         getToolkit().beep();
@@ -677,15 +571,36 @@ public class JFConductores extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTNombreUsuario1KeyReleased
 
+    private void jTNombreUsuario1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTNombreUsuario1KeyTyped
+        char c = evt.getKeyChar();
+        if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
+            if (!((Character.isLetter(c) && Character.isLowerCase(c))
+                    || (Character.isLetter(c) && Character.isUpperCase(c))
+                    || Character.isDigit(c) || c == 'ñ' || c == 'Ñ')) {
+                evt.consume(); // No permite ingresar el carácter
+                // Mostrar mensaje de advertencia
+                JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
+            }
+        }
+    }//GEN-LAST:event_jTNombreUsuario1KeyTyped
+
+    private void jTClaveConductorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTClaveConductorKeyTyped
+        char c = evt.getKeyChar();
+        if (c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
+            if (!((Character.isLetter(c) && Character.isLowerCase(c))
+                    || (Character.isLetter(c) && Character.isUpperCase(c))
+                    || Character.isDigit(c) || c == 'ñ' || c == 'Ñ')) {
+                evt.consume(); // No permite ingresar el carácter
+                // Mostrar mensaje de advertencia
+                JOptionPane.showMessageDialog(this, "Solo se permiten letras y números.");
+            }
+        }
+    }//GEN-LAST:event_jTClaveConductorKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPProovedores;
     private javax.swing.JButton btnExit;
-    private javax.swing.JLabel errorProveedores7;
     private javax.swing.JButton jBRegistrarConductor;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -695,29 +610,51 @@ public class JFConductores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel87;
-    private javax.swing.JPanel jPActualizarProovedores;
     private javax.swing.JTabbedPane jPGP;
-    private javax.swing.JPanel jPPA;
     private javax.swing.JPanel jPPC;
     private javax.swing.JPanel jPPR;
     private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JTextField jTApellidoConductor;
-    private javax.swing.JTextField jTApellidoDespachadorAct;
     private javax.swing.JTextField jTCedulaConductor;
-    private javax.swing.JTextField jTCedulaDespachadorAct;
     private javax.swing.JTextField jTClaveConductor;
     private javax.swing.JTable jTConductores;
     private javax.swing.JTextField jTCorreoConductor;
     private javax.swing.JTextField jTDireccionConductor;
     private javax.swing.JTextField jTNombreConductor;
-    private javax.swing.JTextField jTNombreDespachadorAct;
     private javax.swing.JTextField jTNombreUsuario1;
     private javax.swing.JTextField jTTelefonoConductor;
-    private javax.swing.JTextField jTTelefonoConductorActualizar;
     // End of variables declaration//GEN-END:variables
+
+    private void vaciarCampos() {
+        jTCedulaConductor.setText("");
+        jTNombreConductor.setText("");
+        jTApellidoConductor.setText("");
+        jTTelefonoConductor.setText("");
+        jTCorreoConductor.setText("");
+        jTDireccionConductor.setText("");
+        jTNombreUsuario1.setText("");
+        jTClaveConductor.setText("");
+    }
+
+    private void cargarConductores() {
+        ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
+        DefaultTableModel model = (DefaultTableModel) jTConductores.getModel();
+
+        model.setRowCount(0);
+
+        for (Conductor conductor : conductores) {
+            Object[] row = {
+                conductor.getNombres(),
+                conductor.getApellidos(),
+                conductor.getCedula(),
+                conductor.getDireccion(),
+                conductor.getTelefono(),
+                conductor.getEmail(),
+            };
+            model.addRow(row);
+        }
+    }
 }

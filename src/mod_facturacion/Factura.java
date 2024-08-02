@@ -12,7 +12,7 @@ public class Factura {
     private String fechaEmision;
     private Usuario cliente;
 
-    public Factura(Paquete paquete, Precio precio) {
+    public Factura(String id,Paquete paquete, Precio precio) {
         this.precio = precio;
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -22,5 +22,10 @@ public class Factura {
 
     public void consultarDatos() {
 
+    }
+
+
+    String obtenerCodigo() {
+        return this.id;
     }
 }
