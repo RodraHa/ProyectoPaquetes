@@ -8,6 +8,7 @@ package incidentes;
  *
  * @author Rodrigo Haro
  */
-public class Incidente {
-    
+public abstract class Incidente {
+    public abstract void registrar();
+    public abstract void resolver();
 }
