@@ -23,23 +23,16 @@ public class Asignacion {
     private ArrayList<Conductor> conductores;
     private ArrayList<Vehiculo> vehiculos;
 
-    private Asignacion(ArrayList<Conductor> conductores, ArrayList<Vehiculo> vehiculos) {
-        this.conductores = conductores;
-        this.vehiculos = vehiculos;
+    private Asignacion() {
         asignacionConductores = new HashMap<>();
         asignacionPaquetes = new HashMap<>();
-    }
-
-    public static Asignacion obtenerInstancia(ArrayList<Conductor> conductores, ArrayList<Vehiculo> vehiculos) {
-        if (instancia == null) {
-            instancia = new Asignacion(conductores, vehiculos);
-        }
-        return instancia;
+        conductores = new ArrayList<Conductor>();
+        vehiculos = new ArrayList<Vehiculo>();
     }
 
     public static Asignacion obtenerInstancia() {
         if (instancia == null) {
-            return null;
+            instancia = new Asignacion();
         }
         return instancia;
     }
@@ -61,7 +54,16 @@ public class Asignacion {
     public void eliminarConductor(Conductor conductor) {
         conductores.remove(conductor);
     }
-
+    
+    public Conductor obtenerConductorPorCedula(String cedula){
+        for(Conductor conductor: conductores){
+            if(conductor.getCedula().equals(cedula)){
+                return conductor;
+            }
+        }
+        return null;
+    }
+    
     public void asignarPaquetesAVehiculo(Vehiculo vehiculo) {
         ArrayList<Paquete> paquetesPendientes  = Inventario.obtenerInstancia().obtenerPaquetesPendientes();
         ArrayList<Paquete> paquetes;
@@ -97,15 +99,14 @@ public class Asignacion {
         }
     }
 
-    public void asignarConductorAVehiculo(Conductor conductor) {
+    public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
         if (asignacionConductores.containsKey(conductor)) {
             return;
         }
-        for (Vehiculo vehiculo : vehiculos) {
-            if (!asignacionConductores.containsValue(vehiculo)) {
-                asignacionConductores.put(conductor, vehiculo);
-            }
+        if (asignacionConductores.containsValue(vehiculo)) {
+            return;
         }
+        asignacionConductores.put(conductor, vehiculo);
     }
 
     public ArrayList<Paquete> obtenerPaquetesConductor(Conductor conductor) {
@@ -176,6 +177,15 @@ public class Asignacion {
             }
         }
         return null;
+    }
+
+    public void agregarConductores(ArrayList usuario) {
+        conductores.addAll(usuario);
+        guardarConductores();
+    }
+
+    public ArrayList<Conductor> obtenerConductores() {
+        return conductores;
     }
     
 }

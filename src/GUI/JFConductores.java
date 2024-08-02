@@ -643,9 +643,8 @@ public class JFConductores extends javax.swing.JFrame {
     }
 
     private void cargarConductores() {
-        ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
         DefaultTableModel model = (DefaultTableModel) jTConductores.getModel();
-
+        ArrayList<Conductor> conductores = Asignacion.obtenerInstancia().obtenerConductores();
         model.setRowCount(0);
 
         for (Conductor conductor : conductores) {

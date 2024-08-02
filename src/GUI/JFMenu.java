@@ -1,5 +1,6 @@
 package GUI;
 
+import basededatos.DataBase;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -22,11 +23,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
+import mod_transporte.Asignacion;
 import validaciones.*;
 
 /**
@@ -91,6 +95,8 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     public JFMenu(Recepcionista recepcionista) {
+        ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
+        Asignacion.obtenerInstancia().agregarConductores(conductores);
         initComponents();
         this.recepcionista = recepcionista;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
@@ -1351,7 +1357,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista = new JFRecepcionista(cnx, recepcionista.obtenerSucursal());
+        JFrame ventanaRecepcionista = new JFVehiculo(cnx, recepcionista.obtenerSucursal());
         VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
     }//GEN-LAST:event_menuEmpleadosMouseClicked
 
