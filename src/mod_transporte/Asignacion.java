@@ -1,5 +1,10 @@
 package mod_transporte;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import mod_administracion.Conductor;
 import mod_administracion.Usuario;
 import mod_paquetes.EnCurso;
@@ -108,4 +113,25 @@ public class Asignacion {
         Vehiculo vehiculo = asignacionConductores.get(conductor);
         return asignacionPaquetes.get(vehiculo);
     }
+    
+    public void guardarVehiculo() {
+        String filePath = "src\\archivos\\FlotaVehiculos.ser";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(vehiculos);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void cargarVehiculo() {
+        String filePath = "src\\archivos\\FlotaVehiculos.ser";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            vehiculos = (ArrayList<Vehiculo>) ois.readObject();
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No existe el archivo");
+        }
+    }
+    
 }
