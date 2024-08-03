@@ -94,6 +94,7 @@ public class Asignacion {
             return false;
         }
         vehiculo.setCapacidad(capacidad);
+        guardarRelacionPaquetes();
         return true;
     }
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo(){
@@ -168,6 +169,26 @@ public class Asignacion {
         String filePath = "src\\archivos\\AsignacionConductores.ser";
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             asignacionConductores = (HashMap<Conductor,Vehiculo>) ois.readObject();
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("No existe el archivo");
+        }
+    }
+    
+    public void guardarRelacionPaquetes() {
+        String filePath = "src\\archivos\\AsignacionPaquetes.ser";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            oos.writeObject(asignacionPaquetes);
+            oos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void cargarRelacionPaquetes() {
+        String filePath = "src\\archivos\\AsignacionPaquetes.ser";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            asignacionPaquetes = (HashMap<Vehiculo,ArrayList<Paquete>>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("No existe el archivo");
