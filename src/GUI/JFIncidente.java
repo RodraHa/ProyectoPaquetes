@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import mod_administracion.Recepcionista;
 import validaciones.*;
 
 
@@ -29,10 +30,8 @@ public class JFIncidente extends javax.swing.JFrame {
     //Validadores
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
-    //Connexion
-    Connection cnx;
-    private ContadorDeIDs contadorDeIDs;
-    private VisibilidadManager visibilidadManager;
+    Recepcionista recepcionista;
+    
     //Mouse
     int xMouse, yMouse;
 
@@ -41,36 +40,19 @@ public class JFIncidente extends javax.swing.JFrame {
     private boolean descriptionValidar = false;
     private boolean seleccionValidar = false;
 
-    
-    
-    public JFIncidente(Connection conexion) {
+    public JFIncidente(Recepcionista recepcionista) {
         initComponents();
-        this.cnx = conexion;
-        setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/exclamacion.png")).getImage());
-        // Inicializa el campo IDIncidentesTF con el siguiente ID
+        this.recepcionista = recepcionista;
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/exclamacion.png")).getImage());
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        this.contadorDeIDs = new ContadorDeIDs();
-        int siguienteId = contadorDeIDs.obtenerSiguienteIdIncidente(cnx);
-        IDIncidentesTF.setText(String.valueOf(siguienteId));
-        this.visibilidadManager = new VisibilidadManager();
-        desaparecerLabels();
         setLocationRelativeTo(null);
         placeHolder();
     }
 
-    public JFIncidente() {
-        initComponents();
-    }
-
     private void placeHolder() {
-        TextPrompt texto1 = new TextPrompt("Obligatorio", TFIDPIncidentes);
+        TextPrompt texto1 = new TextPrompt("Obligatorio", jTCodigoTracking);
         TextPrompt texto2 = new TextPrompt("Obligatorio", TFRazonIncidentes);
-    }
-
-    public void desaparecerLabels() {
-        JLabel[] labels = {errorIncidente1, errorIncidente2};
-        visibilidadManager.desvanecerLabels(labels);
     }
 
     @SuppressWarnings("unchecked")
@@ -85,15 +67,10 @@ public class JFIncidente extends javax.swing.JFrame {
         SeleccionIncidentesCB = new javax.swing.JComboBox<>();
         jLabel133 = new javax.swing.JLabel();
         jLabel134 = new javax.swing.JLabel();
-        TFIDPIncidentes = new javax.swing.JTextField();
+        jTCodigoTracking = new javax.swing.JTextField();
         jLabel135 = new javax.swing.JLabel();
         RegistrarIncidentesButton = new javax.swing.JButton();
-        jLabel136 = new javax.swing.JLabel();
-        IDIncidentesTF = new javax.swing.JTextField();
-        errorIncidente1 = new javax.swing.JLabel();
-        errorIncidente2 = new javax.swing.JLabel();
         TFRazonIncidentes = new javax.swing.JTextField();
-        errorIncidente3 = new javax.swing.JLabel();
         jScrollPane28 = new javax.swing.JScrollPane();
         jTIncidentes = new javax.swing.JTable();
         jPAE1 = new javax.swing.JPanel();
@@ -132,21 +109,21 @@ public class JFIncidente extends javax.swing.JFrame {
 
         jLabel133.setText("Tipo de incidente:");
 
-        jLabel134.setText("Código único del paquete");
+        jLabel134.setText("Código tracking");
 
-        TFIDPIncidentes.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTCodigoTracking.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                TFIDPIncidentesFocusLost(evt);
+                jTCodigoTrackingFocusLost(evt);
             }
         });
-        TFIDPIncidentes.addActionListener(new java.awt.event.ActionListener() {
+        jTCodigoTracking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFIDPIncidentesActionPerformed(evt);
+                jTCodigoTrackingActionPerformed(evt);
             }
         });
-        TFIDPIncidentes.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTCodigoTracking.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                TFIDPIncidentesKeyReleased(evt);
+                jTCodigoTrackingKeyReleased(evt);
             }
         });
 
@@ -159,17 +136,6 @@ public class JFIncidente extends javax.swing.JFrame {
             }
         });
 
-        jLabel136.setText("Código único del incidente");
-
-        IDIncidentesTF.setEditable(false);
-        IDIncidentesTF.setEnabled(false);
-
-        errorIncidente1.setForeground(new java.awt.Color(255, 0, 51));
-        errorIncidente1.setText("Código único inválido");
-
-        errorIncidente2.setForeground(new java.awt.Color(255, 0, 51));
-        errorIncidente2.setText("Ingrese una descripción");
-
         TFRazonIncidentes.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 TFRazonIncidentesFocusLost(evt);
@@ -181,65 +147,47 @@ public class JFIncidente extends javax.swing.JFrame {
             }
         });
 
-        errorIncidente3.setForeground(new java.awt.Color(255, 0, 51));
-        errorIncidente3.setText("Selección inválida");
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel134, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                        .addComponent(jLabel133, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel135)
-                    .addComponent(jLabel136, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(jLabel134, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel133, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel135))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorIncidente3)
                     .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(errorIncidente2)
                         .addComponent(RegistrarIncidentesButton)
                         .addComponent(SeleccionIncidentesCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TFIDPIncidentes)
-                        .addComponent(IDIncidentesTF)
-                        .addComponent(errorIncidente1))
+                        .addComponent(jTCodigoTracking, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(TFRazonIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGap(89, 89, 89))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel136)
-                    .addComponent(IDIncidentesTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel134)
-                    .addComponent(TFIDPIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addComponent(errorIncidente1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTCodigoTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel133)
                     .addComponent(SeleccionIncidentesCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorIncidente3)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(36, 36, 36)
                         .addComponent(jLabel135))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addGap(33, 33, 33)
                         .addComponent(TFRazonIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(errorIncidente2)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(RegistrarIncidentesButton)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jTIncidentes.setModel(new javax.swing.table.DefaultTableModel(
@@ -400,7 +348,7 @@ public class JFIncidente extends javax.swing.JFrame {
         jLabel69.setText("Gestion de Envios");
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/power_24dp.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -437,51 +385,15 @@ public class JFIncidente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SeleccionIncidentesCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionIncidentesCBActionPerformed
-        // Obtener el texto seleccionado del JComboBox
-        String tipoIncidente = (String) SeleccionIncidentesCB.getSelectedItem();
-        // Comprobar si el texto seleccionado es "Selecciona"
-        if ("Selecciona".equals(tipoIncidente)) {
-            seleccionValidar = false;
-            errorIncidente3.setVisible(true);
-        } else {
-            seleccionValidar = true;
-            errorIncidente3.setVisible(false);
-        }
+
     }//GEN-LAST:event_SeleccionIncidentesCBActionPerformed
 
-    private void TFIDPIncidentesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFIDPIncidentesKeyReleased
+    private void jTCodigoTrackingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoTrackingKeyReleased
 
-    }//GEN-LAST:event_TFIDPIncidentesKeyReleased
+    }//GEN-LAST:event_jTCodigoTrackingKeyReleased
 
     private void RegistrarIncidentesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarIncidentesButtonActionPerformed
-        int idPaquete = Integer.parseInt(TFIDPIncidentes.getText());
-        String tipoIncidente = SeleccionIncidentesCB.getSelectedItem().toString();
-        JTextField[] campos = {TFIDPIncidentes, TFRazonIncidentes};
-        Boolean[] booleanItem = {idIncidenteValidar, descriptionValidar};
-        JLabel[] labels = {errorIncidente1, errorIncidente2};
-        String[] nombresCampos = {"Código Único del Incidente", "descripción"};
-        List<String> errores = validadorCheck.validarCamposLista(campos, booleanItem, labels, nombresCampos);
-        errores.addAll(validadorCheck.validarCamposVaciosLista(campos, booleanItem, labels, nombresCampos));
-        if ("Selecciona".equals(tipoIncidente)) {
-            errores.add("Error en el campo Selecciona : El campo es inválido .");
-        } else {
-            seleccionValidar = true;
-        }
-        
-        if (!IncidentesBaseDeDatos.verificarCodigoTracking(cnx, idPaquete)) {
-        errores.add("El paquete con ID " + idPaquete + " no tiene un código de seguimiento válido."
-                + "codigoTraking");
-    }
 
-        if (!errores.isEmpty() || !seleccionValidar) {
-            StringBuilder mensajeError = new StringBuilder("Se encontraron los siguientes errores:\n");
-            for (String error : errores) {
-                mensajeError.append("- ").append(error).append("\n");
-            }
-            JOptionPane.showMessageDialog(null, mensajeError.toString(), "Errores", JOptionPane.ERROR_MESSAGE);
-        } else {
-            
-        }
     }//GEN-LAST:event_RegistrarIncidentesButtonActionPerformed
 
     private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleados1MouseClicked
@@ -508,21 +420,21 @@ public class JFIncidente extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
-    private void TFIDPIncidentesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TFIDPIncidentesFocusLost
-        idIncidenteValidar = validarRegistroF.camposDeRegistros(TFIDPIncidentes, errorIncidente1, "i");
-    }//GEN-LAST:event_TFIDPIncidentesFocusLost
+    private void jTCodigoTrackingFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoTrackingFocusLost
+        
+    }//GEN-LAST:event_jTCodigoTrackingFocusLost
 
     private void TFRazonIncidentesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TFRazonIncidentesFocusLost
-        descriptionValidar = validarRegistroF.camposDeRegistros(TFRazonIncidentes, errorIncidente2, "d");
+        
     }//GEN-LAST:event_TFRazonIncidentesFocusLost
 
     private void TFRazonIncidentesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TFRazonIncidentesKeyReleased
-        descriptionValidar = validarRegistroF.camposDeRegistros(TFRazonIncidentes, errorIncidente2, "d");
+        
     }//GEN-LAST:event_TFRazonIncidentesKeyReleased
 
-    private void TFIDPIncidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFIDPIncidentesActionPerformed
+    private void jTCodigoTrackingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoTrackingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TFIDPIncidentesActionPerformed
+    }//GEN-LAST:event_jTCodigoTrackingActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -532,59 +444,17 @@ public class JFIncidente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFIncidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFIncidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFIncidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFIncidente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFIncidente().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IDIncidentesTF;
     private javax.swing.JPanel JPIncidentes;
     private javax.swing.JButton RegistrarIncidentesButton;
     private javax.swing.JComboBox<String> SeleccionIncidentesCB;
-    private javax.swing.JTextField TFIDPIncidentes;
     private javax.swing.JTextField TFRazonIncidentes;
     private javax.swing.JButton btnExit;
-    private javax.swing.JLabel errorIncidente1;
-    private javax.swing.JLabel errorIncidente2;
-    private javax.swing.JLabel errorIncidente3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
     private javax.swing.JLabel jLabel135;
-    private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JPanel jPAE1;
     private javax.swing.JPanel jPEE1;
@@ -594,6 +464,7 @@ public class JFIncidente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane28;
     private javax.swing.JScrollPane jScrollPane29;
+    private javax.swing.JTextField jTCodigoTracking;
     private javax.swing.JTable jTIncidentes;
     private javax.swing.JTable jTIncidentes1;
     private javax.swing.JTabbedPane jTPEmpleados1;

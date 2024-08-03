@@ -1,5 +1,6 @@
 package GUI;
 
+import basededatos.DataBase;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -22,12 +23,18 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
+
 import mod_paquetes.Inventario;
+
+import mod_transporte.Asignacion;
+
 import validaciones.*;
 
 /**
@@ -92,11 +99,18 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     public JFMenu(Recepcionista recepcionista) {
+        ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
+        Asignacion.obtenerInstancia().agregarConductores(conductores);
+        Asignacion.obtenerInstancia().cargarVehiculos();
+        Asignacion.obtenerInstancia().cargarConductores();
+        Asignacion.obtenerInstancia().cargarRelacionConductores();
+
         initComponents();
         this.recepcionista = recepcionista;
+
         Inventario.obtenerInstancia().cargarInventario();
-        setIconImage(new ImageIcon(getClass().
-                getResource("/iconos/AjustesBest.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
+
 
         setLocationRelativeTo(null);
         String fecha = "dd-MM-yyyy";
@@ -106,8 +120,8 @@ public class JFMenu extends javax.swing.JFrame {
 
         resultado = mostrarFechaHora(fechaYHora, fecha, localM);
         //jDateChooserFecha.setText(resultado);
-        txtID.setText("Usuario     :" + "Recepcionista");
-        txtDateLog.setText("Fecha      : " + resultado);
+        txtID.setText("Usuario\t: " + "Recepcionista " + recepcionista.obtenerSucursal().name());
+        txtDateLog.setText("Fecha\t: " + resultado);
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         contenido = (CardLayout) (panelContent.getLayout());
@@ -1354,7 +1368,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista = new JFRecepcionista(cnx);
+        JFrame ventanaRecepcionista = new JFVehiculo(cnx, recepcionista.obtenerSucursal());
         VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
     }//GEN-LAST:event_menuEmpleadosMouseClicked
 
@@ -1755,7 +1769,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card6");
         cambiarSeccionMenu(5);
         menuIncidentes.setBackground(Color.decode("#494848"));
-        JFrame ventanaIncidentes = new JFIncidente(cnx);
+        JFrame ventanaIncidentes = new JFIncidente(recepcionista);
         VentanaManager.getInstance().mostrarVentana("inventario", ventanaIncidentes);
 
     }//GEN-LAST:event_menuIncidentesMouseClicked

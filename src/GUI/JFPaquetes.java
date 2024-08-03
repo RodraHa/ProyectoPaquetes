@@ -370,6 +370,11 @@ public class JFPaquetes extends javax.swing.JFrame {
         JLabelPrecioTotal.setText("Precio total :");
 
         JComboDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboDestino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JComboDestinoActionPerformed(evt);
+            }
+        });
 
         jBRegistrarPAInventario.setText("Agregar al inventario");
         jBRegistrarPAInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -664,6 +669,8 @@ public class JFPaquetes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Escoja un destino", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (destino.equals(recepcionista.obtenerSucursal())) {
             JOptionPane.showMessageDialog(null, "El Destino debe ser otra provincia distinta a la sucursal", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!DataBase.obtenerInstancia().clienteExiste(jTRemitente.getText())) {
+            JOptionPane.showMessageDialog(null, "El cliente no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             String codigo = inventario.getSiguienteCodigoTracking();
             double volumen = Double.parseDouble(jTVolumen.getText());
@@ -803,6 +810,10 @@ public class JFPaquetes extends javax.swing.JFrame {
     private void jTDireccion1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTDireccion1FocusLost
         direccionValidar = validarRegistroF.camposDeRegistros(jTDireccion1, errorInventario7, "d");
     }//GEN-LAST:event_jTDireccion1FocusLost
+
+    private void JComboDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboDestinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JComboDestinoActionPerformed
 
     private void vaciarCampos() {
         recepcionista.eliminarPaqueteRegistrado();
