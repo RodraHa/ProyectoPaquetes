@@ -1,5 +1,6 @@
 package GUI;
 
+import proyecto_paquetes.JFIngresar;
 import basededatos.DataBase;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;

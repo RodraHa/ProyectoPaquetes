@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import proyecto_paquetes.JFIngresar;
 import validaciones.*;
 import java.awt.Color;
 import java.sql.Connection;
