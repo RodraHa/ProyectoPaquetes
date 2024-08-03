@@ -30,7 +30,11 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
+
+import mod_paquetes.Inventario;
+
 import mod_transporte.Asignacion;
+
 import validaciones.*;
 
 /**
@@ -103,7 +107,10 @@ public class JFMenu extends javax.swing.JFrame {
 
         initComponents();
         this.recepcionista = recepcionista;
+
+        Inventario.obtenerInstancia().cargarInventario();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
+
 
         setLocationRelativeTo(null);
         String fecha = "dd-MM-yyyy";

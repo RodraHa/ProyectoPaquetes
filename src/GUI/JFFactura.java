@@ -40,72 +40,53 @@ import javax.swing.JOptionPane;
 public class JFFactura extends javax.swing.JFrame implements Printable {
 
     Connection cnx;
-    private String correCliente;
 
-    public JFFactura(double subtotal, double total,
-            String rucNegocio, String nombreNegocio,
-            String direccionNegocio, String telefonoNegocio, String idCliente,
-            String nombresCliente, String apellidosCliente, String telefonoCliente,
-            String direccionCliente, String fechaEmision, String estadoPago,
-            double porcentajeIVA, int idFactura, Connection cnx, String correo
-    ,String documento) {
+
+    public JFFactura(String obtenerCodigo, String obtenerFechaEmision, String obtenerCodigoTracking, 
+            String obtenerNombreDestinatario, String obtenerProvinciaDestino, String obtenerDireccionDestino, 
+            String obtenerDescripcion, String obtenerPesoPaquete, String nombresRemitente, String apellidosRemitente, 
+            String direccionRemitente, String telefonoRemitente, String cedulaRemitente, double precioPaquete, 
+            double precioDistancia, double precioImpuesto, double precioTotal) {
         initComponents(); // Inicializar componentes de la GUI
-        this.cnx = cnx;
+
         this.setLocationRelativeTo(null);
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-        jTextSubTotal.setText(decimalFormat.format(subtotal) + " $");
-        Total.setText(decimalFormat.format(total) + " $");
-        rucN.setText(rucNegocio);
-        nombreTienda.setText(nombreNegocio);
-        direccionT.setText(direccionNegocio);
-        telefonoNegocioN.setText(telefonoNegocio);
-        idClienteText.setText(idCliente);
-        nombreC.setText(nombresCliente);
-        jLabel3.setText(apellidosCliente);
-        jLabel5.setText(telefonoCliente);
-        jLabel8.setText(direccionCliente);
-        jLabel7.setText(fechaEmision);
-        jLabel10.setText(documento);
-        //jLabel11.setText(estadoPago);
-        iva.setText(String.valueOf(porcentajeIVA));
-        numeroFactura.setText(String.valueOf(idFactura));
-        correCliente = correo;
-        EnviarCorreo.setVisible(false);
-        guardarFactura.setVisible(true);
+        jLCodigoFactura.setText(obtenerCodigo);
+        jLCedulaRemitente.setText(cedulaRemitente);
+        jLCodigoTracking.setText(obtenerCodigoTracking);
+        jLDestinoProvincia.setText(obtenerProvinciaDestino);
+        jLDireccionRemitente.setText(direccionRemitente);
+        jLFechaFacturaEmitida.setText(obtenerFechaEmision);
+        jLNombreDestinatario.setText(obtenerNombreDestinatario);
+        jLNombresRemitente.setText(nombresRemitente);
+        jLPrecioDistancia.setText(String.valueOf(precioDistancia));
+        jLPrecioImpuestos.setText(String.valueOf(precioImpuesto));
+        jLPrecioPaquete.setText(String.valueOf(precioPaquete));
+        jLPrecioTotal.setText(String.valueOf(precioTotal));
+        jLTelefonoRemitente.setText(telefonoRemitente);
+        jLapellidosRemitente.setText(apellidosRemitente);
+        jLDireccionDestino.setText(obtenerDireccionDestino);
+        DefaultTableModel model = (DefaultTableModel) tblFactura.getModel();
+            model.setRowCount(0);
+            Object[] row = {
+                1,
+                obtenerDescripcion,
+                obtenerPesoPaquete,
+            };
+            model.addRow(row);
+        
+        
     }
-
-    public JFFactura(double subtotal, double total,
-            String rucNegocio, String nombreNegocio,
-            String direccionNegocio, String telefonoNegocio, String idCliente,
-            String nombresCliente, String apellidosCliente, String telefonoCliente,
-            String direccionCliente, String fechaEmision,
-            double porcentajeIVA, int idFactura) {
+    public JFFactura() {
         initComponents(); // Inicializar componentes de la GUI
+
         this.setLocationRelativeTo(null);
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-        jTextSubTotal.setText(decimalFormat.format(subtotal) + " $");
-        Total.setText(decimalFormat.format(total) + " $");
-        rucN.setText(rucNegocio);
-        nombreTienda.setText(nombreNegocio);
-        direccionT.setText(direccionNegocio);
-        telefonoNegocioN.setText(telefonoNegocio);
-        idClienteText.setText(idCliente);
-        nombreC.setText(nombresCliente);
-        jLabel3.setText(apellidosCliente);
-        jLabel5.setText(telefonoCliente);
-        jLabel8.setText(direccionCliente);
-        jLabel7.setText(fechaEmision);
-        //jLabel11.setText(estadoPago);
-        iva.setText(String.valueOf(porcentajeIVA));
-        numeroFactura.setText(String.valueOf(idFactura));
-        proforma.setText("Proforma de: ");
-        guardarFactura.setVisible(false);
-        EnviarCorreo.setVisible(false);
+        
     }
 
-    private JFFactura() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
+
 
     public void actualizarTablaFactura(DefaultTableModel nuevoModelo) {
         tblFactura.setModel(nuevoModelo);
@@ -192,121 +173,130 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFactura = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        numeroFactura = new javax.swing.JLabel();
+        jLCodigoFactura = new javax.swing.JLabel();
         direccionT = new javax.swing.JLabel();
         proforma = new javax.swing.JLabel();
         nombreC = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLFechaFacturaEmitida = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
-        ruc = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        rucN = new javax.swing.JLabel();
-        telefonoNegocioN = new javax.swing.JLabel();
+        jLCodigoTracking = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLDireccionDestino = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        idClienteText = new javax.swing.JLabel();
+        jLCedulaRemitente = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         imprimirF = new javax.swing.JButton();
-        jTextSubTotal = new javax.swing.JLabel();
-        iva = new javax.swing.JLabel();
-        Total = new javax.swing.JLabel();
-        EnviarCorreo = new javax.swing.JButton();
-        guardarFactura = new javax.swing.JButton();
+        jLPrecioPaquete = new javax.swing.JLabel();
+        jLPrecioImpuestos = new javax.swing.JLabel();
+        jLPrecioTotal = new javax.swing.JLabel();
+        proforma1 = new javax.swing.JLabel();
+        jLTelefonoRemitente = new javax.swing.JLabel();
+        jLDireccionRemitente = new javax.swing.JLabel();
+        jLapellidosRemitente = new javax.swing.JLabel();
+        nombreC1 = new javax.swing.JLabel();
+        direccionT1 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLPrecioDistancia = new javax.swing.JLabel();
+        jLNombresRemitente = new javax.swing.JLabel();
+        jLNombreDestinatario = new javax.swing.JLabel();
+        jLDestinoProvincia = new javax.swing.JLabel();
 
         Contenido.setBackground(new java.awt.Color(255, 255, 255));
         Contenido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nombreTienda.setFont(new java.awt.Font("Segoe UI Black", 2, 48)); // NOI18N
-        nombreTienda.setText("Tienda");
+        nombreTienda.setFont(new java.awt.Font("Segoe UI Black", 2, 36)); // NOI18N
+        nombreTienda.setText("Amber Express");
         nombreTienda.setToolTipText("");
-        Contenido.add(nombreTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, 268, 42));
+        Contenido.add(nombreTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 340, 50));
 
         tblFactura.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tblFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Número", "Contenido", "Peso"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblFactura.setEnabled(false);
         jScrollPane1.setViewportView(tblFactura);
 
-        Contenido.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 279, 540, 298));
+        Contenido.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 279, 540, 250));
 
         jLabel2.setText("N°");
         Contenido.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
-        numeroFactura.setText("xxxxxxxxxx");
-        Contenido.add(numeroFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 6, 141, -1));
+        jLCodigoFactura.setText("xxxxxxxxxx");
+        Contenido.add(jLCodigoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 6, 141, -1));
 
-        direccionT.setText("Dirección");
-        Contenido.add(direccionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 73, -1, -1));
+        direccionT.setText("Destino:");
+        Contenido.add(direccionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
 
         proforma.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        proforma.setText("Facturar A");
-        Contenido.add(proforma, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 107, -1, -1));
+        proforma.setText("Destinatario:");
+        Contenido.add(proforma, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
 
-        nombreC.setText("Nombre");
-        Contenido.add(nombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 138, -1, -1));
+        nombreC.setText("Nombre:");
+        Contenido.add(nombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, -1));
 
-        jLabel7.setText("Fecha");
-        Contenido.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 25, 107, -1));
+        jLFechaFacturaEmitida.setText("-");
+        Contenido.add(jLFechaFacturaEmitida, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 107, -1));
 
-        jLabel8.setText("Dirección");
-        Contenido.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 181, 216, -1));
+        jLabel8.setText("Dirección:");
+        Contenido.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 181, 60, -1));
 
-        jLabel9.setText("Telefono movil");
+        jLabel9.setText("Teléfono movil:");
         Contenido.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 209, -1, -1));
 
         jLabel44.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel44.setText("Subtotal");
-        Contenido.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 583, 71, -1));
+        jLabel44.setText("Precio paquete:");
+        Contenido.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 550, 110, 30));
 
         jLabel46.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel46.setText("IVA (%)");
+        jLabel46.setText("IVA (15%)");
         Contenido.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 610, -1, -1));
 
         jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel49.setText("Total");
         Contenido.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 637, -1, -1));
 
-        ruc.setText("Ruc");
-        Contenido.add(ruc, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 6, 43, -1));
+        jLabel1.setText("Código Tracking:");
+        Contenido.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
-        jLabel1.setText("Telefono");
-        Contenido.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 47, -1, -1));
+        jLCodigoTracking.setText("-");
+        Contenido.add(jLCodigoTracking, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 97, 20));
 
-        rucN.setText("XXXXXX");
-        Contenido.add(rucN, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 6, 107, -1));
-
-        telefonoNegocioN.setText("02-xxxxxxx");
-        Contenido.add(telefonoNegocioN, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 47, 97, -1));
-
-        jLabel3.setText("Apellido");
+        jLabel3.setText("Apellidos:");
         Contenido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 159, -1, -1));
 
-        jLabel5.setText("+593 XXXXXXXXXXX");
-        Contenido.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 209, 125, -1));
+        jLDireccionDestino.setText("-");
+        Contenido.add(jLDireccionDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 125, -1));
 
-        jLabel10.setText("CI o Pasaporte");
+        jLabel10.setText("CI:");
         Contenido.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 237, -1, -1));
 
-        idClienteText.setText("N°99999999999999");
-        Contenido.add(idClienteText, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 237, 125, -1));
+        jLCedulaRemitente.setText("-");
+        Contenido.add(jLCedulaRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 237, 125, -1));
 
-        jLabel12.setText("Fecha");
-        Contenido.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 25, 43, -1));
+        jLabel12.setText("Fecha:");
+        Contenido.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 43, -1));
 
         imprimirF.setText("Imprimir");
         imprimirF.addActionListener(new java.awt.event.ActionListener() {
@@ -316,30 +306,49 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         });
         Contenido.add(imprimirF, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 680, -1, -1));
 
-        jTextSubTotal.setText("0.00");
-        Contenido.add(jTextSubTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 587, -1, -1));
+        jLPrecioPaquete.setText("0.00");
+        Contenido.add(jLPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 560, -1, 20));
 
-        iva.setText("iva");
-        Contenido.add(iva, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 614, 51, -1));
+        jLPrecioImpuestos.setText("0.00");
+        Contenido.add(jLPrecioImpuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 614, 30, -1));
 
-        Total.setText("0.00");
-        Contenido.add(Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 641, -1, -1));
+        jLPrecioTotal.setText("0.00");
+        Contenido.add(jLPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 641, -1, -1));
 
-        EnviarCorreo.setText("Enviar al correo");
-        EnviarCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnviarCorreoActionPerformed(evt);
-            }
-        });
-        Contenido.add(EnviarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 680, -1, -1));
+        proforma1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        proforma1.setText("Remitente:");
+        Contenido.add(proforma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 107, -1, -1));
 
-        guardarFactura.setText("Guardar factura");
-        guardarFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarFacturaActionPerformed(evt);
-            }
-        });
-        Contenido.add(guardarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 680, -1, -1));
+        jLTelefonoRemitente.setText("-");
+        Contenido.add(jLTelefonoRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 209, 125, -1));
+
+        jLDireccionRemitente.setText("-");
+        Contenido.add(jLDireccionRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 125, -1));
+
+        jLapellidosRemitente.setText("-");
+        Contenido.add(jLapellidosRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 125, -1));
+
+        nombreC1.setText("Nombres:");
+        Contenido.add(nombreC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 138, -1, -1));
+
+        direccionT1.setText("Dirección:");
+        Contenido.add(direccionT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jLabel45.setText("Precio distancia:");
+        Contenido.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 583, 110, -1));
+
+        jLPrecioDistancia.setText("0.00");
+        Contenido.add(jLPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, -1, -1));
+
+        jLNombresRemitente.setText("-");
+        Contenido.add(jLNombresRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 125, -1));
+
+        jLNombreDestinatario.setText("-");
+        Contenido.add(jLNombreDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 125, -1));
+
+        jLDestinoProvincia.setText("-");
+        Contenido.add(jLDestinoProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 125, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -361,8 +370,7 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
 
     private void imprimirFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imprimirFActionPerformed
         imprimirF.setVisible(false); // Ocultar el botón antes de la impresión
-        EnviarCorreo.setVisible(false);
-        guardarFactura.setVisible(false);
+
         PrinterJob job = PrinterJob.getPrinterJob();
         job.setPrintable(this);
 
@@ -375,82 +383,8 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
             }
         }
         imprimirF.setVisible(true);
-        guardarFactura.setVisible(true);
+
     }//GEN-LAST:event_imprimirFActionPerformed
-
-    private void EnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCorreoActionPerformed
-        // Datos de autenticación para tu cuenta de correo
-        String numeroFacturaTexto = numeroFactura.getText();
-        int numeroFactura1 = Integer.parseInt(numeroFacturaTexto);
-        final String username = "Pon tu correo de gmail aqui"; // Cambia esto
-        final String password = "pon la clave de producto del gmail aqui"; // Cambia esto
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com"); // Cambia esto si no usas Gmail
-        props.put("mail.smtp.port", "587"); // Cambia esto si es necesario
-        props.put("mail.smtp.ssl.protocols", "TLSv1.2");
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correCliente)); // Usar el correo del cliente
-            message.setSubject("Factura");
-
-            MimeBodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText("Adjunto encontrarás tu factura.");
-
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(messageBodyPart);
-
-            // Read the PDF file into a byte array
-            String tempFolderPath = "C:\\Users\\USUARIO\\OneDrive - Escuela Politécnica Nacional\\Documentos\\NetBeansProjects\\SistemaPintura\\src\\CarpetaTemporal";
-            String filePath = tempFolderPath + "\\factura_" + numeroFactura1 + ".pdf";
-            byte[] pdfBytes = readPDFBytes(filePath);
-
-            // Attach the PDF bytes as an attachment
-            MimeBodyPart attachPart = new MimeBodyPart();
-            attachPart.setContent(pdfBytes, "application/pdf");
-            attachPart.setFileName("factura_" + numeroFactura1 + ".pdf");
-            multipart.addBodyPart(attachPart);
-
-            message.setContent(multipart);
-
-            Transport.send(message);
-
-            JOptionPane.showMessageDialog(null,"Correo enviado exitosamente.");
-
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            // Manejo de errores
-        } catch (IOException ex) {
-            Logger.getLogger(JFFactura.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_EnviarCorreoActionPerformed
-
-    private void guardarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarFacturaActionPerformed
-        imprimirF.setVisible(false);
-        EnviarCorreo.setVisible(false);
-        guardarFactura.setVisible(false);
-        String tempFolderPath = "C:\\Users\\USUARIO\\OneDrive - Escuela Politécnica Nacional\\Documentos\\NetBeansProjects\\SistemaPintura\\src\\CarpetaTemporal";
-        JPanel contenidoPanel = Contenido; // Sustituye "tuPanelContenido" por tu panel real
-        String numeroFacturaTexto = numeroFactura.getText(); // Obtiene el número de factura como texto
-        int numeroFactura1 = Integer.parseInt(numeroFacturaTexto);
-        // Crear una carpeta temporal única para cada factura
-        String tempFilePath = tempFolderPath + "\\" + "factura_" + numeroFactura1 + ".pdf";
-        generarPDF(contenidoPanel, tempFilePath);
-        byte[] pdfBytes = convertirPDFaBytes(tempFilePath);
-        guardarPDFenBD(numeroFactura1, pdfBytes);
-        EnviarCorreo.setVisible(true);
-        imprimirF.setVisible(true);
-    }//GEN-LAST:event_guardarFacturaActionPerformed
     private byte[] readPDFBytes(String filePath) throws IOException {
         try (FileInputStream inputStream = new FileInputStream(filePath); ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
             byte[] buffer = new byte[4096];
@@ -506,34 +440,41 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenido;
-    private javax.swing.JButton EnviarCorreo;
-    private javax.swing.JLabel Total;
     private javax.swing.JLabel direccionT;
-    private javax.swing.JButton guardarFactura;
-    private javax.swing.JLabel idClienteText;
+    private javax.swing.JLabel direccionT1;
     private javax.swing.JButton imprimirF;
-    private javax.swing.JLabel iva;
+    private javax.swing.JLabel jLCedulaRemitente;
+    private javax.swing.JLabel jLCodigoFactura;
+    private javax.swing.JLabel jLCodigoTracking;
+    private javax.swing.JLabel jLDestinoProvincia;
+    private javax.swing.JLabel jLDireccionDestino;
+    private javax.swing.JLabel jLDireccionRemitente;
+    private javax.swing.JLabel jLFechaFacturaEmitida;
+    private javax.swing.JLabel jLNombreDestinatario;
+    private javax.swing.JLabel jLNombresRemitente;
+    private javax.swing.JLabel jLPrecioDistancia;
+    private javax.swing.JLabel jLPrecioImpuestos;
+    private javax.swing.JLabel jLPrecioPaquete;
+    private javax.swing.JLabel jLPrecioTotal;
+    private javax.swing.JLabel jLTelefonoRemitente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel49;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLapellidosRemitente;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel jTextSubTotal;
     private javax.swing.JLabel nombreC;
+    private javax.swing.JLabel nombreC1;
     private javax.swing.JLabel nombreTienda;
-    private javax.swing.JLabel numeroFactura;
     private javax.swing.JLabel proforma;
-    private javax.swing.JLabel ruc;
-    private javax.swing.JLabel rucN;
+    private javax.swing.JLabel proforma1;
     private javax.swing.JTable tblFactura;
-    private javax.swing.JLabel telefonoNegocioN;
     // End of variables declaration//GEN-END:variables
 }
