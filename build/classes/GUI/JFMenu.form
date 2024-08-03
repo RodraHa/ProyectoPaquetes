@@ -139,7 +139,7 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/iconos/camion.png"/>
+                      <Image iconType="3" name="/iconos/administracion.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Conductores"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -174,9 +174,9 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/iconos/icons8_Monitor_32px.png"/>
+                      <Image iconType="3" name="/iconos/camion.png"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Registro de Empleados"/>
+                    <Property name="text" type="java.lang.String" value="Vehiculos"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="10" right="1" top="1"/>

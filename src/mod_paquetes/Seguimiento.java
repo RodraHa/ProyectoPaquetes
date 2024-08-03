@@ -6,7 +6,8 @@ import java.util.ArrayList;
 public class Seguimiento implements Serializable {
     private EstadoDelPaquete estadoActual;
     private ArrayList<String> estadosAnteriores;
-    private String incidente;
+    private String registroIncidente;
+    private String resolucionIncidente;
 
     public Seguimiento(EstadoDelPaquete estado) {
         this.estadoActual = estado;
@@ -24,5 +25,21 @@ public class Seguimiento implements Serializable {
 
     public ArrayList<String> obtenerEstadosAnteriores() {
         return estadosAnteriores;
+    }
+    
+    public void registrarIncidente(String definicion) {
+        registroIncidente = definicion;
+    }
+    
+    public void resolverIncidente(String definicion) {
+        resolucionIncidente = definicion;
+    }
+    
+    public String obtenerRegistroIncidente() {
+        return this.registroIncidente;
+    }
+    
+    public String obtenerResolucion() {
+        return this.resolucionIncidente;
     }
 }

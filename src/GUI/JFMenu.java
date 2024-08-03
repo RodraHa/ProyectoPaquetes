@@ -297,7 +297,7 @@ public class JFMenu extends javax.swing.JFrame {
         menuProveedores.setBackground(new java.awt.Color(41, 39, 40));
         menuProveedores.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
         menuProveedores.setForeground(new java.awt.Color(255, 255, 255));
-        menuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/camion.png"))); // NOI18N
+        menuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/administracion.png"))); // NOI18N
         menuProveedores.setText("Conductores");
         menuProveedores.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         menuProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -317,8 +317,8 @@ public class JFMenu extends javax.swing.JFrame {
         menuEmpleados.setBackground(new java.awt.Color(41, 39, 40));
         menuEmpleados.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
         menuEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        menuEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png"))); // NOI18N
-        menuEmpleados.setText("Registro de Empleados");
+        menuEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/camion.png"))); // NOI18N
+        menuEmpleados.setText("Vehiculos");
         menuEmpleados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         menuEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
