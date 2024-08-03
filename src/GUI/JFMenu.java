@@ -512,7 +512,7 @@ public class JFMenu extends javax.swing.JFrame {
         PanelHome.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 770));
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -649,6 +649,7 @@ public class JFMenu extends javax.swing.JFrame {
         menuProveedores.setBackground(Color.decode("#494848"));
         JFrame ventanaConductor = new JFConductores(this.recepcionista);
         VentanaManager.getInstance().mostrarVentana("conductor", ventanaConductor);
+        
     }//GEN-LAST:event_menuProveedoresMouseClicked
 
     private void menuProveedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseEntered

@@ -309,6 +309,8 @@ public class JFClientes extends javax.swing.JFrame {
         jPPA1.setPreferredSize(new java.awt.Dimension(790, 459));
         jPPA1.setLayout(new java.awt.CardLayout());
 
+        jPActualizarClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jPanel40.setBorder(javax.swing.BorderFactory.createTitledBorder("Actualizar Cliente"));
         jPanel40.setToolTipText("");
         jPanel40.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -426,9 +428,7 @@ public class JFClientes extends javax.swing.JFrame {
                         .addComponent(telefonoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(nombreActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel40Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(apellidoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(apellidoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(76, 76, 76))
         );
         jPanel40Layout.setVerticalGroup(
@@ -463,7 +463,11 @@ public class JFClientes extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
+        jPActualizarClientes.add(jPanel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 124, -1, 304));
+
         jLabel5.setText("CI");
+        jPActualizarClientes.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 66, 38, -1));
+        jPActualizarClientes.add(jTCIBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 64, 200, 20));
 
         jBuscarCI.setText("Buscar");
         jBuscarCI.addActionListener(new java.awt.event.ActionListener() {
@@ -471,43 +475,13 @@ public class JFClientes extends javax.swing.JFrame {
                 jBuscarCIActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPActualizarClientesLayout = new javax.swing.GroupLayout(jPActualizarClientes);
-        jPActualizarClientes.setLayout(jPActualizarClientesLayout);
-        jPActualizarClientesLayout.setHorizontalGroup(
-            jPActualizarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPActualizarClientesLayout.createSequentialGroup()
-                .addGroup(jPActualizarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPActualizarClientesLayout.createSequentialGroup()
-                        .addGap(301, 301, 301)
-                        .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPActualizarClientesLayout.createSequentialGroup()
-                        .addGap(348, 348, 348)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTCIBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPActualizarClientesLayout.createSequentialGroup()
-                        .addGap(468, 468, 468)
-                        .addComponent(jBuscarCI)))
-                .addContainerGap(344, Short.MAX_VALUE))
-        );
-        jPActualizarClientesLayout.setVerticalGroup(
-            jPActualizarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPActualizarClientesLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPActualizarClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTCIBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addComponent(jBuscarCI)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel40, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
-        );
+        jPActualizarClientes.add(jBuscarCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 89, -1, -1));
 
         jPPA1.add(jPActualizarClientes, "card1");
 
         jPClientes.addTab("Actualizar Cliente", jPPA1);
+
+        jPPC1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTablaClientesR.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -522,22 +496,7 @@ public class JFClientes extends javax.swing.JFrame {
         ));
         jScrollPane16.setViewportView(jTablaClientesR);
 
-        javax.swing.GroupLayout jPPC1Layout = new javax.swing.GroupLayout(jPPC1);
-        jPPC1.setLayout(jPPC1Layout);
-        jPPC1Layout.setHorizontalGroup(
-            jPPC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPC1Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
-                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
-        );
-        jPPC1Layout.setVerticalGroup(
-            jPPC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPPC1Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(240, Short.MAX_VALUE))
-        );
+        jPPC1.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 77, 898, 258));
 
         jPClientes.addTab("Consultar Clientes", jPPC1);
 
@@ -556,13 +515,15 @@ public class JFClientes extends javax.swing.JFrame {
                 jPanel3MousePressed(evt);
             }
         });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
         jLabel69.setText("Gestion de Envios");
+        jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -571,25 +532,7 @@ public class JFClientes extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel69)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 950, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel69)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1055, 0, 35, 35));
 
         jPanel1.add(jPanel3, "card2");
 

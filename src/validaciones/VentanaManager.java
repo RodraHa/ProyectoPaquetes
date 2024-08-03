@@ -24,6 +24,12 @@ public class VentanaManager {
 
     // Mostrar ventana
     public void mostrarVentana(String clave, JFrame ventana) {
+        for(JFrame ventanaExistente : ventanas.values()){
+            if(ventanaExistente.isVisible()){
+                ventanaExistente.setVisible(false);
+            }
+        }
+
         if (ventanas.containsKey(clave)) {
             JFrame ventanaExistente = ventanas.get(clave);
             if (ventanaExistente.isVisible()) {
@@ -33,6 +39,7 @@ public class VentanaManager {
         }
         ventanas.put(clave, ventana);
         ventana.setVisible(true);
+        
     }
 }
 
