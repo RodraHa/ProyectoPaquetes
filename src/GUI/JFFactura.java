@@ -59,10 +59,10 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         jLFechaFacturaEmitida.setText(obtenerFechaEmision);
         jLNombreDestinatario.setText(obtenerNombreDestinatario);
         jLNombresRemitente.setText(nombresRemitente);
-        jLPrecioDistancia.setText(String.valueOf(precioDistancia));
-        jLPrecioImpuestos.setText(String.valueOf(precioImpuesto));
-        jLPrecioPaquete.setText(String.valueOf(precioPaquete));
-        jLPrecioTotal.setText(String.valueOf(precioTotal));
+        jLPrecioDistancia.setText(String.format("%.2f",precioDistancia));
+        jLPrecioImpuestos.setText(String.format("%.2f",precioImpuesto));
+        jLPrecioPaquete.setText(String.format("%.2f",precioPaquete));
+        jLPrecioTotal.setText(String.format("%.2f",precioTotal));
         jLTelefonoRemitente.setText(telefonoRemitente);
         jLapellidosRemitente.setText(apellidosRemitente);
         jLDireccionDestino.setText(obtenerDireccionDestino);
@@ -307,13 +307,13 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         Contenido.add(imprimirF, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 680, -1, -1));
 
         jLPrecioPaquete.setText("0.00");
-        Contenido.add(jLPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 560, -1, 20));
+        Contenido.add(jLPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 560, 70, -1));
 
         jLPrecioImpuestos.setText("0.00");
-        Contenido.add(jLPrecioImpuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 614, 30, -1));
+        Contenido.add(jLPrecioImpuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 614, 70, -1));
 
         jLPrecioTotal.setText("0.00");
-        Contenido.add(jLPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 641, -1, -1));
+        Contenido.add(jLPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 641, 70, -1));
 
         proforma1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         proforma1.setText("Remitente:");
@@ -339,7 +339,7 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         Contenido.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 583, 110, -1));
 
         jLPrecioDistancia.setText("0.00");
-        Contenido.add(jLPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 590, -1, -1));
+        Contenido.add(jLPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 590, 70, -1));
 
         jLNombresRemitente.setText("-");
         Contenido.add(jLNombresRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 125, -1));
