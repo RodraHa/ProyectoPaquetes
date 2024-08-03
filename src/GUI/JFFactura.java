@@ -206,6 +206,8 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         jLNombreDestinatario = new javax.swing.JLabel();
         jLDestinoProvincia = new javax.swing.JLabel();
 
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         Contenido.setBackground(new java.awt.Color(255, 255, 255));
         Contenido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -238,7 +240,7 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         tblFactura.setEnabled(false);
         jScrollPane1.setViewportView(tblFactura);
 
-        Contenido.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 279, 540, 250));
+        Contenido.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 279, 530, 250));
 
         jLabel2.setText("N°");
         Contenido.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
@@ -247,23 +249,23 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         Contenido.add(jLCodigoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 6, 141, -1));
 
         direccionT.setText("Destino:");
-        Contenido.add(direccionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
+        Contenido.add(direccionT, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
 
         proforma.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         proforma.setText("Destinatario:");
-        Contenido.add(proforma, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, -1, -1));
+        Contenido.add(proforma, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
 
         nombreC.setText("Nombre:");
-        Contenido.add(nombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, -1));
+        Contenido.add(nombreC, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
 
         jLFechaFacturaEmitida.setText("-");
         Contenido.add(jLFechaFacturaEmitida, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 107, -1));
 
         jLabel8.setText("Dirección:");
-        Contenido.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 181, 60, -1));
+        Contenido.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 60, -1));
 
         jLabel9.setText("Teléfono movil:");
-        Contenido.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 209, -1, -1));
+        Contenido.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
         jLabel44.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel44.setText("Precio paquete:");
@@ -284,16 +286,16 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         Contenido.add(jLCodigoTracking, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 97, 20));
 
         jLabel3.setText("Apellidos:");
-        Contenido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 159, -1, -1));
+        Contenido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
 
         jLDireccionDestino.setText("-");
-        Contenido.add(jLDireccionDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 125, -1));
+        Contenido.add(jLDireccionDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 125, -1));
 
         jLabel10.setText("CI:");
-        Contenido.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 237, -1, -1));
+        Contenido.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
 
         jLCedulaRemitente.setText("-");
-        Contenido.add(jLCedulaRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 237, 125, -1));
+        Contenido.add(jLCedulaRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 125, -1));
 
         jLabel12.setText("Fecha:");
         Contenido.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 43, -1));
@@ -317,22 +319,22 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
 
         proforma1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         proforma1.setText("Remitente:");
-        Contenido.add(proforma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 107, -1, -1));
+        Contenido.add(proforma1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         jLTelefonoRemitente.setText("-");
-        Contenido.add(jLTelefonoRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 209, 125, -1));
+        Contenido.add(jLTelefonoRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 125, -1));
 
         jLDireccionRemitente.setText("-");
-        Contenido.add(jLDireccionRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 125, -1));
+        Contenido.add(jLDireccionRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 125, -1));
 
         jLapellidosRemitente.setText("-");
-        Contenido.add(jLapellidosRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 125, -1));
+        Contenido.add(jLapellidosRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 125, -1));
 
         nombreC1.setText("Nombres:");
-        Contenido.add(nombreC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 138, -1, -1));
+        Contenido.add(nombreC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         direccionT1.setText("Dirección:");
-        Contenido.add(direccionT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, -1, -1));
+        Contenido.add(direccionT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
 
         jLabel45.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel45.setText("Precio distancia:");
@@ -342,28 +344,15 @@ public class JFFactura extends javax.swing.JFrame implements Printable {
         Contenido.add(jLPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 590, 70, -1));
 
         jLNombresRemitente.setText("-");
-        Contenido.add(jLNombresRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 125, -1));
+        Contenido.add(jLNombresRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 125, -1));
 
         jLNombreDestinatario.setText("-");
-        Contenido.add(jLNombreDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, 125, -1));
+        Contenido.add(jLNombreDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 125, -1));
 
         jLDestinoProvincia.setText("-");
-        Contenido.add(jLDestinoProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 125, -1));
+        Contenido.add(jLDestinoProvincia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 125, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        getContentPane().add(Contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 718));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

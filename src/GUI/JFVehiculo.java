@@ -217,6 +217,8 @@ public class JFVehiculo extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        jPEmpleadosTab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jTPEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTPEmpleadosMouseClicked(evt);
@@ -226,8 +228,10 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPRE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPDatosEmpleados.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresar datos de un empleado"));
+        jPDatosEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel27.setText("Capacidad");
+        jPDatosEmpleados.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 95, -1, -1));
 
         jTCapacidadVehiculo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -244,6 +248,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTCapacidadVehiculoKeyReleased(evt);
             }
         });
+        jPDatosEmpleados.add(jTCapacidadVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 92, 201, -1));
 
         jPanel44.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
 
@@ -258,7 +263,11 @@ public class JFVehiculo extends javax.swing.JFrame {
             .addGap(0, 207, Short.MAX_VALUE)
         );
 
+        jPDatosEmpleados.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(844, 189, -1, -1));
+        jPanel44.getAccessibleContext().setAccessibleName("Conductor Asignado\n");
+
         jLabel32.setText("Placa");
+        jPDatosEmpleados.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 37, 34, 22));
 
         bRegistrarVehiculo.setText("Registrar Vehiculo");
         bRegistrarVehiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -266,63 +275,20 @@ public class JFVehiculo extends javax.swing.JFrame {
                 bRegistrarVehiculoActionPerformed(evt);
             }
         });
+        jPDatosEmpleados.add(bRegistrarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 135, -1, 36));
 
         jTPlacaVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTPlacaVehiculoActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPDatosEmpleadosLayout = new javax.swing.GroupLayout(jPDatosEmpleados);
-        jPDatosEmpleados.setLayout(jPDatosEmpleadosLayout);
-        jPDatosEmpleadosLayout.setHorizontalGroup(
-            jPDatosEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPDatosEmpleadosLayout.createSequentialGroup()
-                .addGap(839, 839, 839)
-                .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(578, 578, 578))
-            .addGroup(jPDatosEmpleadosLayout.createSequentialGroup()
-                .addGroup(jPDatosEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPDatosEmpleadosLayout.createSequentialGroup()
-                        .addGroup(jPDatosEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPDatosEmpleadosLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPDatosEmpleadosLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel27)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPDatosEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTCapacidadVehiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                            .addComponent(jTPlacaVehiculo)))
-                    .addGroup(jPDatosEmpleadosLayout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(bRegistrarVehiculo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPDatosEmpleadosLayout.setVerticalGroup(
-            jPDatosEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPDatosEmpleadosLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPDatosEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTPlacaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(jPDatosEmpleadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(jTCapacidadVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(bRegistrarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
-        );
-
-        jPanel44.getAccessibleContext().setAccessibleName("Conductor Asignado\n");
+        jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 37, 201, -1));
 
         jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, 843, -1));
 
         jTPEmpleados.addTab("Registrar Vehiculo", jPRE);
+
+        jPCE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTablaVehiculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -336,6 +302,8 @@ public class JFVehiculo extends javax.swing.JFrame {
             }
         ));
         jScrollPane6.setViewportView(jTablaVehiculos);
+
+        jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 348, 892, 185));
 
         jTPlacaVehiculo1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -355,15 +323,20 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTPlacaVehiculo1KeyTyped(evt);
             }
         });
+        jPCE.add(jTPlacaVehiculo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 36, 201, -1));
 
         jLabel33.setText("Placa");
+        jPCE.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 36, 34, 22));
 
         jLabel28.setText("Capacidad");
+        jPCE.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 85, -1, -1));
 
         jTCapacidad.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCapacidad.setEnabled(false);
+        jPCE.add(jTCapacidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 82, 201, -1));
 
         jLabel29.setText("Conductor");
+        jPCE.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 130, -1, -1));
 
         jPanel45.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
 
@@ -442,61 +415,15 @@ public class JFVehiculo extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        jPCE.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 158, -1, -1));
+
         bSeleccionarConductor.setText("Buscar Vehiculo");
         bSeleccionarConductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSeleccionarConductorActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPCELayout = new javax.swing.GroupLayout(jPCE);
-        jPCE.setLayout(jPCELayout);
-        jPCELayout.setHorizontalGroup(
-            jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCELayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addGroup(jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCELayout.createSequentialGroup()
-                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))
-                            .addGroup(jPCELayout.createSequentialGroup()
-                                .addGroup(jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel28))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTPlacaVehiculo1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                    .addComponent(jTCapacidad))
-                                .addGap(18, 18, 18)
-                                .addComponent(bSeleccionarConductor)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPCELayout.createSequentialGroup()
-                            .addComponent(jLabel29)
-                            .addGap(860, 860, 860)))))
-        );
-        jPCELayout.setVerticalGroup(
-            jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPCELayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTPlacaVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPCELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(jTCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bSeleccionarConductor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel45, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        jPCE.add(bSeleccionarConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 76, -1, 36));
 
         jTPEmpleados.addTab("Consultar", jPCE);
 
@@ -608,6 +535,8 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jTPEmpleados.addTab("Asignar Vehiculo", jPAE);
 
+        jPEE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jInventarioVehiculo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -621,12 +550,15 @@ public class JFVehiculo extends javax.swing.JFrame {
         ));
         jScrollPane25.setViewportView(jInventarioVehiculo);
 
+        jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 963, 253));
+
         JComboDestino1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JComboDestino1ActionPerformed(evt);
             }
         });
+        jPEE.add(JComboDestino1, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 146, 204, -1));
 
         jButton1.setText("Asignar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -634,6 +566,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 186, 83, 31));
 
         jTPlacaVehiculo3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -653,59 +586,21 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTPlacaVehiculo3KeyTyped(evt);
             }
         });
+        jPEE.add(jTPlacaVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 59, 204, -1));
 
         jLabel37.setText("Placa");
+        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 59, 34, 22));
 
         jLabel30.setText("Capacidad");
+        jPEE.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, -1, -1));
 
         jTCapacidad1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCapacidad1.setEnabled(false);
-
-        javax.swing.GroupLayout jPEELayout = new javax.swing.GroupLayout(jPEE);
-        jPEE.setLayout(jPEELayout);
-        jPEELayout.setHorizontalGroup(
-            jPEELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPEELayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPEELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 963, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPEELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPEELayout.createSequentialGroup()
-                            .addComponent(jLabel30)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTCapacidad1))
-                        .addGroup(jPEELayout.createSequentialGroup()
-                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(33, 33, 33)
-                            .addComponent(jTPlacaVehiculo3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(JComboDestino1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPEELayout.createSequentialGroup()
-                .addGap(290, 290, 290)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPEELayout.setVerticalGroup(
-            jPEELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPEELayout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(jPEELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTPlacaVehiculo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPEELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(jTCapacidad1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(JComboDestino1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
-        );
+        jPEE.add(jTCapacidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 106, 203, -1));
 
         jTPEmpleados.addTab("Asignar Paquetes", jPEE);
+
+        jPEmpleadosTab.add(jTPEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 41, 965, -1));
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -718,13 +613,15 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jPanel3MousePressed(evt);
             }
         });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
         jLabel69.setText("Reccepcionista");
+        jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -733,44 +630,9 @@ public class JFVehiculo extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
+        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 0, 35, 35));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel69)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 971, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel69)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPEmpleadosTabLayout = new javax.swing.GroupLayout(jPEmpleadosTab);
-        jPEmpleadosTab.setLayout(jPEmpleadosTabLayout);
-        jPEmpleadosTabLayout.setHorizontalGroup(
-            jPEmpleadosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPEmpleadosTabLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jTPEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 965, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPEmpleadosTabLayout.setVerticalGroup(
-            jPEmpleadosTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPEmpleadosTabLayout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTPEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        jPEmpleadosTab.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPEmpleadosTab, "card2");
 

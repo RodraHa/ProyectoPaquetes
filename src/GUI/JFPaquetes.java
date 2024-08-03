@@ -217,13 +217,15 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jPanel3MousePressed(evt);
             }
         });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
         jLabel69.setText("Gestion de Paquetes");
+        jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/power_24dp.png"))); // NOI18N
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
         btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -232,41 +234,28 @@ public class JFPaquetes extends javax.swing.JFrame {
                 btnExitActionPerformed(evt);
             }
         });
+        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1015, 0, 35, 35));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel69)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 895, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel69)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 30));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, -1));
 
         jPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPIR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del paquete"));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setText("Código Tracking");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 27, 89, -1));
 
         jTCodigoTracking.setEditable(false);
+        jPanel2.add(jTCodigoTracking, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 24, 203, -1));
 
         jLabel13.setText("Contenido");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 88, -1, -1));
 
         jLabel11.setText("Peso");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 162, -1, -1));
 
         jTPeso.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -278,6 +267,7 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTPesoKeyReleased(evt);
             }
         });
+        jPanel2.add(jTPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 156, 204, -1));
 
         jBRegistrar.setText("Agregar Registro");
         jBRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -285,26 +275,34 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jBRegistrarActionPerformed(evt);
             }
         });
+        jPanel2.add(jBRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 294, 134, -1));
 
         jLabel60.setText("Kg");
+        jPanel2.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 159, -1, -1));
 
         errorInventario2.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario2.setText("Peso no válido");
+        jPanel2.add(errorInventario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 184, -1, -1));
 
         jLabel14.setText("Volumen");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 91, -1, -1));
 
         errorInventario1.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario1.setText("Volumen no válido");
+        jPanel2.add(errorInventario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 113, 113, -1));
 
         jLabel61.setText("m3");
+        jPanel2.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 88, -1, -1));
 
         jTContenidoPaquete.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTContenidoPaqueteFocusLost(evt);
             }
         });
+        jPanel2.add(jTContenidoPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 85, 254, -1));
 
         jLabel53.setText("Remitente");
+        jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(442, 24, -1, -1));
 
         jTRemitente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -316,11 +314,14 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTRemitenteKeyReleased(evt);
             }
         });
+        jPanel2.add(jTRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 18, 254, -1));
 
         errorInventario4.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario4.setText("Remitente no válido");
+        jPanel2.add(errorInventario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 46, -1, -1));
 
         jLabel63.setText("Destino");
+        jPanel2.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 218, -1, -1));
 
         jTVolumen.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -332,23 +333,29 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jTVolumenKeyReleased(evt);
             }
         });
+        jPanel2.add(jTVolumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 85, 204, -1));
 
         errorInventario3.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario3.setText("Destino no válido");
+        jPanel2.add(errorInventario3, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 246, -1, -1));
 
         errorInventario6.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario6.setText("Contenido no válido");
+        jPanel2.add(errorInventario6, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 113, -1, -1));
 
         jLabel1.setText("Dirección");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(441, 159, 55, -1));
 
         jTDestinatario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTDestinatarioFocusLost(evt);
             }
         });
+        jPanel2.add(jTDestinatario, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 218, 254, -1));
 
         errorInventario7.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario7.setText("Dirección no válido");
+        jPanel2.add(errorInventario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 184, -1, -1));
 
         jBEliminar.setText("Eliminar Registro");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -356,18 +363,23 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jBEliminarActionPerformed(evt);
             }
         });
+        jPanel2.add(jBEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 294, 133, -1));
 
         jLabelPrecioPaquete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPrecioPaquete.setText("Precio paquete :");
+        jPanel2.add(jLabelPrecioPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(332, 343, -1, -1));
 
         jLabelImpuesto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelImpuesto.setText("Impuesto :");
+        jPanel2.add(jLabelImpuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 407, -1, -1));
 
         jLabelPrecioDistancia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPrecioDistancia.setText("Precio distancia :");
+        jPanel2.add(jLabelPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, -1, -1));
 
         JLabelPrecioTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JLabelPrecioTotal.setText("Precio total :");
+        jPanel2.add(JLabelPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 439, -1, -1));
 
         JComboDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino.addActionListener(new java.awt.event.ActionListener() {
@@ -375,6 +387,7 @@ public class JFPaquetes extends javax.swing.JFrame {
                 JComboDestinoActionPerformed(evt);
             }
         });
+        jPanel2.add(JComboDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 218, 204, -1));
 
         jBRegistrarPAInventario.setText("Agregar al inventario");
         jBRegistrarPAInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -382,171 +395,21 @@ public class JFPaquetes extends javax.swing.JFrame {
                 jBRegistrarPAInventarioActionPerformed(evt);
             }
         });
+        jPanel2.add(jBRegistrarPAInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(359, 488, -1, -1));
 
         jLabel2.setText("Destinatario");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 221, -1, -1));
 
         jTDireccion1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTDireccion1FocusLost(evt);
             }
         });
+        jPanel2.add(jTDireccion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 156, 254, -1));
 
         errorInventario8.setForeground(new java.awt.Color(255, 0, 51));
         errorInventario8.setText("Destinatario no válido");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel63))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(errorInventario2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTCodigoTracking, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel61)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel13)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel60)
-                                        .addGap(64, 64, 64)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel53)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel2))
-                                .addGap(22, 22, 22)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTDireccion1)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(errorInventario4)
-                                            .addComponent(errorInventario6)
-                                            .addComponent(errorInventario7))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTContenidoPaquete)
-                                    .addComponent(jTRemitente)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGap(126, 126, 126)
-                                .addComponent(jBRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(errorInventario1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JComboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(errorInventario3))
-                                .addGap(173, 173, 173)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTDestinatario)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(errorInventario8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 112, Short.MAX_VALUE)))))
-                        .addGap(214, 214, 214))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(354, 354, 354)
-                        .addComponent(jBRegistrarPAInventario))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(327, 327, 327)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelPrecioDistancia)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabelPrecioPaquete)
-                                .addComponent(JLabelPrecioTotal)
-                                .addComponent(jLabelImpuesto)))))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTCodigoTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jLabel14))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jTVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel61)
-                                            .addComponent(jLabel13))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(errorInventario1)
-                                .addGap(27, 27, 27)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jTPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel60)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jTDireccion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jTContenidoPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(errorInventario6))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel53)
-                            .addComponent(jTRemitente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(errorInventario4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorInventario2)
-                    .addComponent(errorInventario7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel63)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(JComboDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jTDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(errorInventario3)
-                    .addComponent(errorInventario8))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBRegistrar)
-                    .addComponent(jBEliminar))
-                .addGap(26, 26, 26)
-                .addComponent(jLabelPrecioPaquete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelPrecioDistancia)
-                .addGap(12, 12, 12)
-                .addComponent(jLabelImpuesto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(JLabelPrecioTotal)
-                .addGap(29, 29, 29)
-                .addComponent(jBRegistrarPAInventario)
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
+        jPanel2.add(errorInventario8, new org.netbeans.lib.awtextra.AbsoluteConstraints(518, 246, 142, -1));
 
         jPIR.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 18, 991, 530));
 

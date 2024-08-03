@@ -616,7 +616,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         Paquete paquete = inventario.obtenerPaquete(codigoTracking);
         cotizacion.emitirFacturaPaquete(paquete);
         cargarFacturas();
-        
+        JOptionPane.showMessageDialog(null, "Se generó la factura existosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jBGenerarFacturaActionPerformed
 
     private void jTablaRegistrarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaRegistrarFacturaMouseClicked
