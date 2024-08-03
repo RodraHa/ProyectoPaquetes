@@ -63,14 +63,12 @@ public class JFFacturacion extends javax.swing.JFrame {
     
 //Mouse
     int xMouse, yMouse;
-    private VisibilidadManager visibilidadManager;
     Connection cnx;
     
     public JFFacturacion(Connection cnx) {
         initComponents();
         this.cnx=cnx;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
-        this.visibilidadManager = new VisibilidadManager();
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 
@@ -84,7 +82,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
         // Inicializa el campo IDIncidentesTF con el siguiente ID
-        this.visibilidadManager = new VisibilidadManager();
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
     }
@@ -619,6 +616,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         Paquete paquete = inventario.obtenerPaquete(codigoTracking);
         cotizacion.emitirFacturaPaquete(paquete);
         cargarFacturas();
+        
     }//GEN-LAST:event_jBGenerarFacturaActionPerformed
 
     private void jTablaRegistrarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaRegistrarFacturaMouseClicked
@@ -713,7 +711,7 @@ public class JFFacturacion extends javax.swing.JFrame {
                                                     factura.obtenerDireccionDestino(), factura.obtenerDescripcion(), factura.obtenerPesoPaquete(), nombresRemitente, apellidosRemitente, direccionRemitente, telefonoRemitente, cedulaRemitente, precioPaquete, precioDistancia, precioImpuesto, precioTotal);
             mostrarFactura.setVisible(true);
         }else{
-            JOptionPane.showMessageDialog(null, "Seleccione una factura, por favor.", "Error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "Seleccione una factura, por favor.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_btnAbrirFacturaActionPerformed

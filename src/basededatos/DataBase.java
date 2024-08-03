@@ -102,6 +102,34 @@ public class DataBase {
         }
     }
     
+    public Conductor obtenerConductor(String username) {
+        String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email, c.provincia " +
+               "FROM Usuario u " +
+               "JOIN Credencial c ON u.id = c.usuario_id " +
+               "WHERE c.nombreUsuario = ?";
+        try {
+            PreparedStatement stmt = conexion.prepareStatement(query);
+            stmt.setString(1, username);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new Conductor(
+                        rs.getString("nombres"),
+                        rs.getString("apellidos"),
+                        rs.getString("identificacion"),
+                        rs.getString("direccion"),
+                        rs.getString("telefono"),
+                        rs.getString("email")
+                    );
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public Cliente obtenerDatosPorCedula(String cedula) {
         String query = "SELECT nombres, apellidos, cedula AS identificacion, direccion, telefono, email " +
                        "FROM Usuario " +
@@ -351,4 +379,6 @@ public class DataBase {
 
         return conductores;
     }
+
+   
 }

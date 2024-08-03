@@ -4,7 +4,6 @@
  */
 package proyecto_paquetes;
 
-import GUI.JFIngresar;
 import GUI.JFMenu;
 
 /**

@@ -3,7 +3,6 @@ package mod_administracion;
 import mod_paquetes.Entregado;
 import mod_paquetes.EstadoDelPaquete;
 import mod_paquetes.Paquete;
-import mod_paquetes.Pendiente;
 
 public class Cliente extends Usuario {
 

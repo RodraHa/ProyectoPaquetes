@@ -1,9 +1,10 @@
 package mod_facturacion;
 
+import java.io.Serializable;
 import mod_paquetes.Paquete;
 import java.util.ArrayList;
 
-public class Precio {
+public class Precio implements Serializable{
     private double precioTotalPaquete;
     private ArrayList<CalculoPrecio> precios;
 
