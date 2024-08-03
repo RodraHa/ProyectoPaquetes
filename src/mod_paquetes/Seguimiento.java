@@ -22,6 +22,10 @@ public class Seguimiento implements Serializable {
     public boolean verificarEntregaPendiente() {
         return estadoActual instanceof Pendiente;
     }
+    
+    public EstadoDelPaquete obtenerEstado() {
+        return this.estadoActual;
+    }
 
     public ArrayList<String> obtenerEstadosAnteriores() {
         return estadosAnteriores;

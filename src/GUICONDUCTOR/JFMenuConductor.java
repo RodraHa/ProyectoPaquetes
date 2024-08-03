@@ -97,10 +97,6 @@ public class JFMenuConductor extends javax.swing.JFrame {
     }
 
     public JFMenuConductor(Conductor conductor) {
-        ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
-        Asignacion.obtenerInstancia().agregarConductores(conductores);
-        Asignacion.obtenerInstancia().cargarVehiculos();
-        Asignacion.obtenerInstancia().cargarConductores();
         Asignacion.obtenerInstancia().cargarRelacionConductores();
 
         initComponents();
@@ -152,11 +148,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        menuProveedores = new javax.swing.JLabel();
-        menuEmpleados = new javax.swing.JLabel();
-        menuClientes = new javax.swing.JLabel();
         menuinventario = new javax.swing.JLabel();
-        menuFacturacionYVenta = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         menuLogout = new javax.swing.JLabel();
         Clicked1 = new javax.swing.JPanel();
@@ -236,71 +228,11 @@ public class JFMenuConductor extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(41, 39, 40));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        menuProveedores.setBackground(new java.awt.Color(41, 39, 40));
-        menuProveedores.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
-        menuProveedores.setForeground(new java.awt.Color(255, 255, 255));
-        menuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/camion.png"))); // NOI18N
-        menuProveedores.setText("Conductores");
-        menuProveedores.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        menuProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuProveedoresMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                menuProveedoresMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                menuProveedoresMouseExited(evt);
-            }
-        });
-        jPanel1.add(menuProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 210, 50));
-
-        menuEmpleados.setBackground(new java.awt.Color(41, 39, 40));
-        menuEmpleados.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
-        menuEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        menuEmpleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png"))); // NOI18N
-        menuEmpleados.setText("Registro de Empleados");
-        menuEmpleados.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        menuEmpleados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuEmpleadosMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                menuEmpleadosMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                menuEmpleadosMouseExited(evt);
-            }
-        });
-        jPanel1.add(menuEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 210, 52));
-
-        menuClientes.setBackground(new java.awt.Color(41, 39, 40));
-        menuClientes.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
-        menuClientes.setForeground(new java.awt.Color(255, 255, 255));
-        menuClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Home_32px.png"))); // NOI18N
-        menuClientes.setText("Clientes");
-        menuClientes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        menuClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuClientesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                menuClientesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                menuClientesMouseExited(evt);
-            }
-        });
-        jPanel1.add(menuClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 210, 52));
-
         menuinventario.setBackground(new java.awt.Color(41, 39, 40));
         menuinventario.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
         menuinventario.setForeground(new java.awt.Color(255, 255, 255));
         menuinventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/caja.png"))); // NOI18N
-        menuinventario.setText("Paquetes");
+        menuinventario.setText("Gestion Paquetes");
         menuinventario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
         menuinventario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuinventario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -315,26 +247,6 @@ public class JFMenuConductor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(menuinventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 210, 52));
-
-        menuFacturacionYVenta.setBackground(new java.awt.Color(41, 39, 40));
-        menuFacturacionYVenta.setFont(new java.awt.Font("Leelawadee UI Semilight", 0, 16)); // NOI18N
-        menuFacturacionYVenta.setForeground(new java.awt.Color(255, 255, 255));
-        menuFacturacionYVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/factura.png"))); // NOI18N
-        menuFacturacionYVenta.setText("Facturación");
-        menuFacturacionYVenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 1));
-        menuFacturacionYVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        menuFacturacionYVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuFacturacionYVentaMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                menuFacturacionYVentaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                menuFacturacionYVentaMouseExited(evt);
-            }
-        });
-        jPanel1.add(menuFacturacionYVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 210, 52));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Version 0.1");
@@ -358,7 +270,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
                 menuLogoutMouseExited(evt);
             }
         });
-        jPanel1.add(menuLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 210, 52));
+        jPanel1.add(menuLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 210, 52));
 
         Clicked1.setBackground(new java.awt.Color(178, 8, 55));
 
@@ -476,7 +388,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
                 menuIncidentesMouseExited(evt);
             }
         });
-        jPanel1.add(menuIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 210, 52));
+        jPanel1.add(menuIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 210, 52));
 
         Clicked6.setBackground(new java.awt.Color(178, 8, 55));
 
@@ -515,7 +427,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
         jLInicio.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
         jLInicio.setForeground(new java.awt.Color(102, 102, 102));
         jLInicio.setText("Gestión de Paquetes");
-        JPGPaquetes.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 620, 250));
+        JPGPaquetes.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 620, 250));
 
         panelContent.add(JPGPaquetes, "card1");
 
@@ -580,7 +492,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
         txtDateLog.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtDateLog.setForeground(new java.awt.Color(51, 51, 51));
         txtDateLog.setText("Date      :");
-        PanelHome.add(txtDateLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 310, -1));
+        PanelHome.add(txtDateLog, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 37, 310, 20));
 
         Home.add(PanelHome, "home");
 
@@ -617,73 +529,14 @@ public class JFMenuConductor extends javax.swing.JFrame {
     }//GEN-LAST:event_menuinventarioMouseExited
 
     private void menuinventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuinventarioMouseClicked
-
+        contenido.show(panelContent, "card1");
+        cambiarSeccionMenu(0);
+        menuinventario.setBackground(Color.decode("#494848"));
+        JFrame ventanaInventario = new JFPaquetesConductor(this.conductor);
+        VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
+        jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuinventarioMouseClicked
 
-
-    private void menuProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseClicked
-
-    }//GEN-LAST:event_menuProveedoresMouseClicked
-
-    private void menuProveedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseEntered
-        menuProveedores.setBackground(Color.decode("#333333"));
-        menuProveedores.setOpaque(true);
-    }//GEN-LAST:event_menuProveedoresMouseEntered
-
-    private void menuProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseExited
-        menuProveedores.setBackground(Color.decode("#292728"));
-        menuProveedores.setOpaque(true);
-    }//GEN-LAST:event_menuProveedoresMouseExited
-
-    private void menuEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseClicked
-
-    }//GEN-LAST:event_menuEmpleadosMouseClicked
-
-    private void menuEmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseEntered
-        menuEmpleados.setBackground(Color.decode("#333333"));
-        menuEmpleados.setOpaque(true);
-    }//GEN-LAST:event_menuEmpleadosMouseEntered
-
-    private void menuEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseExited
-        menuEmpleados.setBackground(Color.decode("#292728"));
-        menuEmpleados.setOpaque(true);
-    }//GEN-LAST:event_menuEmpleadosMouseExited
-
-    private void menuClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseClicked
-        contenido.show(panelContent, "card2");
-        cambiarSeccionMenu(1);
-        menuClientes.setBackground(Color.decode("#494848"));
-        JFrame remintente = new JFClientes();
-        VentanaManager.getInstance().mostrarVentana("remintente", remintente);
-    }//GEN-LAST:event_menuClientesMouseClicked
-
-    private void menuClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseEntered
-        menuClientes.setBackground(Color.decode("#333333"));
-        menuClientes.setOpaque(true);
-    }//GEN-LAST:event_menuClientesMouseEntered
-
-    private void menuClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseExited
-        menuClientes.setBackground(Color.decode("#292728"));
-        menuClientes.setOpaque(true);
-    }//GEN-LAST:event_menuClientesMouseExited
-
-    private void menuFacturacionYVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseClicked
-        contenido.show(panelContent, "card4");
-        cambiarSeccionMenu(3);
-        menuFacturacionYVenta.setBackground(Color.decode("#494848"));
-        JFrame ventantaFactura = new JFFacturacion(cnx);
-        VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
-    }//GEN-LAST:event_menuFacturacionYVentaMouseClicked
-
-    private void menuFacturacionYVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseEntered
-        menuFacturacionYVenta.setBackground(Color.decode("#333333"));
-        menuFacturacionYVenta.setOpaque(true);
-    }//GEN-LAST:event_menuFacturacionYVentaMouseEntered
-
-    private void menuFacturacionYVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseExited
-        menuFacturacionYVenta.setBackground(Color.decode("#292728"));
-        menuFacturacionYVenta.setOpaque(true);
-    }//GEN-LAST:event_menuFacturacionYVentaMouseExited
 
     private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
         getToolkit().beep();
@@ -912,12 +765,8 @@ public class JFMenuConductor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel menuClientes;
-    private javax.swing.JLabel menuEmpleados;
-    private javax.swing.JLabel menuFacturacionYVenta;
     private javax.swing.JLabel menuIncidentes;
     private javax.swing.JLabel menuLogout;
-    private javax.swing.JLabel menuProveedores;
     private javax.swing.JLabel menuinventario;
     private javax.swing.JPanel panelContent;
     private javax.swing.JLabel txtDateLog;

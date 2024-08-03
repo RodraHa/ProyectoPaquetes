@@ -61,7 +61,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         this.recepcionista = recepcionista;
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage());
-        cargarInventario();
+        inventario = Inventario.obtenerInstancia();
         cargarProvincias();
         refrescarInventario();
         desvanecerP();
