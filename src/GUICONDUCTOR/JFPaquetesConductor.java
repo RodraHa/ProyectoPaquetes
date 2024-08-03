@@ -384,7 +384,5 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
     private javax.swing.JTable jTablaPaquete;
     // End of variables declaration//GEN-END:variables
 
-    private void mostrarPrecio() {
 
-    }
 }
