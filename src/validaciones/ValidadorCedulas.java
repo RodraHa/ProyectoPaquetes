@@ -4,8 +4,6 @@
  */
 package validaciones;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author USUARIO
