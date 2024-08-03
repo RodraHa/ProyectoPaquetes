@@ -1,5 +1,6 @@
 package mod_facturacion;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import mod_administracion.Usuario;
 import mod_paquetes.Paquete;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import mod_paquetes.Provincia;
 
-public class Factura {
+public class Factura implements Serializable{
     private String id;
     private Precio precio;
     private String fechaEmision;

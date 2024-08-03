@@ -31,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
+import mod_facturacion.Cotizacion;
 
 import mod_paquetes.Inventario;
 
@@ -110,6 +111,7 @@ public class JFMenu extends javax.swing.JFrame {
         this.recepcionista = recepcionista;
 
         Inventario.obtenerInstancia().cargarInventario();
+        Cotizacion.obtenerInstancia().cargarCotizacion();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
 
 
