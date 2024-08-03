@@ -19,7 +19,7 @@ public class PaqueteEstropeado extends Incidente {
     public String resolver(String[] argumentos) {
         if (argumentos[0].equals("Remunerado")) {
             return "Por los daños presentados en su paquete se le entregará una compensación de " + argumentos[1] + " dólares";
-        } else if (argumentos[0].equals("No remunerado")) {
+        } else if (argumentos[0].equals("NoRemunerado")) {
             return "No se pueden cubrir los daños que su paquete ha presentado. La empresa se deslinda de toda responsabilidad";
         }
         return "";    
