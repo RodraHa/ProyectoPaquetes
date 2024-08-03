@@ -671,7 +671,7 @@ public class JFPaquetes extends javax.swing.JFrame {
             String contenido = jTContenidoPaquete.getText();
             Cliente cliente = DataBase.obtenerInstancia().obtenerDatosPorCedula(jTRemitente.getText());
             Provincia origen = recepcionista.obtenerSucursal();
-            String direccion = jTDestinatario.getText();
+            String direccion = jTDireccion1.getText();
             String destinatario = jTDestinatario.getText();
             Paquete paquete = new Paquete(codigo, volumen, peso, contenido, cliente, origen, destino, direccion, destinatario);
             recepcionista.registrarPaquete(paquete);

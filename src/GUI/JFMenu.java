@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import mod_administracion.Recepcionista;
+import mod_paquetes.Inventario;
 import validaciones.*;
 
 /**
@@ -93,6 +94,7 @@ public class JFMenu extends javax.swing.JFrame {
     public JFMenu(Recepcionista recepcionista) {
         initComponents();
         this.recepcionista = recepcionista;
+        Inventario.obtenerInstancia().cargarInventario();
         setIconImage(new ImageIcon(getClass().
                 getResource("/iconos/AjustesBest.png")).getImage());
 

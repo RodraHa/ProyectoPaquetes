@@ -29,7 +29,7 @@ public final class Cotizacion {
     public void emitirFacturaPaquete(Paquete paquete) {
         Precio precio = new Precio(
                 paquete, new PrecioPaquete(5, 5), new PrecioDistancia(0.2), new Impuesto(0.12));
-        facturas.add(new Factura(String.valueOf(facturas.size()+1) ,paquete, precio));
+        facturas.add(new Factura(getSiguienteCodigoFactura() ,paquete, precio));
         
     }
     
@@ -41,5 +41,9 @@ public final class Cotizacion {
         codigo++;
         return String.valueOf(codigo);
     }
+     
+     public ArrayList<Factura> obtenerFacturas(){
+         return facturas;
+     }
     
 }
