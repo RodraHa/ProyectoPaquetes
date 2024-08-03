@@ -118,4 +118,8 @@ public class Paquete implements Serializable {
     public String getContenido() {
         return this.contenido;
     }
+
+    public Seguimiento obtenerSeguimiento() {
+        return this.seguimiento;
+    }
 }

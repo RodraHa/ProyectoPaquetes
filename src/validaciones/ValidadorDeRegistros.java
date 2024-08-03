@@ -25,8 +25,6 @@ public class ValidadorDeRegistros {
         return placa.matches(patron);
     }
 
-    ValidadorCedulas validarDocumentos = new ValidadorCedulas();
-
     public boolean camposDeRegistros(JTextField textField, JLabel label, String caso) {
         boolean valor = false;
         String texto = textField.getText();
@@ -36,7 +34,7 @@ public class ValidadorDeRegistros {
             case "d" ->
                 valor = validarDireccion(texto);
             case "b" ->
-                valor = validarDocumentos.validarRUC(texto);
+                valor = validarRUC(texto);
             case "n" ->
                 valor = texto.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$");
             case "c" ->
@@ -68,7 +66,7 @@ public class ValidadorDeRegistros {
         boolean valor = false;
         switch (caso) {
             case "a" -> {
-                boolean cedulaValida = ValidadorCedulas.validarCedula(textField.getText());
+                boolean cedulaValida = validarCedula(textField.getText());
                 if (!cedulaValida) {
                     textField.setBackground((new Color(255, 204, 204)));
                     label.setVisible(true);
@@ -184,5 +182,9 @@ public class ValidadorDeRegistros {
     
     public static boolean validarNombres(String nombres) {
         return nombres.matches("^[A-Za-záéíóúÁÉÍÓÚñÑüÜ]+( [A-Za-záéíóúÁÉÍÓÚñÑüÜ]+)*$");
+    }
+
+    private boolean validarRUC(String texto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

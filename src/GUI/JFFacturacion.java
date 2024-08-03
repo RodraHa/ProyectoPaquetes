@@ -63,14 +63,12 @@ public class JFFacturacion extends javax.swing.JFrame {
     
 //Mouse
     int xMouse, yMouse;
-    private VisibilidadManager visibilidadManager;
     Connection cnx;
     
     public JFFacturacion(Connection cnx) {
         initComponents();
         this.cnx=cnx;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
-        this.visibilidadManager = new VisibilidadManager();
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 
@@ -84,7 +82,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
         // Inicializa el campo IDIncidentesTF con el siguiente ID
-        this.visibilidadManager = new VisibilidadManager();
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
     }
