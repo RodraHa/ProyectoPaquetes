@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  * tipos de datos y formatos en campos de texto, así como para gestionar
  * el contenido del portapapeles.
  *
- * @autor USUARIO
+ * @author USUARIO
  */
 public class ValidadorDeRegistros {
 

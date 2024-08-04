@@ -11,7 +11,7 @@ import javax.swing.JTextField;
  * La clase ValidadorDeSwings proporciona métodos para validar y gestionar
  * el estado de los campos de texto en una interfaz gráfica de usuario (GUI).
  *
- * @autor USUARIO
+ * @author USUARIO
  */
 public class ValidadorDeSwings {
 
