@@ -27,7 +27,7 @@ public class Conductor extends Usuario {
     }
 
     public ArrayList<Paquete> consultarPaquetesAsignados() {
-        ArrayList<Paquete> paquetes = Asignacion.obtenerInstancia().obtenerPaquetesConductor(this);
+        ArrayList<Paquete> paquetes = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(this);
         for (Paquete paquete : paquetes) {
             System.out.println(paquete);
         }

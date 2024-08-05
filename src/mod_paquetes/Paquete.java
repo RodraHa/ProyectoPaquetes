@@ -38,7 +38,7 @@ public class Paquete implements Serializable {
         this.estado = estado;
         seguimiento.notificar(estado);
     }
-
+    
     public ArrayList<String> obtenerHistorialEstados() {
         return seguimiento.obtenerEstadosAnteriores();
     }

@@ -94,7 +94,7 @@ public class Asignacion {
             return false;
         }
         vehiculo.setCapacidad(capacidad);
-        guardarRelacionPaquetes();
+         guardarRelacionPaquetes();
         return true;
     }
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo(){
@@ -111,7 +111,7 @@ public class Asignacion {
         guardarRelacionConductores();
     }
 
-    public ArrayList<Paquete> obtenerPaquetesConductor(Conductor conductor) {
+    public ArrayList<Paquete> obtenerVehiculoConductor(Conductor conductor) {
         if (!asignacionConductores.containsKey(conductor)) {
             return null;
         }
@@ -127,6 +127,28 @@ public class Asignacion {
         }
         return null;
     }
+    
+    public ArrayList<Paquete> obtenerPaquetesDeConductor(Conductor conductor){
+        Vehiculo vehiculo = null;
+        for (Map.Entry<Conductor, Vehiculo> entry : asignacionConductores.entrySet()) {
+            if (entry.getKey().getCedula().equals(conductor.getCedula())) {
+                vehiculo = entry.getValue();
+                break;
+            }
+        }
+        if(vehiculo == null){
+            return null;
+        }
+        System.out.println("hay vehiculo");
+        for(Map.Entry<Vehiculo, ArrayList<Paquete>> entry : asignacionPaquetes.entrySet()){
+            if(entry.getKey().getNumeroPlaca().equals(vehiculo.getNumeroPlaca())){
+                System.out.println("hay inventario");
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+    
     
     public void guardarVehiculo() {
         conexionConSer(vehiculos,"FlotaVehiculos");

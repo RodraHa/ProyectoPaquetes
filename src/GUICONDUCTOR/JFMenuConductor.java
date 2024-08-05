@@ -1,14 +1,11 @@
 package GUICONDUCTOR;
 
-import GUI.*;
 import proyecto_paquetes.JFIngresar;
-import basededatos.DataBase;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Window;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,7 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import mod_administracion.Conductor;
-import mod_administracion.Recepcionista;
+import mod_paquetes.Paquete;
 import mod_transporte.Asignacion;
 import validaciones.*;
 
@@ -42,36 +39,9 @@ import validaciones.*;
 public class JFMenuConductor extends javax.swing.JFrame {
 //Vistas
 
-    private JFPaquetes inventario = null;
-    private JFClientes remitente = null;
-    private JFIncidente incidente = null;
-    private JFConductores conductores = null;
-    private JFFactura factura1 = null;
-
-//Clases   
-    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
-    ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
-
-    //Empleados
-    private boolean cedulaEmpleadoValidar = false;
-    private boolean nombreEmpleadoValidar = false;
-    private boolean apellidoEmpleadoValidar = false;
-    private boolean cargoEmpleadoValidar = false;
-    private boolean direccionEmpleadoValidar = false;
-    private boolean telefonoConvenValidar = false;
-    private boolean telefonoEmpleadoValiar = false;
-    private boolean correoEmpleadoValidar = false;
-
-    private boolean cargoEmpleadoValidar1 = false;
-    private boolean direccionEmpleadoValidar1 = false;
-    private boolean telefonoConvenValidar1 = false;
-    private boolean telefonoEmpleadoValiar1 = false;
-    private boolean correoEmpleadoValidar1 = false;
-    //Usuarios
     private boolean claveUsuario = false;
     //Actualizar usuarios
     private boolean claveUsuario2 = false;
-    public Conductor conductor;
 
 //Mouses
     int xMouse, yMouse;
@@ -85,8 +55,8 @@ public class JFMenuConductor extends javax.swing.JFrame {
     CardLayout contenido, contenido1;
     private boolean focusChanged = false;
     private String nombreUsuario;
-
-
+    private Conductor conductor;
+    ArrayList<Paquete> inventario = null;
     public void desvanecer() {
         Clicked1.setVisible(true);
         Clicked2.setVisible(false);
@@ -97,10 +67,12 @@ public class JFMenuConductor extends javax.swing.JFrame {
     }
 
     public JFMenuConductor(Conductor conductor) {
-        Asignacion.obtenerInstancia().cargarRelacionConductores();
-
-        initComponents();
         this.conductor = conductor;
+        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
+        Asignacion.obtenerInstancia().cargarVehiculos();
+        Asignacion.obtenerInstancia().cargarRelacionConductores();
+        inventario = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor);
+        initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
 
         setLocationRelativeTo(null);
@@ -532,7 +504,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-        JFrame ventanaInventario = new JFPaquetesConductor(this.conductor);
+        JFrame ventanaInventario = new JFPaquetesConductor(inventario,conductor);
         VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
         jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuinventarioMouseClicked
@@ -616,7 +588,12 @@ public class JFMenuConductor extends javax.swing.JFrame {
 
 
     private void menuIncidentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseClicked
-
+    contenido.show(panelContent, "card1");
+    cambiarSeccionMenu(0);
+    menuinventario.setBackground(Color.decode("#494848"));
+    JFrame ventanaIncidentes = new JFIncidenteConductor(inventario);
+    VentanaManager.getInstance().mostrarVentana("Incidentes", ventanaIncidentes);
+    jLInicio.setText("Paquetes");
 
     }//GEN-LAST:event_menuIncidentesMouseClicked
 

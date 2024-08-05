@@ -54,14 +54,15 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
     private boolean contenidoValidar=false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
-    private Inventario inventario;
+    private Conductor conductor;
     
     //Mouse
     int xMouse, yMouse;  
-    private Conductor conductor;
+    private ArrayList<Paquete> inventario;
     
-    public JFPaquetesConductor(Conductor conductor){      
+    public JFPaquetesConductor(ArrayList<Paquete> inventario, Conductor conductor){      
         this.conductor = conductor;
+        this.inventario = inventario;
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage());
         refrescarInventario();
@@ -78,7 +79,11 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
                     int selectedRow = jTablaInventario.getSelectedRow();
                     if (selectedRow != -1) {
                         String codigoTracking = jTablaInventario.getValueAt(selectedRow, 0).toString();
-                        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+                        Paquete paquete = obtenerPaquete(codigoTracking);
+                        
+                        if(paquete == null){
+                            return;
+                        }
                         // Mostrar un JOptionPane con la información de la fila seleccionada
                         JOptionPane.showMessageDialog(null, 
                             paquete.toString(), 
@@ -91,10 +96,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    private void cargarInventario() {
-        inventario = Inventario.obtenerInstancia();
-        inventario.cargarInventario();
-    }
+   
     
     private void refrescarInventario() {
         DefaultTableModel model = new DefaultTableModel();
@@ -104,7 +106,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
             "Remitente", "Provincia Origen", "Provincia Destino"
         };
         model.setColumnIdentifiers(columnNames);
-        ArrayList<Paquete> paquetes = Asignacion.obtenerInstancia().obtenerPaquetesConductor(conductor);
+        ArrayList<Paquete> paquetes = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor);
         if(paquetes != null){
         for (Paquete paquete : paquetes) {
                 model.addRow(new Object[]{
@@ -300,17 +302,28 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnExitActionPerformed
-
+    
+    private Paquete obtenerPaquete(String codigo){
+        for(Paquete paquete :inventario){
+            if(paquete.getCodigoTracking().equals(codigo)){
+                return paquete;
+            }
+        }
+        return null;
+    }
+    
+    
     private void jBConsultarPaquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarPaquete1ActionPerformed
         String codigo = jTCodigoEliminar.getText();
+        Paquete paquete = obtenerPaquete(codigo);
         if (codigo.isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
             return;
-        } else if (!inventario.existePaquete(codigo)) {
+        } else if (paquete == null) {
             JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Paquete paquete = inventario.obtenerPaquete(codigo);
+
         DefaultTableModel model = new DefaultTableModel();
         model.setRowCount(0);
         model.addColumn("Propiedad");
@@ -340,10 +353,10 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
         );
         if (respuesta == JOptionPane.YES_OPTION) {
             // El usuario confirmó la eliminación
-            Paquete paquete = inventario.obtenerPaquete(jTCodigoEliminar.getText());
-            inventario.eliminarPaquete(paquete);
+            Paquete paquete = obtenerPaquete(jTCodigoEliminar.getText());
+            //inventario.eliminarPaquete(paquete);
             refrescarInventario();
-            inventario.guardarInventario();
+            //inventario.guardarInventario();
             JOptionPane.showMessageDialog(
                 null,
                 "El paquete con código " + jTCodigoEliminar.getText() + " ha sido eliminado.",
