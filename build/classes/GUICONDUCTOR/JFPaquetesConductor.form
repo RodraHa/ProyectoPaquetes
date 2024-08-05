@@ -179,8 +179,8 @@
             <Container class="javax.swing.JPanel" name="jPIA">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Eliminar Paquete">
-                    <Property name="tabTitle" type="java.lang.String" value="Eliminar Paquete"/>
+                  <JTabbedPaneConstraints tabName="Entregar Paquete">
+                    <Property name="tabTitle" type="java.lang.String" value="Entregar Paquete"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -260,7 +260,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jBEliminarPaquete">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Eliminar"/>
+                    <Property name="text" type="java.lang.String" value="Entregar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarPaqueteActionPerformed"/>

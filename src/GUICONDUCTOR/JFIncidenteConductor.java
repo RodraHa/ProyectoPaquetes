@@ -368,7 +368,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
             .addGroup(jPAE1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         jPAE1Layout.setVerticalGroup(
             jPAE1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,13 +627,13 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
     private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResolverIncidenteActionPerformed
         Paquete paquete = obtenerPaquete(jTCodigoResolver.getText());
         String incidente = paquete.obtenerSeguimiento().obtenerRegistroIncidente();
-
         Incidente incidenteRegistrar = null;
-        if (incidente.equals("Error Dirección")) {
+        
+        if (incidente.equals("No se ha podido entregar el paquete en la dirección proporcionada")) {
             incidenteRegistrar = new ErrorDireccion();
-        } else if (incidente.equals("Paquete Estropeado")) {
+        } else if (incidente.equals("El paquete se encuentra en malas condiciones")) {
             incidenteRegistrar = new PaqueteEstropeado();
-        } else if (incidente.equals("Paquete Perdido")) {
+        } else if (incidente.equals("La ubicación de su paquete es desconocida")) {
             incidenteRegistrar = new PaquetePerdido();
         }
         if (!(paquete.obtenerEstado() instanceof EnCurso)) {

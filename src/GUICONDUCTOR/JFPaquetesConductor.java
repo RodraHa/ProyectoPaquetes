@@ -258,7 +258,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
         jPIA.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
         jPIA.add(jTCodigoEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 200, 20));
 
-        jBEliminarPaquete.setText("Eliminar");
+        jBEliminarPaquete.setText("Entregar");
         jBEliminarPaquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEliminarPaqueteActionPerformed(evt);
@@ -274,7 +274,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
         });
         jPIA.add(jBConsultarPaquete1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
 
-        jPanel_General.addTab("Eliminar Paquete", jPIA);
+        jPanel_General.addTab("Entregar Paquete", jPIA);
 
         jPrincipal.add(jPanel_General, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1030, 610));
 
