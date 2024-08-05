@@ -42,43 +42,50 @@ import validaciones.*;
 
 
 /**
- *
- * @author USUARIO
+ * Clase para la interfaz de gestión de paquetes para conductores.
+ * Permite consultar y eliminar paquetes.
  */
 public class JFPaquetesConductor extends javax.swing.JFrame {
+    // Validadores de registros y componentes Swing
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     private boolean volumenValidar = false;
     private boolean pesoValidar = false;
     private boolean remitenteValidar = false;
-    private boolean contenidoValidar=false;
+    private boolean contenidoValidar = false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
     private Conductor conductor;
     
-    //Mouse
+    // Variables para manejo del mouse
     int xMouse, yMouse;  
     private ArrayList<Paquete> inventario;
     
-    public JFPaquetesConductor(ArrayList<Paquete> inventario, Conductor conductor){      
+    /**
+     * Constructor de la clase.
+     * @param inventario Lista de paquetes.
+     * @param conductor Conductor asignado.
+     */
+    public JFPaquetesConductor(ArrayList<Paquete> inventario, Conductor conductor) {      
         this.conductor = conductor;
         this.inventario = inventario;
-        initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage());
-        refrescarInventario();
-        jTablaPaquete.setVisible(false);
-        DefaultTableModel model = new DefaultTableModel();
+        initComponents(); // Inicializa los componentes de la interfaz gráfica
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage()); // Establece el icono de la ventana
+        refrescarInventario(); // Refresca la tabla de inventario
+        jTablaPaquete.setVisible(false); // Oculta la tabla de detalles del paquete
+        DefaultTableModel model = new DefaultTableModel(); // Modelo de la tabla de detalles del paquete
         model.addColumn("Propiedad");
         model.addColumn("Valor");
         jTablaPaquete.setModel(model);
-        jBEliminarPaquete.setVisible(false);
+        jBEliminarPaquete.setVisible(false); // Oculta el botón de eliminar paquete
+        // Listener para la selección de filas en la tabla de inventario
         jTablaInventario.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent event) {
                 if (!event.getValueIsAdjusting()) {
-                    int selectedRow = jTablaInventario.getSelectedRow();
+                    int selectedRow = jTablaInventario.getSelectedRow(); // Obtiene la fila seleccionada
                     if (selectedRow != -1) {
-                        String codigoTracking = jTablaInventario.getValueAt(selectedRow, 0).toString();
+                        String codigoTracking = jTablaInventario.getValueAt(selectedRow, 0).toString(); // Obtiene el código de tracking del paquete seleccionado
                         Paquete paquete = obtenerPaquete(codigoTracking);
                         
                         if(paquete == null){
@@ -93,22 +100,23 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
                 }
             }
         });
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); // Centra la ventana en la pantalla
     }
     
-   
-    
+    /**
+     * Método para refrescar la tabla de inventario.
+     */
     private void refrescarInventario() {
         DefaultTableModel model = new DefaultTableModel();
-        jTablaInventario.setModel(model);
+        jTablaInventario.setModel(model); // Establece el modelo de la tabla
         String[] columnNames = {
             "Código de Tracking", "Volumen", "Peso", "Contenido", 
             "Remitente", "Provincia Origen", "Provincia Destino"
         };
-        model.setColumnIdentifiers(columnNames);
-        ArrayList<Paquete> paquetes = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor);
+        model.setColumnIdentifiers(columnNames); // Establece los nombres de las columnas
+        ArrayList<Paquete> paquetes = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor); // Obtiene los paquetes del conductor
         if(paquetes != null){
-        for (Paquete paquete : paquetes) {
+            for (Paquete paquete : paquetes) {
                 model.addRow(new Object[]{
                 paquete.obtenerCodigo(),
                 paquete.getVolumen(),
@@ -117,8 +125,8 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
                 paquete.getRemitente().toString(),
                 paquete.getProvinciaOrigen().name(),
                 paquete.getProvinciaDestino().name()
-            });
-        }
+                });
+            }
         }
     }
     
@@ -242,7 +250,6 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -303,15 +310,19 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExitActionPerformed
     
+    /**
+     * Método para obtener un paquete por su código de tracking.
+     * @param codigo Código de tracking del paquete.
+     * @return El paquete correspondiente, o null si no se encuentra.
+     */
     private Paquete obtenerPaquete(String codigo){
-        for(Paquete paquete :inventario){
+        for(Paquete paquete : inventario){
             if(paquete.getCodigoTracking().equals(codigo)){
                 return paquete;
             }
         }
         return null;
     }
-    
     
     private void jBConsultarPaquete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarPaquete1ActionPerformed
         String codigo = jTCodigoEliminar.getText();
@@ -354,9 +365,8 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
         if (respuesta == JOptionPane.YES_OPTION) {
             // El usuario confirmó la eliminación
             Paquete paquete = obtenerPaquete(jTCodigoEliminar.getText());
-            //inventario.eliminarPaquete(paquete);
-            refrescarInventario();
-            //inventario.guardarInventario();
+            // Eliminar el paquete del inventario
+            refrescarInventario(); // Refresca la tabla de inventario
             JOptionPane.showMessageDialog(
                 null,
                 "El paquete con código " + jTCodigoEliminar.getText() + " ha sido eliminado.",
@@ -364,7 +374,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE
             );
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
-            modeloTabla.setRowCount(0);
+            modeloTabla.setRowCount(0); // Vacía la tabla de detalles del paquete
         } else {
             // El usuario canceló la eliminación
             JOptionPane.showMessageDialog(
@@ -375,8 +385,6 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
             );
         }
     }//GEN-LAST:event_jBEliminarPaqueteActionPerformed
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
@@ -396,6 +404,5 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
     private javax.swing.JTable jTablaInventario;
     private javax.swing.JTable jTablaPaquete;
     // End of variables declaration//GEN-END:variables
-
 
 }
