@@ -1,1382 +1,752 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- Declaración XML que define la versión y la codificación del documento -->
 
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <!-- Definición del formulario principal con versión mínima 1.6 y máxima 1.9, de tipo JFrameFormInfo -->
-
   <Properties>
-    <!-- Inicio de la sección de propiedades del formulario -->
-
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <!-- Propiedad que define la operación predeterminada al cerrar la ventana. 3 corresponde a JFrame.EXIT_ON_CLOSE -->
-
     <Property name="title" type="java.lang.String" value="SistemaBestColor"/>
-    <!-- Propiedad que establece el título de la ventana: "SistemaBestColor" -->
-
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Default Cursor"/>
     </Property>
-    <!-- Propiedad que define el cursor del formulario, utilizando el editor de cursor de NetBeans -->
-
     <Property name="undecorated" type="boolean" value="true"/>
-    <!-- Propiedad que indica si la ventana estará sin decoración (sin bordes ni barra de título). true significa que no tendrá decoración -->
-
     <Property name="resizable" type="boolean" value="false"/>
-    <!-- Propiedad que indica si la ventana puede ser redimensionada. false significa que no puede ser redimensionada -->
   </Properties>
-  <!-- Fin de la sección de propiedades del formulario -->
-
   <SyntheticProperties>
-    <!-- Inicio de la sección de propiedades sintéticas del formulario -->
-
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <!-- Propiedad sintética que define la política de tamaño del formulario. 1 puede indicar un tamaño fijo o predefinido -->
-
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
-    <!-- Propiedad sintética que indica si el formulario debe ser centrado en la pantalla. false significa que no será centrado automáticamente -->
   </SyntheticProperties>
-  <!-- Fin de la sección de propiedades sintéticas del formulario -->
-
   <AuxValues>
-    <!-- Inicio de la sección de valores auxiliares del formulario -->
-
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
-    <!-- Valor auxiliar que define la configuración de auto recursividad. 0 puede indicar que está deshabilitado -->
-
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
-    <!-- Valor auxiliar que define si se deben establecer automáticamente los nombres de los componentes. false significa que no se establecerán automáticamente -->
-
     <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
-    <!-- Valor auxiliar que define si se deben generar nombres de clases completamente calificados (FQN). true significa que se generarán -->
-
     <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
-    <!-- Valor auxiliar que define si se debe generar código de mnemónicos. false significa que no se generará -->
-
     <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
-    <!-- Valor auxiliar que define si se debe habilitar el modo automático de internacionalización. false significa que no se habilitará -->
-
     <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
-    <!-- Valor auxiliar que define el objetivo del código de diseño. 1 puede indicar un objetivo específico de diseño -->
-
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
-    <!-- Valor auxiliar que define el estilo de generación de oyentes. 0 puede indicar un estilo predeterminado -->
-
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
-    <!-- Valor auxiliar que define si las variables serán locales. false significa que no serán locales -->
-
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <!-- Valor auxiliar que define el modificador de las variables. 2 puede indicar un modificador específico como private -->
   </AuxValues>
-  <!-- Fin de la sección de valores auxiliares del formulario -->
 
   <Layout>
-    <!-- Inicio de la sección de diseño del formulario -->
-
     <DimensionLayout dim="0">
-      <!-- Definición del diseño para la dimensión horizontal (dim="0") -->
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="Home" alignment="0" max="32767" attributes="0"/>
-          <!-- Componente con id="Home" alineado a la izquierda (alignment="0") con un tamaño máximo de 32767 -->
       </Group>
     </DimensionLayout>
-
     <DimensionLayout dim="1">
-      <!-- Definición del diseño para la dimensión vertical (dim="1") -->
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="Home" min="-2" max="-2" attributes="0"/>
-          <!-- Componente con id="Home" con tamaño mínimo y máximo de -2, que puede indicar ajuste automático -->
       </Group>
     </DimensionLayout>
   </Layout>
-  <!-- Fin de la sección de diseño del formulario -->
-
   <SubComponents>
-    <!-- Inicio de la sección de subcomponentes del formulario -->
-
     <Container class="javax.swing.JPanel" name="Home">
-      <!-- Contenedor principal de tipo JPanel con el nombre "Home" -->
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
-      <!-- Diseño de tipo CardLayout para el contenedor -->
-
       <SubComponents>
-        <!-- Subcomponentes del contenedor principal -->
-
         <Container class="javax.swing.JPanel" name="PanelHome">
-          <!-- Subcontenedor de tipo JPanel con el nombre "PanelHome" -->
-
           <Properties>
-            <!-- Propiedades del subcontenedor -->
-
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f5" green="f5" red="f5" type="rgb"/>
             </Property>
-            <!-- Propiedad que define el color de fondo del panel como un color gris claro (rgb(245, 245, 245)) -->
-
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Default Cursor"/>
             </Property>
-            <!-- Propiedad que define el cursor del panel, utilizando el editor de cursor de NetBeans -->
           </Properties>
-
           <Constraints>
-            <!-- Restricciones de diseño del subcontenedor -->
-
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="home"/>
             </Constraint>
-            <!-- Restricción que define el nombre de la tarjeta para el diseño de CardLayout -->
           </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-            <!-- Diseño de tipo AbsoluteLayout para el subcontenedor -->
-
             <Property name="useNullLayout" type="boolean" value="false"/>
-            <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
           </Layout>
-
           <SubComponents>
-            <!-- Subcomponentes del subcontenedor PanelHome -->
-
             <Container class="javax.swing.JPanel" name="jPanel3">
-              <!-- Subcontenedor de tipo JPanel con el nombre "jPanel3" -->
-
               <Properties>
-                <!-- Propiedades del subcontenedor jPanel3 -->
-
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="30" green="a" red="92" type="rgb"/>
                 </Property>
-                <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(48, 10, 146)) -->
               </Properties>
-
               <Events>
-                <!-- Eventos asociados al subcontenedor jPanel3 -->
-
                 <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MouseDragged"/>
-                <!-- Manejador de eventos para el evento de arrastre del mouse -->
-
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MousePressed"/>
-                <!-- Manejador de eventos para el evento de clic del mouse -->
               </Events>
-
               <Constraints>
-                <!-- Restricciones de diseño del subcontenedor jPanel3 -->
-
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="0" width="1400" height="20"/>
                 </Constraint>
-                <!-- Restricción que define la posición y el tamaño del panel (x=0, y=0, ancho=1400, alto=20) -->
               </Constraints>
 
               <Layout>
-                <!-- Diseño del subcontenedor jPanel3 -->
-
                 <DimensionLayout dim="0">
-                  <!-- Diseño para la dimensión horizontal (dim="0") -->
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <!-- Espacio vacío con tamaño máximo -2 (ajuste automático) -->
                           <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
-                          <!-- Componente JLabel con id="jLabel69" y tamaño mínimo y máximo de -2 (ajuste automático) -->
                           <EmptySpace pref="1295" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño preferido de 1295 y máximo de 32767 -->
                       </Group>
                   </Group>
                 </DimensionLayout>
-
                 <DimensionLayout dim="1">
-                  <!-- Diseño para la dimensión vertical (dim="1") -->
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel69" min="-2" max="-2" attributes="0"/>
-                          <!-- Componente JLabel con id="jLabel69" y tamaño mínimo y máximo de -2 (ajuste automático) -->
                           <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 4 y máximo de 32767 -->
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
-
               <SubComponents>
-                <!-- Subcomponentes del subcontenedor jPanel3 -->
-
                 <Component class="javax.swing.JLabel" name="jLabel69">
-                  <!-- Componente JLabel con el nombre "jLabel69" -->
-
                   <Properties>
-                    <!-- Propiedades del componente JLabel -->
-
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
-                    <!-- Propiedad que define la fuente del texto como "Segoe UI", tamaño 12, estilo negrita (1) -->
-
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                     <Property name="text" type="java.lang.String" value="Gestion de Envios"/>
-                    <!-- Propiedad que define el texto del JLabel como "Gestion de Envios" -->
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
-
             <Container class="javax.swing.JPanel" name="jPanel1">
-              <!-- Subcontenedor de tipo JPanel con el nombre "jPanel1" -->
-
               <Properties>
-                <!-- Propiedades del subcontenedor jPanel1 -->
-
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="28" green="27" red="29" type="rgb"/>
                 </Property>
-                <!-- Propiedad que define el color de fondo del panel como un color gris oscuro (rgb(40, 39, 41)) -->
               </Properties>
-
               <Constraints>
-                <!-- Restricciones de diseño del subcontenedor jPanel1 -->
-
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="0" width="220" height="770"/>
                 </Constraint>
-                <!-- Restricción que define la posición y el tamaño del panel (x=0, y=0, ancho=220, alto=770) -->
               </Constraints>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                <!-- Diseño de tipo AbsoluteLayout para el subcontenedor jPanel1 -->
-
                 <Property name="useNullLayout" type="boolean" value="false"/>
-                <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
               </Layout>
-
               <SubComponents>
-                <!-- Subcomponentes del subcontenedor jPanel1 -->
-
                 <Component class="javax.swing.JLabel" name="menuinventario">
-                  <!-- Componente JLabel con el nombre "menuinventario" -->
-
                   <Properties>
-                    <!-- Propiedades del componente JLabel -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="28" green="27" red="29" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del JLabel como un color gris oscuro (rgb(40, 39, 41)) -->
-
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Leelawadee UI Semilight" size="16" style="0"/>
                     </Property>
-                    <!-- Propiedad que define la fuente del texto como "Leelawadee UI Semilight", tamaño 16, estilo normal (0) -->
-
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/iconos/caja.png"/>
                     </Property>
-                    <!-- Propiedad que define el icono del JLabel como una imagen ("/iconos/caja.png") -->
-
                     <Property name="text" type="java.lang.String" value="Gestion Paquetes"/>
-                    <!-- Propiedad que define el texto del JLabel como "Gestion Paquetes" -->
-
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="10" right="1" top="1"/>
                       </Border>
                     </Property>
-                    <!-- Propiedad que define el borde del JLabel como un borde vacío con márgenes específicos -->
-
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
                     </Property>
-                    <!-- Propiedad que define el cursor del JLabel, utilizando el editor de cursor de NetBeans -->
                   </Properties>
-
                   <Events>
-                    <!-- Eventos asociados al componente JLabel -->
-
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuinventarioMouseClicked"/>
-                    <!-- Manejador de eventos para el evento de clic del mouse -->
-
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuinventarioMouseEntered"/>
-                    <!-- Manejador de eventos para el evento de entrada del mouse -->
-
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuinventarioMouseExited"/>
-                    <!-- Manejador de eventos para el evento de salida del mouse -->
                   </Events>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del componente JLabel -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="10" y="90" width="210" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del JLabel (x=10, y=90, ancho=210, alto=52) -->
                   </Constraints>
                 </Component>
-
                 <Component class="javax.swing.JLabel" name="jLabel3">
-                  <!-- Componente JLabel con el nombre "jLabel3" -->
-
                   <Properties>
-                    <!-- Propiedades del componente JLabel -->
-
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                     <Property name="text" type="java.lang.String" value="Version 0.1"/>
-                    <!-- Propiedad que define el texto del JLabel como "Version 0.1" -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del componente JLabel -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="80" y="740" width="-1" height="-1"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del JLabel (x=80, y=740) -->
                   </Constraints>
                 </Component>
-
                 <Component class="javax.swing.JLabel" name="menuLogout">
-                  <!-- Componente JLabel con el nombre "menuLogout" -->
-
                   <Properties>
-                    <!-- Propiedades del componente JLabel -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="28" green="27" red="29" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del JLabel como un color gris oscuro (rgb(40, 39, 41)) -->
-
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Leelawadee UI Semilight" size="16" style="0"/>
                     </Property>
-                    <!-- Propiedad que define la fuente del texto como "Leelawadee UI Semilight", tamaño 16, estilo normal (0) -->
-
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/iconos/icons8_Sign_Out_32px.png"/>
                     </Property>
-                    <!-- Propiedad que define el icono del JLabel como una imagen ("/iconos/icons8_Sign_Out_32px.png") -->
-
                     <Property name="text" type="java.lang.String" value="     Cerrar sesi&#xf3;n"/>
-                    <!-- Propiedad que define el texto del JLabel como "     Cerrar sesión" -->
-
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="10" right="1" top="1"/>
                       </Border>
                     </Property>
-                    <!-- Propiedad que define el borde del JLabel como un borde vacío con márgenes específicos -->
-
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
                     </Property>
-                    <!-- Propiedad que define el cursor del JLabel, utilizando el editor de cursor de NetBeans -->
                   </Properties>
-
                   <Events>
-                    <!-- Eventos asociados al componente JLabel -->
-
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLogoutMouseClicked"/>
-                    <!-- Manejador de eventos para el evento de clic del mouse -->
-
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLogoutMouseEntered"/>
-                    <!-- Manejador de eventos para el evento de entrada del mouse -->
-
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuLogoutMouseExited"/>
-                    <!-- Manejador de eventos para el evento de salida del mouse -->
                   </Events>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del componente JLabel -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="10" y="320" width="210" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del JLabel (x=10, y=320, ancho=210, alto=52) -->
                   </Constraints>
                 </Component>
-
                 <Container class="javax.swing.JPanel" name="Clicked1">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "Clicked1" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor Clicked1 -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(55, 8, 178)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor Clicked1 -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="90" width="10" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del panel (x=0, y=90, ancho=10, alto=52) -->
                   </Constraints>
 
                   <Layout>
-                    <!-- Diseño del subcontenedor Clicked1 -->
-
                     <DimensionLayout dim="0">
-                      <!-- Diseño para la dimensión horizontal (dim="0") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 10 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
-
                     <DimensionLayout dim="1">
-                      <!-- Diseño para la dimensión vertical (dim="1") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 52 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
                   </Layout>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="Clicked2">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "Clicked2" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor Clicked2 -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(55, 8, 178)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor Clicked2 -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="140" width="10" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del panel (x=0, y=140, ancho=10, alto=52) -->
                   </Constraints>
 
                   <Layout>
-                    <!-- Diseño del subcontenedor Clicked2 -->
-
                     <DimensionLayout dim="0">
-                      <!-- Diseño para la dimensión horizontal (dim="0") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 10 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
-
                     <DimensionLayout dim="1">
-                      <!-- Diseño para la dimensión vertical (dim="1") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 52 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
                   </Layout>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="Clicked3">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "Clicked3" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor Clicked3 -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(55, 8, 178)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor Clicked3 -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="190" width="10" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del panel (x=0, y=190, ancho=10, alto=52) -->
                   </Constraints>
 
                   <Layout>
-                    <!-- Diseño del subcontenedor Clicked3 -->
-
                     <DimensionLayout dim="0">
-                      <!-- Diseño para la dimensión horizontal (dim="0") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 10 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
-
                     <DimensionLayout dim="1">
-                      <!-- Diseño para la dimensión vertical (dim="1") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 52 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
                   </Layout>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="Clicked4">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "Clicked4" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor Clicked4 -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(55, 8, 178)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor Clicked4 -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="240" width="10" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del panel (x=0, y=240, ancho=10, alto=52) -->
                   </Constraints>
 
                   <Layout>
-                    <!-- Diseño del subcontenedor Clicked4 -->
-
                     <DimensionLayout dim="0">
-                      <!-- Diseño para la dimensión horizontal (dim="0") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 10 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
-
                     <DimensionLayout dim="1">
-                      <!-- Diseño para la dimensión vertical (dim="1") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 52 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
                   </Layout>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="Clicked5">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "Clicked5" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor Clicked5 -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(55, 8, 178)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor Clicked5 -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="290" width="10" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del panel (x=0, y=290, ancho=10, alto=52) -->
                   </Constraints>
 
                   <Layout>
-                    <!-- Diseño del subcontenedor Clicked5 -->
-
                     <DimensionLayout dim="0">
-                      <!-- Diseño para la dimensión horizontal (dim="0") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 10 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
-
                     <DimensionLayout dim="1">
-                      <!-- Diseño para la dimensión vertical (dim="1") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 52 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
                   </Layout>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="jPanel13">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "jPanel13" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor jPanel13 -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="30" green="a" red="92" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(48, 10, 146)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor jPanel13 -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="10" width="220" height="60"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del panel (x=0, y=10, ancho=220, alto=60) -->
                   </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <!-- Diseño de tipo AbsoluteLayout para el subcontenedor jPanel13 -->
-
                     <Property name="useNullLayout" type="boolean" value="false"/>
-                    <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
                   </Layout>
-
                   <SubComponents>
-                    <!-- Subcomponentes del subcontenedor jPanel13 -->
-
                     <Component class="javax.swing.JButton" name="jButton3">
-                      <!-- Componente JButton con el nombre "jButton3" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JButton -->
-
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/iconos/icons8_Menu_32px.png"/>
                         </Property>
-                        <!-- Propiedad que define el icono del JButton como una imagen ("/iconos/icons8_Menu_32px.png") -->
-
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                             <EmptyBorder/>
                           </Border>
                         </Property>
-                        <!-- Propiedad que define el borde del JButton como un borde vacío -->
-
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
-                        <!-- Propiedad que indica si el área de contenido del JButton debe estar rellena. false significa que no estará rellena -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JButton -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="0" y="10" width="80" height="50"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JButton (x=0, y=10, ancho=80, alto=50) -->
                       </Constraints>
                     </Component>
-
                     <Component class="javax.swing.JLabel" name="jLabel1">
-                      <!-- Componente JLabel con el nombre "jLabel1" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="37" green="8" red="b2" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color de fondo del JLabel como un color morado oscuro (rgb(55, 8, 178)) -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="27" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 27, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                         <Property name="text" type="java.lang.String" value="Envios"/>
-                        <!-- Propiedad que define el texto del JLabel como "Envios" -->
-
                         <Property name="horizontalTextPosition" type="int" value="0"/>
-                        <!-- Propiedad que define la posición horizontal del texto. 0 puede indicar alineación a la izquierda -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="80" y="10" width="130" height="-1"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=80, y=10, ancho=130) -->
                       </Constraints>
                     </Component>
-
                     <Component class="javax.swing.JLabel" name="jLabel2">
-                      <!-- Componente JLabel con el nombre "jLabel2" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="37" green="8" red="b2" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color de fondo del JLabel como un color morado oscuro (rgb(55, 8, 178)) -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="12" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 12, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                         <Property name="text" type="java.lang.String" value="2024"/>
-                        <!-- Propiedad que define el texto del JLabel como "2024" -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="80" y="40" width="120" height="-1"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=80, y=40, ancho=120) -->
                       </Constraints>
                     </Component>
                   </SubComponents>
                 </Container>
-
                 <Component class="javax.swing.JLabel" name="menuIncidentes">
-                  <!-- Componente JLabel con el nombre "menuIncidentes" -->
-
                   <Properties>
-                    <!-- Propiedades del componente JLabel -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="28" green="27" red="29" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del JLabel como un color gris oscuro (rgb(40, 39, 41)) -->
-
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Leelawadee UI Semilight" size="16" style="0"/>
                     </Property>
-                    <!-- Propiedad que define la fuente del texto como "Leelawadee UI Semilight", tamaño 16, estilo normal (0) -->
-
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/iconos/exclamacion.png"/>
                     </Property>
-                    <!-- Propiedad que define el icono del JLabel como una imagen ("/iconos/exclamacion.png") -->
-
                     <Property name="text" type="java.lang.String" value="Incidentes"/>
-                    <!-- Propiedad que define el texto del JLabel como "Incidentes" -->
-
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="1" left="10" right="1" top="1"/>
                       </Border>
                     </Property>
-                    <!-- Propiedad que define el borde del JLabel como un borde vacío con márgenes específicos -->
-
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                       <Color id="Default Cursor"/>
                     </Property>
-                    <!-- Propiedad que define el cursor del JLabel, utilizando el editor de cursor de NetBeans -->
                   </Properties>
-
                   <Events>
-                    <!-- Eventos asociados al componente JLabel -->
-
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuIncidentesMouseClicked"/>
-                    <!-- Manejador de eventos para el evento de clic del mouse -->
-
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuIncidentesMouseEntered"/>
-                    <!-- Manejador de eventos para el evento de entrada del mouse -->
-
                     <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menuIncidentesMouseExited"/>
-                    <!-- Manejador de eventos para el evento de salida del mouse -->
                   </Events>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del componente JLabel -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="10" y="150" width="210" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del JLabel (x=10, y=150, ancho=210, alto=52) -->
                   </Constraints>
                 </Component>
-
                 <Container class="javax.swing.JPanel" name="Clicked6">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "Clicked6" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor Clicked6 -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="37" green="8" red="b2" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color morado oscuro (rgb(55, 8, 178)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor Clicked6 -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="340" width="10" height="52"/>
                     </Constraint>
-                    <!-- Restricción que define la posición y el tamaño del panel (x=0, y=340, ancho=10, alto=52) -->
                   </Constraints>
 
                   <Layout>
-                    <!-- Diseño del subcontenedor Clicked6 -->
-
                     <DimensionLayout dim="0">
-                      <!-- Diseño para la dimensión horizontal (dim="0") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 10 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
-
                     <DimensionLayout dim="1">
-                      <!-- Diseño para la dimensión vertical (dim="1") -->
                       <Group type="103" groupAlignment="0" attributes="0">
                           <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
-                          <!-- Espacio vacío con tamaño mínimo de 0, preferido de 52 y máximo de 32767 -->
                       </Group>
                     </DimensionLayout>
                   </Layout>
                 </Container>
               </SubComponents>
             </Container>
-
             <Component class="javax.swing.JButton" name="btnExit">
-              <!-- Componente JButton con el nombre "btnExit" -->
-
               <Properties>
-                <!-- Propiedades del componente JButton -->
-
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <!-- Propiedad que define el color del texto como blanco (rgb(255, 255, 255)) -->
-
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/iconos/power_24dp.png"/>
                 </Property>
-                <!-- Propiedad que define el icono del JButton como una imagen ("/iconos/power_24dp.png") -->
-
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                     <EmptyBorder/>
                   </Border>
                 </Property>
-                <!-- Propiedad que define el borde del JButton como un borde vacío -->
-
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
-                <!-- Propiedad que indica si el área de contenido del JButton debe estar rellena. false significa que no estará rellena -->
-
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
-                <!-- Propiedad que define el cursor del JButton, utilizando el editor de cursor de NetBeans -->
               </Properties>
-
               <Events>
-                <!-- Eventos asociados al componente JButton -->
-
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
-                <!-- Manejador de eventos para el evento de acción (clic) del JButton -->
               </Events>
-
               <Constraints>
-                <!-- Restricciones de diseño del componente JButton -->
-
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="1360" y="20" width="35" height="35"/>
                 </Constraint>
-                <!-- Restricción que define la posición y el tamaño del JButton (x=1360, y=20, ancho=35, alto=35) -->
               </Constraints>
             </Component>
-
             <Container class="javax.swing.JPanel" name="panelContent">
-              <!-- Subcontenedor de tipo JPanel con el nombre "panelContent" -->
-
               <Constraints>
-                <!-- Restricciones de diseño del subcontenedor panelContent -->
-
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="220" y="80" width="1180" height="690"/>
                 </Constraint>
-                <!-- Restricción que define la posición y el tamaño del panel (x=220, y=80, ancho=1180, alto=690) -->
               </Constraints>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
-              <!-- Diseño de tipo CardLayout para el subcontenedor panelContent -->
-
               <SubComponents>
-                <!-- Subcomponentes del subcontenedor panelContent -->
-
                 <Container class="javax.swing.JPanel" name="JPGPaquetes">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "JPGPaquetes" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor JPGPaquetes -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color gris claro (rgb(245, 245, 245)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor JPGPaquetes -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card1"/>
                     </Constraint>
-                    <!-- Restricción que define el nombre de la tarjeta como "card1" para el diseño de tipo CardLayout -->
                   </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <!-- Diseño de tipo AbsoluteLayout para el subcontenedor JPGPaquetes -->
-
                     <Property name="useNullLayout" type="boolean" value="false"/>
-                    <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
                   </Layout>
-
                   <SubComponents>
-                    <!-- Subcomponentes del subcontenedor JPGPaquetes -->
-
                     <Component class="javax.swing.JLabel" name="jLInicio">
-                      <!-- Componente JLabel con el nombre "jLInicio" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 64, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(102, 102, 102)) -->
-
                         <Property name="text" type="java.lang.String" value="Gesti&#xf3;n de Paquetes"/>
-                        <!-- Propiedad que define el texto del JLabel como "Gestión de Paquetes" -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="200" y="90" width="620" height="250"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=200, y=90, ancho=620, alto=250) -->
                       </Constraints>
                     </Component>
                   </SubComponents>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="JPRemitente">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "JPRemitente" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor JPRemitente -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color gris claro (rgb(245, 245, 245)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor JPRemitente -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card2"/>
                     </Constraint>
-                    <!-- Restricción que define el nombre de la tarjeta como "card2" para el diseño de tipo CardLayout -->
                   </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <!-- Diseño de tipo AbsoluteLayout para el subcontenedor JPRemitente -->
-
                     <Property name="useNullLayout" type="boolean" value="false"/>
-                    <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
                   </Layout>
-
                   <SubComponents>
-                    <!-- Subcomponentes del subcontenedor JPRemitente -->
-
                     <Component class="javax.swing.JLabel" name="jLabel5">
-                      <!-- Componente JLabel con el nombre "jLabel5" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="62" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 62, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(102, 102, 102)) -->
-
                         <Property name="text" type="java.lang.String" value="Remitente"/>
-                        <!-- Propiedad que define el texto del JLabel como "Remitente" -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="410" y="310" width="-1" height="-1"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=410, y=310) -->
                       </Constraints>
                     </Component>
                   </SubComponents>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="JPConductores">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "JPConductores" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor JPConductores -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color gris claro (rgb(245, 245, 245)) -->
-
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[810, 540]"/>
                     </Property>
-                    <!-- Propiedad que define el tamaño mínimo del panel como una dimensión de 810x540 píxeles -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor JPConductores -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card3"/>
                     </Constraint>
-                    <!-- Restricción que define el nombre de la tarjeta como "card3" para el diseño de tipo CardLayout -->
                   </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <!-- Diseño de tipo AbsoluteLayout para el subcontenedor JPConductores -->
-
                     <Property name="useNullLayout" type="boolean" value="false"/>
-                    <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
                   </Layout>
-
                   <SubComponents>
-                    <!-- Subcomponentes del subcontenedor JPConductores -->
-
                     <Component class="javax.swing.JLabel" name="jLabel7">
-                      <!-- Componente JLabel con el nombre "jLabel7" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 64, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(102, 102, 102)) -->
-
                         <Property name="text" type="java.lang.String" value="Conductores"/>
-                        <!-- Propiedad que define el texto del JLabel como "Conductores" -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="410" y="270" width="-1" height="-1"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=410, y=270) -->
                       </Constraints>
                     </Component>
                   </SubComponents>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="JPFyV">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "JPFyV" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor JPFyV -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color gris claro (rgb(245, 245, 245)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor JPFyV -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card4"/>
                     </Constraint>
-                    <!-- Restricción que define el nombre de la tarjeta como "card4" para el diseño de tipo CardLayout -->
                   </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <!-- Diseño de tipo AbsoluteLayout para el subcontenedor JPFyV -->
-
                     <Property name="useNullLayout" type="boolean" value="false"/>
-                    <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
                   </Layout>
-
                   <SubComponents>
-                    <!-- Subcomponentes del subcontenedor JPFyV -->
-
                     <Component class="javax.swing.JLabel" name="jLabel8">
-                      <!-- Componente JLabel con el nombre "jLabel8" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 64, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(102, 102, 102)) -->
-
                         <Property name="text" type="java.lang.String" value="Facturaci&#xf3;n y Venta"/>
-                        <!-- Propiedad que define el texto del JLabel como "Facturación y Venta" -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="350" y="330" width="-1" height="-1"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=350, y=330) -->
                       </Constraints>
                     </Component>
                   </SubComponents>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="JPRecepcionista">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "JPRecepcionista" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor JPRecepcionista -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color gris claro (rgb(245, 245, 245)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor JPRecepcionista -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card5"/>
                     </Constraint>
-                    <!-- Restricción que define el nombre de la tarjeta como "card5" para el diseño de tipo CardLayout -->
                   </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <!-- Diseño de tipo AbsoluteLayout para el subcontenedor JPRecepcionista -->
-
                     <Property name="useNullLayout" type="boolean" value="false"/>
-                    <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
                   </Layout>
-
                   <SubComponents>
-                    <!-- Subcomponentes del subcontenedor JPRecepcionista -->
-
                     <Component class="javax.swing.JLabel" name="jLabel9">
-                      <!-- Componente JLabel con el nombre "jLabel9" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 64, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(102, 102, 102)) -->
-
                         <Property name="text" type="java.lang.String" value="Recepcionista"/>
-                        <!-- Propiedad que define el texto del JLabel como "Recepcionista" -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="360" y="250" width="-1" height="-1"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=360, y=250) -->
                       </Constraints>
                     </Component>
                   </SubComponents>
                 </Container>
-
                 <Container class="javax.swing.JPanel" name="JPIncidentes">
-                  <!-- Subcontenedor de tipo JPanel con el nombre "JPIncidentes" -->
-
                   <Properties>
-                    <!-- Propiedades del subcontenedor JPIncidentes -->
-
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="f5" green="f5" red="f5" type="rgb"/>
                     </Property>
-                    <!-- Propiedad que define el color de fondo del panel como un color gris claro (rgb(245, 245, 245)) -->
                   </Properties>
-
                   <Constraints>
-                    <!-- Restricciones de diseño del subcontenedor JPIncidentes -->
-
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card6"/>
                     </Constraint>
-                    <!-- Restricción que define el nombre de la tarjeta como "card6" para el diseño de tipo CardLayout -->
                   </Constraints>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                    <!-- Diseño de tipo AbsoluteLayout para el subcontenedor JPIncidentes -->
-
                     <Property name="useNullLayout" type="boolean" value="false"/>
-                    <!-- Propiedad que indica si se debe usar un diseño nulo. false significa que no se usará diseño nulo -->
                   </Layout>
-
                   <SubComponents>
-                    <!-- Subcomponentes del subcontenedor JPIncidentes -->
-
                     <Component class="javax.swing.JLabel" name="jLabel117">
-                      <!-- Componente JLabel con el nombre "jLabel117" -->
-
                       <Properties>
-                        <!-- Propiedades del componente JLabel -->
-
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="64" style="0"/>
                         </Property>
-                        <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 64, estilo normal (0) -->
-
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
                         </Property>
-                        <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(102, 102, 102)) -->
-
                         <Property name="text" type="java.lang.String" value="Incidentes"/>
-                        <!-- Propiedad que define el texto del JLabel como "Incidentes" -->
                       </Properties>
-
                       <Constraints>
-                        <!-- Restricciones de diseño del componente JLabel -->
-
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                           <AbsoluteConstraints x="330" y="170" width="-1" height="-1"/>
                         </Constraint>
-                        <!-- Restricción que define la posición y el tamaño del JLabel (x=330, y=170) -->
                       </Constraints>
                     </Component>
                   </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
-
             <Component class="javax.swing.JLabel" name="txtID">
-              <!-- Componente JLabel con el nombre "txtID" -->
-
               <Properties>
-                <!-- Propiedades del componente JLabel -->
-
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 14, estilo normal (0) -->
-
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
-                <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(51, 51, 51)) -->
-
                 <Property name="text" type="java.lang.String" value="Logged  :"/>
-                <!-- Propiedad que define el texto del JLabel como "Logged  :" -->
               </Properties>
-
               <Constraints>
-                <!-- Restricciones de diseño del componente JLabel -->
-
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="230" y="20" width="290" height="-1"/>
                 </Constraint>
-                <!-- Restricción que define la posición y el tamaño del JLabel (x=230, y=20, ancho=290) -->
               </Constraints>
             </Component>
-
             <Component class="javax.swing.JLabel" name="txtDateLog">
-              <!-- Componente JLabel con el nombre "txtDateLog" -->
-
               <Properties>
-                <!-- Propiedades del componente JLabel -->
-
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
-                <!-- Propiedad que define la fuente del texto como "Tahoma", tamaño 14, estilo normal (0) -->
-
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
-                <!-- Propiedad que define el color del texto como un color gris oscuro (rgb(51, 51, 51)) -->
-
                 <Property name="text" type="java.lang.String" value="Date      :"/>
-                <!-- Propiedad que define el texto del JLabel como "Date      :" -->
               </Properties>
-
               <Constraints>
-                <!-- Restricciones de diseño del componente JLabel -->
-
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="230" y="37" width="310" height="20"/>
                 </Constraint>
-                <!-- Restricción que define la posición y el tamaño del JLabel (x=230, y=37, ancho=310, alto=20) -->
               </Constraints>
             </Component>
           </SubComponents>

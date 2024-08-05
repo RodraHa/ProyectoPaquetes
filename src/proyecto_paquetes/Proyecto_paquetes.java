@@ -19,4 +19,5 @@ public class Proyecto_paquetes {
         JFIngresar loginForm = new JFIngresar();
         loginForm.setVisible(true);
     }
+    
 }
