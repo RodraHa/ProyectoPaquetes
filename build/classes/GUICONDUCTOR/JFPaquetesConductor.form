@@ -1,71 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!-- Definición del formulario principal -->
+
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <!-- Propiedades del formulario -->
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="2"/> <!-- Define la operación de cierre de la ventana (2: DISPOSE_ON_CLOSE) -->
-    <Property name="title" type="java.lang.String" value="Paqueteria"/> <!-- Título de la ventana -->
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="title" type="java.lang.String" value="Paqueteria"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-      <Color id="Default Cursor"/> <!-- Define el cursor por defecto -->
+      <Color id="Default Cursor"/>
     </Property>
     <Property name="iconImages" type="java.util.List" editor="org.netbeans.modules.form.ComponentChooserEditor">
-      <ComponentRef name="null"/> <!-- Define la lista de iconos de la ventana -->
+      <ComponentRef name="null"/>
     </Property>
-    <Property name="undecorated" type="boolean" value="true"/> <!-- Define si la ventana no tiene decoraciones (borde, barra de título) -->
-    <Property name="resizable" type="boolean" value="false"/> <!-- Define si la ventana es redimensionable -->
+    <Property name="undecorated" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
-
-  <!-- Propiedades sintéticas (propiedades de diseño no estándar) -->
   <SyntheticProperties>
-    <SyntheticProperty name="formSizePolicy" type="int" value="1"/> <!-- Política de tamaño del formulario -->
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/> <!-- Si se genera el formulario centrado -->
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
-
-  <!-- Valores auxiliares para configuración adicional del formulario -->
   <AuxValues>
-    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/> <!-- Configuración de recursos automáticos -->
-    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/> <!-- Configuración automática de nombres de componentes -->
-    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/> <!-- Generar nombres completos (Fully Qualified Names) -->
-    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/> <!-- Generar código de mnemonics -->
-    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/> <!-- Modo automático de internacionalización -->
-    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/> <!-- Objetivo del código de diseño -->
-    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/> <!-- Estilo de generación de oyentes -->
-    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/> <!-- Variables locales -->
-    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/> <!-- Modificador de variables -->
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,108,0,0,4,26"/> <!-- Tamaño del diseñador -->
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,108,0,0,4,26"/>
   </AuxValues>
 
-  <!-- Layout del formulario -->
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-    <Property name="useNullLayout" type="boolean" value="false"/> <!-- Si se usa un layout nulo -->
+    <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
-
-  <!-- Subcomponentes del formulario -->
   <SubComponents>
-    <!-- Panel superior (barra de título personalizada) -->
     <Container class="javax.swing.JPanel" name="jPanel3">
-      <!-- Propiedades del panel -->
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="30" green="a" red="92" type="rgb"/> <!-- Color de fondo del panel -->
+          <Color blue="30" green="a" red="92" type="rgb"/>
         </Property>
       </Properties>
-
-      <!-- Eventos del panel -->
       <Events>
-        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MouseDragged"/> <!-- Evento de arrastre del mouse -->
-        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MousePressed"/> <!-- Evento de presión del mouse -->
+        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MouseDragged"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel3MousePressed"/>
       </Events>
-
-      <!-- Restricciones del panel en el layout -->
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="1050" height="30"/> <!-- Posición y tamaño del panel -->
+          <AbsoluteConstraints x="0" y="0" width="1050" height="30"/>
         </Constraint>
       </Constraints>
 
-      <!-- Layout del panel -->
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
@@ -89,116 +75,91 @@
           </Group>
         </DimensionLayout>
       </Layout>
-
-      <!-- Subcomponentes del panel -->
       <SubComponents>
-        <!-- Etiqueta de título -->
         <Component class="javax.swing.JLabel" name="jLabel69">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="12" style="1"/> <!-- Fuente de la etiqueta -->
+              <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/> <!-- Color de la fuente -->
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gestion de Paquetes"/> <!-- Texto de la etiqueta -->
+            <Property name="text" type="java.lang.String" value="Gestion de Paquetes"/>
           </Properties>
         </Component>
-        <!-- Botón de salida -->
         <Component class="javax.swing.JButton" name="btnExit">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/> <!-- Color de la fuente -->
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconos/power_24dp.png"/> <!-- Icono del botón -->
+              <Image iconType="3" name="/iconos/power_24dp.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-                <EmptyBorder/> <!-- Borde del botón -->
+                <EmptyBorder/>
               </Border>
             </Property>
-            <Property name="contentAreaFilled" type="boolean" value="false"/> <!-- Si el área del contenido está rellena -->
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/> <!-- Cursor del botón -->
+              <Color id="Hand Cursor"/>
             </Property>
           </Properties>
-          <!-- Eventos del botón -->
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/> <!-- Evento de acción del botón -->
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-
-    <!-- Panel principal -->
     <Container class="javax.swing.JPanel" name="jPrincipal">
-      <!-- Restricciones del panel en el layout -->
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="30" width="1010" height="590"/> <!-- Posición y tamaño del panel -->
+          <AbsoluteConstraints x="0" y="30" width="1010" height="590"/>
         </Constraint>
       </Constraints>
 
-      <!-- Layout del panel -->
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="false"/> <!-- Si se usa un layout nulo -->
+        <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
-
-      <!-- Subcomponentes del panel -->
       <SubComponents>
-        <!-- Panel de pestañas -->
         <Container class="javax.swing.JTabbedPane" name="jPanel_General">
-          <!-- Restricciones del panel en el layout -->
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="10" width="1030" height="610"/> <!-- Posición y tamaño del panel -->
+              <AbsoluteConstraints x="10" y="10" width="1030" height="610"/>
             </Constraint>
           </Constraints>
 
-          <!-- Layout del panel -->
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
-          <!-- Subcomponentes del panel -->
           <SubComponents>
-            <!-- Panel de pestaña "Consultar Inventario" -->
             <Container class="javax.swing.JPanel" name="jPanel5">
-              <!-- Restricciones del panel en el layout -->
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Consultar Inventario">
-                    <Property name="tabTitle" type="java.lang.String" value="Consultar Inventario"/> <!-- Título de la pestaña -->
+                    <Property name="tabTitle" type="java.lang.String" value="Consultar Inventario"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
 
-              <!-- Layout del panel -->
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                <Property name="useNullLayout" type="boolean" value="false"/> <!-- Si se usa un layout nulo -->
+                <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
-
-              <!-- Subcomponentes del panel -->
               <SubComponents>
-                <!-- Scroll pane para la tabla de inventario -->
                 <Container class="javax.swing.JScrollPane" name="jScrollPane9">
                   <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/> <!-- Si el scroll pane es automático -->
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
-                  <!-- Restricciones del scroll pane en el layout -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="30" y="30" width="896" height="330"/> <!-- Posición y tamaño del scroll pane -->
+                      <AbsoluteConstraints x="30" y="30" width="896" height="330"/>
                     </Constraint>
                   </Constraints>
 
-                  <!-- Layout del scroll pane -->
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <!-- Subcomponentes del scroll pane -->
                   <SubComponents>
-                    <!-- Tabla de inventario -->
                     <Component class="javax.swing.JTable" name="jTablaInventario">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="14" style="0"/> <!-- Fuente de la tabla -->
+                          <Font name="Segoe UI" size="14" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -206,10 +167,10 @@
                             <Column editable="true" title="Title 2" type="java.lang.Object"/>
                             <Column editable="true" title="Title 3" type="java.lang.Object"/>
                             <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                          </Table> <!-- Modelo de la tabla -->
+                          </Table>
                         </Property>
                         <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
-                          <JTableSelectionModel selectionMode="0"/> <!-- Modelo de selección de la tabla -->
+                          <JTableSelectionModel selectionMode="0"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -217,66 +178,51 @@
                 </Container>
               </SubComponents>
             </Container>
-
-            <!-- Panel de pestaña "Eliminar Paquete" -->
             <Container class="javax.swing.JPanel" name="jPIA">
-              <!-- Restricciones del panel en el layout -->
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Eliminar Paquete">
-                    <Property name="tabTitle" type="java.lang.String" value="Eliminar Paquete"/> <!-- Título de la pestaña -->
+                  <JTabbedPaneConstraints tabName="Entregar Paquete">
+                    <Property name="tabTitle" type="java.lang.String" value="Entregar Paquete"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
 
-              <!-- Layout del panel -->
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-                <Property name="useNullLayout" type="boolean" value="false"/> <!-- Si se usa un layout nulo -->
+                <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
-
-              <!-- Subcomponentes del panel -->
               <SubComponents>
-                <!-- Panel vacío (placeholder) -->
                 <Container class="javax.swing.JPanel" name="jPanel4">
-                  <!-- Restricciones del panel en el layout -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="982" y="0" width="-1" height="-1"/> <!-- Posición y tamaño del panel -->
+                      <AbsoluteConstraints x="982" y="0" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
 
-                  <!-- Layout del panel -->
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="903" max="32767" attributes="0"/> <!-- Espacio vacío en el layout -->
+                          <EmptySpace min="0" pref="903" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="474" max="32767" attributes="0"/> <!-- Espacio vacío en el layout -->
+                          <EmptySpace min="0" pref="474" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                 </Container>
-
-                <!-- Scroll pane para la tabla de paquete -->
                 <Container class="javax.swing.JScrollPane" name="jScrollPane7">
                   <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/> <!-- Si el scroll pane es automático -->
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
-                  <!-- Restricciones del scroll pane en el layout -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="140" y="160" width="650" height="237"/> <!-- Posición y tamaño del scroll pane -->
+                      <AbsoluteConstraints x="140" y="160" width="650" height="237"/>
                     </Constraint>
                   </Constraints>
 
-                  <!-- Layout del scroll pane -->
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <!-- Subcomponentes del scroll pane -->
                   <SubComponents>
-                    <!-- Tabla de paquete -->
                     <Component class="javax.swing.JTable" name="jTablaPaquete">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
@@ -285,72 +231,58 @@
                             <Column editable="true" title="Title 2" type="java.lang.Object"/>
                             <Column editable="true" title="Title 3" type="java.lang.Object"/>
                             <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                          </Table> <!-- Modelo de la tabla -->
+                          </Table>
                         </Property>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/> <!-- Configuración del encabezado de la tabla -->
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
-
-                <!-- Etiqueta "Código Tracking" -->
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="0"/> <!-- Fuente de la etiqueta -->
+                      <Font name="Segoe UI" size="14" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="C&#xf3;digo Tracking"/> <!-- Texto de la etiqueta -->
+                    <Property name="text" type="java.lang.String" value="C&#xf3;digo Tracking"/>
                   </Properties>
-                  <!-- Restricciones de la etiqueta en el layout -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="270" y="50" width="-1" height="-1"/> <!-- Posición y tamaño de la etiqueta -->
+                      <AbsoluteConstraints x="270" y="50" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
-
-                <!-- Campo de texto para código de eliminación -->
                 <Component class="javax.swing.JTextField" name="jTCodigoEliminar">
-                  <!-- Restricciones del campo de texto en el layout -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="390" y="50" width="200" height="20"/> <!-- Posición y tamaño del campo de texto -->
+                      <AbsoluteConstraints x="390" y="50" width="200" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
-
-                <!-- Botón "Eliminar" -->
                 <Component class="javax.swing.JButton" name="jBEliminarPaquete">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Eliminar"/> <!-- Texto del botón -->
+                    <Property name="text" type="java.lang.String" value="Entregar"/>
                   </Properties>
-                  <!-- Eventos del botón -->
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarPaqueteActionPerformed"/> <!-- Evento de acción del botón -->
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarPaqueteActionPerformed"/>
                   </Events>
-                  <!-- Restricciones del botón en el layout -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="400" y="430" width="-1" height="-1"/> <!-- Posición y tamaño del botón -->
+                      <AbsoluteConstraints x="400" y="430" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
-
-                <!-- Botón "Ver paquete" -->
                 <Component class="javax.swing.JButton" name="jBConsultarPaquete1">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ver paquete"/> <!-- Texto del botón -->
+                    <Property name="text" type="java.lang.String" value="Ver paquete"/>
                   </Properties>
-                  <!-- Eventos del botón -->
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBConsultarPaquete1ActionPerformed"/> <!-- Evento de acción del botón -->
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBConsultarPaquete1ActionPerformed"/>
                   </Events>
-                  <!-- Restricciones del botón en el layout -->
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="390" y="100" width="-1" height="-1"/> <!-- Posición y tamaño del botón -->
+                      <AbsoluteConstraints x="390" y="100" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>

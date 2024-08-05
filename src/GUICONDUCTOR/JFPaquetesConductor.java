@@ -55,7 +55,6 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
     private boolean contenidoValidar = false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
-    private Conductor conductor;
     
     // Variables para manejo del mouse
     int xMouse, yMouse;  
@@ -66,8 +65,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
      * @param inventario Lista de paquetes.
      * @param conductor Conductor asignado.
      */
-    public JFPaquetesConductor(ArrayList<Paquete> inventario, Conductor conductor) {      
-        this.conductor = conductor;
+    public JFPaquetesConductor(ArrayList<Paquete> inventario ) {      
         this.inventario = inventario;
         initComponents(); // Inicializa los componentes de la interfaz gráfica
         setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage()); // Establece el icono de la ventana
@@ -114,9 +112,8 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
             "Remitente", "Provincia Origen", "Provincia Destino"
         };
         model.setColumnIdentifiers(columnNames); // Establece los nombres de las columnas
-        ArrayList<Paquete> paquetes = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor); // Obtiene los paquetes del conductor
-        if(paquetes != null){
-            for (Paquete paquete : paquetes) {
+        if(inventario != null){
+            for (Paquete paquete : inventario) {
                 model.addRow(new Object[]{
                 paquete.obtenerCodigo(),
                 paquete.getVolumen(),
@@ -250,6 +247,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -355,32 +353,43 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
     }//GEN-LAST:event_jBConsultarPaquete1ActionPerformed
 
     private void jBEliminarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarPaqueteActionPerformed
+        Paquete paquete = obtenerPaquete(jTCodigoEliminar.getText());
+        if (paquete == null){
+            JOptionPane.showMessageDialog(
+                null,
+                "No existe paquete " + jTCodigoEliminar.getText(),
+                "No existe paquete ",
+                JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
         int respuesta = JOptionPane.showConfirmDialog(
             null,
-            "¿Estás seguro de que deseas eliminar el paquete con código de tracking: " + jTCodigoEliminar.getText() + "?",
-            "Confirmación de Eliminación",
+            "¿Estás seguro de que deseas entregar el paquete con código de tracking: " + jTCodigoEliminar.getText() + "?",
+            "Confirmación de Entrega",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.WARNING_MESSAGE
         );
         if (respuesta == JOptionPane.YES_OPTION) {
             // El usuario confirmó la eliminación
-            Paquete paquete = obtenerPaquete(jTCodigoEliminar.getText());
+            refrescarInventario();
             // Eliminar el paquete del inventario
-            refrescarInventario(); // Refresca la tabla de inventario
             JOptionPane.showMessageDialog(
                 null,
-                "El paquete con código " + jTCodigoEliminar.getText() + " ha sido eliminado.",
-                "Eliminación Exitosa",
+                "El paquete con código " + jTCodigoEliminar.getText() + " ha sido entregado.",
+                "Entrega Exitosa",
                 JOptionPane.INFORMATION_MESSAGE
             );
+            inventario.remove(paquete);
+            Asignacion.obtenerInstancia().guardarRelacionPaquetes();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0); // Vacía la tabla de detalles del paquete
         } else {
             // El usuario canceló la eliminación
             JOptionPane.showMessageDialog(
                 null,
-                "La eliminación del paquete con código " + jTCodigoEliminar.getText() + " ha sido cancelada.",
-                "Eliminación Cancelada",
+                "La entrega del paquete con código " + jTCodigoEliminar.getText() + " ha sido cancelada.",
+                "Entrega Cancelada",
                 JOptionPane.INFORMATION_MESSAGE
             );
         }
