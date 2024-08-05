@@ -8,7 +8,7 @@ import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
 import mod_facturacion.Precio;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 
 /**
  * Representa a un recepcionista que maneja paquetes y realiza varias operaciones relacionadas con el inventario y la cotización.

@@ -1,4 +1,4 @@
-package mod_paquetes;
+package mod_transporte;
 
 import java.io.Serializable;
 

@@ -34,7 +34,7 @@ import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Precio;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 import validaciones.*;
 
 

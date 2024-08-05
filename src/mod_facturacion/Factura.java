@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import mod_administracion.Usuario;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 
 /**
  * Representa una factura en el sistema de facturación.

@@ -10,7 +10,6 @@ import mod_administracion.Usuario;
 import mod_paquetes.EnCurso;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ import mod_administracion.Cliente;
 public class Asignacion {
     private static Asignacion instancia;
     private HashMap<Conductor, Vehiculo> asignacionConductores;
-    public HashMap<Vehiculo, ArrayList<Paquete>> asignacionPaquetes;
+    private HashMap<Vehiculo, ArrayList<Paquete>> asignacionPaquetes;
     private ArrayList<Conductor> conductores;
     private ArrayList<Vehiculo> vehiculos;
 

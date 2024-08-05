@@ -37,7 +37,7 @@ import mod_facturacion.Precio;
 import mod_paquetes.Entregado;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
 import validaciones.*;
 

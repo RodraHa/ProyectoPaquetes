@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import mod_administracion.Conductor;
 import mod_paquetes.Paquete;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
 import mod_transporte.Vehiculo;
 import validaciones.*;

@@ -16,7 +16,7 @@ import mod_administracion.Cliente;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
 import mod_administracion.Usuario;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 
 public class DataBase {
     private static DataBase instancia; // Instancia singleton de la clase

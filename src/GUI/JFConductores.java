@@ -17,7 +17,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
-import mod_paquetes.Provincia;
+import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
 import validaciones.*;
 

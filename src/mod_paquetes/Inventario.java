@@ -1,5 +1,6 @@
 package mod_paquetes;
 
+import mod_transporte.Provincia;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

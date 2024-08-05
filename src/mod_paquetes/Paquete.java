@@ -1,5 +1,6 @@
 package mod_paquetes;
 
+import mod_transporte.Provincia;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
