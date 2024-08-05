@@ -33,30 +33,83 @@ import mod_transporte.Asignacion;
 import validaciones.*;
 
 /**
- *
- * @author Moises
+ * Clase JFMenuConductor, representa la interfaz principal para el conductor
+ * que permite la gestión de paquetes e incidentes.
+ * Extiende JFrame para crear una ventana.
+ * Utiliza varios componentes y bibliotecas para la interfaz gráfica y la gestión de eventos.
+ * Carga y muestra datos relacionados con los paquetes asignados al conductor.
+ * Permite la navegación entre diferentes secciones del menú.
+ * Contiene métodos para interactuar con la base de datos y realizar validaciones.
+ * Maneja eventos de mouse y teclado para la interacción con el usuario.
  */
 public class JFMenuConductor extends javax.swing.JFrame {
-//Vistas
-
+    // Vistas
     private boolean claveUsuario = false;
-    //Actualizar usuarios
+    // Actualizar usuarios
     private boolean claveUsuario2 = false;
 
-//Mouses
+    // Variables para el manejo del mouse
     int xMouse, yMouse;
 
-//Conexión y auditoria
+    // Conexión y auditoria
     private String usuario;
     private String rol;
     Connection cnx;
-    //Paneles   
+
+    // Paneles
     private JPanel[] clickedPanels = new JPanel[6];
     CardLayout contenido, contenido1;
     private boolean focusChanged = false;
     private String nombreUsuario;
     private Conductor conductor;
     ArrayList<Paquete> inventario = null;
+
+    /**
+     * Constructor de la clase JFMenuConductor.
+     * Inicializa el formulario y carga los datos necesarios.
+     * @param conductor El conductor asociado a la sesión actual.
+     */
+    public JFMenuConductor(Conductor conductor) {
+        this.conductor = conductor;
+        // Cargar datos de asignación
+        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
+        Asignacion.obtenerInstancia().cargarVehiculos();
+        Asignacion.obtenerInstancia().cargarRelacionConductores();
+        inventario = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor);
+        initComponents();
+        // Configurar icono de la ventana
+        setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
+        setLocationRelativeTo(null);
+
+        // Mostrar la fecha y hora actual
+        String fecha = "dd-MM-yyyy";
+        Locale localM = null;
+        String resultado;
+        Date fechaYHora = new Date();
+        resultado = mostrarFechaHora(fechaYHora, fecha, localM);
+        txtDateLog.setText("Fecha\t: " + resultado);
+
+        // Configuración del JFrame
+        JFrame frame = new JFrame();
+        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+        contenido = (CardLayout) (panelContent.getLayout());
+        contenido.show(panelContent, "card1");
+
+        // Inicializar los paneles del menú
+        clickedPanels[0] = Clicked1;
+        clickedPanels[1] = Clicked2;
+        clickedPanels[2] = Clicked3;
+        clickedPanels[3] = Clicked4;
+        clickedPanels[4] = Clicked5;
+        clickedPanels[5] = Clicked6;
+        
+        desvanecer();
+        jLInicio.setText("Bienvenido/a");
+    }
+
+    /**
+     * Método para desvanecer (ocultar) los paneles del menú.
+     */
     public void desvanecer() {
         Clicked1.setVisible(true);
         Clicked2.setVisible(false);
@@ -66,51 +119,16 @@ public class JFMenuConductor extends javax.swing.JFrame {
         Clicked6.setVisible(false);
     }
 
-    public JFMenuConductor(Conductor conductor) {
-        this.conductor = conductor;
-        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
-        Asignacion.obtenerInstancia().cargarVehiculos();
-        Asignacion.obtenerInstancia().cargarRelacionConductores();
-        inventario = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor);
-        initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
-
-        setLocationRelativeTo(null);
-        String fecha = "dd-MM-yyyy";
-        Locale localM = null;
-        String resultado;
-        Date fechaYHora = new Date();
-
-        resultado = mostrarFechaHora(fechaYHora, fecha, localM);
-        //jDateChooserFecha.setText(resultado);
-        txtDateLog.setText("Fecha\t: " + resultado);
-        JFrame frame = new JFrame();
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        contenido = (CardLayout) (panelContent.getLayout());
-        contenido.show(panelContent, "card1");
-        clickedPanels[0] = Clicked1;
-        clickedPanels[1] = Clicked2;
-        clickedPanels[2] = Clicked3;
-        clickedPanels[3] = Clicked4;
-        clickedPanels[4] = Clicked5;
-        clickedPanels[5] = Clicked6;
-        java.util.Date fechaActual = new java.util.Date();
-        // Configura el JDateChooser
-        desvanecer();
-        jLInicio.setText("Bienvenido/a");
-    }
-
+    /**
+     * Método para cambiar la sección del menú que se está mostrando.
+     * @param seccionIndex El índice de la sección a mostrar.
+     */
     private void cambiarSeccionMenu(int seccionIndex) {
         for (int i = 0; i < clickedPanels.length; i++) {
             clickedPanels[i].setVisible(i == seccionIndex);
         }
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -504,7 +522,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-        JFrame ventanaInventario = new JFPaquetesConductor(inventario,conductor);
+        JFrame ventanaInventario = new JFPaquetesConductor(inventario, conductor);
         VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
         jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuinventarioMouseClicked
@@ -546,24 +564,6 @@ public class JFMenuConductor extends javax.swing.JFrame {
         menuLogout.setOpaque(true);
     }//GEN-LAST:event_menuLogoutMouseExited
 
-
-
-    public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
-        if (dateChooser.getDate() == null) {
-            label.setVisible(true);
-            return false;
-        } else {
-            label.setVisible(false);
-            return true;
-        }
-    }
-
-    private String getValueAtSelectedRow(DefaultTableModel model, int selectedRow, String columnName) {
-        int colIndex = model.findColumn(columnName);
-        return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
-    }
-
-
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
@@ -575,10 +575,21 @@ public class JFMenuConductor extends javax.swing.JFrame {
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel3MouseDragged
 
+    /**
+     * Método para verificar la complejidad de una contraseña.
+     * @param password La contraseña a verificar.
+     * @return true si la contraseña cumple con los requisitos, false de lo contrario.
+     */
     public boolean verificarContra(String password) {
         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$";
         return password.matches(regex);
     }
+
+    /**
+     * Método para cambiar todos los valores de un array de Boolean a true.
+     * @param valores El array de Boolean a modificar.
+     * @return El array modificado con todos los valores en true.
+     */
     public Boolean[] cambiarValoresVerdad(Boolean[] valores) {
         for (int i = 0; i < valores.length; i++) {
             valores[i] = true;
@@ -586,15 +597,13 @@ public class JFMenuConductor extends javax.swing.JFrame {
         return valores;
     }
 
-
     private void menuIncidentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseClicked
-    contenido.show(panelContent, "card1");
-    cambiarSeccionMenu(0);
-    menuinventario.setBackground(Color.decode("#494848"));
-    JFrame ventanaIncidentes = new JFIncidenteConductor(inventario);
-    VentanaManager.getInstance().mostrarVentana("Incidentes", ventanaIncidentes);
-    jLInicio.setText("Paquetes");
-
+        contenido.show(panelContent, "card1");
+        cambiarSeccionMenu(0);
+        menuinventario.setBackground(Color.decode("#494848"));
+        JFrame ventanaIncidentes = new JFIncidenteConductor(inventario);
+        VentanaManager.getInstance().mostrarVentana("Incidentes", ventanaIncidentes);
+        jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuIncidentesMouseClicked
 
     private void menuIncidentesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseEntered
@@ -607,11 +616,20 @@ public class JFMenuConductor extends javax.swing.JFrame {
         menuIncidentes.setOpaque(true);
     }//GEN-LAST:event_menuIncidentesMouseExited
 
+    /**
+     * Método para limpiar los datos de una tabla.
+     * @param tabla La tabla a limpiar.
+     */
     private void limpiarTabla(JTable tabla) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         modelo.setRowCount(0); // Establece el número de filas a cero para vaciar la tabla
     }
 
+    /**
+     * Método para validar la clave ingresada en un campo de texto.
+     * @param textField El campo de texto que contiene la clave.
+     * @param esClaveUsuario El tipo de clave (1 o 2).
+     */
     private void validarClave(JTextField textField, String esClaveUsuario) {
         String password = textField.getText();
         String mensaje = verificarContrase(password);
@@ -631,6 +649,11 @@ public class JFMenuConductor extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para verificar si una contraseña cumple con los requisitos.
+     * @param contraseña La contraseña a verificar.
+     * @return Un mensaje indicando los requisitos que no se cumplen, o una cadena vacía si todos se cumplen.
+     */
     private String verificarContrase(String contraseña) {
         StringBuilder mensaje = new StringBuilder();
         mensaje.append("<html>La contraseña debe cumplir con lo siguiente:<br>");
@@ -664,6 +687,10 @@ public class JFMenuConductor extends javax.swing.JFrame {
         return mensaje.toString();
     }
 
+    /**
+     * Método para abrir un archivo PDF almacenado en la base de datos.
+     * @param idFactura El ID de la factura asociada al PDF.
+     */
     public void abrirPDFdesdeBD(int idFactura) {
         byte[] pdfBytes = obtenerPDFdesdeBD(idFactura);
         if (pdfBytes != null) {
@@ -682,6 +709,11 @@ public class JFMenuConductor extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para obtener un archivo PDF almacenado en la base de datos.
+     * @param idFactura El ID de la factura asociada al PDF.
+     * @return Un array de bytes que representa el contenido del PDF, o null si no se encuentra.
+     */
     public byte[] obtenerPDFdesdeBD(int idFactura) {
         try {
             String sql = "SELECT pdf FROM tabla_pdf WHERE idFactura = ?";
@@ -699,6 +731,13 @@ public class JFMenuConductor extends javax.swing.JFrame {
         return null;
     }
 
+    /**
+     * Método para mostrar la fecha y hora en un formato específico.
+     * @param fechaYHora La fecha y hora a formatear.
+     * @param formato El formato en el que se debe mostrar la fecha y hora.
+     * @param local La configuración regional para formatear la fecha y hora.
+     * @return Una cadena que representa la fecha y hora formateada.
+     */
     private static String mostrarFechaHora(Date fechaYHora, String formato, Locale local) {
         String fechaString;
         SimpleDateFormat formateador;
