@@ -1,9 +1,8 @@
-
 package basededatos;
 
 /**
  *
- * @author Moises Arequipa
+ * @autor Moises Arequipa
  */
 import GUI.JFPaquetes;
 import java.sql.*;
@@ -20,10 +19,14 @@ import mod_administracion.Usuario;
 import mod_paquetes.Provincia;
 
 public class DataBase {
-    private static DataBase instancia;
-    private Connection conexion;
+    private static DataBase instancia; // Instancia singleton de la clase
+    private Connection conexion; // Conexión a la base de datos
     
-    private DataBase() {      
+    /**
+     * Constructor privado para implementar el patrón Singleton
+     */
+    private DataBase() {
+        // Parámetros de conexión a la base de datos
         String HOST = "localhost";
         String PUERTO = "5432";
         String DB = "paquetes";
@@ -31,14 +34,22 @@ public class DataBase {
         String PASSWORD = "123";
         
         try {
+            // Cargar el driver de PostgreSQL
             Class.forName("org.postgresql.Driver");
+            // Crear la URL de conexión
             String url ="jdbc:postgresql://"+HOST+":"+PUERTO+"/"+DB;
+            // Establecer la conexión
             conexion = DriverManager.getConnection(url, USER, PASSWORD);
         } catch (Exception e) {
+            // Mostrar un mensaje de error en caso de fallo en la conexión
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
+    /**
+     * Obtener la instancia singleton de la clase
+     * @return instancia de DataBase
+     */
     public static DataBase obtenerInstancia() {
         if (instancia == null) {
             instancia = new DataBase();
@@ -46,43 +57,62 @@ public class DataBase {
         return instancia;
     }
     
+    /**
+     * Comprobar las credenciales del usuario
+     * @param username nombre de usuario
+     * @param password contraseña
+     * @return rol del usuario si las credenciales son correctas, null en caso contrario
+     */
     public String comprobarCredencial(String username, String password) {
         String query = "SELECT rol FROM Credencial WHERE nombreUsuario = ? AND clave = ?";
         try {
+            // Preparar la consulta SQL
             PreparedStatement stmt = conexion.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
+            // Ejecutar la consulta
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    // Devolver el rol del usuario si se encuentra una coincidencia
                     return rs.getString("rol");
                 } else {
                     return null;
                 }
             }
         } catch (SQLException ex) {
+            // Registrar el error en el logger
             Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
     
+    /**
+     * Obtener los datos del recepcionista a partir del nombre de usuario
+     * @param username nombre de usuario
+     * @return objeto Recepcionista con los datos del recepcionista
+     */
     public Recepcionista obtenerRecepcionista(String username) {
         String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email, c.provincia " +
                "FROM Usuario u " +
                "JOIN Credencial c ON u.id = c.usuario_id " +
                "WHERE c.nombreUsuario = ?";
         try {
+            // Preparar la consulta SQL
             PreparedStatement stmt = conexion.prepareStatement(query);
             stmt.setString(1, username);
             Provincia sucursal = null;
             Class<?> enumClass;
+            // Ejecutar la consulta
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     try {
+                        // Obtener la sucursal (provincia) del recepcionista
                         enumClass = Class.forName("mod_paquetes.Provincia");
                         sucursal = (Provincia) Enum.valueOf((Class<Enum>) enumClass, rs.getString("Provincia"));
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    // Crear y devolver el objeto Recepcionista
                     return new Recepcionista(
                         rs.getString("nombres"),
                         rs.getString("apellidos"),
@@ -102,16 +132,24 @@ public class DataBase {
         }
     }
     
+    /**
+     * Obtener los datos del conductor a partir del nombre de usuario
+     * @param username nombre de usuario
+     * @return objeto Conductor con los datos del conductor
+     */
     public Conductor obtenerConductor(String username) {
         String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email, c.provincia " +
                "FROM Usuario u " +
                "JOIN Credencial c ON u.id = c.usuario_id " +
                "WHERE c.nombreUsuario = ?";
         try {
+            // Preparar la consulta SQL
             PreparedStatement stmt = conexion.prepareStatement(query);
             stmt.setString(1, username);
+            // Ejecutar la consulta
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    // Crear y devolver el objeto Conductor
                     return new Conductor(
                         rs.getString("nombres"),
                         rs.getString("apellidos"),
@@ -130,6 +168,11 @@ public class DataBase {
         }
     }
     
+    /**
+     * Obtener los datos de un cliente a partir de su cédula
+     * @param cedula cédula del cliente
+     * @return objeto Cliente con los datos del cliente
+     */
     public Cliente obtenerDatosPorCedula(String cedula) {
         String query = "SELECT nombres, apellidos, cedula AS identificacion, direccion, telefono, email " +
                        "FROM Usuario " +
@@ -137,9 +180,10 @@ public class DataBase {
         
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
             stmt.setString(1, cedula);
-            
+            // Ejecutar la consulta
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    // Crear y devolver el objeto Cliente
                     return new Cliente(
                         rs.getString("nombres"),
                         rs.getString("apellidos"),
@@ -156,9 +200,13 @@ public class DataBase {
             e.printStackTrace();
             return null;
         }
-    } 
+    }
 
-    
+    /**
+     * Obtener los datos de un conductor a partir de su cédula
+     * @param cedula cédula del conductor
+     * @return objeto Conductor con los datos del conductor
+     */
     public Conductor obtenerConductorPorCedula(String cedula) {
         String query = "SELECT nombres, apellidos, cedula AS identificacion, direccion, telefono, email " +
                        "FROM Usuario " +
@@ -166,9 +214,10 @@ public class DataBase {
         
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
             stmt.setString(1, cedula);
-            
+            // Ejecutar la consulta
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
+                    // Crear y devolver el objeto Conductor
                     return new Conductor(
                         rs.getString("nombres"),
                         rs.getString("apellidos"),
@@ -185,10 +234,17 @@ public class DataBase {
             e.printStackTrace();
             return null;
         }
-    } 
+    }
     
-    
-    
+    /**
+     * Registrar un nuevo cliente en la base de datos
+     * @param nombres nombres del cliente
+     * @param apellidos apellidos del cliente
+     * @param cedula cédula del cliente
+     * @param direccion dirección del cliente
+     * @param telefono teléfono del cliente
+     * @param email correo electrónico del cliente
+     */
     public void registrarCliente(String nombres, String apellidos, String cedula, String direccion, String telefono, String email) {
         String query = "INSERT INTO Usuario (nombres, apellidos, cedula, direccion, telefono, email) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
@@ -199,17 +255,25 @@ public class DataBase {
             stmt.setString(5, telefono);
             stmt.setString(6, email);
 
+            // Ejecutar la consulta de inserción
             int rowsInserted = stmt.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(DataBase.class.getName()).log(Level.SEVERE, null, e);
+            // Mostrar un mensaje de error en caso de fallo
             JOptionPane.showMessageDialog(null, "Error al registrar el cliente: " + e.getMessage());
         }
     }
     
+    /**
+     * Verificar si un cliente existe en la base de datos
+     * @param cedula cédula del cliente
+     * @return true si el cliente existe, false en caso contrario
+     */
     public Boolean clienteExiste(String cedula) {
         String consulta = "SELECT COUNT(*) FROM Usuario WHERE cedula = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(consulta)) {
             stmt.setString(1, cedula);
+            // Ejecutar la consulta
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 int count = rs.getInt(1);
@@ -221,6 +285,14 @@ public class DataBase {
         return false;
     }
     
+    /**
+     * Actualizar los datos de un usuario en la base de datos
+     * @param cedula cédula del usuario
+     * @param nuevaDireccion nueva dirección del usuario
+     * @param nuevoTelefono nuevo teléfono del usuario
+     * @param nuevoEmail nuevo correo electrónico del usuario
+     * @return true si la actualización fue exitosa, false en caso contrario
+     */
     public Boolean actualizarUsuario(String cedula, String nuevaDireccion, String nuevoTelefono, String nuevoEmail) {
         // Construir la consulta SQL dinámicamente en base a los parámetros proporcionados
         StringBuilder queryBuilder = new StringBuilder("UPDATE Usuario SET ");
@@ -258,6 +330,7 @@ public class DataBase {
             }
             stmt.setString(paramIndex, cedula);  // El último parámetro es la cédula
 
+            // Ejecutar la consulta de actualización
             int rowsUpdated = stmt.executeUpdate();
 
             if (rowsUpdated > 0) {
@@ -271,6 +344,10 @@ public class DataBase {
         return false;
     }
     
+    /**
+     * Obtener todos los usuarios de la base de datos
+     * @return lista de objetos Cliente con los datos de todos los usuarios
+     */
     public ArrayList<Cliente> obtenerTodosLosUsuarios() {
         ArrayList<Cliente> usuarios = new ArrayList<>();
         String query = "SELECT nombres, apellidos, cedula, direccion, telefono, email FROM Usuario";
@@ -279,6 +356,7 @@ public class DataBase {
              ResultSet rs = stmt.executeQuery()) {
              
             while (rs.next()) {
+                // Crear y agregar un nuevo objeto Cliente a la lista
                 Cliente usuario = new Cliente(
                     rs.getString("nombres"),
                     rs.getString("apellidos"),
@@ -295,6 +373,18 @@ public class DataBase {
         return usuarios;
     }
     
+    /**
+     * Insertar un nuevo conductor en la base de datos
+     * @param nombres nombres del conductor
+     * @param apellidos apellidos del conductor
+     * @param cedula cédula del conductor
+     * @param direccion dirección del conductor
+     * @param telefono teléfono del conductor
+     * @param email correo electrónico del conductor
+     * @param nombreUsuario nombre de usuario para la credencial del conductor
+     * @param clave contraseña para la credencial del conductor
+     * @param provincia provincia asignada al conductor
+     */
     public void insertarConductor(String nombres, String apellidos, String cedula, String direccion, String telefono, String email, String nombreUsuario, String clave, Provincia provincia) {
         String insertUsuarioSQL = "INSERT INTO Usuario (nombres, apellidos, cedula, direccion, telefono, email) VALUES (?, ?, ?, ?, ?, ?)";
         String insertCredencialSQL = "INSERT INTO Credencial (nombreUsuario, clave, rol, provincia, usuario_id) VALUES (?, ?, ?, ?, ?)";
@@ -336,10 +426,16 @@ public class DataBase {
         }
     }
     
+    /**
+     * Verificar si un nombre de usuario es único en la base de datos
+     * @param nombreUsuario nombre de usuario a verificar
+     * @return true si el nombre de usuario es único, false en caso contrario
+     */
     public boolean esNombreUsuarioUnico(String nombreUsuario) {
         String query = "SELECT COUNT(*) FROM Credencial WHERE nombreUsuario = ?";
         try (PreparedStatement stmt = conexion.prepareStatement(query)) {
             stmt.setString(1, nombreUsuario);
+            // Ejecutar la consulta
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     int count = rs.getInt(1);
@@ -352,6 +448,10 @@ public class DataBase {
         return false; // Si ocurre un error, asumimos que no es único para evitar errores en la lógica de la aplicación
     }
     
+    /**
+     * Obtener todos los conductores de la base de datos
+     * @return lista de objetos Conductor con los datos de todos los conductores
+     */
     public ArrayList<Conductor> obtenerTodosLosConductores() {
         ArrayList<Conductor> conductores = new ArrayList<>();
         String query = "SELECT u.nombres, u.apellidos, u.cedula AS identificacion, u.direccion, u.telefono, u.email " +
@@ -363,6 +463,7 @@ public class DataBase {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
+                // Crear y agregar un nuevo objeto Conductor a la lista
                 String nombres = rs.getString("nombres");
                 String apellidos = rs.getString("apellidos");
                 String identificacion = rs.getString("identificacion");
@@ -379,6 +480,4 @@ public class DataBase {
 
         return conductores;
     }
-
-   
 }
