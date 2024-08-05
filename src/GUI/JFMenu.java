@@ -78,12 +78,16 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     public JFMenu(Recepcionista recepcionista) {
-        ArrayList<Conductor> conductores = DataBase.obtenerInstancia().obtenerTodosLosConductores();
-        Asignacion.obtenerInstancia().agregarConductores(conductores);
+        Asignacion asignacion = Asignacion.obtenerInstancia();
+        asignacion.guardarConductores();
+        asignacion.guardarRelacionConductores();
+        asignacion.guardarRelacionPaquetes();
+        asignacion.guardarVehiculo();
         Asignacion.obtenerInstancia().cargarVehiculos();
         Asignacion.obtenerInstancia().cargarConductores();
         Asignacion.obtenerInstancia().cargarRelacionConductores();
-
+        Inventario.obtenerInstancia().guardarInventario();
+        Cotizacion.obtenerInstancia().guardarCotizacion();
         initComponents();
         this.recepcionista = recepcionista;
 

@@ -89,6 +89,7 @@ public final class Inventario {
     }
     
     public void guardarInventario() {
+        paquetes.clear();
         String filePath = "src\\archivos\\inventario.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(paquetes);

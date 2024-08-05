@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI;
+package GUICONDUCTOR;
 
+import GUI.*;
 import proyecto_paquetes.JFIngresar;
 import validaciones.*;
 import java.awt.Color;
@@ -20,14 +21,14 @@ import javax.swing.JOptionPane;
  *
  * @author USUARIO
  */
-public class JFRecuperar extends javax.swing.JFrame {
+public class JFPaquetesCliente extends javax.swing.JFrame {
 
     int xMouse, yMouse;
 
     /**
      * Creates new form JFLogin
      */
-    public JFRecuperar() {
+    public JFPaquetesCliente() {
         setIconImage(new ImageIcon(getClass().
                 getResource("/iconos/AjustesBest.png")).getImage());
         initComponents();    
@@ -326,14 +327,22 @@ public class JFRecuperar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFRecuperar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFRecuperar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFRecuperar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFRecuperar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -346,7 +355,7 @@ public class JFRecuperar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFRecuperar().setVisible(true);
+                new JFPaquetesCliente().setVisible(true);
             }
         });
     }
