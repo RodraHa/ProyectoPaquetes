@@ -7,6 +7,7 @@ package proyecto_paquetes;
 import GUI.JFMenu;
 import GUI.JFRecuperar;
 import GUICONDUCTOR.JFMenuConductor;
+import GUICONDUCTOR.JFPaquetesCliente;
 import basededatos.DataBase;
 import java.awt.Color;
 import java.awt.Font;
@@ -119,6 +120,7 @@ public class JFIngresar extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        botonCliente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -300,15 +302,28 @@ public class JFIngresar extends javax.swing.JFrame {
         bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
         bg.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 340, -1));
 
+        botonCliente.setForeground(new java.awt.Color(102, 153, 255));
+        botonCliente.setText("Verificar paquete o quejas");
+        botonCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonClienteMouseClicked(evt);
+            }
+        });
+        bg.add(botonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -438,6 +453,12 @@ public class JFIngresar extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTFPasswordFocusGained
 
+    private void botonClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonClienteMouseClicked
+        this.dispose();
+        JFPaquetesCliente recuperar = new JFPaquetesCliente();
+        recuperar.setVisible(true);
+    }//GEN-LAST:event_botonClienteMouseClicked
+
     private void bloquearUsuario(String nombreUsuario) {
         String updateQuery = "UPDATE usuarios SET estado = 'Bloqueado' WHERE nombreUser = ?";
         
@@ -490,6 +511,7 @@ public class JFIngresar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg;
+    private javax.swing.JLabel botonCliente;
     private javax.swing.JPanel exitP;
     private javax.swing.JLabel exitTXT;
     private javax.swing.JButton jBIngresar;
