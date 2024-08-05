@@ -34,6 +34,7 @@ import mod_administracion.Recepcionista;
 import mod_administracion.Usuario;
 import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Precio;
+import mod_paquetes.Entregado;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 import mod_paquetes.Provincia;
@@ -372,7 +373,6 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
         );
         if (respuesta == JOptionPane.YES_OPTION) {
             // El usuario confirmó la eliminación
-            refrescarInventario();
             // Eliminar el paquete del inventario
             JOptionPane.showMessageDialog(
                 null,
@@ -381,7 +381,12 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE
             );
             inventario.remove(paquete);
+            Paquete paqueteCambio = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoEliminar.getText());
+            paqueteCambio.cambiarEstado(new Entregado(paqueteCambio));
+            
+            Inventario.obtenerInstancia().guardarInventario();
             Asignacion.obtenerInstancia().guardarRelacionPaquetes();
+            refrescarInventario();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0); // Vacía la tabla de detalles del paquete
         } else {

@@ -89,7 +89,6 @@ public final class Inventario {
     }
     
     public void guardarInventario() {
-        paquetes.clear();
         String filePath = "src\\archivos\\inventario.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(paquetes);
@@ -105,7 +104,6 @@ public final class Inventario {
             paquetes = (ArrayList<Paquete>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
 }

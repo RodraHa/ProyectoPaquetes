@@ -78,16 +78,13 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     public JFMenu(Recepcionista recepcionista) {
-        Asignacion asignacion = Asignacion.obtenerInstancia();
-        asignacion.guardarConductores();
-        asignacion.guardarRelacionConductores();
-        asignacion.guardarRelacionPaquetes();
-        asignacion.guardarVehiculo();
+        
+        
         Asignacion.obtenerInstancia().cargarVehiculos();
         Asignacion.obtenerInstancia().cargarConductores();
         Asignacion.obtenerInstancia().cargarRelacionConductores();
-        Inventario.obtenerInstancia().guardarInventario();
-        Cotizacion.obtenerInstancia().guardarCotizacion();
+        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
+        
         initComponents();
         this.recepcionista = recepcionista;
 
@@ -647,7 +644,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista = new JFVehiculo(cnx, recepcionista.obtenerSucursal());
+        JFrame ventanaRecepcionista = new JFVehiculo( recepcionista.obtenerSucursal());
         VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
     }//GEN-LAST:event_menuEmpleadosMouseClicked
 

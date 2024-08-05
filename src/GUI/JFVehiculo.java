@@ -56,10 +56,9 @@ public class JFVehiculo extends javax.swing.JFrame {
     DefaultTableModel modelo;
     //Mouse
     int xMouse, yMouse; 
-    public JFVehiculo(Connection cnx, Provincia sucursal) {
+    public JFVehiculo( Provincia sucursal) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png")).getImage());
-        this.cnx=cnx;
         //All Files	C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
@@ -78,13 +77,6 @@ public class JFVehiculo extends javax.swing.JFrame {
 
     }
     
-    public JFVehiculo() {
-        initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/proyecto_encomienda/GESTION_PAQUETES/FRONTEND/imagenes/icons8_Monitor_32px.png")).getImage());
-        JFrame frame = new JFrame();
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-        setLocationRelativeTo(null);
-    }
 
   public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
         if (dateChooser.getDate() == null) {
@@ -858,9 +850,8 @@ public class JFVehiculo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
-            Asignacion asignacion = Asignacion.obtenerInstancia();
-            Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
-            if(!asignacion.asignarPaquetesAVehiculo(vehiculo, destino)){
+            Vehiculo vehiculo = Asignacion.obtenerInstancia().obtenerVehiculo(placa);
+            if(!Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino)){
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -888,40 +879,7 @@ public class JFVehiculo extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFVehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFVehiculo().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BActualizar;

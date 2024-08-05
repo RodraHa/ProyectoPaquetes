@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import mod_transporte.Asignacion;
 import org.postgresql.util.PSQLException;
 import validaciones.*;
 
@@ -39,7 +40,6 @@ public class JFIngresar extends javax.swing.JFrame {
     private Map<String, Integer> intentosFallidos = new HashMap<>();
 
     public JFIngresar() {
-
         initComponents();
         setIconImage(new ImageIcon(getClass().
                 getResource("/iconos/AjustesBest.png")).getImage());
@@ -344,7 +344,6 @@ public class JFIngresar extends javax.swing.JFrame {
         } else {
             String role = DataBase.obtenerInstancia().comprobarCredencial(username, password);
             if (role != null) {
-                System.out.println("Acceso permitido. Rol: " + role);
                 mostrarMenu(role, username);
             } else {
                 mostrarMensajeError("Credenciales incorrectas");

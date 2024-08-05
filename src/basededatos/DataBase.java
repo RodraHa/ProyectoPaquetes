@@ -480,4 +480,33 @@ public class DataBase {
 
         return conductores;
     } 
+
+    public Cliente obtenerclientePorCedula(String cedula) {
+        String query = "SELECT nombres, apellidos, cedula AS identificacion, direccion, telefono, email " +
+                       "FROM Usuario " +
+                       "WHERE cedula = ?";
+        
+        try (PreparedStatement stmt = conexion.prepareStatement(query)) {
+            stmt.setString(1, cedula);
+            // Ejecutar la consulta
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Crear y devolver el objeto Conductor
+                    return new Cliente(
+                        rs.getString("nombres"),
+                        rs.getString("apellidos"),
+                        rs.getString("identificacion"),
+                        rs.getString("direccion"),
+                        rs.getString("telefono"),
+                        rs.getString("email")
+                    );
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

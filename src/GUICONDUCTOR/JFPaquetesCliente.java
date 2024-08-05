@@ -5,6 +5,7 @@
 package GUICONDUCTOR;
 
 import GUI.*;
+import basededatos.DataBase;
 import proyecto_paquetes.JFIngresar;
 import validaciones.*;
 import java.awt.Color;
@@ -16,6 +17,17 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import mod_administracion.Cliente;
+import mod_incidentes.ErrorDireccion;
+import mod_incidentes.GestorIncidente;
+import mod_incidentes.Incidente;
+import mod_incidentes.PaqueteEstropeado;
+import mod_incidentes.PaquetePerdido;
+import mod_paquetes.Entregado;
+import mod_paquetes.Inventario;
+import mod_paquetes.Paquete;
+import mod_transporte.Asignacion;
 
 /**
  *
@@ -29,14 +41,17 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
      * Creates new form JFLogin
      */
     public JFPaquetesCliente() {
+        Inventario.obtenerInstancia().cargarInventario();
         setIconImage(new ImageIcon(getClass().
                 getResource("/iconos/AjustesBest.png")).getImage());
         initComponents();    
-        jCBPreguntaControl.setBackground(new Color(255,255,255));
         this.setLocationRelativeTo(null);
+        seleccionIncidentes.setVisible(false);
+        jLabel133.setVisible(false);
+        jTablaPaquete.setVisible(false);
+        jBRegistrarIncidente.setVisible(false);
         setTitle("Recuperar contraseña");
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
     /**
@@ -54,15 +69,19 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         exitP = new javax.swing.JPanel();
         exitTXT = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTFCedula = new javax.swing.JTextField();
-        jBRegresar = new javax.swing.JButton();
+        jTCodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jBIngresar = new javax.swing.JButton();
-        jCBPreguntaControl = new javax.swing.JComboBox<>();
-        jTFRecuperar = new javax.swing.JTextField();
+        jBInsertar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jTCedula = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        seleccionIncidentes = new javax.swing.JComboBox<>();
+        jLabel133 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTablaPaquete = new javax.swing.JTable();
+        jBRegistrarIncidente = new javax.swing.JButton();
+        jBRegresar = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -90,9 +109,11 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 jPanel2MousePressed(evt);
             }
         });
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         exitP.setBackground(new java.awt.Color(146, 10, 48));
         exitP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         exitTXT.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         exitTXT.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,62 +130,107 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 exitTXTMouseExited(evt);
             }
         });
+        exitP.add(exitTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 32, 24));
 
-        javax.swing.GroupLayout exitPLayout = new javax.swing.GroupLayout(exitP);
-        exitP.setLayout(exitPLayout);
-        exitPLayout.setHorizontalGroup(
-            exitPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitPLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(exitTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        exitPLayout.setVerticalGroup(
-            exitPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitPLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(exitTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Recuperar contraseña");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
-                .addComponent(exitP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(exitP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        jPanel2.add(exitP, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 0, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, -1));
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 120));
 
-        jTFCedula.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        jTFCedula.setForeground(new java.awt.Color(204, 204, 204));
-        jTFCedula.setText("Ingrese su documento de identidad");
-        jTFCedula.setBorder(null);
-        jTFCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+        jTCodigo.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        jTCodigo.setForeground(new java.awt.Color(204, 204, 204));
+        jTCodigo.setBorder(null);
+        jTCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTFCedulaFocusLost(evt);
+                jTCodigoFocusLost(evt);
             }
         });
-        jTFCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTFCedulaMousePressed(evt);
+                jTCodigoMousePressed(evt);
             }
         });
-        jPanel1.add(jTFCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 237, -1));
+        jPanel1.add(jTCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 237, -1));
+
+        jLabel1.setText("CodigoPaquete:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        jBInsertar.setBackground(new java.awt.Color(255, 250, 243));
+        jBInsertar.setText("Ingresar");
+        jBInsertar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jBInsertar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBInsertar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jBInsertarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jBInsertarMouseExited(evt);
+            }
+        });
+        jBInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBInsertarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 80, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 237, 10));
+
+        jTCedula.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        jTCedula.setForeground(new java.awt.Color(204, 204, 204));
+        jTCedula.setBorder(null);
+        jTCedula.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTCedulaFocusLost(evt);
+            }
+        });
+        jTCedula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTCedulaMousePressed(evt);
+            }
+        });
+        jTCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCedulaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 237, -1));
+
+        jLabel5.setText("Cédula:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 237, 10));
+
+        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
+        seleccionIncidentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seleccionIncidentesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(seleccionIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
+
+        jLabel133.setText("Tipo de incidente:");
+        jPanel1.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
+        jTablaPaquete.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTablaPaquete);
+
+        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 460, 70));
+
+        jBRegistrarIncidente.setText("Registrar");
+        jBRegistrarIncidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegistrarIncidenteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBRegistrarIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
 
         jBRegresar.setBackground(new java.awt.Color(255, 250, 243));
         jBRegresar.setText("Regresar");
@@ -183,93 +249,74 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 jBRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 101, 30));
-
-        jLabel1.setText("Cédula:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
-
-        jBIngresar.setBackground(new java.awt.Color(255, 250, 243));
-        jBIngresar.setText("Recuperar Contraseña");
-        jBIngresar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jBIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jBIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jBIngresarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jBIngresarMouseExited(evt);
-            }
-        });
-        jBIngresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBIngresarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, 30));
-
-        jCBPreguntaControl.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una opción", "¿Cuál es el nombre de tu primera mascota?", "¿En qué ciudad naciste?", "¿Cuál fue tu primer trabajo?", "¿Cuál es tu película favorita?", "¿Cuál es tu comida favorita?", "¿Cuál es tu equipo deportivo favorito?", "¿Cuál es el nombre de tu mejor amigo/a de la infancia?", "¿Cuál es el nombre de tu profesor/a favorito/a?", "¿Cuál es tu canción favorita?" }));
-        jCBPreguntaControl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jCBPreguntaControl, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 350, -1));
-        jPanel1.add(jTFRecuperar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 350, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 237, 10));
+        jPanel1.add(jBRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 101, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
-        this.dispose();
-        JFIngresar ingresar = new JFIngresar();
-        ingresar.setVisible(true);
-    }//GEN-LAST:event_jBRegresarActionPerformed
+    private void jBInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertarActionPerformed
+        Cliente cliente = DataBase.obtenerInstancia().obtenerclientePorCedula(jTCedula.getText());
+        Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigo.getText());
+        if(cliente == null || paquete == null){
+            JOptionPane.showMessageDialog(null, "No Existen datos","Alguno de los datos no se encontraron", JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        if(paquete.getRemitente().getCedula().equals(cliente.getCedula())){
+            seleccionIncidentes.setVisible(true);
+            jLabel133.setVisible(true);
+            jTablaPaquete.setVisible(true);
+            jBRegistrarIncidente.setVisible(true);
+            DefaultTableModel model = new DefaultTableModel();
+        jTablaPaquete.setModel(model);
+        String[] columnNames = {
+            "Código de Tracking", "Volumen", "Peso", "Contenido", 
+            "Remitente", "Estado", "Provincia Destino"
+        };
+        model.setColumnIdentifiers(columnNames);
+        model.addRow(new Object[]{
+        paquete.obtenerCodigo(),
+        paquete.getVolumen(),
+        paquete.getPeso(),
+        paquete.getContenido(),
+        paquete.getRemitente().toString(),
+        paquete.obtenerEstado().toString(),
+        paquete.getProvinciaDestino().name()
+        });
+        
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "No Coinciden los datos","NO SEA SAPO", JOptionPane.ERROR_MESSAGE);
+       
+    }//GEN-LAST:event_jBInsertarActionPerformed
 
-    private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
-        String pregunta = jCBPreguntaControl.getSelectedItem().toString();
-        Map<String, Integer> preguntaToNumeroMap = new HashMap<>();
-        preguntaToNumeroMap.put("¿Cuál es el nombre de tu primera mascota?", 1);
-        preguntaToNumeroMap.put("¿En qué ciudad naciste?", 2);
-        preguntaToNumeroMap.put("¿Cuál fue tu primer trabajo?", 3);
-        preguntaToNumeroMap.put("¿Cuál es tu película favorita?", 4);
-        preguntaToNumeroMap.put("¿Cuál es tu comida favorita?", 5);
-        preguntaToNumeroMap.put("¿Cuál es tu equipo deportivo favorito?", 6);
-        preguntaToNumeroMap.put("¿Cuál es el nombre de tu mejor amigo/a de la infancia?", 7);
-        preguntaToNumeroMap.put("¿Cuál es el nombre de tu profesor/a favorito/a?", 9);
-        preguntaToNumeroMap.put("¿Cuál es tu canción favorita?", 9);
-        int numpregunta = preguntaToNumeroMap.getOrDefault(pregunta, 0);
-        String respuesta = jTFRecuperar.getText();
-        String CI = jTFCedula.getText();
-        recuperarContrasena(CI, numpregunta, respuesta);
-    }//GEN-LAST:event_jBIngresarActionPerformed
-
-    private void jTFCedulaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTFCedulaMousePressed
-        if (jTFCedula.getText().equals("Ingrese su documento de identidad")) {
-            jTFCedula.setForeground(Color.black);
-            jTFCedula.setText("");
+    private void jTCodigoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCodigoMousePressed
+        if (jTCodigo.getText().equals("Ingrese su documento de identidad")) {
+            jTCodigo.setForeground(Color.black);
+            jTCodigo.setText("");
         }
 
-    }//GEN-LAST:event_jTFCedulaMousePressed
+    }//GEN-LAST:event_jTCodigoMousePressed
 
-    private void jTFCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFCedulaFocusLost
-        if (jTFCedula.getText().isEmpty()) {
-            jTFCedula.setText("Ingrese su documento de identidad");
-            jTFCedula.setForeground(new Color(204, 204, 204));
+    private void jTCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoFocusLost
+        if (jTCodigo.getText().isEmpty()) {
+            jTCodigo.setText("Ingrese su documento de identidad");
+            jTCodigo.setForeground(new Color(204, 204, 204));
         }
 
-    }//GEN-LAST:event_jTFCedulaFocusLost
+    }//GEN-LAST:event_jTCodigoFocusLost
 
     private void exitTXTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTXTMouseClicked
         System.exit(0);
@@ -294,13 +341,78 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel2MousePressed
 
-    private void jBIngresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBIngresarMouseEntered
-        jBIngresar.setBackground(new Color(255, 51, 133));
-    }//GEN-LAST:event_jBIngresarMouseEntered
+    private void jBInsertarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBInsertarMouseEntered
+        jBInsertar.setBackground(new Color(255, 51, 133));
+    }//GEN-LAST:event_jBInsertarMouseEntered
 
-    private void jBIngresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBIngresarMouseExited
-        jBIngresar.setBackground(new Color(255, 250, 243));
-    }//GEN-LAST:event_jBIngresarMouseExited
+    private void jBInsertarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBInsertarMouseExited
+        jBInsertar.setBackground(new Color(255, 250, 243));
+    }//GEN-LAST:event_jBInsertarMouseExited
+
+    private void jTCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCedulaFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCedulaFocusLost
+
+    private void jTCedulaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCedulaMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCedulaMousePressed
+
+    private void jTCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCedulaActionPerformed
+
+    private void seleccionIncidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionIncidentesActionPerformed
+        
+    }//GEN-LAST:event_seleccionIncidentesActionPerformed
+
+    private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
+        String incidente = (String) seleccionIncidentes.getSelectedItem();
+        Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigo.getText());
+        Incidente incidenteRegistrar = null;
+        if (incidente.equals("Error Dirección")) {
+            incidenteRegistrar = new ErrorDireccion();
+        } else if (incidente.equals("Paquete Estropeado")) {
+            incidenteRegistrar = new PaqueteEstropeado();
+        } else if (incidente.equals("Paquete Perdido")) {
+            incidenteRegistrar = new PaquetePerdido();
+        }
+        if (!(paquete.obtenerEstado() instanceof Entregado)) {
+            JOptionPane.showMessageDialog(
+                null,
+                "El paquete se encuentra fuera de su jurisdicción",
+                "Registro falló",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+            return;
+        }
+        int respuesta = JOptionPane.showConfirmDialog(
+            null,
+            "¿Estás seguro de que deseas registrar este incidente?",
+            "Confirmación de registro",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE
+        );
+        if (respuesta == JOptionPane.YES_OPTION) {
+            GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
+            gi.crearIncidente(paquete);
+            JOptionPane.showMessageDialog(
+                null,
+                "El incidente se ha registrado",
+                "Registro Exitoso",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+            Inventario.obtenerInstancia().guardarInventario();
+            DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
+            modeloTabla.setRowCount(0);            
+        } else {
+            JOptionPane.showMessageDialog(
+                null,
+                "El registro del incidente se ha cancelado",
+                "Registro Cancelado",
+                JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+    }//GEN-LAST:event_jBRegistrarIncidenteActionPerformed
 
     private void jBRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBRegresarMouseEntered
         jBRegresar.setBackground(new Color(255, 51, 133));
@@ -309,6 +421,12 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
     private void jBRegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBRegresarMouseExited
         jBRegresar.setBackground(new Color(255, 250, 243));
     }//GEN-LAST:event_jBRegresarMouseExited
+
+    private void jBRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegresarActionPerformed
+        this.dispose();
+        JFIngresar ingresar = new JFIngresar();
+        ingresar.setVisible(true);
+    }//GEN-LAST:event_jBRegresarActionPerformed
     private void recuperarContrasena(String CI, int numpregunta, String respuesta) {
 
     }
@@ -363,18 +481,22 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel exitP;
     private javax.swing.JLabel exitTXT;
-    private javax.swing.JButton jBIngresar;
+    private javax.swing.JButton jBInsertar;
+    private javax.swing.JButton jBRegistrarIncidente;
     private javax.swing.JButton jBRegresar;
-    private javax.swing.JComboBox<String> jCBPreguntaControl;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTFCedula;
-    private javax.swing.JTextField jTFRecuperar;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTextField jTCedula;
+    private javax.swing.JTextField jTCodigo;
+    private javax.swing.JTable jTablaPaquete;
+    private javax.swing.JComboBox<String> seleccionIncidentes;
     // End of variables declaration//GEN-END:variables
 }

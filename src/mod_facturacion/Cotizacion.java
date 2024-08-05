@@ -52,7 +52,6 @@ public final class Cotizacion {
     }
      
     public void guardarCotizacion() {
-        facturas.clear();
         String filePath = "src\\archivos\\facturas.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(facturas);
