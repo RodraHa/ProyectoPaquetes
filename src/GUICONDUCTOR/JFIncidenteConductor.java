@@ -30,16 +30,20 @@ import mod_paquetes.Seguimiento;
 import mod_transporte.Asignacion;
 import validaciones.*;
 
-
 /**
- *
- * @author Moises Arequipa
+ * JFrame para la gestión de incidentes por parte de conductores
+ * Incluye funcionalidades para registrar y resolver incidentes
+ * Se conecta con otros módulos para obtener y actualizar datos de incidentes
+ * y paquetes
+ * 
  * @Grupo: Segunda es Todo
  */
 public class JFIncidenteConductor extends javax.swing.JFrame {
 
     /**
      * Creates new form JFIncidente
+     * Constructor que inicializa el formulario de incidentes
+     * @param inventario Listado de paquetes disponibles
      */
     //Validadores
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
@@ -54,6 +58,10 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
     private boolean descriptionValidar = false;
     private boolean seleccionValidar = false;
 
+    /**
+     * Constructor que inicializa el formulario de incidentes
+     * @param inventario Listado de paquetes disponibles
+     */
     public JFIncidenteConductor(ArrayList<Paquete> inventario) {
         initComponents();
         this.inventario = inventario;
@@ -67,6 +75,9 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         cargarIncidentes();
     }
 
+    /**
+     * Método para colocar un placeholder en el campo de código de tracking
+     */
     private void placeHolder() {
         TextPrompt texto1 = new TextPrompt("Obligatorio", jTCodigoTracking);
     }
@@ -452,14 +463,26 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción al seleccionar un incidente
+     * @param evt evento de selección
+     */
     private void seleccionIncidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionIncidentesActionPerformed
 
     }//GEN-LAST:event_seleccionIncidentesActionPerformed
 
+    /**
+     * Acción al soltar una tecla en el campo de código de tracking
+     * @param evt evento de teclado
+     */
     private void jTCodigoTrackingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoTrackingKeyReleased
 
     }//GEN-LAST:event_jTCodigoTrackingKeyReleased
 
+    /**
+     * Acción al presionar el botón de consultar paquete
+     * @param evt evento de acción
+     */
     private void jBConsultarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarPaqueteActionPerformed
         if (jTCodigoTracking.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
@@ -498,10 +521,18 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jTablaPaquete.setVisible(true);
     }//GEN-LAST:event_jBConsultarPaqueteActionPerformed
 
+    /**
+     * Acción al hacer clic en el tab de empleados
+     * @param evt evento de mouse
+     */
     private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleados1MouseClicked
 
     }//GEN-LAST:event_jTPEmpleados1MouseClicked
 
+    /**
+     * Acción al presionar el botón de salir
+     * @param evt evento de acción
+     */
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
@@ -511,25 +542,46 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
+    /**
+     * Acción al arrastrar el panel superior
+     * @param evt evento de mouse
+     */
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
     }//GEN-LAST:event_jPanel3MouseDragged
 
+    /**
+     * Acción al presionar el panel superior
+     * @param evt evento de mouse
+     */
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
 
+    /**
+     * Acción al perder el foco en el campo de código de tracking
+     * @param evt evento de foco
+     */
     private void jTCodigoTrackingFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoTrackingFocusLost
         
     }//GEN-LAST:event_jTCodigoTrackingFocusLost
 
+    /**
+     * Acción al realizar acción en el campo de código de tracking
+     * @param evt evento de acción
+     */
     private void jTCodigoTrackingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoTrackingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoTrackingActionPerformed
 
+    /**
+     * Método para obtener un paquete según su código de tracking
+     * @param codigo Código de tracking del paquete
+     * @return Paquete encontrado o null si no existe
+     */
     private Paquete obtenerPaquete(String codigo){
         for(Paquete paquete :inventario){
             if(paquete.getCodigoTracking().equals(codigo)){
@@ -538,6 +590,11 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         }
         return null;
     }
+    
+    /**
+     * Acción al presionar el botón de registrar incidente
+     * @param evt evento de acción
+     */
     private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
         if (jTCodigoTracking.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
@@ -591,18 +648,34 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBRegistrarIncidenteActionPerformed
 
+    /**
+     * Acción al perder el foco en el campo de código de resolver
+     * @param evt evento de foco
+     */
     private void jTCodigoResolverFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoResolverFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoResolverFocusLost
 
+    /**
+     * Acción al realizar acción en el campo de código de resolver
+     * @param evt evento de acción
+     */
     private void jTCodigoResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoResolverActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoResolverActionPerformed
 
+    /**
+     * Acción al soltar una tecla en el campo de código de resolver
+     * @param evt evento de teclado
+     */
     private void jTCodigoResolverKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoResolverKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCodigoResolverKeyReleased
 
+    /**
+     * Acción al presionar el botón de consultar incidente
+     * @param evt evento de acción
+     */
     private void jBConsultarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarIncidenteActionPerformed
         if (jTCodigoResolver.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
@@ -624,6 +697,10 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         jBResolverIncidente.setVisible(true);
     }//GEN-LAST:event_jBConsultarIncidenteActionPerformed
 
+    /**
+     * Acción al presionar el botón de resolver incidente
+     * @param evt evento de acción
+     */
     private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResolverIncidenteActionPerformed
         Paquete paquete = obtenerPaquete(jTCodigoResolver.getText());
         String incidente = paquete.obtenerSeguimiento().obtenerRegistroIncidente();
@@ -685,14 +762,26 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBResolverIncidenteActionPerformed
 
+    /**
+     * Acción al perder el foco en el campo de argumentos
+     * @param evt evento de foco
+     */
     private void jTArgumentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTArgumentosFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jTArgumentosFocusLost
 
+    /**
+     * Acción al realizar acción en el campo de argumentos
+     * @param evt evento de acción
+     */
     private void jTArgumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTArgumentosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTArgumentosActionPerformed
 
+    /**
+     * Acción al soltar una tecla en el campo de argumentos
+     * @param evt evento de teclado
+     */
     private void jTArgumentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTArgumentosKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jTArgumentosKeyReleased
@@ -726,6 +815,9 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> seleccionIncidentes;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Método para cargar los tipos de incidentes en el JComboBox
+     */
     private void cargarIncidentes() {
         seleccionIncidentes.removeAllItems();
         seleccionIncidentes.addItem("Error Dirección");
