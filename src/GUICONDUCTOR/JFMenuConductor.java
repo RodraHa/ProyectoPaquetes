@@ -73,7 +73,6 @@ public class JFMenuConductor extends javax.swing.JFrame {
         this.conductor = conductor;
         // Cargar datos de asignación
         Asignacion.obtenerInstancia().cargarRelacionPaquetes();
-        Asignacion.obtenerInstancia().cargarVehiculos();
         Asignacion.obtenerInstancia().cargarRelacionConductores();
         inventario = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor);
         initComponents();

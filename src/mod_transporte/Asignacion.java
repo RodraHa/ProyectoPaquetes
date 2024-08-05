@@ -151,6 +151,7 @@ public class Asignacion {
     
     
     public void guardarVehiculo() {
+        vehiculos.clear();
         conexionConSer(vehiculos,"FlotaVehiculos");
     }
     
@@ -165,6 +166,7 @@ public class Asignacion {
     }
     
     public void guardarConductores() {
+        conductores.clear();
         conexionConSer(conductores,"Conductores");
     }
     
@@ -178,6 +180,7 @@ public class Asignacion {
         }
     }
     public void guardarRelacionConductores() {
+        asignacionConductores.clear();
         String filePath = "src\\archivos\\AsignacionConductores.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(asignacionConductores);
@@ -198,6 +201,7 @@ public class Asignacion {
     }
     
     public void guardarRelacionPaquetes() {
+        asignacionPaquetes.clear();
         String filePath = "src\\archivos\\AsignacionPaquetes.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
             oos.writeObject(asignacionPaquetes);
@@ -241,6 +245,7 @@ public class Asignacion {
     }
 
     public void agregarConductores(ArrayList usuario) {
+        
         conductores.addAll(usuario);
         guardarConductores();
     }
