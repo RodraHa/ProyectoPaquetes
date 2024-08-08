@@ -368,7 +368,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
     private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
         String incidente = (String) seleccionIncidentes.getSelectedItem();
         Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigo.getText());
-        Incidente incidenteRegistrar = null;
+        Incidente incidenteRegistrar = new ErrorDireccion();
         if (incidente.equals("Error Dirección")) {
             incidenteRegistrar = new ErrorDireccion();
         } else if (incidente.equals("Paquete Estropeado")) {

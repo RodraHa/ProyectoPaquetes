@@ -145,9 +145,6 @@ public class JFIngresar extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    /**
-     * Método generado automáticamente para inicializar los componentes de la interfaz gráfica.
-     */
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
@@ -307,7 +304,7 @@ public class JFIngresar extends javax.swing.JFrame {
         bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         jBMostrarC.setBackground(new java.awt.Color(255, 250, 243));
-        jBMostrarC.setText("Mostar Contraseña");
+        jBMostrarC.setText("Mostrar Contraseña");
         jBMostrarC.setBorder(null);
         jBMostrarC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBMostrarC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -426,7 +423,7 @@ public class JFIngresar extends javax.swing.JFrame {
         this.dispose();
         JFRecuperar recuperar = new JFRecuperar();
         recuperar.setVisible(true);
-    }//GEN-LAST:event_olvidasteContraMouseClicked
+    }                                            
 
     /**
      * Maneja el evento de tipeo en el campo de texto del usuario.

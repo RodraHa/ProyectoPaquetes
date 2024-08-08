@@ -97,7 +97,7 @@ public class Asignacion {
             paquetes = asignacionPaquetes.get(vehiculoAUsar);
             conteoPaquetes = paquetes.size();
         } 
-        double capacidad = vehiculoAUsar.getCapacidad();
+        double capacidad = vehiculo.getCapacidad();
 
         for (Paquete paquete : paquetesPendientes) {
             if (capacidad >= paquete.getVolumen() ) {

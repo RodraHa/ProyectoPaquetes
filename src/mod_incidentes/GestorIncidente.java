@@ -34,7 +34,7 @@ public class GestorIncidente {
     public void crearIncidente(Paquete paquete) {
         // Registra el incidente utilizando el método registrar() de la instancia incidente
         String registro = incidente.registrar();
-        // Obtiene el seguimiento del paquete
+        // Obtiene el seguimiento del paqueteguimiento seguimiento = paquete.obtenerS
         Seguimiento seguimiento = paquete.obtenerSeguimiento();
         // Registra el incidente en el seguimiento del paquete
         seguimiento.registrarIncidente(registro);
