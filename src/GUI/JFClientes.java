@@ -111,7 +111,6 @@ public class JFClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Remitente");
@@ -120,6 +119,8 @@ public class JFClientes extends javax.swing.JFrame {
 
         JPRemitente.setBackground(new java.awt.Color(245, 245, 245));
         JPRemitente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        JPRemitente.setMinimumSize(new java.awt.Dimension(1180, 650));
+        JPRemitente.setPreferredSize(new java.awt.Dimension(1180, 650));
         JPRemitente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPPR1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -294,7 +295,7 @@ public class JFClientes extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        jPPR1.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, -1, 241));
+        jPPR1.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, 241));
 
         jBRegistarCliente.setText("Registrar Cliente");
         jBRegistarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -302,7 +303,7 @@ public class JFClientes extends javax.swing.JFrame {
                 jBRegistarClienteActionPerformed(evt);
             }
         });
-        jPPR1.add(jBRegistarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, -1, -1));
+        jPPR1.add(jBRegistarCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, -1, -1));
 
         jPClientes.addTab("Registrar Cliente", jPPR1);
 
@@ -314,6 +315,7 @@ public class JFClientes extends javax.swing.JFrame {
         jPanel40.setBorder(javax.swing.BorderFactory.createTitledBorder("Actualizar Cliente"));
         jPanel40.setToolTipText("");
         jPanel40.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel40.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jBIActualizarAct1.setText("Actualizar");
         jBIActualizarAct1.addActionListener(new java.awt.event.ActionListener() {
@@ -321,10 +323,12 @@ public class JFClientes extends javax.swing.JFrame {
                 jBIActualizarAct1ActionPerformed(evt);
             }
         });
+        jPanel40.add(jBIActualizarAct1, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 266, -1, -1));
 
         CIselect.setSelected(true);
         CIselect.setText("CI");
         CIselect.setEnabled(false);
+        jPanel40.add(CIselect, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 36, -1, -1));
 
         nombreSelect.setSelected(true);
         nombreSelect.setText("Nombres");
@@ -334,16 +338,21 @@ public class JFClientes extends javax.swing.JFrame {
                 nombreSelectActionPerformed(evt);
             }
         });
+        jPanel40.add(nombreSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 65, -1, -1));
 
         apellidoSelect.setSelected(true);
         apellidoSelect.setText("Apellidos");
         apellidoSelect.setEnabled(false);
+        jPanel40.add(apellidoSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 93, -1, -1));
 
         apellidoActualizar.setEditable(false);
+        jPanel40.add(apellidoActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 92, 194, -1));
 
         nombreActualizar.setEditable(false);
+        jPanel40.add(nombreActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 64, 196, -1));
 
         ciActualizar.setEditable(false);
+        jPanel40.add(ciActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 36, 196, -1));
 
         telefonoSelect.setText("Teléfono");
         telefonoSelect.addActionListener(new java.awt.event.ActionListener() {
@@ -351,6 +360,7 @@ public class JFClientes extends javax.swing.JFrame {
                 telefonoSelectActionPerformed(evt);
             }
         });
+        jPanel40.add(telefonoSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 121, 91, -1));
 
         direccionSelect.setText("Dirección");
         direccionSelect.addActionListener(new java.awt.event.ActionListener() {
@@ -358,6 +368,7 @@ public class JFClientes extends javax.swing.JFrame {
                 direccionSelectActionPerformed(evt);
             }
         });
+        jPanel40.add(direccionSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 149, 91, -1));
 
         direccionActualizar.setEnabled(false);
         direccionActualizar.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -370,6 +381,7 @@ public class JFClientes extends javax.swing.JFrame {
                 direccionActualizarKeyReleased(evt);
             }
         });
+        jPanel40.add(direccionActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 148, 196, -1));
 
         telefonoActualizar.setEnabled(false);
         telefonoActualizar.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -382,6 +394,7 @@ public class JFClientes extends javax.swing.JFrame {
                 telefonoActualizarKeyReleased(evt);
             }
         });
+        jPanel40.add(telefonoActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 120, 196, -1));
 
         correoSelect.setText("Correo");
         correoSelect.addActionListener(new java.awt.event.ActionListener() {
@@ -389,6 +402,7 @@ public class JFClientes extends javax.swing.JFrame {
                 correoSelectActionPerformed(evt);
             }
         });
+        jPanel40.add(correoSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 177, 91, -1));
 
         correoActualizar.setEnabled(false);
         correoActualizar.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -401,73 +415,13 @@ public class JFClientes extends javax.swing.JFrame {
                 correoActualizarKeyReleased(evt);
             }
         });
+        jPanel40.add(correoActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 176, 196, -1));
 
-        javax.swing.GroupLayout jPanel40Layout = new javax.swing.GroupLayout(jPanel40);
-        jPanel40.setLayout(jPanel40Layout);
-        jPanel40Layout.setHorizontalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel40Layout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addComponent(jBIActualizarAct1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel40Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(telefonoSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreSelect)
-                    .addComponent(CIselect)
-                    .addComponent(correoSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(direccionSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(apellidoSelect))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(correoActualizar)
-                        .addComponent(ciActualizar)
-                        .addComponent(direccionActualizar)
-                        .addComponent(telefonoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(nombreActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(apellidoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(76, 76, 76))
-        );
-        jPanel40Layout.setVerticalGroup(
-            jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel40Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CIselect)
-                    .addComponent(ciActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombreSelect))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(apellidoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(apellidoSelect))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(telefonoSelect)
-                    .addComponent(telefonoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(direccionSelect)
-                    .addComponent(direccionActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel40Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(correoSelect)
-                    .addComponent(correoActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addComponent(jBIActualizarAct1)
-                .addGap(14, 14, 14))
-        );
-
-        jPActualizarClientes.add(jPanel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(301, 124, -1, 304));
+        jPActualizarClientes.add(jPanel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 450, 304));
 
         jLabel5.setText("CI");
-        jPActualizarClientes.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 66, 38, -1));
-        jPActualizarClientes.add(jTCIBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 64, 200, 20));
+        jPActualizarClientes.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 80, 38, -1));
+        jPActualizarClientes.add(jTCIBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 200, 20));
 
         jBuscarCI.setText("Buscar");
         jBuscarCI.addActionListener(new java.awt.event.ActionListener() {
@@ -475,7 +429,7 @@ public class JFClientes extends javax.swing.JFrame {
                 jBuscarCIActionPerformed(evt);
             }
         });
-        jPActualizarClientes.add(jBuscarCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(468, 89, -1, -1));
+        jPActualizarClientes.add(jBuscarCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, -1, -1));
 
         jPPA1.add(jPActualizarClientes, "card1");
 
@@ -496,12 +450,14 @@ public class JFClientes extends javax.swing.JFrame {
         ));
         jScrollPane16.setViewportView(jTablaClientesR);
 
-        jPPC1.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 77, 898, 258));
+        jPPC1.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 57, 960, 470));
 
         jPClientes.addTab("Consultar Clientes", jPPC1);
 
-        JPRemitente.add(jPClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1060, 610));
+        JPRemitente.add(jPClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1160, 610));
 
+        jPanel1.setMinimumSize(new java.awt.Dimension(1180, 35));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1180, 35));
         jPanel1.setLayout(new java.awt.CardLayout());
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
@@ -522,21 +478,9 @@ public class JFClientes extends javax.swing.JFrame {
         jLabel69.setText("Gestion de Envios");
         jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
-        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1055, 0, 35, 35));
-
         jPanel1.add(jPanel3, "card2");
 
-        JPRemitente.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1090, -1));
+        JPRemitente.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, -1));
 
         getContentPane().add(JPRemitente, "card2");
 
@@ -712,15 +656,6 @@ public class JFClientes extends javax.swing.JFrame {
     private void correoActualizarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_correoActualizarKeyReleased
     }//GEN-LAST:event_correoActualizarKeyReleased
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        getToolkit().beep();
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de cerrar la ventana?", "Warning", dialogButton);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnExitActionPerformed
-
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
@@ -815,7 +750,6 @@ public class JFClientes extends javax.swing.JFrame {
     private javax.swing.JPanel JPRemitente;
     private javax.swing.JTextField apellidoActualizar;
     private javax.swing.JCheckBox apellidoSelect;
-    private javax.swing.JButton btnExit;
     private javax.swing.JTextField ciActualizar;
     private javax.swing.JTextField correoActualizar;
     private javax.swing.JTextField correoCli2;
