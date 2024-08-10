@@ -200,16 +200,19 @@ public class JFVehiculo extends javax.swing.JFrame {
         jTCapacidad1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         setTitle("Registro de Empleados");
+        setMinimumSize(new java.awt.Dimension(1180, 680));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1180, 680));
         getContentPane().setLayout(new java.awt.CardLayout());
 
+        jPEmpleadosTab.setMinimumSize(new java.awt.Dimension(1180, 609));
+        jPEmpleadosTab.setPreferredSize(new java.awt.Dimension(1180, 609));
         jPEmpleadosTab.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTPEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -224,7 +227,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPDatosEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel27.setText("Capacidad");
-        jPDatosEmpleados.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 95, -1, -1));
+        jPDatosEmpleados.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
 
         jTCapacidadVehiculo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -241,7 +244,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jTCapacidadVehiculoKeyReleased(evt);
             }
         });
-        jPDatosEmpleados.add(jTCapacidadVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 92, 201, -1));
+        jPDatosEmpleados.add(jTCapacidadVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 201, -1));
 
         jPanel44.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
 
@@ -260,7 +263,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPanel44.getAccessibleContext().setAccessibleName("Conductor Asignado\n");
 
         jLabel32.setText("Placa");
-        jPDatosEmpleados.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 37, 34, 22));
+        jPDatosEmpleados.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 34, 22));
 
         bRegistrarVehiculo.setText("Registrar Vehiculo");
         bRegistrarVehiculo.addActionListener(new java.awt.event.ActionListener() {
@@ -268,16 +271,16 @@ public class JFVehiculo extends javax.swing.JFrame {
                 bRegistrarVehiculoActionPerformed(evt);
             }
         });
-        jPDatosEmpleados.add(bRegistrarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 135, -1, 36));
+        jPDatosEmpleados.add(bRegistrarVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, 36));
 
         jTPlacaVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTPlacaVehiculoActionPerformed(evt);
             }
         });
-        jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 37, 201, -1));
+        jPDatosEmpleados.add(jTPlacaVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 201, -1));
 
-        jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 28, 843, -1));
+        jPRE.add(jPDatosEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 28, 1110, 530));
 
         jTPEmpleados.addTab("Registrar Vehiculo", jPRE);
 
@@ -296,7 +299,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jTablaVehiculos);
 
-        jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 348, 892, 185));
+        jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 348, 1070, 185));
 
         jTPlacaVehiculo1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -543,7 +546,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         ));
         jScrollPane25.setViewportView(jInventarioVehiculo);
 
-        jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 963, 253));
+        jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 1130, 253));
 
         JComboDestino1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino1.addActionListener(new java.awt.event.ActionListener() {
@@ -559,7 +562,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 186, 83, 31));
+        jPEE.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 83, 31));
 
         jTPlacaVehiculo3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -582,7 +585,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPEE.add(jTPlacaVehiculo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 59, 204, -1));
 
         jLabel37.setText("Placa");
-        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 59, 34, 22));
+        jPEE.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 34, 22));
 
         jLabel30.setText("Capacidad");
         jPEE.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 109, -1, -1));
@@ -593,9 +596,11 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jTPEmpleados.addTab("Asignar Paquetes", jPEE);
 
-        jPEmpleadosTab.add(jTPEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 41, 965, -1));
+        jPEmpleadosTab.add(jTPEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 41, 1150, -1));
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
+        jPanel3.setMinimumSize(new java.awt.Dimension(1180, 35));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1180, 35));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -613,33 +618,12 @@ public class JFVehiculo extends javax.swing.JFrame {
         jLabel69.setText("Reccepcionista");
         jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
-        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 0, 35, 35));
-
         jPEmpleadosTab.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPEmpleadosTab, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        getToolkit().beep();
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de quieres cerrar la ventana?", "Warning", dialogButton);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnExitActionPerformed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
@@ -891,7 +875,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> JComboDestino1;
     private javax.swing.JButton bRegistrarVehiculo;
     private javax.swing.JButton bSeleccionarConductor;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton1;
     private javax.swing.JTable jInventarioVehiculo;
     private javax.swing.JLabel jLabel27;
