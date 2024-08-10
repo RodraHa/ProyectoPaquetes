@@ -46,7 +46,7 @@ public final class Cotizacion {
      */
     public static Precio obtenerPrecioPaquete(Paquete paquete) {
         Precio precio = new Precio(
-                paquete, new PrecioPaquete(2, 2), new PrecioDistancia(0.01), new Impuesto(0.12));
+                paquete, new PrecioPaquete(2, 2), new PrecioDistancia(0.10), new Impuesto(0.12));
         return precio;
     }
 
@@ -57,7 +57,7 @@ public final class Cotizacion {
      */
     public void emitirFacturaPaquete(Paquete paquete) {
         Precio precio = new Precio(
-                paquete, new PrecioPaquete(5, 5), new PrecioDistancia(0.2), new Impuesto(0.12));
+                paquete, new PrecioPaquete(2, 2), new PrecioDistancia(0.10), new Impuesto(0.12));
         facturas.add(new Factura(getSiguienteCodigoFactura(), paquete, precio));
         guardarCotizacion();
     }
