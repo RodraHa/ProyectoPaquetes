@@ -7,8 +7,11 @@ import mod_paquetes.Paquete;
 import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import mod_facturacion.Precio;
+import mod_transporte.Asignacion;
 import mod_transporte.Provincia;
+import mod_transporte.Vehiculo;
 
 /**
  * Representa a un recepcionista que maneja paquetes y realiza varias operaciones relacionadas con el inventario y la cotización.
@@ -147,4 +150,9 @@ public class Recepcionista extends Usuario {
     public Provincia obtenerSucursal() {
         return this.sucursal;
     }
+
+    public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino){
+        return Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino);             
+    }
+    
 }

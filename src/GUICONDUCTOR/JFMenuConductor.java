@@ -74,7 +74,9 @@ public class JFMenuConductor extends javax.swing.JFrame {
         // Cargar datos de asignación
         Asignacion.obtenerInstancia().cargarRelacionPaquetes();
         Asignacion.obtenerInstancia().cargarRelacionConductores();
-        inventario = Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(conductor);
+        
+        inventario = this.conductor.consultarPaquetesAsignados();
+                
         initComponents();
         // Configurar icono de la ventana
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
