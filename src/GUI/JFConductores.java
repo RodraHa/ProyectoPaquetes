@@ -494,15 +494,15 @@ public class JFConductores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, recepcionista.obtenerSucursal());
+        
+        recepcionista.agregarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave);
+        
         JOptionPane.showMessageDialog(
             null,
             "El registro del conductor ha sido exitoso",
             "Registro Exitoso",
             JOptionPane.INFORMATION_MESSAGE
         );
-        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
-        Asignacion.obtenerInstancia().agregarConductor(conductor);
         vaciarCampos();
         cargarConductores();
     }//GEN-LAST:event_jBRegistrarConductorActionPerformed
@@ -597,10 +597,7 @@ public class JFConductores extends javax.swing.JFrame {
             String codigo = jTCodigoEliminar.getText();
 
             // El usuario confirmó la eliminación
-            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
-            Asignacion.obtenerInstancia().eliminarConductor(conductor);
-            Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
-            Asignacion.obtenerInstancia().guardarConductores();
+            recepcionista.eliminarConductor(codigo);
             JOptionPane.showMessageDialog(
                 null,
                 "El conductor con cedula " + jTCodigoEliminar.getText() + " ha sido eliminado.",

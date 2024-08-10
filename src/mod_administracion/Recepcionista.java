@@ -1,5 +1,6 @@
 package mod_administracion;
 
+import basededatos.DataBase;
 import mod_facturacion.Cotizacion;
 import mod_paquetes.EstadoDelPaquete;
 import mod_paquetes.Inventario;
@@ -177,6 +178,19 @@ public class Recepcionista extends Usuario {
 
     public boolean consultarSiPaqueteExiste(String codigo) {
         return inventario.existePaquete(codigo);
+    }
+
+    public void agregarConductor(String nombres, String apellidos, String cedula, String direccion, String telefono, String correo, String nombreUsuario, String clave) {
+        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, this.obtenerSucursal());
+        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
+        Asignacion.obtenerInstancia().agregarConductor(conductor);
+    }
+
+    public void eliminarConductor(String codigo) {
+        Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
+        Asignacion.obtenerInstancia().eliminarConductor(conductor);
+        Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
+        Asignacion.obtenerInstancia().guardarConductores();
     }
     
 }
