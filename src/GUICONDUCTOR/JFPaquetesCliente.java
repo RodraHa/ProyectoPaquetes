@@ -65,6 +65,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jColorChooser1 = new javax.swing.JColorChooser();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         exitP = new javax.swing.JPanel();
@@ -74,7 +75,6 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         jBInsertar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jTCedula = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         seleccionIncidentes = new javax.swing.JComboBox<>();
         jLabel133 = new javax.swing.JLabel();
@@ -82,6 +82,11 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         jTablaPaquete = new javax.swing.JTable();
         jBRegistrarIncidente = new javax.swing.JButton();
         jBRegresar = new javax.swing.JButton();
+        jBRegistrarIncidente1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -114,6 +119,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         exitP.setBackground(new java.awt.Color(146, 10, 48));
         exitP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(exitP, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 0, -1, -1));
 
         exitTXT.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
         exitTXT.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,14 +136,11 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 exitTXTMouseExited(evt);
             }
         });
-        exitP.add(exitTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 32, 24));
+        jPanel2.add(exitTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 0, 32, 24));
 
-        jPanel2.add(exitP, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 0, -1, -1));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, -1));
 
         jTCodigo.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        jTCodigo.setForeground(new java.awt.Color(204, 204, 204));
         jTCodigo.setBorder(null);
         jTCodigo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -171,11 +174,10 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 jBInsertarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 80, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 237, 10));
+        jPanel1.add(jBInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 80, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 10, 520));
 
         jTCedula.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        jTCedula.setForeground(new java.awt.Color(204, 204, 204));
         jTCedula.setBorder(null);
         jTCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -193,9 +195,6 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 237, -1));
-
-        jLabel5.setText("Cédula:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 237, 10));
 
         seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
@@ -204,10 +203,10 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 seleccionIncidentesActionPerformed(evt);
             }
         });
-        jPanel1.add(seleccionIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, -1, -1));
+        jPanel1.add(seleccionIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
 
         jLabel133.setText("Tipo de incidente:");
-        jPanel1.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel1.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         jTablaPaquete.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -222,7 +221,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         ));
         jScrollPane7.setViewportView(jTablaPaquete);
 
-        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 460, 70));
+        jPanel1.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 540, 120));
 
         jBRegistrarIncidente.setText("Registrar");
         jBRegistrarIncidente.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +229,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 jBRegistrarIncidenteActionPerformed(evt);
             }
         });
-        jPanel1.add(jBRegistrarIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
+        jPanel1.add(jBRegistrarIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
 
         jBRegresar.setBackground(new java.awt.Color(255, 250, 243));
         jBRegresar.setText("Regresar");
@@ -249,19 +248,37 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 jBRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(jBRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 101, 30));
+        jPanel1.add(jBRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 470, 101, 30));
+
+        jBRegistrarIncidente1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jBRegistrarIncidente1.setText("CONTACTANOS!");
+        jBRegistrarIncidente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBRegistrarIncidente1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBRegistrarIncidente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 220, 60));
+
+        jLabel6.setText("Cédula:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel7.setText("Si Tienes Dudas!!!!!!!!!!");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 30, 520));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 237, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -274,7 +291,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No Existen datos","Alguno de los datos no se encontraron", JOptionPane.ERROR_MESSAGE);
             return;
         } 
-        if(paquete.getRemitente().getCedula().equals(cliente.getCedula())){
+        if(cliente.consultarPaquete(paquete)){
             seleccionIncidentes.setVisible(true);
             jLabel133.setVisible(true);
             jTablaPaquete.setVisible(true);
@@ -427,73 +444,33 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         JFIngresar ingresar = new JFIngresar();
         ingresar.setVisible(true);
     }//GEN-LAST:event_jBRegresarActionPerformed
-    private void recuperarContrasena(String CI, int numpregunta, String respuesta) {
 
-    }
+    private void jBRegistrarIncidente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBRegistrarIncidente1ActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFPaquetesCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFPaquetesCliente().setVisible(true);
-            }
-        });
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel exitP;
     private javax.swing.JLabel exitTXT;
     private javax.swing.JButton jBInsertar;
     private javax.swing.JButton jBRegistrarIncidente;
+    private javax.swing.JButton jBRegistrarIncidente1;
     private javax.swing.JButton jBRegresar;
+    private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField jTCedula;
     private javax.swing.JTextField jTCodigo;
     private javax.swing.JTable jTablaPaquete;

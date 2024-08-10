@@ -56,7 +56,7 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
     private boolean contenidoValidar = false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
-    
+    private Conductor conductor;
     // Variables para manejo del mouse
     int xMouse, yMouse;  
     private ArrayList<Paquete> inventario;
@@ -66,7 +66,8 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
      * @param inventario Lista de paquetes.
      * @param conductor Conductor asignado.
      */
-    public JFPaquetesConductor(ArrayList<Paquete> inventario ) {      
+    public JFPaquetesConductor(ArrayList<Paquete> inventario, Conductor conductor) {      
+        this.conductor = conductor;
         this.inventario = inventario;
         initComponents(); // Inicializa los componentes de la interfaz gráfica
         setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage()); // Establece el icono de la ventana
@@ -381,12 +382,9 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE
             );
             inventario.remove(paquete);
-            Paquete paqueteCambio = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoEliminar.getText());
-            paqueteCambio.cambiarEstado(new Entregado(paqueteCambio));
-            
-            Inventario.obtenerInstancia().guardarInventario();
-            Asignacion.obtenerInstancia().guardarRelacionPaquetes();
+            conductor.entregarPaquete(jTCodigoEliminar.getText());
             refrescarInventario();
+
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0); // Vacía la tabla de detalles del paquete
         } else {

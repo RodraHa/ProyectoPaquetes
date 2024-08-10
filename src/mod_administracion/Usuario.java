@@ -16,6 +16,7 @@ public abstract class Usuario implements Serializable {
     private String direccion;
     private String telefono;
     private String email;
+    protected Inventario inventario;
 
     /**
      * Constructor para crear un nuevo usuario con la información proporcionada.
@@ -34,6 +35,7 @@ public abstract class Usuario implements Serializable {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+        this.inventario = Inventario.obtenerInstancia();
     }
 
     /**
@@ -43,7 +45,7 @@ public abstract class Usuario implements Serializable {
      * @return el paquete correspondiente al código de seguimiento, o {@code null} si no se encuentra.
      */
     public Paquete obtenerPaquete(String codigoTracking) {
-        return Inventario.obtenerInstancia().obtenerPaquete(codigoTracking);
+        return inventario.obtenerPaquete(codigoTracking);
     }
 
     /**

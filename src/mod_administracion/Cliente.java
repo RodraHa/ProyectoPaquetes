@@ -60,4 +60,8 @@ public class Cliente extends Usuario {
     public EstadoDelPaquete consultarEstadoPaquete() {
         return null;
     }
+
+    public boolean consultarPaquete(Paquete paquete) {
+        return paquete.getRemitente().getCedula().equals(this.getCedula());
+    }
 }

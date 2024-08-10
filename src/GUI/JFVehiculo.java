@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import mod_administracion.Conductor;
+import mod_administracion.Recepcionista;
 import mod_paquetes.Paquete;
 import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
@@ -50,13 +51,13 @@ public class JFVehiculo extends javax.swing.JFrame {
     private boolean telefonoConvenValidar1 = false;
     private boolean telefonoEmpleadoValiar1 = false;
     private boolean correoEmpleadoValidar1 = false;
-    private Provincia sucursal;
+    private Recepcionista recepcionista;
     //Conexion
     Connection cnx;
     DefaultTableModel modelo;
     //Mouse
     int xMouse, yMouse; 
-    public JFVehiculo( Provincia sucursal) {
+    public JFVehiculo( Recepcionista recepcionista) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png")).getImage());
         //All Files	C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
@@ -66,7 +67,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         cargarProvincias();
         refrescarVehiculos();
 
-        this.sucursal = sucursal;
+        this.recepcionista = recepcionista;
         // Opcional: Deshabilita la edición manual del campo de texto
         modelo = new DefaultTableModel();
         jInventarioVehiculo.setModel(modelo);
@@ -122,7 +123,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             }
         }
     }
-
+    
     private void refrescarInventario() {
 
         Asignacion asignacion = Asignacion.obtenerInstancia();
@@ -667,7 +668,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             jTNombreDespachador3.setText(conductor.getNombres() + " " +conductor.getApellidos());
             jTTelefono1.setText(conductor.getTelefono());
             jTCorreo1.setText(conductor.getEmail());
-            asignacion.asignarConductorAVehiculo(conductor,vehiculo);
+            recepcionista.asignarConductorAVehiculo(conductor,vehiculo);
             refrescarVehiculos();
         }
     }//GEN-LAST:event_BActualizarActionPerformed
@@ -794,7 +795,12 @@ public class JFVehiculo extends javax.swing.JFrame {
     private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarVehiculoActionPerformed
         Asignacion asignacion = Asignacion.obtenerInstancia();
         double capacidad = Double.parseDouble(jTCapacidadVehiculo.getText());
-        Vehiculo vehiculo = new Vehiculo(jTPlacaVehiculo.getText(),capacidad, sucursal);
+        String placa = jTPlacaVehiculo.getText();
+        if(!ValidadorDeRegistros.validarPlaca(placa)){
+            JOptionPane.showMessageDialog(this, "La placa no vale papu");
+            return;
+        }
+        Vehiculo vehiculo = new Vehiculo(placa,capacidad, this.recepcionista.obtenerSucursal());
         asignacion.agregarVehiculo(vehiculo);
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
         refrescarVehiculos();
@@ -835,9 +841,8 @@ public class JFVehiculo extends javax.swing.JFrame {
             return;
         } else {
             Vehiculo vehiculo = Asignacion.obtenerInstancia().obtenerVehiculo(placa);
-            if(!Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino)){
+            if(!this.recepcionista.asignarPaquetesAVehiculo(vehiculo,destino)){
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
             }
         }
         refrescarInventario();
