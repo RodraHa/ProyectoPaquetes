@@ -523,7 +523,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-        JFrame ventanaInventario = new JFPaquetesConductor(inventario);
+        JFrame ventanaInventario = new JFPaquetesConductor(inventario, conductor);
         VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
         jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuinventarioMouseClicked

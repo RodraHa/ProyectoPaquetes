@@ -76,6 +76,52 @@ public class JFMenu extends javax.swing.JFrame {
         Clicked5.setVisible(false);
         Clicked6.setVisible(false);
     }
+    
+    JFrame activeForm = null;
+    
+  private void abrirFormHijo(JFrame formHijo) {
+
+
+    // Verifica si hay un formulario activo y ocúltalo si es necesario
+    if (activeForm != null) {
+        if (activeForm.getClass() == formHijo.getClass()) {
+            System.out.println("El formulario ya está activo");
+            return;
+        }
+        activeForm.setVisible(false);
+    }
+
+    // Asigna el nuevo formulario activo
+    activeForm = formHijo;
+
+    // Configura el JFrame antes de hacerlo visible
+    // Esto debe hacerse antes de llamar a setVisible(true)
+    if (!formHijo.isUndecorated()) {
+        // Usa un Frame de configuración para configurar el JFrame
+        // Nota: Necesitamos un JFrame temporal para aplicar la configuración
+        JFrame tempFrame = new JFrame();
+        tempFrame.setUndecorated(true);
+        tempFrame.dispose(); // Destruye el marco temporal
+    }
+
+    // Ajusta el tamaño y la ubicación del formulario hijo
+    formHijo.setSize(JPGPanelContenedor.getSize());
+    formHijo.setLocation(JPGPanelContenedor.getLocation());
+    JPGPanelContenedor.setLayout(null); 
+    // Configura el tamaño y la posición del formulario hijo antes de agregarlo
+    formHijo.setBounds(0, 0, JPGPanelContenedor.getWidth(), JPGPanelContenedor.getHeight());
+    // Añade el contenido al panel contenedor
+    JPGPanelContenedor.removeAll();
+
+    JPGPanelContenedor.add(formHijo.getContentPane());
+    JPGPanelContenedor.revalidate();
+    JPGPanelContenedor.repaint();
+
+    
+
+}
+
+
 
     public JFMenu(Recepcionista recepcionista) {
         
@@ -161,18 +207,8 @@ public class JFMenu extends javax.swing.JFrame {
         Clicked6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
-        JPGPaquetes = new javax.swing.JPanel();
+        JPGPanelContenedor = new javax.swing.JPanel();
         jLInicio = new javax.swing.JLabel();
-        JPRemitente = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        JPConductores = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        JPFyV = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        JPRecepcionista = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        JPIncidentes = new javax.swing.JPanel();
-        jLabel117 = new javax.swing.JLabel();
         txtID = new javax.swing.JLabel();
         txtDateLog = new javax.swing.JLabel();
 
@@ -503,66 +539,15 @@ public class JFMenu extends javax.swing.JFrame {
 
         panelContent.setLayout(new java.awt.CardLayout());
 
-        JPGPaquetes.setBackground(new java.awt.Color(245, 245, 245));
-        JPGPaquetes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JPGPanelContenedor.setBackground(new java.awt.Color(245, 245, 245));
+        JPGPanelContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLInicio.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
         jLInicio.setForeground(new java.awt.Color(102, 102, 102));
         jLInicio.setText("Gestión de Paquetes");
-        JPGPaquetes.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 620, 250));
+        JPGPanelContenedor.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 620, 250));
 
-        panelContent.add(JPGPaquetes, "card1");
-
-        JPRemitente.setBackground(new java.awt.Color(245, 245, 245));
-        JPRemitente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 62)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Remitente");
-        JPRemitente.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
-
-        panelContent.add(JPRemitente, "card2");
-
-        JPConductores.setBackground(new java.awt.Color(245, 245, 245));
-        JPConductores.setMinimumSize(new java.awt.Dimension(810, 540));
-        JPConductores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Conductores");
-        JPConductores.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, -1, -1));
-
-        panelContent.add(JPConductores, "card3");
-
-        JPFyV.setBackground(new java.awt.Color(245, 245, 245));
-        JPFyV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Facturación y Venta");
-        JPFyV.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
-
-        panelContent.add(JPFyV, "card4");
-
-        JPRecepcionista.setBackground(new java.awt.Color(245, 245, 245));
-        JPRecepcionista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Recepcionista");
-        JPRecepcionista.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
-
-        panelContent.add(JPRecepcionista, "card5");
-
-        JPIncidentes.setBackground(new java.awt.Color(245, 245, 245));
-        JPIncidentes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel117.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel117.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel117.setText("Incidentes");
-        JPIncidentes.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
-
-        panelContent.add(JPIncidentes, "card6");
+        panelContent.add(JPGPanelContenedor, "card1");
 
         PanelHome.add(panelContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 1180, 690));
 
@@ -616,7 +601,8 @@ public class JFMenu extends javax.swing.JFrame {
         menuinventario.setBackground(Color.decode("#494848"));
         //JFrame ventanaInventario = new JFGestionPaquetes(cnx);
         JFrame ventanaInventario = new JFPaquetes(this.recepcionista);
-        VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
+        abrirFormHijo(ventanaInventario);
+        //VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
         jLInicio.setText("Paquetes");
     }//GEN-LAST:event_menuinventarioMouseClicked
 
@@ -626,7 +612,8 @@ public class JFMenu extends javax.swing.JFrame {
         cambiarSeccionMenu(2);
         menuProveedores.setBackground(Color.decode("#494848"));
         JFrame ventanaConductor = new JFConductores(this.recepcionista);
-        VentanaManager.getInstance().mostrarVentana("conductor", ventanaConductor);
+        abrirFormHijo(ventanaConductor);
+        //VentanaManager.getInstance().mostrarVentana("conductor", ventanaConductor);
         
     }//GEN-LAST:event_menuProveedoresMouseClicked
 
@@ -644,8 +631,9 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista = new JFVehiculo( this.recepcionista);
-        VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
+        JFrame ventanaRecepcionista = new JFVehiculo( recepcionista.obtenerSucursal());
+        abrirFormHijo(ventanaRecepcionista);
+        //VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
     }//GEN-LAST:event_menuEmpleadosMouseClicked
 
     private void menuEmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseEntered
@@ -663,7 +651,8 @@ public class JFMenu extends javax.swing.JFrame {
         cambiarSeccionMenu(1);
         menuClientes.setBackground(Color.decode("#494848"));
         JFrame remintente = new JFClientes();
-        VentanaManager.getInstance().mostrarVentana("remintente", remintente);
+        abrirFormHijo(remintente);
+        //VentanaManager.getInstance().mostrarVentana("remintente", remintente);
     }//GEN-LAST:event_menuClientesMouseClicked
 
     private void menuClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseEntered
@@ -680,8 +669,9 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card4");
         cambiarSeccionMenu(3);
         menuFacturacionYVenta.setBackground(Color.decode("#494848"));
-        JFrame ventantaFactura = new JFFacturacion();
-        VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
+        JFrame ventantaFactura = new JFFacturacion(cnx);
+        abrirFormHijo(ventantaFactura);
+        //VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
     }//GEN-LAST:event_menuFacturacionYVentaMouseClicked
 
     private void menuFacturacionYVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseEntered
@@ -776,7 +766,8 @@ public class JFMenu extends javax.swing.JFrame {
         cambiarSeccionMenu(5);
         menuIncidentes.setBackground(Color.decode("#494848"));
         JFrame ventanaIncidentes = new JFIncidente(recepcionista);
-        VentanaManager.getInstance().mostrarVentana("inventario", ventanaIncidentes);
+        abrirFormHijo(ventanaIncidentes);
+        //VentanaManager.getInstance().mostrarVentana("inventario", ventanaIncidentes);
 
     }//GEN-LAST:event_menuIncidentesMouseClicked
 
@@ -907,25 +898,15 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JPanel Clicked5;
     private javax.swing.JPanel Clicked6;
     private javax.swing.JPanel Home;
-    private javax.swing.JPanel JPConductores;
-    private javax.swing.JPanel JPFyV;
-    private javax.swing.JPanel JPGPaquetes;
-    private javax.swing.JPanel JPIncidentes;
-    private javax.swing.JPanel JPRecepcionista;
-    private javax.swing.JPanel JPRemitente;
+    private javax.swing.JPanel JPGPanelContenedor;
     private javax.swing.JPanel PanelHome;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLInicio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel3;

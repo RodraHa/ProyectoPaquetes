@@ -1,5 +1,6 @@
 package mod_administracion;
 
+import basededatos.DataBase;
 import mod_facturacion.Cotizacion;
 import mod_paquetes.EstadoDelPaquete;
 import mod_paquetes.Inventario;
@@ -153,6 +154,43 @@ public class Recepcionista extends Usuario {
 
     public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino){
         return Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino);             
+    }
+
+    public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
+        Asignacion.obtenerInstancia().asignarConductorAVehiculo(conductor,vehiculo);
+    }
+
+    public ArrayList<Paquete> obtenerPaquetes() {
+        return inventario.obtenerPaquetes();
+    }
+
+    public String obtenerSiguienteCodigoPaquete() {
+        return inventario.getSiguienteCodigoTracking();
+    }
+
+    public void guardarInventario() {
+        inventario.guardarInventario();
+    }
+
+    public void eliminarPaquete(Paquete paquete) {
+        inventario.eliminarPaquete(paquete);
+    }
+
+    public boolean consultarSiPaqueteExiste(String codigo) {
+        return inventario.existePaquete(codigo);
+    }
+
+    public void agregarConductor(String nombres, String apellidos, String cedula, String direccion, String telefono, String correo, String nombreUsuario, String clave) {
+        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, this.obtenerSucursal());
+        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
+        Asignacion.obtenerInstancia().agregarConductor(conductor);
+    }
+
+    public void eliminarConductor(String codigo) {
+        Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
+        Asignacion.obtenerInstancia().eliminarConductor(conductor);
+        Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
+        Asignacion.obtenerInstancia().guardarConductores();
     }
     
 }

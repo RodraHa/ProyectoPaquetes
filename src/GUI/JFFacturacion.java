@@ -3,16 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
+import mod_administracion.Cliente;
 import mod_administracion.Usuario;
 import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Cotizacion;
@@ -20,26 +32,158 @@ import mod_facturacion.Factura;
 import mod_facturacion.Precio;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
+import validaciones.*;
 
 /**
  *
  * @author USUARIO
  */
 public class JFFacturacion extends javax.swing.JFrame {
+//Validadores
+
+    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
+    ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
+//Factura
+  private boolean nombreNegocioValido = false;
+    private boolean estadoPagoP = false;
+    private boolean rucV = false;
+    private boolean dirNeg = false;
+    private boolean telefonoNeg = false;
+    private boolean rucCliente = false;
+    private boolean nombreCFactura = false;
+    private boolean apellidoCFactura = false;
+    private boolean telfCliente = false;
+    private boolean dirCliente = false;
+    private boolean correoElectronico = false;
     private  boolean cambiarSesion = true;
+
+    private boolean nombreItemValidar1 = false;
+    private boolean stockValidar1 = false;
+    private boolean precioUValidar1 = false;
     
-    //Mouse
+//Mouse
     int xMouse, yMouse;
     
+
     public JFFacturacion() {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
-        // Inicializa el campo IDIncidentesTF con el siguiente ID
-        JFrame frame = new JFrame();
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
+
+
         cargarFacturas();
         setLocationRelativeTo(null);
-        jBGenerarFactura.setVisible(false);
+    }
+
+    public boolean isCambiarSesion() {
+        return cambiarSesion;
+    }
+
+    public void setCambiarSesion(boolean cambiarSesion) {
+        this.cambiarSesion = cambiarSesion;
+    }
+
+    
+
+
+    
+
+    
+     public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
+        if (dateChooser.getDate() == null) {
+            label.setVisible(true);
+            return false;
+        } else {
+            label.setVisible(false);
+            return true;
+        }
+    }
+     
+      public void cambiarValoresFalsosF() {
+        nombreNegocioValido = false;
+        estadoPagoP = false;
+        rucV = false;
+        dirNeg = false;
+        telefonoNeg = false;
+        rucCliente = false;
+        nombreCFactura = false;
+        apellidoCFactura = false;
+        telfCliente = false;
+        dirCliente = false;
+        correoElectronico = false;
+    }
+      
+        public void cambiarValoresNego() {
+        nombreNegocioValido = true;
+        estadoPagoP = true;
+        rucV = true;
+        dirNeg = true;
+        telefonoNeg = true;
+    }
+        
+        
+      
+      private void deshabilitarCampos() {
+        // Deshabilitar los componentes
+
+        jTFnumerofactura.setEnabled(false);
+
+
+        jTNombreDestinatario.setEnabled(false);
+        jTApellidosCliente.setEnabled(false);
+        jTTelefonoCliente.setEnabled(false);
+        jTDireccionCliente.setEnabled(false);
+        jTcorreoCli.setEnabled(false);
+        jTNombreCliente.setEnabled(false);
+        // Habilitar los componentes
+        jTCodigoPaquete.setEnabled(true);
+
+        btnBuscarPaquete.setEnabled(true);
+
+        jBGenerarFactura.setEnabled(true);
+
+    }
+
+    private void limpiarYCambiarCampos() {
+
+        jTNombreDestinatario.setEnabled(true);
+        jTNombreCliente.setEnabled(true);
+        jTApellidosCliente.setEnabled(true);
+        jTTelefonoCliente.setEnabled(true);
+        jTDireccionCliente.setEnabled(true);
+        jTcorreoCli.setEnabled(true);
+
+        jTCodigoPaquete.setEnabled(false);
+
+        btnBuscarPaquete.setEnabled(false);
+
+        jBGenerarFactura.setEnabled(false);
+
+ 
+        jTNombreDestinatario.setText("");
+        jTNombreCliente.setText("");
+        jTApellidosCliente.setText("");
+        jTTelefonoCliente.setText("");
+        jTDireccionCliente.setText("");
+        jTcorreoCli.setText("");
+        jTPrecioPaquete.setText("");
+        jTTotal.setText("");
+        jTCodigoPaquete.setText("");
+        jTCodigoPaquete.setText("");
+
+
+
+    }
+    
+
+    private void fillClientFields(String id, String nombre, String apellido, String telefono, String direccion, String esExtranjero, String tipo, String correo) {
+
+
+        jTNombreDestinatario.setText(id);
+        jTNombreCliente.setText(nombre);
+        jTApellidosCliente.setText(apellido);
+        jTTelefonoCliente.setText(telefono);
+        jTDireccionCliente.setText(direccion);
+        jTcorreoCli.setText(correo);
     }
   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -97,12 +241,11 @@ public class JFFacturacion extends javax.swing.JFrame {
         jLabel71 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
-        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Facturación");
         setUndecorated(true);
-        getContentPane().setLayout(new java.awt.CardLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         JPFyV.setBackground(new java.awt.Color(245, 245, 245));
         JPFyV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -343,44 +486,16 @@ public class JFFacturacion extends javax.swing.JFrame {
                 jPanel3MousePressed(evt);
             }
         });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
         jLabel69.setText("Gestion de Envios");
+        jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
-        btnExit.setForeground(new java.awt.Color(255, 255, 255));
-        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_Delete_32px.png"))); // NOI18N
-        btnExit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
-            }
-        });
+        JPFyV.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 30));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel69)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1040, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel69)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        JPFyV.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, -1));
-
-        getContentPane().add(JPFyV, "card4");
+        getContentPane().add(JPFyV, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -449,7 +564,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTPrecioPaquete.setText(String.valueOf(precioPaquete));
         jTTotal.setText(String.valueOf(precioTotal));
           
-        jBGenerarFactura.setVisible(true);
+        
     }//GEN-LAST:event_btnBuscarPaqueteActionPerformed
 
     private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteKeyReleased
@@ -471,22 +586,6 @@ public class JFFacturacion extends javax.swing.JFrame {
        
 
     }//GEN-LAST:event_jTablaRegistrarFacturaMouseClicked
-
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-          getToolkit().beep();
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        if (cambiarSesion) {
-            int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro/a que quieres salir de esta ventana", "Warning", dialogButton);
-            if (dialogResult == JOptionPane.YES_OPTION) { 
-                this.dispose();
-            }
-        } else {
-            String mensaje = "Tienes una factura pendiente.";
-            String titulo = "¡Aviso Crítico!";
-            JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnExitActionPerformed
 
     private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
@@ -636,7 +735,6 @@ public class JFFacturacion extends javax.swing.JFrame {
     private javax.swing.JButton btnAbrirFactura;
     private javax.swing.JButton btnBuscarFactura;
     private javax.swing.JButton btnBuscarPaquete;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton jBGenerarFactura;
     private javax.swing.JLabel jLCITipoCliente;
     private javax.swing.JLabel jLPrecioDistancia;
