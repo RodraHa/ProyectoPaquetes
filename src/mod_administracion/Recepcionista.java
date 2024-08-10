@@ -154,5 +154,29 @@ public class Recepcionista extends Usuario {
     public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino){
         return Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino);             
     }
+
+    public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
+        Asignacion.obtenerInstancia().asignarConductorAVehiculo(conductor,vehiculo);
+    }
+
+    public ArrayList<Paquete> obtenerPaquetes() {
+        return inventario.obtenerPaquetes();
+    }
+
+    public String obtenerSiguienteCodigoPaquete() {
+        return inventario.getSiguienteCodigoTracking();
+    }
+
+    public void guardarInventario() {
+        inventario.guardarInventario();
+    }
+
+    public void eliminarPaquete(Paquete paquete) {
+        inventario.eliminarPaquete(paquete);
+    }
+
+    public boolean consultarSiPaqueteExiste(String codigo) {
+        return inventario.existePaquete(codigo);
+    }
     
 }

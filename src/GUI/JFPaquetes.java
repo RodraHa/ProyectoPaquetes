@@ -51,7 +51,6 @@ public class JFPaquetes extends javax.swing.JFrame {
     private boolean contenidoValidar=false;
     private boolean direccionValidar = false;
     private boolean destinatarioValidar = false;
-    private Inventario inventario;
     private Recepcionista recepcionista;
     
     //Mouse
@@ -61,7 +60,6 @@ public class JFPaquetes extends javax.swing.JFrame {
         this.recepcionista = recepcionista;
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/caja.png")).getImage());
-        inventario = Inventario.obtenerInstancia();
         cargarProvincias();
         refrescarInventario();
         desvanecerP();
@@ -80,7 +78,7 @@ public class JFPaquetes extends javax.swing.JFrame {
                     int selectedRow = jTablaInventario.getSelectedRow();
                     if (selectedRow != -1) {
                         String codigoTracking = jTablaInventario.getValueAt(selectedRow, 0).toString();
-                        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+                        Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
                         // Mostrar un JOptionPane con la información de la fila seleccionada
                         JOptionPane.showMessageDialog(null, 
                             paquete.toString(), 
@@ -93,10 +91,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    private void cargarInventario() {
-        inventario = Inventario.obtenerInstancia();
-        inventario.cargarInventario();
-    }
+
     
     private void refrescarInventario() {
         DefaultTableModel model = new DefaultTableModel();
@@ -106,7 +101,7 @@ public class JFPaquetes extends javax.swing.JFrame {
             "Remitente", "Provincia Origen", "Provincia Destino"
         };
         model.setColumnIdentifiers(columnNames);
-        for (Paquete paquete : inventario.obtenerPaquetes()) {
+        for (Paquete paquete : recepcionista.obtenerPaquetes()) {
                 model.addRow(new Object[]{
                 paquete.obtenerCodigo(),
                 paquete.getVolumen(),
@@ -535,7 +530,8 @@ public class JFPaquetes extends javax.swing.JFrame {
         } else if (!DataBase.obtenerInstancia().clienteExiste(jTRemitente.getText())) {
             JOptionPane.showMessageDialog(null, "El cliente no está registrado", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            String codigo = inventario.getSiguienteCodigoTracking();
+            String codigo = recepcionista.obtenerSiguienteCodigoPaquete();
+                    
             double volumen = Double.parseDouble(jTVolumen.getText());
             double peso = Double.parseDouble(jTPeso.getText());
             String contenido = jTContenidoPaquete.getText();
@@ -571,7 +567,8 @@ public class JFPaquetes extends javax.swing.JFrame {
         recepcionista.agregarPaqueteInventario();
         recepcionista.eliminarPaqueteRegistrado();
         refrescarInventario();
-        inventario.guardarInventario();
+        recepcionista.guardarInventario();
+        
         vaciarCampos();
         JOptionPane.showMessageDialog(null, "El paquete se agregó correctamente al inventario.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jBRegistrarPAInventarioActionPerformed
@@ -618,10 +615,10 @@ public class JFPaquetes extends javax.swing.JFrame {
         );
         if (respuesta == JOptionPane.YES_OPTION) {
             // El usuario confirmó la eliminación
-            Paquete paquete = inventario.obtenerPaquete(jTCodigoEliminar.getText());
-            inventario.eliminarPaquete(paquete);
+            Paquete paquete = recepcionista.obtenerPaquete(jTCodigoEliminar.getText());
+            recepcionista.eliminarPaquete(paquete);
             refrescarInventario();
-            inventario.guardarInventario();
+            recepcionista.guardarInventario();
             JOptionPane.showMessageDialog(
                     null,
                     "El paquete con código " + jTCodigoEliminar.getText() + " ha sido eliminado.",
@@ -646,11 +643,11 @@ public class JFPaquetes extends javax.swing.JFrame {
         if (codigo.isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
             return;
-        } else if (!inventario.existePaquete(codigo)) {
+        } else if (!recepcionista.consultarSiPaqueteExiste(codigo)) {
             JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Paquete paquete = inventario.obtenerPaquete(codigo);
+        Paquete paquete = recepcionista.obtenerPaquete(codigo);
         DefaultTableModel model = new DefaultTableModel();
         model.setRowCount(0);
         model.addColumn("Propiedad");

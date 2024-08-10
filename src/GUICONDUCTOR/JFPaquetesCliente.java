@@ -291,7 +291,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No Existen datos","Alguno de los datos no se encontraron", JOptionPane.ERROR_MESSAGE);
             return;
         } 
-        if(paquete.getRemitente().getCedula().equals(cliente.getCedula())){
+        if(cliente.consultarPaquete(paquete)){
             seleccionIncidentes.setVisible(true);
             jLabel133.setVisible(true);
             jTablaPaquete.setVisible(true);

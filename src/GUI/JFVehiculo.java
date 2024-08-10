@@ -684,7 +684,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             jTNombreDespachador3.setText(conductor.getNombres() + " " +conductor.getApellidos());
             jTTelefono1.setText(conductor.getTelefono());
             jTCorreo1.setText(conductor.getEmail());
-            asignacion.asignarConductorAVehiculo(conductor,vehiculo);
+            recepcionista.asignarConductorAVehiculo(conductor,vehiculo);
             refrescarVehiculos();
         }
     }//GEN-LAST:event_BActualizarActionPerformed
@@ -811,7 +811,12 @@ public class JFVehiculo extends javax.swing.JFrame {
     private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarVehiculoActionPerformed
         Asignacion asignacion = Asignacion.obtenerInstancia();
         double capacidad = Double.parseDouble(jTCapacidadVehiculo.getText());
-        Vehiculo vehiculo = new Vehiculo(jTPlacaVehiculo.getText(),capacidad, this.recepcionista.obtenerSucursal());
+        String placa = jTPlacaVehiculo.getText();
+        if(!ValidadorDeRegistros.validarPlaca(placa)){
+            JOptionPane.showMessageDialog(this, "La placa no vale papu");
+            return;
+        }
+        Vehiculo vehiculo = new Vehiculo(placa,capacidad, this.recepcionista.obtenerSucursal());
         asignacion.agregarVehiculo(vehiculo);
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
         refrescarVehiculos();

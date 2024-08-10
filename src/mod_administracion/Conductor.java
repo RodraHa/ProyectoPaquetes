@@ -6,6 +6,8 @@ import mod_paquetes.Paquete;
 import mod_transporte.Asignacion;
 
 import java.util.ArrayList;
+import mod_paquetes.Entregado;
+import mod_paquetes.Inventario;
 
 /**
  * Representa un conductor que puede reportar incidentes y consultar paquetes asignados.
@@ -66,5 +68,13 @@ public class Conductor extends Usuario {
 
     public ArrayList<Paquete> consultarPaquetesAsignados() {
         return Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(this);
+    }
+
+    public void entregarPaquete(String codigo) {
+        Paquete paqueteCambio = Inventario.obtenerInstancia().obtenerPaquete(codigo);
+        paqueteCambio.cambiarEstado(new Entregado(paqueteCambio));
+            
+        Inventario.obtenerInstancia().guardarInventario();
+        Asignacion.obtenerInstancia().guardarRelacionPaquetes();
     }
 }

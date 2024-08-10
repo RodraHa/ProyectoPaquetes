@@ -63,27 +63,15 @@ public class JFFacturacion extends javax.swing.JFrame {
     
 //Mouse
     int xMouse, yMouse;
-    Connection cnx;
     
-    public JFFacturacion(Connection cnx) {
+
+    public JFFacturacion() {
         initComponents();
-        this.cnx=cnx;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
-        JFrame frame = new JFrame();
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
 
 
         cargarFacturas();
         setLocationRelativeTo(null);
-
-    }
-    
-    public JFFacturacion() {
-        initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
-        // Inicializa el campo IDIncidentesTF con el siguiente ID
-        JFrame frame = new JFrame();
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
     }
 
     public boolean isCambiarSesion() {
