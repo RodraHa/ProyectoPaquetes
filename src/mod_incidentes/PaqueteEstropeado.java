@@ -4,6 +4,8 @@
  */
 package mod_incidentes;
 
+import mod_paquetes.Paquete;
+
 /**
  * Clase que representa un incidente de paquete estropeado.
  * Esta clase extiende la clase abstracta Incidente y proporciona
@@ -33,12 +35,17 @@ public class PaqueteEstropeado extends Incidente {
      * @return Una cadena que describe la resolución del incidente.
      */
     @Override
-    public String resolver(String[] argumentos) {
+    public String resolver(Paquete paquete, String[] argumentos) {
         if (argumentos[0].equals("Remunerado")) {
             return "Por los daños presentados en su paquete se le entregará una compensación de " + argumentos[1] + " dólares";
         } else if (argumentos[0].equals("NoRemunerado")) {
             return "No se pueden cubrir los daños que su paquete ha presentado. La empresa se deslinda de toda responsabilidad";
         }
         return "";    
+    }
+
+    @Override
+    public String getMensaje() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

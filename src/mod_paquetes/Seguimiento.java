@@ -14,7 +14,7 @@ public class Seguimiento implements Serializable {
         this.estadosAnteriores = new ArrayList<>();
     }
 
-    public void notificar(EstadoDelPaquete estado) {
+    public void actualizar(EstadoDelPaquete estado) {
         estadosAnteriores.add(estadoActual.toString());
         this.estadoActual = estado;
     }

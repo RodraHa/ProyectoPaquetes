@@ -48,7 +48,7 @@ public class GestorIncidente {
      */
     public void resolverIncidente(Paquete paquete, String ... argumentos) {
         // Resuelve el incidente utilizando el método resolver() de la instancia incidente
-        String registro = incidente.resolver(argumentos);
+        String registro = incidente.resolver(paquete, argumentos);
         // Obtiene el seguimiento del paquete
         Seguimiento seguimiento = paquete.obtenerSeguimiento();
         // Registra la resolución del incidente en el seguimiento del paquete

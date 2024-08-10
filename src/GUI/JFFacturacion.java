@@ -3,28 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-import com.toedter.calendar.JDateChooser;
-import java.awt.Color;
-import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
-import java.sql.Connection;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import com.toedter.calendar.JTextFieldDateEditor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
-import mod_administracion.Cliente;
 import mod_administracion.Usuario;
 import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Cotizacion;
@@ -32,51 +20,16 @@ import mod_facturacion.Factura;
 import mod_facturacion.Precio;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import validaciones.*;
 
 /**
  *
  * @author USUARIO
  */
 public class JFFacturacion extends javax.swing.JFrame {
-//Validadores
-
-    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
-    ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
-//Factura
-  private boolean nombreNegocioValido = false;
-    private boolean estadoPagoP = false;
-    private boolean rucV = false;
-    private boolean dirNeg = false;
-    private boolean telefonoNeg = false;
-    private boolean rucCliente = false;
-    private boolean nombreCFactura = false;
-    private boolean apellidoCFactura = false;
-    private boolean telfCliente = false;
-    private boolean dirCliente = false;
-    private boolean correoElectronico = false;
     private  boolean cambiarSesion = true;
-
-    private boolean nombreItemValidar1 = false;
-    private boolean stockValidar1 = false;
-    private boolean precioUValidar1 = false;
     
-//Mouse
+    //Mouse
     int xMouse, yMouse;
-    Connection cnx;
-    
-    public JFFacturacion(Connection cnx) {
-        initComponents();
-        this.cnx=cnx;
-        setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
-        JFrame frame = new JFrame();
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-
-
-        cargarFacturas();
-        setLocationRelativeTo(null);
-
-    }
     
     public JFFacturacion() {
         initComponents();
@@ -84,118 +37,9 @@ public class JFFacturacion extends javax.swing.JFrame {
         // Inicializa el campo IDIncidentesTF con el siguiente ID
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
-    }
-
-    public boolean isCambiarSesion() {
-        return cambiarSesion;
-    }
-
-    public void setCambiarSesion(boolean cambiarSesion) {
-        this.cambiarSesion = cambiarSesion;
-    }
-
-    
-
-
-    
-
-    
-     public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
-        if (dateChooser.getDate() == null) {
-            label.setVisible(true);
-            return false;
-        } else {
-            label.setVisible(false);
-            return true;
-        }
-    }
-     
-      public void cambiarValoresFalsosF() {
-        nombreNegocioValido = false;
-        estadoPagoP = false;
-        rucV = false;
-        dirNeg = false;
-        telefonoNeg = false;
-        rucCliente = false;
-        nombreCFactura = false;
-        apellidoCFactura = false;
-        telfCliente = false;
-        dirCliente = false;
-        correoElectronico = false;
-    }
-      
-        public void cambiarValoresNego() {
-        nombreNegocioValido = true;
-        estadoPagoP = true;
-        rucV = true;
-        dirNeg = true;
-        telefonoNeg = true;
-    }
-        
-        
-      
-      private void deshabilitarCampos() {
-        // Deshabilitar los componentes
-
-        jTFnumerofactura.setEnabled(false);
-
-
-        jTNombreDestinatario.setEnabled(false);
-        jTApellidosCliente.setEnabled(false);
-        jTTelefonoCliente.setEnabled(false);
-        jTDireccionCliente.setEnabled(false);
-        jTcorreoCli.setEnabled(false);
-        jTNombreCliente.setEnabled(false);
-        // Habilitar los componentes
-        jTCodigoPaquete.setEnabled(true);
-
-        btnBuscarPaquete.setEnabled(true);
-
-        jBGenerarFactura.setEnabled(true);
-
-    }
-
-    private void limpiarYCambiarCampos() {
-
-        jTNombreDestinatario.setEnabled(true);
-        jTNombreCliente.setEnabled(true);
-        jTApellidosCliente.setEnabled(true);
-        jTTelefonoCliente.setEnabled(true);
-        jTDireccionCliente.setEnabled(true);
-        jTcorreoCli.setEnabled(true);
-
-        jTCodigoPaquete.setEnabled(false);
-
-        btnBuscarPaquete.setEnabled(false);
-
-        jBGenerarFactura.setEnabled(false);
-
- 
-        jTNombreDestinatario.setText("");
-        jTNombreCliente.setText("");
-        jTApellidosCliente.setText("");
-        jTTelefonoCliente.setText("");
-        jTDireccionCliente.setText("");
-        jTcorreoCli.setText("");
-        jTPrecioPaquete.setText("");
-        jTTotal.setText("");
-        jTCodigoPaquete.setText("");
-        jTCodigoPaquete.setText("");
-
-
-
-    }
-    
-
-    private void fillClientFields(String id, String nombre, String apellido, String telefono, String direccion, String esExtranjero, String tipo, String correo) {
-
-
-        jTNombreDestinatario.setText(id);
-        jTNombreCliente.setText(nombre);
-        jTApellidosCliente.setText(apellido);
-        jTTelefonoCliente.setText(telefono);
-        jTDireccionCliente.setText(direccion);
-        jTcorreoCli.setText(correo);
+        cargarFacturas();
+        setLocationRelativeTo(null);
+        jBGenerarFactura.setVisible(false);
     }
   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -605,7 +449,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTPrecioPaquete.setText(String.valueOf(precioPaquete));
         jTTotal.setText(String.valueOf(precioTotal));
           
-        
+        jBGenerarFactura.setVisible(true);
     }//GEN-LAST:event_btnBuscarPaqueteActionPerformed
 
     private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteKeyReleased

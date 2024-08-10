@@ -49,7 +49,7 @@ public class Precio implements Serializable {
      * @return el precio total calculado para el paquete.
      */
     public double getPrecioTotalPaquete() {
-        return precioTotalPaquete;
+        return Math.round(precioTotalPaquete * 100.0) / 100.0;
     }
 
     /**

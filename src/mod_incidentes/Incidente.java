@@ -4,6 +4,8 @@
  */
 package mod_incidentes;
 
+import mod_paquetes.Paquete;
+
 /**
  * La clase abstracta Incidente define el comportamiento general para manejar incidentes.
  * Esta clase debe ser extendida por clases concretas que implementen los métodos abstractos.
@@ -27,5 +29,6 @@ public abstract class Incidente {
      * @param argumentos Argumentos necesarios para resolver el incidente.
      * @return Una cadena que describe la resolución del incidente.
      */
-    public abstract String resolver(String[] argumentos);
+    public abstract String resolver(Paquete paquete, String[] argumentos);
+    public abstract String getMensaje();
 }

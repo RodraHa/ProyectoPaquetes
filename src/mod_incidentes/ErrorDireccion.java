@@ -4,6 +4,8 @@
  */
 package mod_incidentes;
 
+import mod_paquetes.Paquete;
+
 /**
  * La clase ErrorDireccion representa un tipo específico de incidente relacionado con errores en la dirección de entrega.
  * Extiende la clase base Incidente.
@@ -30,7 +32,13 @@ public class ErrorDireccion extends Incidente {
      * @return String con el mensaje de resolución del incidente.
      */
     @Override
-    public String resolver(String[] argumentos) {
+    public String resolver(Paquete paquete, String[] argumentos) {
+        paquete.cambiarDireccionDestino(argumentos[0]);
         return "Se ha entregado el paquete en una nueva dirección: " + argumentos[0];
+    }
+
+    @Override
+    public String getMensaje() {
+        return "Escriba la nueva dirección de entrega";
     }
 }

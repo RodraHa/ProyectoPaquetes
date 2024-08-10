@@ -680,7 +680,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card4");
         cambiarSeccionMenu(3);
         menuFacturacionYVenta.setBackground(Color.decode("#494848"));
-        JFrame ventantaFactura = new JFFacturacion(cnx);
+        JFrame ventantaFactura = new JFFacturacion();
         VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
     }//GEN-LAST:event_menuFacturacionYVentaMouseClicked
 

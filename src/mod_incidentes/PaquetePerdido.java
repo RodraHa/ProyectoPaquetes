@@ -4,6 +4,8 @@
  */
 package mod_incidentes;
 
+import mod_paquetes.Paquete;
+
 /**
  * Clase que representa un incidente de paquete perdido.
  * Esta clase extiende la clase abstracta Incidente y proporciona
@@ -32,12 +34,17 @@ public class PaquetePerdido extends Incidente {
      * @return Una cadena que describe la resolución del incidente.
      */
     @Override
-    public String resolver(String[] argumentos) {
+    public String resolver(Paquete paquete, String[] argumentos) {
         if (argumentos[0].equals("Recuperado")) {
             return "Se ha recuperado su paquete y pronto se le será entregado";
         } else if (argumentos[0].equals("Desconocido")) {
             return "Su paquete no se ha podido encontrar, por favor, acérquese a la agencia más cercana para recibir una compensación";
         }
         return "";
+    }
+
+    @Override
+    public String getMensaje() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
