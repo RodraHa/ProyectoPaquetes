@@ -631,7 +631,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
-        JFrame ventanaRecepcionista = new JFVehiculo( recepcionista.obtenerSucursal());
+        JFrame ventanaRecepcionista = new JFVehiculo(recepcionista);
         abrirFormHijo(ventanaRecepcionista);
         //VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
     }//GEN-LAST:event_menuEmpleadosMouseClicked
@@ -669,7 +669,7 @@ public class JFMenu extends javax.swing.JFrame {
         contenido.show(panelContent, "card4");
         cambiarSeccionMenu(3);
         menuFacturacionYVenta.setBackground(Color.decode("#494848"));
-        JFrame ventantaFactura = new JFFacturacion(cnx);
+        JFrame ventantaFactura = new JFFacturacion();
         abrirFormHijo(ventantaFactura);
         //VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
     }//GEN-LAST:event_menuFacturacionYVentaMouseClicked
