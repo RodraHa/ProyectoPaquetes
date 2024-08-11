@@ -105,7 +105,6 @@ public final class Cotizacion {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
             facturas = (ArrayList<Factura>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
 }
