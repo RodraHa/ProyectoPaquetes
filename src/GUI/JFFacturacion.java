@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import mod_administracion.Cliente;
+import mod_administracion.Recepcionista;
 import mod_administracion.Usuario;
 import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Cotizacion;
@@ -63,10 +64,12 @@ public class JFFacturacion extends javax.swing.JFrame {
     
 //Mouse
     int xMouse, yMouse;
+    private Recepcionista recepcionista;
     
 
-    public JFFacturacion() {
+    public JFFacturacion(Recepcionista recepcionista) {
         initComponents();
+        this.recepcionista = recepcionista;
         setIconImage(new ImageIcon(getClass().getResource("/iconos/factura.png")).getImage());
 
 
@@ -515,11 +518,8 @@ public class JFFacturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jTCodigoPaqueteKeyTyped
 
     private void btnBuscarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPaqueteActionPerformed
-        
         String codigoTracking = jTCodigoPaquete.getText();
-        
-        Inventario inventario = Inventario.obtenerInstancia();
-        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+        Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
         if(paquete == null){
             JOptionPane.showMessageDialog(null, "No existe paquete.", "PAPU", JOptionPane.ERROR_MESSAGE);
             return;
@@ -535,9 +535,8 @@ public class JFFacturacion extends javax.swing.JFrame {
         String direccionRemitente = remitente.getDireccion();
         String correoRemitente = remitente.getEmail();
         
-        Cotizacion cotizacion = Cotizacion.obtenerInstancia();
-        String codigoFactura = cotizacion.getSiguienteCodigoFactura();
-        Precio precioDelPaquete = cotizacion.obtenerPrecioPaquete(paquete);
+        String codigoFactura = recepcionista.getSiguienteCodigoFactura();
+        Precio precioDelPaquete = recepcionista.obtenerPrecioPaquete(paquete);
         ArrayList<CalculoPrecio> preciosIndividuales = precioDelPaquete.obtenerPreciosIndividuales();
         double precioPaquete = preciosIndividuales.get(0).obtenerMonto();
         double precioDistancia = preciosIndividuales.get(1).obtenerMonto();
@@ -572,11 +571,9 @@ public class JFFacturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jTContenidoPaqueteKeyReleased
 
     private void jBGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarFacturaActionPerformed
-        Cotizacion cotizacion = Cotizacion.obtenerInstancia();
         String codigoTracking = jTCodigoPaquete.getText();
-        Inventario inventario = Inventario.obtenerInstancia();
-        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
-        cotizacion.emitirFacturaPaquete(paquete);
+        Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
+        recepcionista.emitirFacturaPaquete(paquete);
         cargarFacturas();
         JOptionPane.showMessageDialog(null, "Se generó la factura existosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jBGenerarFacturaActionPerformed
@@ -610,9 +607,11 @@ public class JFFacturacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTPrecioImpuestoActionPerformed
 
+    
+    
     private void btnBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacturaActionPerformed
         String codigoFactura = jTCodigoFactura.getText();
-        Factura factura = buscarFactura(codigoFactura);
+        Factura factura = recepcionista.buscarFactura(codigoFactura);
         if(factura == null){
             JOptionPane.showMessageDialog(null, "No hay esa factura.", "Información", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -640,7 +639,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         if(selectedRow != -1){
             TableModel model = tabla.getModel();
             Object value = model.getValueAt(selectedRow, 0);
-            Factura factura = buscarFactura(String.valueOf(value));
+            Factura factura = recepcionista.buscarFactura(String.valueOf(value));
             Usuario remitente = factura.obtenerCliente();
             String nombresRemitente = remitente.getNombres();
             String apellidosRemitente = remitente.getApellidos();
@@ -693,42 +692,6 @@ public class JFFacturacion extends javax.swing.JFrame {
         return datosCliente;
     }
     
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFFacturacion().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPFyV;
@@ -785,15 +748,5 @@ public class JFFacturacion extends javax.swing.JFrame {
     private javax.swing.JTextField jTcorreoCli;
     // End of variables declaration//GEN-END:variables
 
-    private Factura buscarFactura(String codigoFactura) {
-        Cotizacion cotizacion = Cotizacion.obtenerInstancia();
-        ArrayList<Factura> facturas = cotizacion.obtenerFacturas();
-        for (Factura factura : facturas){
-            if(factura.obtenerCodigo().equals(codigoFactura)){
-                return factura;
-            }
-        }
-        return null;
-    }
 }
     

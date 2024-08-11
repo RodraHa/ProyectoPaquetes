@@ -44,7 +44,7 @@ public final class Cotizacion {
      * @param paquete el paquete del cual se calculará el precio.
      * @return el objeto Precio que contiene el cálculo del precio del paquete.
      */
-    public static Precio obtenerPrecioPaquete(Paquete paquete) {
+    public Precio obtenerPrecioPaquete(Paquete paquete) {
         Precio precio = new Precio(
                 paquete, new PrecioPaquete(2, 2), new PrecioDistancia(0.10), new Impuesto(0.12));
         return precio;

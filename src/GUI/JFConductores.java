@@ -455,7 +455,9 @@ public class JFConductores extends javax.swing.JFrame {
             return;
         }
         
-        recepcionista.agregarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave);
+        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, recepcionista.obtenerSucursal());
+        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
+        Asignacion.obtenerInstancia().agregarConductor(conductor);
         
         JOptionPane.showMessageDialog(
             null,
@@ -548,7 +550,10 @@ public class JFConductores extends javax.swing.JFrame {
             String codigo = jTCodigoEliminar.getText();
 
             // El usuario confirmó la eliminación
-            recepcionista.eliminarConductor(codigo);
+            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
+            Asignacion.obtenerInstancia().eliminarConductor(conductor);
+            Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
+            Asignacion.obtenerInstancia().guardarConductores();
             JOptionPane.showMessageDialog(
                 null,
                 "El conductor con cedula " + jTCodigoEliminar.getText() + " ha sido eliminado.",
