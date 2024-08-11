@@ -85,7 +85,6 @@ public class JFMenu extends javax.swing.JFrame {
     // Verifica si hay un formulario activo y ocúltalo si es necesario
     if (activeForm != null) {
         if (activeForm.getClass() == formHijo.getClass()) {
-            System.out.println("El formulario ya está activo");
             return;
         }
         activeForm.setVisible(false);
