@@ -43,30 +43,28 @@ import validaciones.*;
  * @author Moises
  */
 public class JFMenu extends javax.swing.JFrame {
-//Vistas
+    // Vistas
 
-//Clases   
+    // Clases
 
-
-    //Usuarios
+    // Usuarios
     private boolean claveUsuario = false;
-    //Actualizar usuarios
+    // Actualizar usuarios
     private boolean claveUsuario2 = false;
     public Recepcionista recepcionista;
 
-//Mouses
+    // Mouses
     int xMouse, yMouse;
 
-//Conexión y auditoria
+    // Conexión y auditoria
     private String usuario;
     private String rol;
     Connection cnx;
-    //Paneles   
+    // Paneles
     private JPanel[] clickedPanels = new JPanel[6];
     CardLayout contenido, contenido1;
     private boolean focusChanged = false;
     private String nombreUsuario;
-
 
     public void desvanecer() {
         Clicked1.setVisible(true);
@@ -76,67 +74,60 @@ public class JFMenu extends javax.swing.JFrame {
         Clicked5.setVisible(false);
         Clicked6.setVisible(false);
     }
-    
+
     JFrame activeForm = null;
-    
-  private void abrirFormHijo(JFrame formHijo) {
 
+    private void abrirFormHijo(JFrame formHijo) {
 
-    // Verifica si hay un formulario activo y ocúltalo si es necesario
-    if (activeForm != null) {
-        if (activeForm.getClass() == formHijo.getClass()) {
-            return;
+        // Verifica si hay un formulario activo y ocúltalo si es necesario
+        if (activeForm != null) {
+            if (activeForm.getClass() == formHijo.getClass()) {
+                return;
+            }
+            activeForm.setVisible(false);
         }
-        activeForm.setVisible(false);
+
+        // Asigna el nuevo formulario activo
+        activeForm = formHijo;
+
+        // Configura el JFrame antes de hacerlo visible
+        // Esto debe hacerse antes de llamar a setVisible(true)
+        if (!formHijo.isUndecorated()) {
+            // Usa un Frame de configuración para configurar el JFrame
+            // Nota: Necesitamos un JFrame temporal para aplicar la configuración
+            JFrame tempFrame = new JFrame();
+            tempFrame.setUndecorated(true);
+            tempFrame.dispose(); // Destruye el marco temporal
+        }
+
+        // Ajusta el tamaño y la ubicación del formulario hijo
+        formHijo.setSize(JPGPanelContenedor.getSize());
+        formHijo.setLocation(JPGPanelContenedor.getLocation());
+        JPGPanelContenedor.setLayout(null);
+        // Configura el tamaño y la posición del formulario hijo antes de agregarlo
+        formHijo.setBounds(0, 0, JPGPanelContenedor.getWidth(), JPGPanelContenedor.getHeight());
+        // Añade el contenido al panel contenedor
+        JPGPanelContenedor.removeAll();
+
+        JPGPanelContenedor.add(formHijo.getContentPane());
+        JPGPanelContenedor.revalidate();
+        JPGPanelContenedor.repaint();
+
     }
-
-    // Asigna el nuevo formulario activo
-    activeForm = formHijo;
-
-    // Configura el JFrame antes de hacerlo visible
-    // Esto debe hacerse antes de llamar a setVisible(true)
-    if (!formHijo.isUndecorated()) {
-        // Usa un Frame de configuración para configurar el JFrame
-        // Nota: Necesitamos un JFrame temporal para aplicar la configuración
-        JFrame tempFrame = new JFrame();
-        tempFrame.setUndecorated(true);
-        tempFrame.dispose(); // Destruye el marco temporal
-    }
-
-    // Ajusta el tamaño y la ubicación del formulario hijo
-    formHijo.setSize(JPGPanelContenedor.getSize());
-    formHijo.setLocation(JPGPanelContenedor.getLocation());
-    JPGPanelContenedor.setLayout(null); 
-    // Configura el tamaño y la posición del formulario hijo antes de agregarlo
-    formHijo.setBounds(0, 0, JPGPanelContenedor.getWidth(), JPGPanelContenedor.getHeight());
-    // Añade el contenido al panel contenedor
-    JPGPanelContenedor.removeAll();
-
-    JPGPanelContenedor.add(formHijo.getContentPane());
-    JPGPanelContenedor.revalidate();
-    JPGPanelContenedor.repaint();
-
-    
-
-}
-
-
 
     public JFMenu(Recepcionista recepcionista) {
-        
-        
+
         Asignacion.obtenerInstancia().cargarVehiculos();
         Asignacion.obtenerInstancia().cargarConductores();
         Asignacion.obtenerInstancia().cargarRelacionConductores();
         Asignacion.obtenerInstancia().cargarRelacionPaquetes();
-        
+
         initComponents();
         this.recepcionista = recepcionista;
 
         Inventario.obtenerInstancia().cargarInventario();
         Cotizacion.obtenerInstancia().cargarCotizacion();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
-
 
         setLocationRelativeTo(null);
         String fecha = "dd-MM-yyyy";
@@ -145,7 +136,7 @@ public class JFMenu extends javax.swing.JFrame {
         Date fechaYHora = new Date();
 
         resultado = mostrarFechaHora(fechaYHora, fecha, localM);
-        //jDateChooserFecha.setText(resultado);
+        // jDateChooserFecha.setText(resultado);
         txtID.setText("Usuario\t: " + "Recepcionista " + recepcionista.obtenerSucursal().name());
         txtDateLog.setText("Fecha\t: " + resultado);
         JFrame frame = new JFrame();
@@ -158,11 +149,11 @@ public class JFMenu extends javax.swing.JFrame {
         clickedPanels[3] = Clicked4;
         clickedPanels[4] = Clicked5;
         clickedPanels[5] = Clicked6;
-        java.util.Date fechaActual = new java.util.Date();
         // Configura el JDateChooser
         desvanecer();
-        //int nuevoNumeroFactura = RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
-        //jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
+        // int nuevoNumeroFactura =
+        // RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
+        // jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
         jLInicio.setText("Bienvenido/a");
     }
 
@@ -178,7 +169,8 @@ public class JFMenu extends javax.swing.JFrame {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Home = new javax.swing.JPanel();
@@ -242,18 +234,16 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel69)
-                .addContainerGap(1295, Short.MAX_VALUE))
-        );
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel69)
+                                .addContainerGap(1295, Short.MAX_VALUE)));
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel69)
-                .addGap(0, 4, Short.MAX_VALUE))
-        );
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel69)
+                                .addGap(0, 4, Short.MAX_VALUE)));
 
         PanelHome.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 20));
 
@@ -271,9 +261,11 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuProveedoresMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuProveedoresMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuProveedoresMouseExited(evt);
             }
@@ -291,9 +283,11 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuEmpleadosMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuEmpleadosMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuEmpleadosMouseExited(evt);
             }
@@ -311,9 +305,11 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuClientesMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuClientesMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuClientesMouseExited(evt);
             }
@@ -331,9 +327,11 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseExited(evt);
             }
@@ -351,9 +349,11 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuFacturacionYVentaMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuFacturacionYVentaMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuFacturacionYVentaMouseExited(evt);
             }
@@ -375,9 +375,11 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseExited(evt);
             }
@@ -389,13 +391,11 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked1Layout = new javax.swing.GroupLayout(Clicked1);
         Clicked1.setLayout(Clicked1Layout);
         Clicked1Layout.setHorizontalGroup(
-            Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
+                Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 10, Short.MAX_VALUE));
         Clicked1Layout.setVerticalGroup(
-            Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
+                Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 52, Short.MAX_VALUE));
 
         jPanel1.add(Clicked1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 10, 52));
 
@@ -404,13 +404,11 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked2Layout = new javax.swing.GroupLayout(Clicked2);
         Clicked2.setLayout(Clicked2Layout);
         Clicked2Layout.setHorizontalGroup(
-            Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
+                Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 10, Short.MAX_VALUE));
         Clicked2Layout.setVerticalGroup(
-            Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
+                Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 52, Short.MAX_VALUE));
 
         jPanel1.add(Clicked2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 10, 52));
 
@@ -419,13 +417,11 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked3Layout = new javax.swing.GroupLayout(Clicked3);
         Clicked3.setLayout(Clicked3Layout);
         Clicked3Layout.setHorizontalGroup(
-            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
+                Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 10, Short.MAX_VALUE));
         Clicked3Layout.setVerticalGroup(
-            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
+                Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 52, Short.MAX_VALUE));
 
         jPanel1.add(Clicked3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 10, 52));
 
@@ -434,13 +430,11 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked4Layout = new javax.swing.GroupLayout(Clicked4);
         Clicked4.setLayout(Clicked4Layout);
         Clicked4Layout.setHorizontalGroup(
-            Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
+                Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 10, Short.MAX_VALUE));
         Clicked4Layout.setVerticalGroup(
-            Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
+                Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 52, Short.MAX_VALUE));
 
         jPanel1.add(Clicked4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 10, 52));
 
@@ -449,13 +443,11 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked5Layout = new javax.swing.GroupLayout(Clicked5);
         Clicked5.setLayout(Clicked5Layout);
         Clicked5Layout.setHorizontalGroup(
-            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
+                Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 10, Short.MAX_VALUE));
         Clicked5Layout.setVerticalGroup(
-            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
+                Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 52, Short.MAX_VALUE));
 
         jPanel1.add(Clicked5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 10, 52));
 
@@ -498,9 +490,11 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseClicked(evt);
             }
+
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseEntered(evt);
             }
+
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseExited(evt);
             }
@@ -512,13 +506,11 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked6Layout = new javax.swing.GroupLayout(Clicked6);
         Clicked6.setLayout(Clicked6Layout);
         Clicked6Layout.setHorizontalGroup(
-            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
+                Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 10, Short.MAX_VALUE));
         Clicked6Layout.setVerticalGroup(
-            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 52, Short.MAX_VALUE)
-        );
+                Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 52, Short.MAX_VALUE));
 
         jPanel1.add(Clicked6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 10, 52));
 
@@ -565,129 +557,131 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExitActionPerformed
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de cerrar la aplicacion?", "Warning", dialogButton);
+        int dialogResult = JOptionPane.showConfirmDialog(null, "Estas seguro de cerrar la aplicacion?", "Warning",
+                dialogButton);
         if (dialogResult == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
-    }//GEN-LAST:event_btnExitActionPerformed
+    }// GEN-LAST:event_btnExitActionPerformed
 
-    private void menuinventarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuinventarioMouseEntered
+    private void menuinventarioMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuinventarioMouseEntered
         menuinventario.setBackground(Color.decode("#333333"));
-    }//GEN-LAST:event_menuinventarioMouseEntered
+    }// GEN-LAST:event_menuinventarioMouseEntered
 
-    private void menuinventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuinventarioMouseExited
+    private void menuinventarioMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuinventarioMouseExited
         menuinventario.setBackground(Color.decode("#292728"));
         menuinventario.setOpaque(true);
-    }//GEN-LAST:event_menuinventarioMouseExited
+    }// GEN-LAST:event_menuinventarioMouseExited
 
-    private void menuinventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuinventarioMouseClicked
+    private void menuinventarioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuinventarioMouseClicked
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-        //JFrame ventanaInventario = new JFGestionPaquetes(cnx);
+        // JFrame ventanaInventario = new JFGestionPaquetes(cnx);
         JFrame ventanaInventario = new JFPaquetes(this.recepcionista);
         abrirFormHijo(ventanaInventario);
-        //VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
+        // VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
         jLInicio.setText("Paquetes");
-    }//GEN-LAST:event_menuinventarioMouseClicked
+    }// GEN-LAST:event_menuinventarioMouseClicked
 
-
-    private void menuProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseClicked
+    private void menuProveedoresMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuProveedoresMouseClicked
         contenido.show(panelContent, "card3");
         cambiarSeccionMenu(2);
         menuProveedores.setBackground(Color.decode("#494848"));
         JFrame ventanaConductor = new JFConductores(this.recepcionista);
         abrirFormHijo(ventanaConductor);
-        //VentanaManager.getInstance().mostrarVentana("conductor", ventanaConductor);
-        
-    }//GEN-LAST:event_menuProveedoresMouseClicked
+        // VentanaManager.getInstance().mostrarVentana("conductor", ventanaConductor);
 
-    private void menuProveedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseEntered
+    }// GEN-LAST:event_menuProveedoresMouseClicked
+
+    private void menuProveedoresMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuProveedoresMouseEntered
         menuProveedores.setBackground(Color.decode("#333333"));
         menuProveedores.setOpaque(true);
-    }//GEN-LAST:event_menuProveedoresMouseEntered
+    }// GEN-LAST:event_menuProveedoresMouseEntered
 
-    private void menuProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuProveedoresMouseExited
+    private void menuProveedoresMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuProveedoresMouseExited
         menuProveedores.setBackground(Color.decode("#292728"));
         menuProveedores.setOpaque(true);
-    }//GEN-LAST:event_menuProveedoresMouseExited
+    }// GEN-LAST:event_menuProveedoresMouseExited
 
-    private void menuEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseClicked
+    private void menuEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuEmpleadosMouseClicked
         contenido.show(panelContent, "card5");
         cambiarSeccionMenu(4);
         menuEmpleados.setBackground(Color.decode("#494848"));
         JFrame ventanaRecepcionista = new JFVehiculo(recepcionista);
         abrirFormHijo(ventanaRecepcionista);
-        //VentanaManager.getInstance().mostrarVentana("recepcionista", ventanaRecepcionista);
-    }//GEN-LAST:event_menuEmpleadosMouseClicked
+        // VentanaManager.getInstance().mostrarVentana("recepcionista",
+        // ventanaRecepcionista);
+    }// GEN-LAST:event_menuEmpleadosMouseClicked
 
-    private void menuEmpleadosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseEntered
+    private void menuEmpleadosMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuEmpleadosMouseEntered
         menuEmpleados.setBackground(Color.decode("#333333"));
         menuEmpleados.setOpaque(true);
-    }//GEN-LAST:event_menuEmpleadosMouseEntered
+    }// GEN-LAST:event_menuEmpleadosMouseEntered
 
-    private void menuEmpleadosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuEmpleadosMouseExited
+    private void menuEmpleadosMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuEmpleadosMouseExited
         menuEmpleados.setBackground(Color.decode("#292728"));
         menuEmpleados.setOpaque(true);
-    }//GEN-LAST:event_menuEmpleadosMouseExited
+    }// GEN-LAST:event_menuEmpleadosMouseExited
 
-    private void menuClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseClicked
+    private void menuClientesMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuClientesMouseClicked
         contenido.show(panelContent, "card2");
         cambiarSeccionMenu(1);
         menuClientes.setBackground(Color.decode("#494848"));
         JFrame remintente = new JFClientes();
         abrirFormHijo(remintente);
-        //VentanaManager.getInstance().mostrarVentana("remintente", remintente);
-    }//GEN-LAST:event_menuClientesMouseClicked
+        // VentanaManager.getInstance().mostrarVentana("remintente", remintente);
+    }// GEN-LAST:event_menuClientesMouseClicked
 
-    private void menuClientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseEntered
+    private void menuClientesMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuClientesMouseEntered
         menuClientes.setBackground(Color.decode("#333333"));
         menuClientes.setOpaque(true);
-    }//GEN-LAST:event_menuClientesMouseEntered
+    }// GEN-LAST:event_menuClientesMouseEntered
 
-    private void menuClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuClientesMouseExited
+    private void menuClientesMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuClientesMouseExited
         menuClientes.setBackground(Color.decode("#292728"));
         menuClientes.setOpaque(true);
-    }//GEN-LAST:event_menuClientesMouseExited
+    }// GEN-LAST:event_menuClientesMouseExited
 
-    private void menuFacturacionYVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseClicked
+    private void menuFacturacionYVentaMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuFacturacionYVentaMouseClicked
         contenido.show(panelContent, "card4");
         cambiarSeccionMenu(3);
         menuFacturacionYVenta.setBackground(Color.decode("#494848"));
         JFrame ventantaFactura = new JFFacturacion(recepcionista);
         abrirFormHijo(ventantaFactura);
-        //VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
-    }//GEN-LAST:event_menuFacturacionYVentaMouseClicked
+        // VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
+    }// GEN-LAST:event_menuFacturacionYVentaMouseClicked
 
-    private void menuFacturacionYVentaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseEntered
+    private void menuFacturacionYVentaMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuFacturacionYVentaMouseEntered
         menuFacturacionYVenta.setBackground(Color.decode("#333333"));
         menuFacturacionYVenta.setOpaque(true);
-    }//GEN-LAST:event_menuFacturacionYVentaMouseEntered
+    }// GEN-LAST:event_menuFacturacionYVentaMouseEntered
 
-    private void menuFacturacionYVentaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuFacturacionYVentaMouseExited
+    private void menuFacturacionYVentaMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuFacturacionYVentaMouseExited
         menuFacturacionYVenta.setBackground(Color.decode("#292728"));
         menuFacturacionYVenta.setOpaque(true);
-    }//GEN-LAST:event_menuFacturacionYVentaMouseExited
+    }// GEN-LAST:event_menuFacturacionYVentaMouseExited
 
-    private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseClicked
+    private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuLogoutMouseClicked
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
-        if (SessionManager.getInstance().isCambiarSesion()) {  // Accede a cambiarSesion a través del Singleton
-            int dialogResult = JOptionPane.showConfirmDialog(null, "¿Estás seguro/a que quieres salir de esta cuenta?", "Warning", dialogButton);
+        if (SessionManager.getInstance().isCambiarSesion()) { // Accede a cambiarSesion a través del Singleton
+            int dialogResult = JOptionPane.showConfirmDialog(null, "¿Estás seguro/a que quieres salir de esta cuenta?",
+                    "Warning", dialogButton);
             if (dialogResult == JOptionPane.YES_OPTION) {
                 // Crea una instancia del JFIngresar
                 JFIngresar ingresarFrame = new JFIngresar();
@@ -700,26 +694,25 @@ public class JFMenu extends javax.swing.JFrame {
                         window.dispose();
                     }
                 }
-                dispose();  // Cierra el JFrame actual si es necesario (es opcional si ya has cerrado todas las demás ventanas)
+                dispose(); // Cierra el JFrame actual si es necesario (es opcional si ya has cerrado todas
+                           // las demás ventanas)
             }
         } else {
             String mensaje = "Tienes una factura pendiente.";
             String titulo = "¡Aviso Crítico!";
             JOptionPane.showMessageDialog(null, mensaje, titulo, JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_menuLogoutMouseClicked
+    }// GEN-LAST:event_menuLogoutMouseClicked
 
-    private void menuLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseEntered
+    private void menuLogoutMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuLogoutMouseEntered
         menuLogout.setBackground(Color.decode("#333333"));
         menuLogout.setOpaque(true);
-    }//GEN-LAST:event_menuLogoutMouseEntered
+    }// GEN-LAST:event_menuLogoutMouseEntered
 
-    private void menuLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoutMouseExited
+    private void menuLogoutMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuLogoutMouseExited
         menuLogout.setBackground(Color.decode("#292728"));
         menuLogout.setOpaque(true);
-    }//GEN-LAST:event_menuLogoutMouseExited
-
-
+    }// GEN-LAST:event_menuLogoutMouseExited
 
     public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
         if (dateChooser.getDate() == null) {
@@ -736,22 +729,22 @@ public class JFMenu extends javax.swing.JFrame {
         return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
     }
 
-
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel3MousePressed
+    }// GEN-LAST:event_jPanel3MousePressed
 
-    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_jPanel3MouseDragged
+    }// GEN-LAST:event_jPanel3MouseDragged
 
     public boolean verificarContra(String password) {
         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$";
         return password.matches(regex);
     }
+
     public Boolean[] cambiarValoresVerdad(Boolean[] valores) {
         for (int i = 0; i < valores.length; i++) {
             valores[i] = true;
@@ -759,30 +752,29 @@ public class JFMenu extends javax.swing.JFrame {
         return valores;
     }
 
-
-    private void menuIncidentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseClicked
+    private void menuIncidentesMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuIncidentesMouseClicked
         contenido.show(panelContent, "card6");
         cambiarSeccionMenu(5);
         menuIncidentes.setBackground(Color.decode("#494848"));
         JFrame ventanaIncidentes = new JFIncidente(recepcionista);
         abrirFormHijo(ventanaIncidentes);
-        //VentanaManager.getInstance().mostrarVentana("inventario", ventanaIncidentes);
+        // VentanaManager.getInstance().mostrarVentana("inventario", ventanaIncidentes);
 
-    }//GEN-LAST:event_menuIncidentesMouseClicked
+    }// GEN-LAST:event_menuIncidentesMouseClicked
 
-    private void menuIncidentesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseEntered
+    private void menuIncidentesMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuIncidentesMouseEntered
         menuIncidentes.setBackground(Color.decode("#333333"));
         menuIncidentes.setOpaque(true);
-    }//GEN-LAST:event_menuIncidentesMouseEntered
+    }// GEN-LAST:event_menuIncidentesMouseEntered
 
-    private void menuIncidentesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuIncidentesMouseExited
+    private void menuIncidentesMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuIncidentesMouseExited
         menuIncidentes.setBackground(Color.decode("#292728"));
         menuIncidentes.setOpaque(true);
-    }//GEN-LAST:event_menuIncidentesMouseExited
+    }// GEN-LAST:event_menuIncidentesMouseExited
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }// GEN-LAST:event_jButton3ActionPerformed
 
     private void limpiarTabla(JTable tabla) {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
@@ -888,7 +880,7 @@ public class JFMenu extends javax.swing.JFrame {
         fechaString = formateador.format(fechaYHora);
         return fechaString;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Clicked1;
     private javax.swing.JPanel Clicked2;

@@ -6,7 +6,8 @@ import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 
 /**
- * Representa a un usuario en el sistema. Esta clase es abstracta y sirve como base para diferentes tipos de usuarios,
+ * Representa a un usuario en el sistema. Esta clase es abstracta y sirve como
+ * base para diferentes tipos de usuarios,
  * como clientes, conductores y recepcionistas.
  */
 public abstract class Usuario implements Serializable {
@@ -21,12 +22,12 @@ public abstract class Usuario implements Serializable {
     /**
      * Constructor para crear un nuevo usuario con la información proporcionada.
      *
-     * @param nombres el nombre del usuario.
+     * @param nombres   el nombre del usuario.
      * @param apellidos los apellidos del usuario.
-     * @param cedula el número de cédula del usuario.
+     * @param cedula    el número de cédula del usuario.
      * @param direccion la dirección del usuario.
-     * @param telefono el número de teléfono del usuario.
-     * @param email la dirección de correo electrónico del usuario.
+     * @param telefono  el número de teléfono del usuario.
+     * @param email     la dirección de correo electrónico del usuario.
      */
     public Usuario(String nombres, String apellidos, String cedula, String direccion, String telefono, String email) {
         this.nombres = nombres;
@@ -42,7 +43,8 @@ public abstract class Usuario implements Serializable {
      * Obtiene un paquete del inventario basado en el código de seguimiento.
      *
      * @param codigoTracking el código de seguimiento del paquete.
-     * @return el paquete correspondiente al código de seguimiento, o {@code null} si no se encuentra.
+     * @return el paquete correspondiente al código de seguimiento, o {@code null}
+     *         si no se encuentra.
      */
     public Paquete obtenerPaquete(String codigoTracking) {
         return inventario.obtenerPaquete(codigoTracking);
@@ -60,18 +62,22 @@ public abstract class Usuario implements Serializable {
 
     /**
      * Reporta un incidente para un paquete basado en el código de seguimiento.
-     * Este método debe ser implementado por las clases concretas que extienden {@link Usuario}.
+     * Este método debe ser implementado por las clases concretas que extienden
+     * {@link Usuario}.
      *
-     * @param codigoTracking el código de seguimiento del paquete para el cual se reporta el incidente.
+     * @param codigoTracking el código de seguimiento del paquete para el cual se
+     *                       reporta el incidente.
      */
     public abstract void reportarIncidente(String codigoTracking);
 
     /**
      * Cambia el estado de un paquete basado en el código de seguimiento.
-     * Este método debe ser implementado por las clases concretas que extienden {@link Usuario}.
+     * Este método debe ser implementado por las clases concretas que extienden
+     * {@link Usuario}.
      *
-     * @param codigoTracking el código de seguimiento del paquete cuyo estado se cambiará.
-     * @param estado el nuevo estado del paquete.
+     * @param codigoTracking el código de seguimiento del paquete cuyo estado se
+     *                       cambiará.
+     * @param estado         el nuevo estado del paquete.
      */
     public abstract void cambiarEstadoPaquete(String codigoTracking, EstadoDelPaquete estado);
 
