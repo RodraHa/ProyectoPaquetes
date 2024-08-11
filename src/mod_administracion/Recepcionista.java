@@ -8,8 +8,13 @@ import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import mod_facturacion.Factura;
 import mod_facturacion.Precio;
+import mod_incidentes.PaqueteNoTieneIncidente;
+import mod_incidentes.PaqueteYaTieneIncidente;
+import mod_paquetes.Entregado;
 import mod_transporte.Asignacion;
 import mod_transporte.Provincia;
 import mod_transporte.Vehiculo;
@@ -47,24 +52,23 @@ public class Recepcionista extends Usuario {
         this.asignacion = Asignacion.obtenerInstancia();
     }
 
-    /**
-     * Reporta un incidente para un paquete basado en el código de seguimiento.
-     * El incidente solo puede ser reportado si el paquete está en estado pendiente.
-     *
-     * @param codigoTracking el código de seguimiento del paquete para el cual se
-     *                       reporta el incidente.
-     */
     @Override
-    public void reportarIncidente(String codigoTracking) {
-        Paquete paquete = obtenerPaquete(codigoTracking);
-        if (paquete != null && !(paquete.obtenerEstado() instanceof Pendiente)) {
-            System.out.println(
-                    "El paquete se encuentra en otro estado fuera de su jurisdicción, no se puede reportar el incidente.");
-            // Delegar a módulo de incidentes aquí
-        } else {
-            System.out.println("No se puede reportar el incidente, el paquete está pendiente.");
+    public void reportarIncidente(Paquete paquete) throws ReporteNoPermitido, PaqueteYaTieneIncidente {
+        if (paquete == null || !(paquete.obtenerEstado() instanceof Pendiente)) {
+            throw new ReporteNoPermitido();
         }
+        gestorIncidente.crearIncidente(paquete);
     }
+    
+    
+    @Override
+    public void resolverIncidente(Paquete paquete, String[] argumentos) throws ReporteNoPermitido, PaqueteNoTieneIncidente {
+        if (paquete == null || !(paquete.obtenerEstado() instanceof Pendiente || paquete.obtenerEstado() instanceof Entregado)) {
+            throw new ReporteNoPermitido();
+        }
+        gestorIncidente.solucionarIncidente(paquete, argumentos);
+    }
+
 
     /**
      * Consulta el precio del paquete actualmente registrado en la cotización.
@@ -170,5 +174,4 @@ public class Recepcionista extends Usuario {
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
         return asignacion.obtenerRelacionPaqueteVehiculo();
     }
-
 }

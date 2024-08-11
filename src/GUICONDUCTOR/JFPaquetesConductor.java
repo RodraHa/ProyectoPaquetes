@@ -359,7 +359,6 @@ public class JFPaquetesConductor extends javax.swing.JFrame {
             inventario.remove(paquete);
             conductor.entregarPaquete(jTCodigoEliminar.getText());
             refrescarInventario();
-
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0); // Vacía la tabla de detalles del paquete
         } else {

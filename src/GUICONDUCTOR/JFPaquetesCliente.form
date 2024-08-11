@@ -238,12 +238,9 @@
         <Component class="javax.swing.JComboBox" name="seleccionIncidentes">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="2">
                 <StringItem index="0" value="Selecciona"/>
-                <StringItem index="1" value="Da&#xf1;o en el Paquete"/>
-                <StringItem index="2" value="Error de Direcci&#xf3;n"/>
-                <StringItem index="3" value="Paquete Perdido"/>
-                <StringItem index="4" value="Rechazo Entrega"/>
+                <StringItem index="1" value="Paquete estropeado"/>
               </StringArray>
             </Property>
           </Properties>

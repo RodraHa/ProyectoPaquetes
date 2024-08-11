@@ -8,7 +8,6 @@ import com.toedter.calendar.JDateChooser;
 
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
@@ -30,12 +29,8 @@ import validaciones.*;
  */
 public class JFVehiculo extends javax.swing.JFrame {
 
-    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
-    ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
-    // Recepcionista
     private Recepcionista recepcionista;
-    // Conexion
-    Connection cnx;
+
     DefaultTableModel modelo;
     // Mouse
     int xMouse, yMouse;
@@ -43,8 +38,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     public JFVehiculo(Recepcionista recepcionista) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png")).getImage());
-        // All Files
-        // C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
@@ -103,7 +96,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         }
     }
 
-    private void refrescarInventario() {
+    private void refrescarAsignacion() {
 
         Vehiculo vehiculo = recepcionista.obtenerVehiculo(jTPlacaVehiculo3.getText());
         ArrayList<Paquete> paquetes = recepcionista.obtenerRelacionPaqueteVehiculo().get(vehiculo);
@@ -844,7 +837,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        refrescarInventario();
+        refrescarAsignacion();
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void jTPlacaVehiculo3FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3FocusLost

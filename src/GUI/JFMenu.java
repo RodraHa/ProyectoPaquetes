@@ -18,12 +18,6 @@ import javax.swing.ImageIcon;
 
 import javax.swing.JLabel;
 import mod_administracion.Recepcionista;
-import mod_facturacion.Cotizacion;
-
-import mod_paquetes.Inventario;
-
-import mod_transporte.Asignacion;
-
 import validaciones.*;
 
 /**
@@ -31,20 +25,11 @@ import validaciones.*;
  * @author Moises
  */
 public class JFMenu extends javax.swing.JFrame {
-    // Vistas
-
-    // Clases
-
-    // Usuarios
-
     public Recepcionista recepcionista;
 
     // Mouses
     int xMouse, yMouse;
 
-    // Conexión y auditoria
-
-    // Paneles
     private JPanel[] clickedPanels = new JPanel[6];
     CardLayout contenido, contenido1;
 
@@ -98,17 +83,8 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     public JFMenu(Recepcionista recepcionista) {
-
-        Asignacion.obtenerInstancia().cargarVehiculos();
-        Asignacion.obtenerInstancia().cargarConductores();
-        Asignacion.obtenerInstancia().cargarRelacionConductores();
-        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
-
         initComponents();
         this.recepcionista = recepcionista;
-
-        Inventario.obtenerInstancia().cargarInventario();
-        Cotizacion.obtenerInstancia().cargarCotizacion();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/AjustesBest.png")).getImage());
 
         setLocationRelativeTo(null);
@@ -131,11 +107,7 @@ public class JFMenu extends javax.swing.JFrame {
         clickedPanels[3] = Clicked4;
         clickedPanels[4] = Clicked5;
         clickedPanels[5] = Clicked6;
-        // Configura el JDateChooser
         desvanecer();
-        // int nuevoNumeroFactura =
-        // RegistrarDatosFactura.obtenerNuevoNumeroFactura(cnx);
-        // jTFnumerofactura.setText(String.valueOf(nuevoNumeroFactura));
         jLInicio.setText("Bienvenido/a");
     }
 

@@ -6,6 +6,8 @@ import mod_paquetes.Paquete;
 import mod_transporte.Asignacion;
 
 import java.util.ArrayList;
+import mod_incidentes.PaqueteNoTieneIncidente;
+import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Entregado;
 import mod_paquetes.Inventario;
 
@@ -32,23 +34,21 @@ public class Conductor extends Usuario {
         super(nombres, apellidos, identificacion, direccion, telefono, email);
     }
 
-    /**
-     * Reporta un incidente para un paquete basado en el código de seguimiento.
-     * El incidente solo puede ser reportado si el paquete está en curso.
-     *
-     * @param codigoTracking el código de seguimiento del paquete para el cual se
-     *                       reporta el incidente.
-     */
     @Override
-    public void reportarIncidente(String codigoTracking) {
-        Paquete paquete = obtenerPaquete(codigoTracking);
-        if (paquete != null && !(paquete.obtenerEstado() instanceof EnCurso)) {
-            System.out.println(
-                    "El paquete se encuentra en otro estado fuera de su jurisdicción, no se puede reportar el incidente.");
-            // Delegar a módulo de incidentes aquí
-        } else {
-            System.out.println("No se puede reportar el incidente, el paquete está en curso.");
+    public void reportarIncidente(Paquete paquete) throws ReporteNoPermitido, PaqueteYaTieneIncidente {
+        if (paquete == null || !(paquete.obtenerEstado() instanceof EnCurso)) {
+            throw new ReporteNoPermitido();
         }
+        gestorIncidente.crearIncidente(paquete);
+    }
+    
+    
+    @Override
+    public void resolverIncidente(Paquete paquete, String[] argumentos) throws ReporteNoPermitido, PaqueteNoTieneIncidente {
+        if (paquete == null || !(paquete.obtenerEstado() instanceof EnCurso)) {
+            throw new ReporteNoPermitido();
+        }
+        gestorIncidente.solucionarIncidente(paquete, argumentos);
     }
 
     /**

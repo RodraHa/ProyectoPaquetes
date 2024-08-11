@@ -6,44 +6,33 @@ package mod_incidentes;
 
 import mod_paquetes.Paquete;
 
-/**
- * La clase ErrorDireccion representa un tipo específico de incidente relacionado con errores en la dirección de entrega.
- * Extiende la clase base Incidente.
- * 
- * @autor Rodrigo Haro
- */
 public class ErrorDireccion extends Incidente {
 
-    /**
-     * Método para registrar el incidente de error en la dirección.
-     * 
-     * @return String con el mensaje de registro del incidente.
-     */
     @Override
-    public String registrar() {
-        return "No se ha podido entregar el paquete en la dirección proporcionada";
+    public String getMensajeRegistro(Paquete paquete) {
+        return "El paquete no se puede entregar en la dirección \"" + paquete.getDireccionDestino() + "\".";
     }
 
-    /**
-     * Método para resolver el incidente de error en la dirección.
-     * 
-     * @param argumentos Un array de Strings que contiene los argumentos necesarios para resolver el incidente.
-     *                   En este caso, se espera que el primer argumento sea la nueva dirección de entrega.
-     * @return String con el mensaje de resolución del incidente.
-     */
     @Override
-    public String resolver(Paquete paquete, String[] argumentos) {
+    public String getMensajeResolucion(Paquete paquete) {
+        return "Se ha cambiado la dirección de entrega del paquete a \"" + paquete.getDireccionDestino() + "\".";
+    }
+
+    @Override
+    public String getMensajeSolicitud() {
+        return "Por favor ingrese la nueva dirección de entrega.";
+    }
+
+    @Override
+    public void manejar(Paquete paquete, String[] argumentos) {
+        if (paquete.getDireccionDestino().equals(argumentos[0])) {
+            return;
+        }
         paquete.cambiarDireccionDestino(argumentos[0]);
-        return "Se ha entregado el paquete en una nueva dirección: " + argumentos[0];
     }
 
     @Override
-    public String getMensaje() {
-        return "Escriba la nueva dirección de entrega";
-    }
-
-    @Override
-    public boolean sePuedeResolver() {
-        return true;
+    public String toString() {
+        return "Error de dirección";
     }
 }

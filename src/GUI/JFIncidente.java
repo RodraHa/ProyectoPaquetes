@@ -5,7 +5,6 @@
 package GUI;
 
 import mod_incidentes.ErrorDireccion;
-import mod_incidentes.GestorIncidente;
 import mod_incidentes.Incidente;
 import mod_incidentes.PaqueteEstropeado;
 import mod_incidentes.PaquetePerdido;
@@ -13,13 +12,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mod_administracion.Recepcionista;
+import mod_administracion.ReporteNoPermitido;
+import mod_incidentes.PaqueteNoTieneIncidente;
+import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import mod_paquetes.Pendiente;
 import mod_paquetes.Seguimiento;
-import validaciones.*;
 
 /**
  *
@@ -28,12 +29,6 @@ import validaciones.*;
  */
 public class JFIncidente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFIncidente
-     */
-    // Validadores
-    ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
-    ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     Recepcionista recepcionista;
 
     // Mouse
@@ -49,6 +44,15 @@ public class JFIncidente extends javax.swing.JFrame {
         jBRegistrarIncidente.setVisible(false);
         jTablaPaquete.setVisible(false);
         cargarIncidentes();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTIncidente.setModel(modelo);
+        String[] columnNames = {
+                "Propiedad", "Valor"
+        };
+        jTablaPaquete.setModel(modelo);
+        modelo.setColumnIdentifiers(columnNames);
+        jBResolverIncidente.setVisible(false);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
@@ -58,18 +62,6 @@ public class JFIncidente extends javax.swing.JFrame {
         JPIncidentes = new javax.swing.JPanel();
         jPIncidentes = new javax.swing.JPanel();
         jTPEmpleados1 = new javax.swing.JTabbedPane();
-        jPAE1 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        seleccionIncidentes1 = new javax.swing.JComboBox<>();
-        jLabel136 = new javax.swing.JLabel();
-        jLabel137 = new javax.swing.JLabel();
-        jTCodigoResolver = new javax.swing.JTextField();
-        jBConsultarIncidente = new javax.swing.JButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTIncidente = new javax.swing.JTable();
-        jBResolverIncidente = new javax.swing.JButton();
-        jLabel138 = new javax.swing.JLabel();
-        jTArgumentos = new javax.swing.JTextField();
         jPRE1 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         seleccionIncidentes = new javax.swing.JComboBox<>();
@@ -80,6 +72,14 @@ public class JFIncidente extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTablaPaquete = new javax.swing.JTable();
         jBRegistrarIncidente = new javax.swing.JButton();
+        jPAE1 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel137 = new javax.swing.JLabel();
+        jTCodigoResolver = new javax.swing.JTextField();
+        jBConsultarIncidente = new javax.swing.JButton();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTIncidente = new javax.swing.JTable();
+        jBResolverIncidente = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
 
@@ -101,99 +101,6 @@ public class JFIncidente extends javax.swing.JFrame {
                 jTPEmpleados1MouseClicked(evt);
             }
         });
-
-        jPAE1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        seleccionIncidentes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
-        seleccionIncidentes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seleccionIncidentes1ActionPerformed(evt);
-            }
-        });
-        jPanel11.add(seleccionIncidentes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 70, 157, -1));
-
-        jLabel136.setText("Tipo de incidente:");
-        jPanel11.add(jLabel136, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 73, 163, -1));
-
-        jLabel137.setText("Código tracking");
-        jPanel11.add(jLabel137, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 20, 163, -1));
-
-        jTCodigoResolver.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTCodigoResolverFocusLost(evt);
-            }
-        });
-        jTCodigoResolver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTCodigoResolverActionPerformed(evt);
-            }
-        });
-        jTCodigoResolver.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTCodigoResolverKeyReleased(evt);
-            }
-        });
-        jPanel11.add(jTCodigoResolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 17, 157, -1));
-
-        jBConsultarIncidente.setText("Consultar");
-        jBConsultarIncidente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBConsultarIncidenteActionPerformed(evt);
-            }
-        });
-        jPanel11.add(jBConsultarIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 45, -1, -1));
-
-        jTIncidente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane8.setViewportView(jTIncidente);
-
-        jPanel11.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 110, 930, 237));
-
-        jBResolverIncidente.setText("Resolver");
-        jBResolverIncidente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBResolverIncidenteActionPerformed(evt);
-            }
-        });
-        jPanel11.add(jBResolverIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 436, -1, -1));
-
-        jLabel138.setText("Argumentos");
-        jPanel11.add(jLabel138, new org.netbeans.lib.awtextra.AbsoluteConstraints(177, 376, 78, -1));
-
-        jTArgumentos.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTArgumentosFocusLost(evt);
-            }
-        });
-        jTArgumentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTArgumentosActionPerformed(evt);
-            }
-        });
-        jTArgumentos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTArgumentosKeyReleased(evt);
-            }
-        });
-        jPanel11.add(jTArgumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 373, 169, -1));
-
-        jPAE1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 28, 1000, 520));
-
-        jTPEmpleados1.addTab("Resolver Incidente", jPAE1);
-
-        jPIncidentes.add(jTPEmpleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, -1, -1));
 
         jPRE1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -306,7 +213,70 @@ public class JFIncidente extends javax.swing.JFrame {
 
         jPRE1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 24, -1, -1));
 
-        jPIncidentes.add(jPRE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 1080, 580));
+        jTPEmpleados1.addTab("Registrar Incidente", jPRE1);
+
+        jPAE1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel137.setText("Código tracking");
+        jPanel11.add(jLabel137, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 163, -1));
+
+        jTCodigoResolver.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTCodigoResolverFocusLost(evt);
+            }
+        });
+        jTCodigoResolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCodigoResolverActionPerformed(evt);
+            }
+        });
+        jTCodigoResolver.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTCodigoResolverKeyReleased(evt);
+            }
+        });
+        jPanel11.add(jTCodigoResolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 157, -1));
+
+        jBConsultarIncidente.setText("Consultar");
+        jBConsultarIncidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBConsultarIncidenteActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jBConsultarIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, -1, -1));
+
+        jTIncidente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTIncidente.setRowHeight(40);
+        jScrollPane8.setViewportView(jTIncidente);
+
+        jPanel11.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 110, 930, 237));
+
+        jBResolverIncidente.setText("Resolver");
+        jBResolverIncidente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBResolverIncidenteActionPerformed(evt);
+            }
+        });
+        jPanel11.add(jBResolverIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
+
+        jPAE1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 28, 1000, 520));
+
+        jTPEmpleados1.addTab("Resolver Incidente", jPAE1);
+
+        jPIncidentes.add(jTPEmpleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, -1, -1));
 
         JPIncidentes.add(jPIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1160, 640));
 
@@ -409,37 +379,45 @@ public class JFIncidente extends javax.swing.JFrame {
         } else if (incidente.equals("Paquete Perdido")) {
             incidenteRegistrar = new PaquetePerdido();
         }
-        if (!(paquete.obtenerEstado() instanceof Pendiente)) {
-            JOptionPane.showMessageDialog(
+        int respuesta = JOptionPane.showConfirmDialog(
+            null,
+            "¿Estás seguro de que deseas registrar este incidente?",
+            "Confirmación de registro",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            recepcionista.setIncidenteAManejar(incidenteRegistrar);
+            try {
+                recepcionista.reportarIncidente(paquete);
+            } catch (ReporteNoPermitido ex) {
+                JOptionPane.showMessageDialog(
                     null,
                     "El paquete se encuentra fuera de su jurisdicción",
                     "Registro falló",
                     JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        int respuesta = JOptionPane.showConfirmDialog(
-                null,
-                "¿Estás seguro de que deseas registrar este incidente?",
-                "Confirmación de registro",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
-            gi.crearIncidente(paquete);
-            JOptionPane.showMessageDialog(
+                return;
+            } catch (PaqueteYaTieneIncidente ex) {
+                JOptionPane.showMessageDialog(
                     null,
-                    "El incidente se ha registrado",
-                    "Registro Exitoso",
+                    "El paquete ya cuenta con un incidente registrado",
+                    "Registro falló",
                     JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            JOptionPane.showMessageDialog(
+                null,
+                "El incidente se ha registrado",
+                "Registro Exitoso",
+                JOptionPane.INFORMATION_MESSAGE);
             Inventario.obtenerInstancia().guardarInventario();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0);
         } else {
             JOptionPane.showMessageDialog(
-                    null,
-                    "El registro del incidente se ha cancelado",
-                    "Registro Cancelado",
-                    JOptionPane.INFORMATION_MESSAGE);
+                null,
+                "El registro del incidente se ha cancelado",
+                "Registro Cancelado",
+                JOptionPane.INFORMATION_MESSAGE);
         }
     }// GEN-LAST:event_jBRegistrarIncidenteActionPerformed
 
@@ -463,79 +441,103 @@ public class JFIncidente extends javax.swing.JFrame {
         Inventario inventario = Inventario.obtenerInstancia();
         if (jTCodigoResolver.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (!inventario.existePaquete(jTCodigoResolver.getText())) {
             JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe",
-                    JOptionPane.ERROR_MESSAGE);
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
         Seguimiento seguimiento = inventario.obtenerPaquete(jTCodigoResolver.getText()).obtenerSeguimiento();
+        if (!seguimiento.tieneIncidente()) {
+            JOptionPane.showMessageDialog(null, "El paquete no tiene un incidente que resolver", "Incidente no existe",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         DefaultTableModel model = new DefaultTableModel();
         model.setRowCount(0);
         model.addColumn("Propiedad");
         model.addColumn("Valor");
         model.addRow(new Object[] { "Estado del paquete", seguimiento.obtenerEstado() });
-        model.addRow(new Object[] { "Incidente", seguimiento.obtenerRegistroIncidente() });
+        model.addRow(new Object[] { "Incidente", seguimiento.getIncidente()});
+        model.addRow(new Object[] { "Registro", seguimiento.obtenerRegistroIncidente() });
+        model.addRow(new Object[] { "Resolucion", seguimiento.obtenerResolucion()});
         jTIncidente.setModel(model);
         jBResolverIncidente.setVisible(true);
     }// GEN-LAST:event_jBConsultarIncidenteActionPerformed
 
     private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBResolverIncidenteActionPerformed
-        String incidente = (String) seleccionIncidentes1.getSelectedItem();
-        Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoResolver.getText());
+        
+        Inventario inventario = Inventario.obtenerInstancia();
+        Paquete paquete = inventario.obtenerPaquete(jTCodigoResolver.getText());
+        Seguimiento seguimiento = paquete.obtenerSeguimiento();
+        if (seguimiento.obtenerResolucion() != null) {
+            JOptionPane.showMessageDialog(
+                null,
+                "El incidente ya se ha resuelto",
+                "Resolución registrada",
+                JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        String incidente = seguimiento.getIncidente();
         Incidente incidenteRegistrar = null;
-        if (incidente.equals("Error Dirección")) {
+        if (incidente.equals("Error de dirección")) {
             incidenteRegistrar = new ErrorDireccion();
         } else if (incidente.equals("Paquete Estropeado")) {
             incidenteRegistrar = new PaqueteEstropeado();
         } else if (incidente.equals("Paquete Perdido")) {
             incidenteRegistrar = new PaquetePerdido();
         }
-        if (!(paquete.obtenerEstado() instanceof Pendiente)) {
-            JOptionPane.showMessageDialog(
+        int respuesta = JOptionPane.showConfirmDialog(
+            null,
+            "¿Estás seguro de que deseas resolver este incidente?",
+            "Confirmación de resolución",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.WARNING_MESSAGE);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            recepcionista.setIncidenteAManejar(incidenteRegistrar);
+            String inputValue = "";
+            JTextField textField = new JTextField();
+            Object[] mensaje = {
+                recepcionista.getMensajeIncidente(),
+                textField
+            };
+
+            int option = JOptionPane.showConfirmDialog(null, mensaje, seguimiento.getIncidente(), JOptionPane.OK_CANCEL_OPTION);
+
+            if (option == JOptionPane.OK_OPTION) {
+                inputValue = textField.getText();
+            } else {
+                return;
+            }
+            try {
+                recepcionista.resolverIncidente(paquete, new String[] {inputValue});
+            } catch (ReporteNoPermitido ex) {
+                JOptionPane.showMessageDialog(
                     null,
                     "El paquete se encuentra fuera de su jurisdicción",
-                    "Resolución falló",
+                    "Registro falló",
                     JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        String argumentos = jTArgumentos.getText();
-        if (argumentos.isBlank()) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Ingrese los argumentos",
-                    "Error",
-                    JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        int respuesta = JOptionPane.showConfirmDialog(
-                null,
-                "¿Estás seguro de que deseas resolver este incidente?",
-                "Confirmación de resolución",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
-        if (respuesta == JOptionPane.YES_OPTION) {
-            String[] partes = argumentos.split("\\s+");
-            GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
-            for (String parte : partes) {
-                System.out.println(parte);
+                return;
+            } catch (PaqueteNoTieneIncidente ex) {
+                return;
             }
-            gi.resolverIncidente(paquete, partes);
             JOptionPane.showMessageDialog(
-                    null,
-                    "El incidente se ha resuelto",
-                    "Resolución Exitosa",
-                    JOptionPane.INFORMATION_MESSAGE);
+                null,
+                "El incidente se ha resuelto",
+                "Resolución Exitosa",
+                JOptionPane.INFORMATION_MESSAGE);
+            Inventario.obtenerInstancia().guardarInventario();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTIncidente.getModel();
             modeloTabla.setRowCount(0);
         } else {
             JOptionPane.showMessageDialog(
-                    null,
-                    "La resolución del incidente se ha cancelado",
-                    "Resolución Cancelada",
-                    JOptionPane.INFORMATION_MESSAGE);
+                null,
+                "La resolución del incidente se ha cancelado",
+                "Resolución Cancelada",
+                JOptionPane.INFORMATION_MESSAGE);
         }
     }// GEN-LAST:event_jBResolverIncidenteActionPerformed
 
@@ -559,9 +561,7 @@ public class JFIncidente extends javax.swing.JFrame {
     private javax.swing.JButton jBResolverIncidente;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
-    private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel137;
-    private javax.swing.JLabel jLabel138;
     private javax.swing.JLabel jLabel69;
     private javax.swing.JPanel jPAE1;
     private javax.swing.JPanel jPIncidentes;
@@ -571,14 +571,12 @@ public class JFIncidente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTextField jTArgumentos;
     private javax.swing.JTextField jTCodigoResolver;
     private javax.swing.JTextField jTCodigoTracking;
     private javax.swing.JTable jTIncidente;
     private javax.swing.JTabbedPane jTPEmpleados1;
     private javax.swing.JTable jTablaPaquete;
     private javax.swing.JComboBox<String> seleccionIncidentes;
-    private javax.swing.JComboBox<String> seleccionIncidentes1;
     // End of variables declaration//GEN-END:variables
 
     private void cargarIncidentes() {
@@ -586,9 +584,5 @@ public class JFIncidente extends javax.swing.JFrame {
         seleccionIncidentes.addItem("Error Dirección");
         seleccionIncidentes.addItem("Paquete Estropeado");
         seleccionIncidentes.addItem("Paquete Perdido");
-        seleccionIncidentes1.removeAllItems();
-        seleccionIncidentes1.addItem("Error Dirección");
-        seleccionIncidentes1.addItem("Paquete Estropeado");
-        seleccionIncidentes1.addItem("Paquete Perdido");
     }
 }

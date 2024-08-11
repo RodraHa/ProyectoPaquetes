@@ -50,9 +50,6 @@ public class JFMenuConductor extends javax.swing.JFrame {
      */
     public JFMenuConductor(Conductor conductor) {
         this.conductor = conductor;
-        // Cargar datos de asignación
-        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
-        Asignacion.obtenerInstancia().cargarRelacionConductores();
 
         inventario = this.conductor.consultarPaquetesAsignados();
 
@@ -579,7 +576,8 @@ public class JFMenuConductor extends javax.swing.JFrame {
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
-        JFrame ventanaIncidentes = new JFIncidenteConductor(inventario);
+        JFrame ventanaIncidentes = new JFIncidenteConductor(inventario, conductor);
+
         VentanaManager.getInstance().mostrarVentana("Incidentes", ventanaIncidentes);
         jLInicio.setText("Paquetes");
     }// GEN-LAST:event_menuIncidentesMouseClicked

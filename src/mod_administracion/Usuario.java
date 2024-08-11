@@ -1,7 +1,10 @@
 package mod_administracion;
 
 import java.io.Serializable;
-import mod_paquetes.EstadoDelPaquete;
+import mod_incidentes.GestorIncidente;
+import mod_incidentes.Incidente;
+import mod_incidentes.PaqueteNoTieneIncidente;
+import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 
@@ -18,6 +21,7 @@ public abstract class Usuario implements Serializable {
     private String telefono;
     private String email;
     protected Inventario inventario;
+    protected GestorIncidente gestorIncidente;
 
     /**
      * Constructor para crear un nuevo usuario con la información proporcionada.
@@ -37,6 +41,7 @@ public abstract class Usuario implements Serializable {
         this.telefono = telefono;
         this.email = email;
         this.inventario = Inventario.obtenerInstancia();
+        this.gestorIncidente = new GestorIncidente();
     }
 
     /**
@@ -60,15 +65,6 @@ public abstract class Usuario implements Serializable {
         return cedula;
     }
 
-    /**
-     * Reporta un incidente para un paquete basado en el código de seguimiento.
-     * Este método debe ser implementado por las clases concretas que extienden
-     * {@link Usuario}.
-     *
-     * @param codigoTracking el código de seguimiento del paquete para el cual se
-     *                       reporta el incidente.
-     */
-    public abstract void reportarIncidente(String codigoTracking);
     
     /**
      * Obtiene el nombre del usuario.
@@ -123,4 +119,15 @@ public abstract class Usuario implements Serializable {
     public String getEmail() {
         return email;
     }
+    
+    public void setIncidenteAManejar(Incidente incidente) {
+        this.gestorIncidente.setIncidente(incidente);
+    }
+    
+    public String getMensajeIncidente() {
+        return gestorIncidente.getMensaje();
+    }
+    
+    public abstract void reportarIncidente(Paquete paquete) throws ReporteNoPermitido, PaqueteYaTieneIncidente;
+    public abstract void resolverIncidente(Paquete paquete, String[] argumentos) throws ReporteNoPermitido, PaqueteNoTieneIncidente;
 }

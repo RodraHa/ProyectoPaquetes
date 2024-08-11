@@ -14,14 +14,12 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.DriverManager;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import mod_facturacion.Cotizacion;
+import mod_paquetes.Inventario;
+import mod_transporte.Asignacion;
 
 /**
  * Esta clase representa la interfaz gráfica de la ventana de inicio de sesión.

@@ -4,6 +4,8 @@
  */
 package mod_incidentes;
 
+import mod_facturacion.Cotizacion;
+import mod_facturacion.Precio;
 import mod_paquetes.Paquete;
 
 /**
@@ -15,29 +17,33 @@ import mod_paquetes.Paquete;
  */
 public class PaquetePerdido extends Incidente {
 
-    /**
-     * Registra el incidente de paquete perdido.
-     *
-     * @return Una cadena que describe el incidente registrado.
-     */
+    
     @Override
-    public String registrar() {
-        return "La ubicación de su paquete es desconocida";
-    }
-
-
-    @Override
-    public String resolver(Paquete paquete, String[] argumentos) {
-        return "";
+    public String getMensajeRegistro(Paquete paquete) {
+        return "El paquete ha sido reportado como perdido.";
     }
 
     @Override
-    public String getMensaje() {
-        return "";
+    public String getMensajeResolucion(Paquete paquete) {
+        return "Lamentamos informarle que su paquete se ha perdido. Se le proporcionará una compensación de $" + feedback + ".";
     }
 
     @Override
-    public boolean sePuedeResolver() {
-        return false;
+    public String getMensajeSolicitud() {
+        return "Por favor, ingrese el porcentaje de compensación para la pérdida del paquete (por ejemplo: 100).";
+    }
+
+    @Override
+    public void manejar(Paquete paquete, String[] argumentos) {
+        Precio precio = Cotizacion.obtenerInstancia().obtenerPrecioPaquete(paquete);
+        double total = precio.getPrecioTotalPaquete();
+        int porcentaje = Integer.parseInt(argumentos[0]);
+        double valorCompensacion = (porcentaje / 100.0) * total;
+        feedback = Double.toString(valorCompensacion);
+    }
+
+    @Override
+    public String toString() {
+        return "Paquete Perdido";
     }
 }

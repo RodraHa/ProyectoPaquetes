@@ -652,6 +652,7 @@ public class JFPaquetes extends javax.swing.JFrame {
         jTRemitente.setText("");
         jTContenidoPaquete.setText("");
         jTDestinatario.setText("");
+        jTDireccion1.setText("");
         jBRegistrarPAInventario.setVisible(false);
     }
 

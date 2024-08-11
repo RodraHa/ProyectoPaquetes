@@ -6,12 +6,14 @@ import java.util.ArrayList;
 public class Seguimiento implements Serializable {
     private EstadoDelPaquete estadoActual;
     private ArrayList<String> estadosAnteriores;
+    private String incidente;
     private String registroIncidente;
     private String resolucionIncidente;
 
     public Seguimiento(EstadoDelPaquete estado) {
         this.estadoActual = estado;
         this.estadosAnteriores = new ArrayList<>();
+        this.incidente = null;
     }
 
     public void actualizar(EstadoDelPaquete estado) {
@@ -27,13 +29,13 @@ public class Seguimiento implements Serializable {
         return estadosAnteriores;
     }
 
-    public void registrarIncidente(String definicion) {
+    public void registrarIncidente(String incidente, String definicion) {
+        this.incidente = incidente;
         registroIncidente = definicion;
     }
 
-    public void resolverIncidente(String definicion) {
+    public void registrarResolucion(String definicion) {
         resolucionIncidente = definicion;
-        registroIncidente = "";
     }
 
     public String obtenerRegistroIncidente() {
@@ -42,5 +44,13 @@ public class Seguimiento implements Serializable {
 
     public String obtenerResolucion() {
         return this.resolucionIncidente;
+    }
+    
+    public boolean tieneIncidente() {
+        return this.incidente != null;
+    }
+    
+    public String getIncidente() {
+        return this.incidente;
     }
 }
