@@ -25,26 +25,19 @@ public class PaquetePerdido extends Incidente {
         return "La ubicación de su paquete es desconocida";
     }
 
-    /**
-     * Resuelve el incidente de paquete perdido.
-     *
-     * @param argumentos Argumentos necesarios para resolver el incidente.
-     *                   El primer argumento debe ser una cadena que indica si la resolución
-     *                   es "Recuperado" o "Desconocido".
-     * @return Una cadena que describe la resolución del incidente.
-     */
+
     @Override
     public String resolver(Paquete paquete, String[] argumentos) {
-        if (argumentos[0].equals("Recuperado")) {
-            return "Se ha recuperado su paquete y pronto se le será entregado";
-        } else if (argumentos[0].equals("Desconocido")) {
-            return "Su paquete no se ha podido encontrar, por favor, acérquese a la agencia más cercana para recibir una compensación";
-        }
         return "";
     }
 
     @Override
     public String getMensaje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
+    }
+
+    @Override
+    public boolean sePuedeResolver() {
+        return false;
     }
 }

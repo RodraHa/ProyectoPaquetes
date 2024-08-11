@@ -84,6 +84,14 @@ public final class Cotizacion {
     public ArrayList<Factura> obtenerFacturas() {
         return facturas;
     }
+    
+    public void eliminarFactura(String codigoTracking) {
+        for (Factura factura : facturas) {
+            if (factura.obtenerCodigoTracking().equals(codigoTracking)) {
+                facturas.remove(factura);
+            }
+        }
+    }
 
     /**
      * Guarda la lista de facturas en un archivo serializado.
