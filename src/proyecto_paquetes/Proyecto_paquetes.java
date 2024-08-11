@@ -4,8 +4,6 @@
  */
 package proyecto_paquetes;
 
-import GUI.JFMenu;
-
 /**
  *
  * @author Rodrigo Haro
@@ -19,5 +17,5 @@ public class Proyecto_paquetes {
         JFIngresar loginForm = new JFIngresar();
         loginForm.setVisible(true);
     }
-    
+
 }

@@ -5,13 +5,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 
 import java.util.ArrayList;
 
 /**
- * Clase singleton que gestiona las cotizaciones y facturas en el sistema de facturación.
+ * Clase singleton que gestiona las cotizaciones y facturas en el sistema de
+ * facturación.
  */
 public final class Cotizacion {
     /** Instancia única de la clase Cotizacion. */
@@ -38,7 +38,8 @@ public final class Cotizacion {
         }
         return instancia;
     }
-        /**
+
+    /**
      * Obtiene el precio de un paquete específico.
      *
      * @param paquete el paquete del cual se calculará el precio.
@@ -51,7 +52,8 @@ public final class Cotizacion {
     }
 
     /**
-     * Emite una factura para un paquete específico y la guarda en la lista de facturas.
+     * Emite una factura para un paquete específico y la guarda en la lista de
+     * facturas.
      *
      * @param paquete el paquete del cual se emitirá la factura.
      */
@@ -84,7 +86,7 @@ public final class Cotizacion {
     public ArrayList<Factura> obtenerFacturas() {
         return facturas;
     }
-    
+
     public void eliminarFactura(String codigoTracking) {
         for (Factura factura : facturas) {
             if (factura.obtenerCodigoTracking().equals(codigoTracking)) {

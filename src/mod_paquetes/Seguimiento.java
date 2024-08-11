@@ -19,10 +19,6 @@ public class Seguimiento implements Serializable {
         this.estadoActual = estado;
     }
 
-    public boolean verificarEntregaPendiente() {
-        return estadoActual instanceof Pendiente;
-    }
-    
     public EstadoDelPaquete obtenerEstado() {
         return this.estadoActual;
     }
@@ -30,20 +26,20 @@ public class Seguimiento implements Serializable {
     public ArrayList<String> obtenerEstadosAnteriores() {
         return estadosAnteriores;
     }
-    
+
     public void registrarIncidente(String definicion) {
         registroIncidente = definicion;
     }
-    
+
     public void resolverIncidente(String definicion) {
         resolucionIncidente = definicion;
         registroIncidente = "";
     }
-    
+
     public String obtenerRegistroIncidente() {
         return this.registroIncidente;
     }
-    
+
     public String obtenerResolucion() {
         return this.resolucionIncidente;
     }

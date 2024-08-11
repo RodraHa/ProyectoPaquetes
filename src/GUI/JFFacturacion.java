@@ -3,37 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-import com.toedter.calendar.JDateChooser;
-import java.awt.Color;
-import java.text.SimpleDateFormat;
-import javax.swing.JFrame;
-import javax.swing.JRootPane;
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import com.toedter.calendar.JTextFieldDateEditor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
-import mod_administracion.Cliente;
 import mod_administracion.Recepcionista;
 import mod_administracion.Usuario;
 import mod_facturacion.CalculoPrecio;
 import mod_facturacion.Cotizacion;
 import mod_facturacion.Factura;
 import mod_facturacion.Precio;
-import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-import validaciones.*;
 
 /**
  *
@@ -42,7 +27,7 @@ import validaciones.*;
 public class JFFacturacion extends javax.swing.JFrame {
     int xMouse, yMouse;
     private Recepcionista recepcionista;
-    
+
     public JFFacturacion(Recepcionista recepcionista) {
         initComponents();
         this.recepcionista = recepcionista;
@@ -52,8 +37,8 @@ public class JFFacturacion extends javax.swing.JFrame {
         jBGenerarFactura.setVisible(false);
     }
 
-
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         JPFyV = new javax.swing.JPanel();
@@ -120,22 +105,22 @@ public class JFFacturacion extends javax.swing.JFrame {
         jPConsultarFactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTablaRegistrarFactura.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Contenido", "Remitente", "Destinario", "Provincia Origen", "Provincia Destino", "Dirección Destino", "Precio Total", "Fecha y Hora Emitida"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                new Object[][] {
+                        { null, null, null, null, null, null, null, null, null },
+                        { null, null, null, null, null, null, null, null, null },
+                        { null, null, null, null, null, null, null, null, null },
+                        { null, null, null, null, null, null, null, null, null }
+                },
+                new String[] {
+                        "Código", "Contenido", "Remitente", "Destinario", "Provincia Origen", "Provincia Destino",
+                        "Dirección Destino", "Precio Total", "Fecha y Hora Emitida"
+                }) {
+            boolean[] canEdit = new boolean[] {
+                    false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTablaRegistrarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,6 +255,7 @@ public class JFFacturacion extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTCodigoPaqueteKeyReleased(evt);
             }
+
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTCodigoPaqueteKeyTyped(evt);
             }
@@ -367,11 +353,11 @@ public class JFFacturacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTCodigoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoPaqueteKeyReleased
+    private void jTCodigoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCodigoPaqueteKeyReleased
 
-    }//GEN-LAST:event_jTCodigoPaqueteKeyReleased
+    }// GEN-LAST:event_jTCodigoPaqueteKeyReleased
 
-    private void jTCodigoPaqueteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoPaqueteKeyTyped
+    private void jTCodigoPaqueteKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCodigoPaqueteKeyTyped
         char variable = evt.getKeyChar();
         if (Character.isLetter(variable)) {
             getToolkit().beep();
@@ -379,18 +365,18 @@ public class JFFacturacion extends javax.swing.JFrame {
             jTCodigoPaquete.requestFocus();
             JOptionPane.showMessageDialog(null, "Ingrese solo números");
         }
-    }//GEN-LAST:event_jTCodigoPaqueteKeyTyped
+    }// GEN-LAST:event_jTCodigoPaqueteKeyTyped
 
-    private void btnBuscarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPaqueteActionPerformed
+    private void btnBuscarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBuscarPaqueteActionPerformed
         String codigoTracking = jTCodigoPaquete.getText();
         Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
-        if(paquete == null){
+        if (paquete == null) {
             JOptionPane.showMessageDialog(null, "No existe paquete.", "PAPU", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String contenidoPaquete = paquete.getContenido();
         String nombreDestinatario = paquete.getNombreDestinatario();
-        
+
         Usuario remitente = paquete.getRemitente();
         String nombresRemitente = remitente.getNombres();
         String apellidosRemitente = remitente.getApellidos();
@@ -398,7 +384,7 @@ public class JFFacturacion extends javax.swing.JFrame {
         String telefonoRemitente = remitente.getTelefono();
         String direccionRemitente = remitente.getDireccion();
         String correoRemitente = remitente.getEmail();
-        
+
         String codigoFactura = recepcionista.getSiguienteCodigoFactura();
         Precio precioDelPaquete = recepcionista.obtenerPrecioPaquete(paquete);
         ArrayList<CalculoPrecio> preciosIndividuales = precioDelPaquete.obtenerPreciosIndividuales();
@@ -406,13 +392,13 @@ public class JFFacturacion extends javax.swing.JFrame {
         double precioDistancia = preciosIndividuales.get(1).obtenerMonto();
         double precioImpuesto = preciosIndividuales.get(2).obtenerMonto();
         double precioTotal = precioDelPaquete.getPrecioTotalPaquete();
-        
+
         LocalDate fechaActual = LocalDate.now();
-        DateTimeFormatter  formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String fechaFormateada = fechaActual.format(formatoFecha);
-        
+
         jTFechaEmisionFactura.setText(fechaFormateada);
-        
+
         jTNombreDestinatario.setText(nombreDestinatario);
         jTContenidoPaquete.setText(contenidoPaquete);
         jTFnumerofactura.setText(codigoFactura);
@@ -426,80 +412,78 @@ public class JFFacturacion extends javax.swing.JFrame {
         jTPrecioImpuesto.setText(String.valueOf(precioImpuesto));
         jTPrecioPaquete.setText(String.valueOf(precioPaquete));
         jTTotal.setText(String.valueOf(precioTotal));
-        jBGenerarFactura.setVisible(true);        
-    }//GEN-LAST:event_btnBuscarPaqueteActionPerformed
+        jBGenerarFactura.setVisible(true);
+    }// GEN-LAST:event_btnBuscarPaqueteActionPerformed
 
-    private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTContenidoPaqueteKeyReleased
+    private void jTContenidoPaqueteKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTContenidoPaqueteKeyReleased
 
-    }//GEN-LAST:event_jTContenidoPaqueteKeyReleased
+    }// GEN-LAST:event_jTContenidoPaqueteKeyReleased
 
-    private void jBGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarFacturaActionPerformed
+    private void jBGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBGenerarFacturaActionPerformed
         String codigoTracking = jTCodigoPaquete.getText();
         Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
         recepcionista.emitirFacturaPaquete(paquete);
         cargarFacturas();
-        JOptionPane.showMessageDialog(null, "Se generó la factura existosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_jBGenerarFacturaActionPerformed
+        JOptionPane.showMessageDialog(null, "Se generó la factura existosamente.", "Información",
+                JOptionPane.INFORMATION_MESSAGE);
+    }// GEN-LAST:event_jBGenerarFacturaActionPerformed
 
-    private void jTablaRegistrarFacturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaRegistrarFacturaMouseClicked
+    private void jTablaRegistrarFacturaMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTablaRegistrarFacturaMouseClicked
 
-       
+    }// GEN-LAST:event_jTablaRegistrarFacturaMouseClicked
 
-    }//GEN-LAST:event_jTablaRegistrarFacturaMouseClicked
-
-    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_jPanel3MouseDragged
+    }// GEN-LAST:event_jPanel3MouseDragged
 
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel3MousePressed
+    }// GEN-LAST:event_jPanel3MousePressed
 
-    private void jTTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTTotalActionPerformed
+    private void jTTotalActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTTotalActionPerformed
+    }// GEN-LAST:event_jTTotalActionPerformed
 
-    private void jTPrecioDistanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPrecioDistanciaActionPerformed
+    private void jTPrecioDistanciaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPrecioDistanciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPrecioDistanciaActionPerformed
+    }// GEN-LAST:event_jTPrecioDistanciaActionPerformed
 
-    private void jTPrecioImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPrecioImpuestoActionPerformed
+    private void jTPrecioImpuestoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPrecioImpuestoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPrecioImpuestoActionPerformed
+    }// GEN-LAST:event_jTPrecioImpuestoActionPerformed
 
-    
-    
-    private void btnBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarFacturaActionPerformed
+    private void btnBuscarFacturaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBuscarFacturaActionPerformed
         String codigoFactura = jTCodigoFactura.getText();
         Factura factura = recepcionista.buscarFactura(codigoFactura);
-        if(factura == null){
+        if (factura == null) {
             JOptionPane.showMessageDialog(null, "No hay esa factura.", "Información", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        } else {
             DefaultTableModel model = (DefaultTableModel) jTablaRegistrarFactura.getModel();
             model.setRowCount(0);
             Object[] row = {
-                factura.obtenerCodigo(),
-                factura.obtenerDescripcion(),
-                obtenerDatosCliente(factura)[0],
-                factura.obtenerNombreDestinatario(),
-                factura.obtenerProvinciaOrigen(),
-                factura.obtenerProvinciaDestino(),
-                factura.obtenerDireccionDestino(),
-                factura.obtenerPrecioTotal(),
-                factura.obtenerFechaEmision(),
+                    factura.obtenerCodigo(),
+                    factura.obtenerDescripcion(),
+                    obtenerDatosCliente(factura)[0],
+                    factura.obtenerNombreDestinatario(),
+                    factura.obtenerProvinciaOrigen(),
+                    factura.obtenerProvinciaDestino(),
+                    factura.obtenerDireccionDestino(),
+                    factura.obtenerPrecioTotal(),
+                    factura.obtenerFechaEmision(),
             };
             model.addRow(row);
-            JOptionPane.showMessageDialog(null, "La factura fue encontrada con éxito.", "Información", JOptionPane.INFORMATION_MESSAGE);
-        } 
-    }//GEN-LAST:event_btnBuscarFacturaActionPerformed
+            JOptionPane.showMessageDialog(null, "La factura fue encontrada con éxito.", "Información",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }// GEN-LAST:event_btnBuscarFacturaActionPerformed
 
-    private void btnAbrirFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirFacturaActionPerformed
+    private void btnAbrirFacturaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAbrirFacturaActionPerformed
         JTable tabla = jTablaRegistrarFactura;
         int selectedRow = tabla.getSelectedRow();
-        if(selectedRow != -1){
+        if (selectedRow != -1) {
             TableModel model = tabla.getModel();
             Object value = model.getValueAt(selectedRow, 0);
             Factura factura = recepcionista.buscarFactura(String.valueOf(value));
@@ -509,20 +493,25 @@ public class JFFacturacion extends javax.swing.JFrame {
             String direccionRemitente = remitente.getDireccion();
             String telefonoRemitente = remitente.getTelefono();
             String cedulaRemitente = remitente.getCedula();
-            Precio precio = factura.obtenerPrecio();      
+            Precio precio = factura.obtenerPrecio();
             ArrayList<CalculoPrecio> preciosIndividuales = precio.obtenerPreciosIndividuales();
             double precioPaquete = preciosIndividuales.get(0).obtenerMonto();
             double precioDistancia = preciosIndividuales.get(1).obtenerMonto();
             double precioImpuesto = preciosIndividuales.get(2).obtenerMonto();
             double precioTotal = precio.getPrecioTotalPaquete();
-            JFFactura mostrarFactura = new JFFactura(factura.obtenerCodigo(), factura.obtenerFechaEmision(), factura.obtenerCodigoTracking(), factura.obtenerNombreDestinatario(), factura.obtenerProvinciaDestino(), 
-                                                    factura.obtenerDireccionDestino(), factura.obtenerDescripcion(), factura.obtenerPesoPaquete(), nombresRemitente, apellidosRemitente, direccionRemitente, telefonoRemitente, cedulaRemitente, precioPaquete, precioDistancia, precioImpuesto, precioTotal);
+            JFFactura mostrarFactura = new JFFactura(factura.obtenerCodigo(), factura.obtenerFechaEmision(),
+                    factura.obtenerCodigoTracking(), factura.obtenerNombreDestinatario(),
+                    factura.obtenerProvinciaDestino(),
+                    factura.obtenerDireccionDestino(), factura.obtenerDescripcion(), factura.obtenerPesoPaquete(),
+                    nombresRemitente, apellidosRemitente, direccionRemitente, telefonoRemitente, cedulaRemitente,
+                    precioPaquete, precioDistancia, precioImpuesto, precioTotal);
             mostrarFactura.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Seleccione una factura, por favor.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una factura, por favor.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-        
-    }//GEN-LAST:event_btnAbrirFacturaActionPerformed
+
+    }// GEN-LAST:event_btnAbrirFacturaActionPerformed
 
     private void cargarFacturas() {
         Cotizacion cotizacion = Cotizacion.obtenerInstancia();
@@ -533,28 +522,27 @@ public class JFFacturacion extends javax.swing.JFrame {
 
         for (Factura factura : facturas) {
             Object[] row = {
-                factura.obtenerCodigo(),
-                factura.obtenerDescripcion(),
-                obtenerDatosCliente(factura)[0],
-                factura.obtenerNombreDestinatario(),
-                factura.obtenerProvinciaOrigen(),
-                factura.obtenerProvinciaDestino(),
-                factura.obtenerDireccionDestino(),
-                factura.obtenerPrecioTotal(),
-                factura.obtenerFechaEmision(),
+                    factura.obtenerCodigo(),
+                    factura.obtenerDescripcion(),
+                    obtenerDatosCliente(factura)[0],
+                    factura.obtenerNombreDestinatario(),
+                    factura.obtenerProvinciaOrigen(),
+                    factura.obtenerProvinciaDestino(),
+                    factura.obtenerDireccionDestino(),
+                    factura.obtenerPrecioTotal(),
+                    factura.obtenerFechaEmision(),
             };
             model.addRow(row);
         }
     }
-    
-    public String[] obtenerDatosCliente(Factura factura){
-        String[] datosCliente = new String[5]; 
+
+    public String[] obtenerDatosCliente(Factura factura) {
+        String[] datosCliente = new String[5];
         Usuario cliente = factura.obtenerCliente();
         datosCliente[0] = cliente.getNombres() + " " + cliente.getApellidos();
         datosCliente[1] = cliente.getCedula();
         return datosCliente;
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPFyV;
@@ -612,4 +600,3 @@ public class JFFacturacion extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 }
-    

@@ -1,8 +1,6 @@
 package mod_transporte;
 
-import java.io.Serializable;
-
-public enum Provincia implements Serializable {
+public enum Provincia {
     AZUAY(-2.90055, -79.00453),
     BOLIVAR(-1.5883, -79.0305),
     CAÑAR(-2.5583, -78.9382),

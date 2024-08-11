@@ -3,20 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
-import basededatos.DataBase;
+
 import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JTextFieldDateEditor;
-import java.awt.Color;
-import java.text.SimpleDateFormat;
+
 import javax.swing.JFrame;
 import javax.swing.JRootPane;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -33,34 +29,22 @@ import validaciones.*;
  * @author USUARIO
  */
 public class JFVehiculo extends javax.swing.JFrame {
-    
+
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
-    //Recepcionista
-    private boolean cedulaEmpleadoValidar = false;
-    private boolean nombreEmpleadoValidar = false;
-    private boolean apellidoEmpleadoValidar = false;
-    private boolean cargoEmpleadoValidar = false;
-    private boolean direccionEmpleadoValidar = false;
-    private boolean telefonoConvenValidar = false;
-    private boolean telefonoEmpleadoValiar = false;
-    private boolean correoEmpleadoValidar = false;
-    //Actualizar
-    private boolean cargoEmpleadoValidar1 = false;
-    private boolean direccionEmpleadoValidar1 = false;
-    private boolean telefonoConvenValidar1 = false;
-    private boolean telefonoEmpleadoValiar1 = false;
-    private boolean correoEmpleadoValidar1 = false;
+    // Recepcionista
     private Recepcionista recepcionista;
-    //Conexion
+    // Conexion
     Connection cnx;
     DefaultTableModel modelo;
-    //Mouse
-    int xMouse, yMouse; 
-    public JFVehiculo( Recepcionista recepcionista) {
+    // Mouse
+    int xMouse, yMouse;
+
+    public JFVehiculo(Recepcionista recepcionista) {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/iconos/icons8_Monitor_32px.png")).getImage());
-        //All Files	C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
+        // All Files
+        // C:\Users\USUARIO\GitHub\PROYECTO_DELIVERY\PROYECTO_ENCOMIENDA\src\proyecto_encomienda\GESTION_PAQUETES\FRONTEND\imagenes\caja.png
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
@@ -72,14 +56,13 @@ public class JFVehiculo extends javax.swing.JFrame {
         modelo = new DefaultTableModel();
         jInventarioVehiculo.setModel(modelo);
         String[] columnNames = {
-            "Codigo", "Contenido", "Destinatario","Provincia Destino"
+                "Codigo", "Contenido", "Destinatario", "Provincia Destino"
         };
         modelo.setColumnIdentifiers(columnNames);
 
     }
-    
 
-  public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
+    public boolean fechaVacia(JDateChooser dateChooser, JLabel label) {
         if (dateChooser.getDate() == null) {
             label.setVisible(true);
             return false;
@@ -87,64 +70,59 @@ public class JFVehiculo extends javax.swing.JFrame {
             label.setVisible(false);
             return true;
         }
-    }    
-  
-    private String getValueAtSelectedRow(DefaultTableModel model, int selectedRow, String columnName) {
-        int colIndex = model.findColumn(columnName);
-        return colIndex != -1 ? model.getValueAt(selectedRow, colIndex).toString() : "";
     }
+
     private void refrescarVehiculos() {
         DefaultTableModel model = new DefaultTableModel();
         jTablaVehiculos.setModel(model);
         String[] columnNames = {
-            "Placa", "Capacidad", "Nombre Conductor","Identificacion", "Telefono"
+                "Placa", "Capacidad", "Nombre Conductor", "Identificacion", "Telefono"
         };
         model.setColumnIdentifiers(columnNames);
         Asignacion asignacion = Asignacion.obtenerInstancia();
         model.setRowCount(0);
         for (Vehiculo vehiculo : asignacion.obtenerVehiculos()) {
             Conductor conductor = asignacion.obtenerConductorDeVehiculo(vehiculo);
-            if(conductor != null){
-                model.addRow(new Object[]{
-                vehiculo.getNumeroPlaca(),
-                vehiculo.getCapacidad(),
-                conductor.getNombres() +" "+ conductor.getApellidos(),
-                conductor.getCedula(),
-                conductor.getTelefono()
-            });
-            }else{
-                model.addRow(new Object[]{
-                    vehiculo.getNumeroPlaca(),
-                    vehiculo.getCapacidad(),
-                    "NAN",
-                    "NAN",
-                    "NAN"
+            if (conductor != null) {
+                model.addRow(new Object[] {
+                        vehiculo.getNumeroPlaca(),
+                        vehiculo.getCapacidad(),
+                        conductor.getNombres() + " " + conductor.getApellidos(),
+                        conductor.getCedula(),
+                        conductor.getTelefono()
+                });
+            } else {
+                model.addRow(new Object[] {
+                        vehiculo.getNumeroPlaca(),
+                        vehiculo.getCapacidad(),
+                        "NAN",
+                        "NAN",
+                        "NAN"
                 });
             }
         }
     }
-    
+
     private void refrescarInventario() {
 
-        Asignacion asignacion = Asignacion.obtenerInstancia();
         Vehiculo vehiculo = recepcionista.obtenerVehiculo(jTPlacaVehiculo3.getText());
         ArrayList<Paquete> paquetes = recepcionista.obtenerRelacionPaqueteVehiculo().get(vehiculo);
-        
+
         modelo.setRowCount(0);
         for (Paquete paquete : paquetes) {
-                modelo.addRow(new Object[]{
-                paquete.obtenerCodigo(),
-                paquete.getContenido(),
-                paquete.getNombreDestinatario(),
-                paquete.getProvinciaDestino().name()
+            modelo.addRow(new Object[] {
+                    paquete.obtenerCodigo(),
+                    paquete.getContenido(),
+                    paquete.getNombreDestinatario(),
+                    paquete.getProvinciaDestino().name()
             });
         }
     }
-    
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSlider1 = new javax.swing.JSlider();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jPEmpleadosTab = new javax.swing.JPanel();
@@ -251,13 +229,11 @@ public class JFVehiculo extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
         jPanel44.setLayout(jPanel44Layout);
         jPanel44Layout.setHorizontalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+                jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE));
         jPanel44Layout.setVerticalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
-        );
+                jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 207, Short.MAX_VALUE));
 
         jPDatosEmpleados.add(jPanel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(844, 189, -1, -1));
         jPanel44.getAccessibleContext().setAccessibleName("Conductor Asignado\n");
@@ -287,16 +263,15 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPCE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTablaVehiculos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane6.setViewportView(jTablaVehiculos);
 
         jPCE.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 348, 1070, 185));
@@ -315,6 +290,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTPlacaVehiculo1KeyReleased(evt);
             }
+
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTPlacaVehiculo1KeyTyped(evt);
             }
@@ -373,43 +349,56 @@ public class JFVehiculo extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel45Layout = new javax.swing.GroupLayout(jPanel45);
         jPanel45.setLayout(jPanel45Layout);
         jPanel45Layout.setHorizontalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel45Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(jTNombreDespachador1)
-                    .addComponent(jTTelefono)
-                    .addComponent(jTCedula3))
-                .addContainerGap())
-        );
+                jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel45Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 55,
+                                                Short.MAX_VALUE)
+                                        .addComponent(jLabel35, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel45Layout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 206,
+                                                Short.MAX_VALUE)
+                                        .addComponent(jTNombreDespachador1)
+                                        .addComponent(jTTelefono)
+                                        .addComponent(jTCedula3))
+                                .addContainerGap()));
         jPanel45Layout.setVerticalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel45Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jTCedula3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTNombreDespachador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel34))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel35))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+                jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel45Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel31)
+                                        .addComponent(jTCedula3, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTNombreDespachador1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel34))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTTelefono, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel35))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTCorreo, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(15, Short.MAX_VALUE)));
 
         jPCE.add(jPanel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 158, -1, -1));
 
@@ -445,11 +434,13 @@ public class JFVehiculo extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTPlacaVehiculo2KeyReleased(evt);
             }
+
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTPlacaVehiculo2KeyTyped(evt);
             }
         });
-        jPDatosRecuperadosEmpleados.add(jTPlacaVehiculo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 210, -1));
+        jPDatosRecuperadosEmpleados.add(jTPlacaVehiculo2,
+                new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, 210, -1));
 
         jPanel46.setBorder(javax.swing.BorderFactory.createTitledBorder("Conductor Asignado"));
         jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -511,6 +502,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTCedula2KeyReleased(evt);
             }
+
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTCedula2KeyTyped(evt);
             }
@@ -534,21 +526,21 @@ public class JFVehiculo extends javax.swing.JFrame {
         jPEE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jInventarioVehiculo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane25.setViewportView(jInventarioVehiculo);
 
         jPEE.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 235, 1130, 253));
 
-        JComboDestino1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboDestino1.setModel(
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JComboDestino1ActionPerformed(evt);
@@ -578,6 +570,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTPlacaVehiculo3KeyReleased(evt);
             }
+
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTPlacaVehiculo3KeyTyped(evt);
             }
@@ -630,105 +623,107 @@ public class JFVehiculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_jPanel3MouseDragged
+    }// GEN-LAST:event_jPanel3MouseDragged
 
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel3MousePressed
+    }// GEN-LAST:event_jPanel3MousePressed
 
-    private void jTPEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleadosMouseClicked
+    private void jTPEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTPEmpleadosMouseClicked
 
-    }//GEN-LAST:event_jTPEmpleadosMouseClicked
+    }// GEN-LAST:event_jTPEmpleadosMouseClicked
 
-    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
+    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_BActualizarActionPerformed
         String placa = jTPlacaVehiculo2.getText();
         String cedula = jTCedula2.getText();
-        if(placa.isEmpty() || cedula.isEmpty()){
+        if (placa.isEmpty() || cedula.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (!ValidadorDeRegistros.validarPlaca(placa)) {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        } else if(!ValidadorDeRegistros.validarCedula(cedula)){
+        } else if (!ValidadorDeRegistros.validarCedula(cedula)) {
             JOptionPane.showMessageDialog(this, "La cedula no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }else {
+        } else {
             Asignacion asignacion = Asignacion.obtenerInstancia();
             Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
             if (vehiculo == null) {
-                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Conductor conductor = asignacion.obtenerConductorPorCedula(cedula);
-            if(conductor == null){
-                JOptionPane.showMessageDialog(this, "No existe un conductor con la cedula " + cedula, "Error", JOptionPane.ERROR_MESSAGE);
+            if (conductor == null) {
+                JOptionPane.showMessageDialog(this, "No existe un conductor con la cedula " + cedula, "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            jTNombreDespachador3.setText(conductor.getNombres() + " " +conductor.getApellidos());
+            jTNombreDespachador3.setText(conductor.getNombres() + " " + conductor.getApellidos());
             jTTelefono1.setText(conductor.getTelefono());
             jTCorreo1.setText(conductor.getEmail());
-            recepcionista.asignarConductorAVehiculo(conductor,vehiculo);
+            recepcionista.asignarConductorAVehiculo(conductor, vehiculo);
             refrescarVehiculos();
         }
-    }//GEN-LAST:event_BActualizarActionPerformed
+    }// GEN-LAST:event_BActualizarActionPerformed
 
-    private void jTCedula2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCedula2KeyTyped
+    private void jTCedula2KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCedula2KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2KeyTyped
+    }// GEN-LAST:event_jTCedula2KeyTyped
 
-    private void jTCedula2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCedula2KeyReleased
+    private void jTCedula2KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCedula2KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2KeyReleased
+    }// GEN-LAST:event_jTCedula2KeyReleased
 
-    private void jTCedula2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCedula2ActionPerformed
+    private void jTCedula2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCedula2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2ActionPerformed
+    }// GEN-LAST:event_jTCedula2ActionPerformed
 
-    private void jTCedula2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCedula2FocusLost
+    private void jTCedula2FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCedula2FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCedula2FocusLost
+    }// GEN-LAST:event_jTCedula2FocusLost
 
-    private void jTCorreo1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCorreo1KeyReleased
+    private void jTCorreo1KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCorreo1KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCorreo1KeyReleased
+    }// GEN-LAST:event_jTCorreo1KeyReleased
 
-    private void jTCorreo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCorreo1ActionPerformed
+    private void jTCorreo1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCorreo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCorreo1ActionPerformed
+    }// GEN-LAST:event_jTCorreo1ActionPerformed
 
-    private void jTCorreo1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCorreo1FocusLost
+    private void jTCorreo1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCorreo1FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCorreo1FocusLost
+    }// GEN-LAST:event_jTCorreo1FocusLost
 
-    private void jTNombreDespachador3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNombreDespachador3ActionPerformed
+    private void jTNombreDespachador3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTNombreDespachador3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTNombreDespachador3ActionPerformed
+    }// GEN-LAST:event_jTNombreDespachador3ActionPerformed
 
-    private void jTPlacaVehiculo2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2KeyTyped
+    private void jTPlacaVehiculo2KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2KeyTyped
+    }// GEN-LAST:event_jTPlacaVehiculo2KeyTyped
 
-    private void jTPlacaVehiculo2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2KeyReleased
+    private void jTPlacaVehiculo2KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2KeyReleased
+    }// GEN-LAST:event_jTPlacaVehiculo2KeyReleased
 
-    private void jTPlacaVehiculo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2ActionPerformed
+    private void jTPlacaVehiculo2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2ActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculo2ActionPerformed
 
-    private void jTPlacaVehiculo2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo2FocusLost
+    private void jTPlacaVehiculo2FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo2FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo2FocusLost
+    }// GEN-LAST:event_jTPlacaVehiculo2FocusLost
 
-    private void bSeleccionarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeleccionarConductorActionPerformed
+    private void bSeleccionarConductorActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_bSeleccionarConductorActionPerformed
         String placa = jTPlacaVehiculo1.getText();
-        if(placa.isEmpty()){
+        if (placa.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo de la placa está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -737,14 +732,15 @@ public class JFVehiculo extends javax.swing.JFrame {
         } else {
             Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (vehiculo == null) {
-                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorDeVehiculo(vehiculo);
             jTCapacidad.setText(Double.toString(vehiculo.getCapacidad()));
-            if(conductor != null){
+            if (conductor != null) {
                 jTCedula3.setText(conductor.getCedula());
-                jTNombreDespachador1.setText(conductor.getNombres()+" "+ conductor.getApellidos());
+                jTNombreDespachador1.setText(conductor.getNombres() + " " + conductor.getApellidos());
                 jTTelefono.setText(conductor.getTelefono());
                 jTCorreo.setText(conductor.getEmail());
                 return;
@@ -754,7 +750,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             jTTelefono.setText("No existe conductor asignado");
             jTCorreo.setText("No existe conductor asignado");
         }
-    }//GEN-LAST:event_bSeleccionarConductorActionPerformed
+    }// GEN-LAST:event_bSeleccionarConductorActionPerformed
 
     private void cargarProvincias() {
         JComboDestino1.removeAllItems();
@@ -762,71 +758,70 @@ public class JFVehiculo extends javax.swing.JFrame {
             JComboDestino1.addItem(provincia.name());
         }
     }
-    
-    
-    private void jTCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCorreoKeyReleased
 
-    }//GEN-LAST:event_jTCorreoKeyReleased
+    private void jTCorreoKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCorreoKeyReleased
 
-    private void jTCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCorreoFocusLost
+    }// GEN-LAST:event_jTCorreoKeyReleased
 
-    }//GEN-LAST:event_jTCorreoFocusLost
+    private void jTCorreoFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCorreoFocusLost
 
-    private void jTNombreDespachador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNombreDespachador1ActionPerformed
+    }// GEN-LAST:event_jTCorreoFocusLost
+
+    private void jTNombreDespachador1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTNombreDespachador1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTNombreDespachador1ActionPerformed
+    }// GEN-LAST:event_jTNombreDespachador1ActionPerformed
 
-    private void jTPlacaVehiculo1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1KeyTyped
+    private void jTPlacaVehiculo1KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1KeyTyped
+    }// GEN-LAST:event_jTPlacaVehiculo1KeyTyped
 
-    private void jTPlacaVehiculo1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1KeyReleased
+    private void jTPlacaVehiculo1KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1KeyReleased
+    }// GEN-LAST:event_jTPlacaVehiculo1KeyReleased
 
-    private void jTPlacaVehiculo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1ActionPerformed
+    private void jTPlacaVehiculo1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1ActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculo1ActionPerformed
 
-    private void jTPlacaVehiculo1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo1FocusLost
+    private void jTPlacaVehiculo1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo1FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo1FocusLost
+    }// GEN-LAST:event_jTPlacaVehiculo1FocusLost
 
-    private void jTPlacaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculoActionPerformed
+    private void jTPlacaVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculoActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculoActionPerformed
 
-    private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarVehiculoActionPerformed
+    private void bRegistrarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_bRegistrarVehiculoActionPerformed
         Asignacion asignacion = Asignacion.obtenerInstancia();
         double capacidad = Double.parseDouble(jTCapacidadVehiculo.getText());
         String placa = jTPlacaVehiculo.getText();
-        if(!ValidadorDeRegistros.validarPlaca(placa)){
+        if (!ValidadorDeRegistros.validarPlaca(placa)) {
             JOptionPane.showMessageDialog(this, "La placa no vale papu");
             return;
         }
-        Vehiculo vehiculo = new Vehiculo(placa,capacidad, this.recepcionista.obtenerSucursal());
+        Vehiculo vehiculo = new Vehiculo(placa, capacidad, this.recepcionista.obtenerSucursal());
         asignacion.agregarVehiculo(vehiculo);
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
         refrescarVehiculos();
-    }//GEN-LAST:event_bRegistrarVehiculoActionPerformed
+    }// GEN-LAST:event_bRegistrarVehiculoActionPerformed
 
-    private void jTCapacidadVehiculoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoKeyReleased
+    private void jTCapacidadVehiculoKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCapacidadVehiculoKeyReleased
 
-    }//GEN-LAST:event_jTCapacidadVehiculoKeyReleased
+    }// GEN-LAST:event_jTCapacidadVehiculoKeyReleased
 
-    private void jTCapacidadVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoActionPerformed
+    private void jTCapacidadVehiculoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCapacidadVehiculoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCapacidadVehiculoActionPerformed
+    }// GEN-LAST:event_jTCapacidadVehiculoActionPerformed
 
-    private void jTCapacidadVehiculoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCapacidadVehiculoFocusLost
+    private void jTCapacidadVehiculoFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCapacidadVehiculoFocusLost
 
-    }//GEN-LAST:event_jTCapacidadVehiculoFocusLost
+    }// GEN-LAST:event_jTCapacidadVehiculoFocusLost
 
-    private void JComboDestino1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JComboDestino1ActionPerformed
+    private void JComboDestino1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_JComboDestino1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_JComboDestino1ActionPerformed
+    }// GEN-LAST:event_JComboDestino1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         Provincia destino = null;
         Class<?> enumClass;
         try {
@@ -836,7 +831,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);
         }
         String placa = jTPlacaVehiculo3.getText();
-        if(placa.isEmpty()){
+        if (placa.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El campo de la placa está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -845,37 +840,36 @@ public class JFVehiculo extends javax.swing.JFrame {
             return;
         } else {
             Vehiculo vehiculo = Asignacion.obtenerInstancia().obtenerVehiculo(placa);
-            if(!recepcionista.asignarPaquetesAVehiculo(vehiculo,destino)){
+            if (!recepcionista.asignarPaquetesAVehiculo(vehiculo, destino)) {
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         refrescarInventario();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }// GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTPlacaVehiculo3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3FocusLost
+    private void jTPlacaVehiculo3FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3FocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3FocusLost
+    }// GEN-LAST:event_jTPlacaVehiculo3FocusLost
 
-    private void jTPlacaVehiculo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3ActionPerformed
+    private void jTPlacaVehiculo3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3ActionPerformed
+    }// GEN-LAST:event_jTPlacaVehiculo3ActionPerformed
 
-    private void jTPlacaVehiculo3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3KeyReleased
+    private void jTPlacaVehiculo3KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3KeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3KeyReleased
+    }// GEN-LAST:event_jTPlacaVehiculo3KeyReleased
 
-    private void jTPlacaVehiculo3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3KeyTyped
+    private void jTPlacaVehiculo3KeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTPlacaVehiculo3KeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTPlacaVehiculo3KeyTyped
+    }// GEN-LAST:event_jTPlacaVehiculo3KeyTyped
 
-    private void jTCapacidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCapacidad1ActionPerformed
+    private void jTCapacidad1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCapacidad1ActionPerformed
 
-    }//GEN-LAST:event_jTCapacidad1ActionPerformed
+    }// GEN-LAST:event_jTCapacidad1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BActualizar;
@@ -915,7 +909,6 @@ public class JFVehiculo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JSlider jSlider1;
     private javax.swing.JTextField jTCapacidad;
     private javax.swing.JTextField jTCapacidad1;
     private javax.swing.JTextField jTCapacidadVehiculo;

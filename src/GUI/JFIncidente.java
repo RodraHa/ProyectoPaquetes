@@ -9,14 +9,10 @@ import mod_incidentes.GestorIncidente;
 import mod_incidentes.Incidente;
 import mod_incidentes.PaqueteEstropeado;
 import mod_incidentes.PaquetePerdido;
-import java.sql.Connection;
-import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mod_administracion.Recepcionista;
 import mod_paquetes.Inventario;
@@ -24,7 +20,6 @@ import mod_paquetes.Paquete;
 import mod_paquetes.Pendiente;
 import mod_paquetes.Seguimiento;
 import validaciones.*;
-
 
 /**
  *
@@ -36,18 +31,13 @@ public class JFIncidente extends javax.swing.JFrame {
     /**
      * Creates new form JFIncidente
      */
-    //Validadores
+    // Validadores
     ValidadorDeRegistros validarRegistroF = new ValidadorDeRegistros();
     ValidadorDeSwings validadorCheck = new ValidadorDeSwings();
     Recepcionista recepcionista;
-    
-    //Mouse
-    int xMouse, yMouse;
 
-    //Incidentes
-    private boolean idIncidenteValidar = false;
-    private boolean descriptionValidar = false;
-    private boolean seleccionValidar = false;
+    // Mouse
+    int xMouse, yMouse;
 
     public JFIncidente(Recepcionista recepcionista) {
         initComponents();
@@ -56,18 +46,13 @@ public class JFIncidente extends javax.swing.JFrame {
         JFrame frame = new JFrame();
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
-        placeHolder();
         jBRegistrarIncidente.setVisible(false);
         jTablaPaquete.setVisible(false);
         cargarIncidentes();
     }
 
-    private void placeHolder() {
-        TextPrompt texto1 = new TextPrompt("Obligatorio", jTCodigoTracking);
-    }
-
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         JPIncidentes = new javax.swing.JPanel();
@@ -122,7 +107,8 @@ public class JFIncidente extends javax.swing.JFrame {
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        seleccionIncidentes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
+        seleccionIncidentes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona",
+                "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
         seleccionIncidentes1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionIncidentes1ActionPerformed(evt);
@@ -162,16 +148,15 @@ public class JFIncidente extends javax.swing.JFrame {
         jPanel11.add(jBConsultarIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 45, -1, -1));
 
         jTIncidente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane8.setViewportView(jTIncidente);
 
         jPanel11.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 110, 930, 237));
@@ -214,7 +199,8 @@ public class JFIncidente extends javax.swing.JFrame {
 
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
+        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona",
+                "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
         seleccionIncidentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionIncidentesActionPerformed(evt);
@@ -249,16 +235,15 @@ public class JFIncidente extends javax.swing.JFrame {
         });
 
         jTablaPaquete.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+                new Object[][] {
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null },
+                        { null, null, null, null }
+                },
+                new String[] {
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }));
         jScrollPane7.setViewportView(jTablaPaquete);
 
         jBRegistrarIncidente.setText("Registrar");
@@ -271,53 +256,70 @@ public class JFIncidente extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel134, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel133, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTCodigoTracking, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(seleccionIncidentes, javax.swing.GroupLayout.Alignment.LEADING, 0, 157, Short.MAX_VALUE))
-                        .addGap(263, 263, 263))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addComponent(jBConsultarPaquete)
-                        .addGap(113, 113, 113))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel10Layout.createSequentialGroup()
-                    .addGap(302, 302, 302)
-                    .addComponent(jBRegistrarIncidente)
-                    .addContainerGap(307, Short.MAX_VALUE)))
-        );
+                jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addContainerGap(37, Short.MAX_VALUE)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout
+                                                .createSequentialGroup()
+                                                .addGroup(jPanel10Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addComponent(jLabel134, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jLabel133, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(jPanel10Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                                false)
+                                                        .addComponent(jTCodigoTracking,
+                                                                javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(seleccionIncidentes,
+                                                                javax.swing.GroupLayout.Alignment.LEADING, 0, 157,
+                                                                Short.MAX_VALUE))
+                                                .addGap(263, 263, 263))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                                jPanel10Layout.createSequentialGroup()
+                                                        .addComponent(jBConsultarPaquete)
+                                                        .addGap(113, 113, 113))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout
+                                                .createSequentialGroup()
+                                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 622,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27))))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel10Layout.createSequentialGroup()
+                                        .addGap(302, 302, 302)
+                                        .addComponent(jBRegistrarIncidente)
+                                        .addContainerGap(307, Short.MAX_VALUE))));
         jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel134)
-                    .addComponent(jTCodigoTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBConsultarPaquete)
-                .addGap(2, 2, 2)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel133)
-                    .addComponent(seleccionIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                    .addContainerGap(368, Short.MAX_VALUE)
-                    .addComponent(jBRegistrarIncidente)
-                    .addGap(10, 10, 10)))
-        );
+                jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel134)
+                                        .addComponent(jTCodigoTracking, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBConsultarPaquete)
+                                .addGap(2, 2, 2)
+                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel133)
+                                        .addComponent(seleccionIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 237,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(55, Short.MAX_VALUE))
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                                        jPanel10Layout.createSequentialGroup()
+                                                .addContainerGap(368, Short.MAX_VALUE)
+                                                .addComponent(jBRegistrarIncidente)
+                                                .addGap(10, 10, 10))));
 
         jPRE1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 24, -1, -1));
 
@@ -350,22 +352,24 @@ public class JFIncidente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void seleccionIncidentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionIncidentesActionPerformed
+    private void seleccionIncidentesActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_seleccionIncidentesActionPerformed
 
-    }//GEN-LAST:event_seleccionIncidentesActionPerformed
+    }// GEN-LAST:event_seleccionIncidentesActionPerformed
 
-    private void jTCodigoTrackingKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoTrackingKeyReleased
+    private void jTCodigoTrackingKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCodigoTrackingKeyReleased
 
-    }//GEN-LAST:event_jTCodigoTrackingKeyReleased
+    }// GEN-LAST:event_jTCodigoTrackingKeyReleased
 
-    private void jBConsultarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarPaqueteActionPerformed
+    private void jBConsultarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBConsultarPaqueteActionPerformed
         Inventario inventario = Inventario.obtenerInstancia();
         if (jTCodigoTracking.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (!inventario.existePaquete(jTCodigoTracking.getText())) {
-            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         Paquete paquete = inventario.obtenerPaquete(jTCodigoTracking.getText());
@@ -373,45 +377,45 @@ public class JFIncidente extends javax.swing.JFrame {
         model.setRowCount(0);
         model.addColumn("Propiedad");
         model.addColumn("Valor");
-        model.addRow(new Object[]{"Código de Tracking", paquete.obtenerCodigo()});
-        model.addRow(new Object[]{"Volumen", paquete.getVolumen() + " m³"});
-        model.addRow(new Object[]{"Peso", paquete.getPeso() + " kg"});
-        model.addRow(new Object[]{"Contenido", paquete.getContenido()});
-        model.addRow(new Object[]{"Remitente", paquete.getRemitente().toString()});
-        model.addRow(new Object[]{"Provincia Origen", paquete.getProvinciaOrigen().name()});
-        model.addRow(new Object[]{"Provincia Destino", paquete.getProvinciaDestino().name()});
-        model.addRow(new Object[]{"Dirección Destino", paquete.getDireccionDestino()});
-        model.addRow(new Object[]{"Estado", paquete.obtenerEstado().toString()});
-        model.addRow(new Object[]{"Distancia Estimada", paquete.calcularDistancia() + " Km"});
+        model.addRow(new Object[] { "Código de Tracking", paquete.obtenerCodigo() });
+        model.addRow(new Object[] { "Volumen", paquete.getVolumen() + " m³" });
+        model.addRow(new Object[] { "Peso", paquete.getPeso() + " kg" });
+        model.addRow(new Object[] { "Contenido", paquete.getContenido() });
+        model.addRow(new Object[] { "Remitente", paquete.getRemitente().toString() });
+        model.addRow(new Object[] { "Provincia Origen", paquete.getProvinciaOrigen().name() });
+        model.addRow(new Object[] { "Provincia Destino", paquete.getProvinciaDestino().name() });
+        model.addRow(new Object[] { "Dirección Destino", paquete.getDireccionDestino() });
+        model.addRow(new Object[] { "Estado", paquete.obtenerEstado().toString() });
+        model.addRow(new Object[] { "Distancia Estimada", paquete.calcularDistancia() + " Km" });
         jTablaPaquete.setModel(model);
         jBRegistrarIncidente.setVisible(true);
         jTablaPaquete.setVisible(true);
-    }//GEN-LAST:event_jBConsultarPaqueteActionPerformed
+    }// GEN-LAST:event_jBConsultarPaqueteActionPerformed
 
-    private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPEmpleados1MouseClicked
+    private void jTPEmpleados1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTPEmpleados1MouseClicked
 
-    }//GEN-LAST:event_jTPEmpleados1MouseClicked
+    }// GEN-LAST:event_jTPEmpleados1MouseClicked
 
-    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseDragged
+    private void jPanel3MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MouseDragged
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
         this.setLocation(x - xMouse, y - yMouse);
-    }//GEN-LAST:event_jPanel3MouseDragged
+    }// GEN-LAST:event_jPanel3MouseDragged
 
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel3MousePressed
         xMouse = evt.getX();
         yMouse = evt.getY();
-    }//GEN-LAST:event_jPanel3MousePressed
+    }// GEN-LAST:event_jPanel3MousePressed
 
-    private void jTCodigoTrackingFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoTrackingFocusLost
-        
-    }//GEN-LAST:event_jTCodigoTrackingFocusLost
+    private void jTCodigoTrackingFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCodigoTrackingFocusLost
 
-    private void jTCodigoTrackingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoTrackingActionPerformed
+    }// GEN-LAST:event_jTCodigoTrackingFocusLost
+
+    private void jTCodigoTrackingActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCodigoTrackingActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodigoTrackingActionPerformed
+    }// GEN-LAST:event_jTCodigoTrackingActionPerformed
 
-    private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
+    private void jBRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBRegistrarIncidenteActionPerformed
         String incidente = (String) seleccionIncidentes.getSelectedItem();
         Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoTracking.getText());
         Incidente incidenteRegistrar = null;
@@ -424,66 +428,64 @@ public class JFIncidente extends javax.swing.JFrame {
         }
         if (!(paquete.obtenerEstado() instanceof Pendiente)) {
             JOptionPane.showMessageDialog(
-                null,
-                "El paquete se encuentra fuera de su jurisdicción",
-                "Registro falló",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    null,
+                    "El paquete se encuentra fuera de su jurisdicción",
+                    "Registro falló",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         int respuesta = JOptionPane.showConfirmDialog(
-            null,
-            "¿Estás seguro de que deseas registrar este incidente?",
-            "Confirmación de registro",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE
-        );
+                null,
+                "¿Estás seguro de que deseas registrar este incidente?",
+                "Confirmación de registro",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
         if (respuesta == JOptionPane.YES_OPTION) {
             GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
             gi.crearIncidente(paquete);
             JOptionPane.showMessageDialog(
-                null,
-                "El incidente se ha registrado",
-                "Registro Exitoso",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    null,
+                    "El incidente se ha registrado",
+                    "Registro Exitoso",
+                    JOptionPane.INFORMATION_MESSAGE);
             Inventario.obtenerInstancia().guardarInventario();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0);
         } else {
             JOptionPane.showMessageDialog(
-                null,
-                "El registro del incidente se ha cancelado",
-                "Registro Cancelado",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    null,
+                    "El registro del incidente se ha cancelado",
+                    "Registro Cancelado",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_jBRegistrarIncidenteActionPerformed
+    }// GEN-LAST:event_jBRegistrarIncidenteActionPerformed
 
-    private void seleccionIncidentes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionIncidentes1ActionPerformed
+    private void seleccionIncidentes1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_seleccionIncidentes1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_seleccionIncidentes1ActionPerformed
+    }// GEN-LAST:event_seleccionIncidentes1ActionPerformed
 
-    private void jTCodigoResolverFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCodigoResolverFocusLost
+    private void jTCodigoResolverFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTCodigoResolverFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodigoResolverFocusLost
+    }// GEN-LAST:event_jTCodigoResolverFocusLost
 
-    private void jTCodigoResolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCodigoResolverActionPerformed
+    private void jTCodigoResolverActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTCodigoResolverActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodigoResolverActionPerformed
+    }// GEN-LAST:event_jTCodigoResolverActionPerformed
 
-    private void jTCodigoResolverKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTCodigoResolverKeyReleased
+    private void jTCodigoResolverKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTCodigoResolverKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTCodigoResolverKeyReleased
+    }// GEN-LAST:event_jTCodigoResolverKeyReleased
 
-    private void jBConsultarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConsultarIncidenteActionPerformed
+    private void jBConsultarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBConsultarIncidenteActionPerformed
         Inventario inventario = Inventario.obtenerInstancia();
         if (jTCodigoResolver.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ingrese un código tracking", "Llene el campo",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (!inventario.existePaquete(jTCodigoResolver.getText())) {
-            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El paquete no existe", "Código tracking no existe",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
         Seguimiento seguimiento = inventario.obtenerPaquete(jTCodigoResolver.getText()).obtenerSeguimiento();
@@ -491,13 +493,13 @@ public class JFIncidente extends javax.swing.JFrame {
         model.setRowCount(0);
         model.addColumn("Propiedad");
         model.addColumn("Valor");
-        model.addRow(new Object[]{"Estado del paquete", seguimiento.obtenerEstado()});
-        model.addRow(new Object[]{"Incidente", seguimiento.obtenerRegistroIncidente()});
+        model.addRow(new Object[] { "Estado del paquete", seguimiento.obtenerEstado() });
+        model.addRow(new Object[] { "Incidente", seguimiento.obtenerRegistroIncidente() });
         jTIncidente.setModel(model);
         jBResolverIncidente.setVisible(true);
-    }//GEN-LAST:event_jBConsultarIncidenteActionPerformed
+    }// GEN-LAST:event_jBConsultarIncidenteActionPerformed
 
-    private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResolverIncidenteActionPerformed
+    private void jBResolverIncidenteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jBResolverIncidenteActionPerformed
         String incidente = (String) seleccionIncidentes1.getSelectedItem();
         Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigoResolver.getText());
         Incidente incidenteRegistrar = null;
@@ -510,30 +512,27 @@ public class JFIncidente extends javax.swing.JFrame {
         }
         if (!(paquete.obtenerEstado() instanceof Pendiente)) {
             JOptionPane.showMessageDialog(
-                null,
-                "El paquete se encuentra fuera de su jurisdicción",
-                "Resolución falló",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    null,
+                    "El paquete se encuentra fuera de su jurisdicción",
+                    "Resolución falló",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         String argumentos = jTArgumentos.getText();
         if (argumentos.isBlank()) {
             JOptionPane.showMessageDialog(
-                null,
-                "Ingrese los argumentos",
-                "Error",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    null,
+                    "Ingrese los argumentos",
+                    "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         int respuesta = JOptionPane.showConfirmDialog(
-            null,
-            "¿Estás seguro de que deseas resolver este incidente?",
-            "Confirmación de resolución",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.WARNING_MESSAGE
-        );
+                null,
+                "¿Estás seguro de que deseas resolver este incidente?",
+                "Confirmación de resolución",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
         if (respuesta == JOptionPane.YES_OPTION) {
             String[] partes = argumentos.split("\\s+");
             GestorIncidente gi = new GestorIncidente(incidenteRegistrar);
@@ -542,34 +541,32 @@ public class JFIncidente extends javax.swing.JFrame {
             }
             gi.resolverIncidente(paquete, partes);
             JOptionPane.showMessageDialog(
-                null,
-                "El incidente se ha resuelto",
-                "Resolución Exitosa",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    null,
+                    "El incidente se ha resuelto",
+                    "Resolución Exitosa",
+                    JOptionPane.INFORMATION_MESSAGE);
             DefaultTableModel modeloTabla = (DefaultTableModel) jTIncidente.getModel();
             modeloTabla.setRowCount(0);
         } else {
             JOptionPane.showMessageDialog(
-                null,
-                "La resolución del incidente se ha cancelado",
-                "Resolución Cancelada",
-                JOptionPane.INFORMATION_MESSAGE
-            );
+                    null,
+                    "La resolución del incidente se ha cancelado",
+                    "Resolución Cancelada",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_jBResolverIncidenteActionPerformed
+    }// GEN-LAST:event_jBResolverIncidenteActionPerformed
 
-    private void jTArgumentosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTArgumentosFocusLost
+    private void jTArgumentosFocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTArgumentosFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTArgumentosFocusLost
+    }// GEN-LAST:event_jTArgumentosFocusLost
 
-    private void jTArgumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTArgumentosActionPerformed
+    private void jTArgumentosActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTArgumentosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTArgumentosActionPerformed
+    }// GEN-LAST:event_jTArgumentosActionPerformed
 
-    private void jTArgumentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTArgumentosKeyReleased
+    private void jTArgumentosKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTArgumentosKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTArgumentosKeyReleased
+    }// GEN-LAST:event_jTArgumentosKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPIncidentes;
