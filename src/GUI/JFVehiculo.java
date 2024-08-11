@@ -127,8 +127,8 @@ public class JFVehiculo extends javax.swing.JFrame {
     private void refrescarInventario() {
 
         Asignacion asignacion = Asignacion.obtenerInstancia();
-        Vehiculo vehiculo = asignacion.obtenerVehiculo(jTPlacaVehiculo3.getText());
-        ArrayList<Paquete> paquetes = asignacion.obtenerRelacionPaqueteVehiculo().get(vehiculo);
+        Vehiculo vehiculo = recepcionista.obtenerVehiculo(jTPlacaVehiculo3.getText());
+        ArrayList<Paquete> paquetes = recepcionista.obtenerRelacionPaqueteVehiculo().get(vehiculo);
         
         modelo.setRowCount(0);
         for (Paquete paquete : paquetes) {
@@ -592,6 +592,11 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         jTCapacidad1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTCapacidad1.setEnabled(false);
+        jTCapacidad1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCapacidad1ActionPerformed(evt);
+            }
+        });
         jPEE.add(jTCapacidad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 106, 203, -1));
 
         jTPEmpleados.addTab("Asignar Paquetes", jPEE);
@@ -730,13 +735,12 @@ public class JFVehiculo extends javax.swing.JFrame {
         if (!ValidadorDeRegistros.validarPlaca(placa)) {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            Asignacion asignacion = Asignacion.obtenerInstancia();
-            Vehiculo vehiculo = asignacion.obtenerVehiculo(placa);
+            Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (vehiculo == null) {
                 JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Conductor conductor = asignacion.obtenerConductorDeVehiculo(vehiculo);
+            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorDeVehiculo(vehiculo);
             jTCapacidad.setText(Double.toString(vehiculo.getCapacidad()));
             if(conductor != null){
                 jTCedula3.setText(conductor.getCedula());
@@ -841,12 +845,11 @@ public class JFVehiculo extends javax.swing.JFrame {
             return;
         } else {
             Vehiculo vehiculo = Asignacion.obtenerInstancia().obtenerVehiculo(placa);
-            if(!this.recepcionista.asignarPaquetesAVehiculo(vehiculo,destino)){
+            if(!recepcionista.asignarPaquetesAVehiculo(vehiculo,destino)){
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         refrescarInventario();
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTPlacaVehiculo3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3FocusLost
@@ -864,6 +867,10 @@ public class JFVehiculo extends javax.swing.JFrame {
     private void jTPlacaVehiculo3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPlacaVehiculo3KeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_jTPlacaVehiculo3KeyTyped
+
+    private void jTCapacidad1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCapacidad1ActionPerformed
+
+    }//GEN-LAST:event_jTCapacidad1ActionPerformed
 
     /**
      * @param args the command line arguments

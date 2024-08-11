@@ -654,7 +654,10 @@ public class JFConductores extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTConductores.getModel();
         ArrayList<Conductor> conductores = Asignacion.obtenerInstancia().obtenerConductores();
         model.setRowCount(0);
-
+        String[] columnNames = {
+            "Cedula", "Nombres", "Email", "Telefono"
+        };
+        model.setColumnIdentifiers(columnNames);
         for (Conductor conductor : conductores) {
             Object[] row = {
                 conductor.getNombres(),
