@@ -63,8 +63,6 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         jColorChooser1 = new javax.swing.JColorChooser();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        exitP = new javax.swing.JPanel();
-        exitTXT = new javax.swing.JLabel();
         jTCodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jBInsertar = new javax.swing.JButton();
@@ -94,6 +92,8 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setForeground(new java.awt.Color(102, 102, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1180, 540));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1180, 540));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(146, 10, 48));
@@ -110,30 +110,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
             }
         });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        exitP.setBackground(new java.awt.Color(146, 10, 48));
-        exitP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(exitP, new org.netbeans.lib.awtextra.AbsoluteConstraints(458, 0, -1, -1));
-
-        exitTXT.setFont(new java.awt.Font("Roboto Black", 0, 12)); // NOI18N
-        exitTXT.setForeground(new java.awt.Color(255, 255, 255));
-        exitTXT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exitTXT.setText("X");
-        exitTXT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitTXTMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitTXTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitTXTMouseExited(evt);
-            }
-        });
-        jPanel2.add(exitTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 0, 32, 24));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, -1));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1270, -1));
 
         jTCodigo.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         jTCodigo.setBorder(null);
@@ -252,14 +229,14 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
                 jBRegistrarIncidente1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jBRegistrarIncidente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 220, 60));
+        jPanel1.add(jBRegistrarIncidente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, 220, 60));
 
         jLabel6.setText("Cédula:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel7.setText("Si Tienes Dudas!!!!!!!!!!");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setText("¿Necesitas ayuda o tienes alguna duda?");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 70, 470, -1));
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 30, 520));
@@ -340,13 +317,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         System.exit(0);
     }// GEN-LAST:event_exitTXTMouseClicked
 
-    private void exitTXTMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTXTMouseEntered
-        exitP.setBackground(Color.red);
-    }// GEN-LAST:event_exitTXTMouseEntered
 
-    private void exitTXTMouseExited(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_exitTXTMouseExited
-        exitP.setBackground(new Color(146, 10, 48));
-    }// GEN-LAST:event_exitTXTMouseExited
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jPanel2MouseDragged
         int x = evt.getXOnScreen();
@@ -451,8 +422,6 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
     }// GEN-LAST:event_jBRegistrarIncidente1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel exitP;
-    private javax.swing.JLabel exitTXT;
     private javax.swing.JButton jBInsertar;
     private javax.swing.JButton jBRegistrarIncidente;
     private javax.swing.JButton jBRegistrarIncidente1;

@@ -20,17 +20,14 @@ import javax.swing.JLabel;
 import mod_administracion.Recepcionista;
 import validaciones.*;
 
-/**
- *
- * @author Moises
- */
+
 public class JFMenu extends javax.swing.JFrame {
     public Recepcionista recepcionista;
 
     // Mouses
     int xMouse, yMouse;
 
-    private JPanel[] clickedPanels = new JPanel[6];
+    private JPanel[] clickedPanels = new JPanel[7];
     CardLayout contenido, contenido1;
 
     public void desvanecer() {
@@ -40,6 +37,7 @@ public class JFMenu extends javax.swing.JFrame {
         Clicked4.setVisible(false);
         Clicked5.setVisible(false);
         Clicked6.setVisible(false);
+        Clicked7.setVisible(false);
     }
 
     JFrame activeForm = null;
@@ -107,8 +105,20 @@ public class JFMenu extends javax.swing.JFrame {
         clickedPanels[3] = Clicked4;
         clickedPanels[4] = Clicked5;
         clickedPanels[5] = Clicked6;
+        clickedPanels[6] = Clicked7;
         desvanecer();
-        jLInicio.setText("Bienvenido/a");
+        String nombresConductor = recepcionista.getNombres();
+        String nombreConductor = obtenerPrimerNombre(nombresConductor);
+        desvanecer();
+        jLInicio.setText("Bienvenido/a " + nombreConductor);
+    }
+    
+    public String obtenerPrimerNombre(String nombres) {
+        if (nombres == null || nombres.trim().isEmpty()) {
+            return "";
+        }
+        String[] partes = nombres.split(" ");
+        return partes[0];
     }
 
     private void cambiarSeccionMenu(int seccionIndex) {
@@ -118,7 +128,7 @@ public class JFMenu extends javax.swing.JFrame {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Home = new javax.swing.JPanel();
@@ -144,6 +154,7 @@ public class JFMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         menuIncidentes = new javax.swing.JLabel();
         Clicked6 = new javax.swing.JPanel();
+        Clicked7 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
         JPGPanelContenedor = new javax.swing.JPanel();
@@ -182,16 +193,18 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel69)
-                                .addContainerGap(1295, Short.MAX_VALUE)));
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel69)
+                .addContainerGap(1295, Short.MAX_VALUE))
+        );
         jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel69)
-                                .addGap(0, 4, Short.MAX_VALUE)));
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel69)
+                .addGap(0, 4, Short.MAX_VALUE))
+        );
 
         PanelHome.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 20));
 
@@ -209,11 +222,9 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuProveedoresMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuProveedoresMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuProveedoresMouseExited(evt);
             }
@@ -231,11 +242,9 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuEmpleadosMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuEmpleadosMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuEmpleadosMouseExited(evt);
             }
@@ -253,11 +262,9 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuClientesMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuClientesMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuClientesMouseExited(evt);
             }
@@ -275,11 +282,9 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseExited(evt);
             }
@@ -297,11 +302,9 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuFacturacionYVentaMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuFacturacionYVentaMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuFacturacionYVentaMouseExited(evt);
             }
@@ -323,11 +326,9 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseExited(evt);
             }
@@ -339,11 +340,13 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked1Layout = new javax.swing.GroupLayout(Clicked1);
         Clicked1.setLayout(Clicked1Layout);
         Clicked1Layout.setHorizontalGroup(
-                Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked1Layout.setVerticalGroup(
-                Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 10, 52));
 
@@ -352,11 +355,13 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked2Layout = new javax.swing.GroupLayout(Clicked2);
         Clicked2.setLayout(Clicked2Layout);
         Clicked2Layout.setHorizontalGroup(
-                Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked2Layout.setVerticalGroup(
-                Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 10, 52));
 
@@ -365,11 +370,13 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked3Layout = new javax.swing.GroupLayout(Clicked3);
         Clicked3.setLayout(Clicked3Layout);
         Clicked3Layout.setHorizontalGroup(
-                Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked3Layout.setVerticalGroup(
-                Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 10, 52));
 
@@ -378,11 +385,13 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked4Layout = new javax.swing.GroupLayout(Clicked4);
         Clicked4.setLayout(Clicked4Layout);
         Clicked4Layout.setHorizontalGroup(
-                Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked4Layout.setVerticalGroup(
-                Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 10, 52));
 
@@ -391,11 +400,13 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked5Layout = new javax.swing.GroupLayout(Clicked5);
         Clicked5.setLayout(Clicked5Layout);
         Clicked5Layout.setHorizontalGroup(
-                Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked5Layout.setVerticalGroup(
-                Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 10, 52));
 
@@ -438,11 +449,9 @@ public class JFMenu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseExited(evt);
             }
@@ -454,13 +463,30 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked6Layout = new javax.swing.GroupLayout(Clicked6);
         Clicked6.setLayout(Clicked6Layout);
         Clicked6Layout.setHorizontalGroup(
-                Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked6Layout.setVerticalGroup(
-                Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 10, 52));
+
+        Clicked7.setBackground(new java.awt.Color(178, 8, 55));
+
+        javax.swing.GroupLayout Clicked7Layout = new javax.swing.GroupLayout(Clicked7);
+        Clicked7.setLayout(Clicked7Layout);
+        Clicked7Layout.setHorizontalGroup(
+            Clicked7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        Clicked7Layout.setVerticalGroup(
+            Clicked7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 60, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(Clicked7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 392, -1, 60));
 
         PanelHome.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 770));
 
@@ -484,7 +510,7 @@ public class JFMenu extends javax.swing.JFrame {
         jLInicio.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
         jLInicio.setForeground(new java.awt.Color(102, 102, 102));
         jLInicio.setText("Gestión de Paquetes");
-        JPGPanelContenedor.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 620, 250));
+        JPGPanelContenedor.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
 
         panelContent.add(JPGPanelContenedor, "card1");
 
@@ -505,13 +531,13 @@ public class JFMenu extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -538,11 +564,9 @@ public class JFMenu extends javax.swing.JFrame {
     private void menuinventarioMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuinventarioMouseClicked
         contenido.show(panelContent, "card1");
         cambiarSeccionMenu(0);
-        menuinventario.setBackground(Color.decode("#494848"));
-        // JFrame ventanaInventario = new JFGestionPaquetes(cnx);
+        menuinventario.setBackground(Color.decode("#494848"));  
         JFrame ventanaInventario = new JFPaquetes(this.recepcionista);
         abrirFormHijo(ventanaInventario);
-        // VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
         jLInicio.setText("Paquetes");
     }// GEN-LAST:event_menuinventarioMouseClicked
 
@@ -611,7 +635,6 @@ public class JFMenu extends javax.swing.JFrame {
         menuFacturacionYVenta.setBackground(Color.decode("#494848"));
         JFrame ventantaFactura = new JFFacturacion(recepcionista);
         abrirFormHijo(ventantaFactura);
-        // VentanaManager.getInstance().mostrarVentana("factura1", ventantaFactura);
     }// GEN-LAST:event_menuFacturacionYVentaMouseClicked
 
     private void menuFacturacionYVentaMouseEntered(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuFacturacionYVentaMouseEntered
@@ -625,6 +648,8 @@ public class JFMenu extends javax.swing.JFrame {
     }// GEN-LAST:event_menuFacturacionYVentaMouseExited
 
     private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuLogoutMouseClicked
+        cambiarSeccionMenu(7);
+
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
         if (SessionManager.getInstance().isCambiarSesion()) { // Accede a cambiarSesion a través del Singleton
@@ -739,6 +764,7 @@ public class JFMenu extends javax.swing.JFrame {
     private javax.swing.JPanel Clicked4;
     private javax.swing.JPanel Clicked5;
     private javax.swing.JPanel Clicked6;
+    private javax.swing.JPanel Clicked7;
     private javax.swing.JPanel Home;
     private javax.swing.JPanel JPGPanelContenedor;
     private javax.swing.JPanel PanelHome;

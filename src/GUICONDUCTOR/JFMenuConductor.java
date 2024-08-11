@@ -79,14 +79,59 @@ public class JFMenuConductor extends javax.swing.JFrame {
         clickedPanels[3] = Clicked4;
         clickedPanels[4] = Clicked5;
         clickedPanels[5] = Clicked6;
-
+        String nombresConductor = conductor.getNombres();
+        String nombreConductor = obtenerPrimerNombre(nombresConductor);
         desvanecer();
-        jLInicio.setText("Bienvenido/a");
+        jLInicio.setText("Bienvenido/a " + nombreConductor);
     }
 
-    /**
-     * Método para desvanecer (ocultar) los paneles del menú.
-     */
+    public String obtenerPrimerNombre(String nombres) {
+        if (nombres == null || nombres.trim().isEmpty()) {
+            return "";
+        }
+        String[] partes = nombres.split(" ");
+        return partes[0];
+    }
+    
+    JFrame activeForm = null;
+    
+    private void abrirFormHijo(JFrame formHijo) {
+
+        // Verifica si hay un formulario activo y ocúltalo si es necesario
+        if (activeForm != null) {
+            if (activeForm.getClass() == formHijo.getClass()) {
+                return;
+            }
+            activeForm.setVisible(false);
+        }
+
+        // Asigna el nuevo formulario activo
+        activeForm = formHijo;
+
+        // Configura el JFrame antes de hacerlo visible
+        // Esto debe hacerse antes de llamar a setVisible(true)
+        if (!formHijo.isUndecorated()) {
+            // Usa un Frame de configuración para configurar el JFrame
+            // Nota: Necesitamos un JFrame temporal para aplicar la configuración
+            JFrame tempFrame = new JFrame();
+            tempFrame.setUndecorated(true);
+            tempFrame.dispose(); // Destruye el marco temporal
+        }
+
+        // Ajusta el tamaño y la ubicación del formulario hijo
+        formHijo.setSize(JPGPanelContenedor.getSize());
+        formHijo.setLocation(JPGPanelContenedor.getLocation());
+        JPGPanelContenedor.setLayout(null);
+        // Configura el tamaño y la posición del formulario hijo antes de agregarlo
+        formHijo.setBounds(0, 0, JPGPanelContenedor.getWidth(), JPGPanelContenedor.getHeight());
+        // Añade el contenido al panel contenedor
+        JPGPanelContenedor.removeAll();
+        JPGPanelContenedor.add(formHijo.getContentPane());
+        JPGPanelContenedor.revalidate();
+        JPGPanelContenedor.repaint();
+
+    }
+
     public void desvanecer() {
         Clicked1.setVisible(true);
         Clicked2.setVisible(false);
@@ -96,11 +141,6 @@ public class JFMenuConductor extends javax.swing.JFrame {
         Clicked6.setVisible(false);
     }
 
-    /**
-     * Método para cambiar la sección del menú que se está mostrando.
-     * 
-     * @param seccionIndex El índice de la sección a mostrar.
-     */
     private void cambiarSeccionMenu(int seccionIndex) {
         for (int i = 0; i < clickedPanels.length; i++) {
             clickedPanels[i].setVisible(i == seccionIndex);
@@ -108,7 +148,7 @@ public class JFMenuConductor extends javax.swing.JFrame {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Home = new javax.swing.JPanel();
@@ -132,18 +172,8 @@ public class JFMenuConductor extends javax.swing.JFrame {
         Clicked6 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         panelContent = new javax.swing.JPanel();
-        JPGPaquetes = new javax.swing.JPanel();
+        JPGPanelContenedor = new javax.swing.JPanel();
         jLInicio = new javax.swing.JLabel();
-        JPRemitente = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        JPConductores = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        JPFyV = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        JPRecepcionista = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        JPIncidentes = new javax.swing.JPanel();
-        jLabel117 = new javax.swing.JLabel();
         txtID = new javax.swing.JLabel();
         txtDateLog = new javax.swing.JLabel();
 
@@ -170,24 +200,12 @@ public class JFMenuConductor extends javax.swing.JFrame {
                 jPanel3MousePressed(evt);
             }
         });
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
         jLabel69.setText("Gestion de Envios");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel69)
-                                .addContainerGap(1295, Short.MAX_VALUE)));
-        jPanel3Layout.setVerticalGroup(
-                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel69)
-                                .addGap(0, 4, Short.MAX_VALUE)));
+        jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         PanelHome.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1400, 20));
 
@@ -205,11 +223,9 @@ public class JFMenuConductor extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuinventarioMouseExited(evt);
             }
@@ -231,27 +247,27 @@ public class JFMenuConductor extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuLogoutMouseExited(evt);
             }
         });
-        jPanel1.add(menuLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 210, 52));
+        jPanel1.add(menuLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 210, 52));
 
         Clicked1.setBackground(new java.awt.Color(178, 8, 55));
 
         javax.swing.GroupLayout Clicked1Layout = new javax.swing.GroupLayout(Clicked1);
         Clicked1.setLayout(Clicked1Layout);
         Clicked1Layout.setHorizontalGroup(
-                Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked1Layout.setVerticalGroup(
-                Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 10, 52));
 
@@ -260,11 +276,13 @@ public class JFMenuConductor extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked2Layout = new javax.swing.GroupLayout(Clicked2);
         Clicked2.setLayout(Clicked2Layout);
         Clicked2Layout.setHorizontalGroup(
-                Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked2Layout.setVerticalGroup(
-                Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 10, 52));
 
@@ -273,11 +291,13 @@ public class JFMenuConductor extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked3Layout = new javax.swing.GroupLayout(Clicked3);
         Clicked3.setLayout(Clicked3Layout);
         Clicked3Layout.setHorizontalGroup(
-                Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked3Layout.setVerticalGroup(
-                Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 10, 52));
 
@@ -286,11 +306,13 @@ public class JFMenuConductor extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked4Layout = new javax.swing.GroupLayout(Clicked4);
         Clicked4.setLayout(Clicked4Layout);
         Clicked4Layout.setHorizontalGroup(
-                Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked4Layout.setVerticalGroup(
-                Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 10, 52));
 
@@ -299,11 +321,13 @@ public class JFMenuConductor extends javax.swing.JFrame {
         javax.swing.GroupLayout Clicked5Layout = new javax.swing.GroupLayout(Clicked5);
         Clicked5.setLayout(Clicked5Layout);
         Clicked5Layout.setHorizontalGroup(
-                Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked5Layout.setVerticalGroup(
-                Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 10, 52));
 
@@ -341,27 +365,27 @@ public class JFMenuConductor extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 menuIncidentesMouseExited(evt);
             }
         });
-        jPanel1.add(menuIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 210, 52));
+        jPanel1.add(menuIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 210, 52));
 
         Clicked6.setBackground(new java.awt.Color(178, 8, 55));
 
         javax.swing.GroupLayout Clicked6Layout = new javax.swing.GroupLayout(Clicked6);
         Clicked6.setLayout(Clicked6Layout);
         Clicked6Layout.setHorizontalGroup(
-                Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 10, Short.MAX_VALUE));
+            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
         Clicked6Layout.setVerticalGroup(
-                Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 52, Short.MAX_VALUE));
+            Clicked6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 52, Short.MAX_VALUE)
+        );
 
         jPanel1.add(Clicked6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 10, 52));
 
@@ -381,66 +405,15 @@ public class JFMenuConductor extends javax.swing.JFrame {
 
         panelContent.setLayout(new java.awt.CardLayout());
 
-        JPGPaquetes.setBackground(new java.awt.Color(245, 245, 245));
-        JPGPaquetes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        JPGPanelContenedor.setBackground(new java.awt.Color(245, 245, 245));
+        JPGPanelContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLInicio.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
         jLInicio.setForeground(new java.awt.Color(102, 102, 102));
         jLInicio.setText("Gestión de Paquetes");
-        JPGPaquetes.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 620, 250));
+        JPGPanelContenedor.add(jLInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, -1));
 
-        panelContent.add(JPGPaquetes, "card1");
-
-        JPRemitente.setBackground(new java.awt.Color(245, 245, 245));
-        JPRemitente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 62)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel5.setText("Remitente");
-        JPRemitente.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, -1, -1));
-
-        panelContent.add(JPRemitente, "card2");
-
-        JPConductores.setBackground(new java.awt.Color(245, 245, 245));
-        JPConductores.setMinimumSize(new java.awt.Dimension(810, 540));
-        JPConductores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("Conductores");
-        JPConductores.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, -1, -1));
-
-        panelContent.add(JPConductores, "card3");
-
-        JPFyV.setBackground(new java.awt.Color(245, 245, 245));
-        JPFyV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Facturación y Venta");
-        JPFyV.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
-
-        panelContent.add(JPFyV, "card4");
-
-        JPRecepcionista.setBackground(new java.awt.Color(245, 245, 245));
-        JPRecepcionista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Recepcionista");
-        JPRecepcionista.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
-
-        panelContent.add(JPRecepcionista, "card5");
-
-        JPIncidentes.setBackground(new java.awt.Color(245, 245, 245));
-        JPIncidentes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel117.setFont(new java.awt.Font("Tahoma", 0, 64)); // NOI18N
-        jLabel117.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel117.setText("Incidentes");
-        JPIncidentes.add(jLabel117, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
-
-        panelContent.add(JPIncidentes, "card6");
+        panelContent.add(JPGPanelContenedor, "card1");
 
         PanelHome.add(panelContent, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 1180, 690));
 
@@ -459,13 +432,13 @@ public class JFMenuConductor extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Home, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Home, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -494,11 +467,12 @@ public class JFMenuConductor extends javax.swing.JFrame {
         cambiarSeccionMenu(0);
         menuinventario.setBackground(Color.decode("#494848"));
         JFrame ventanaInventario = new JFPaquetesConductor(inventario, conductor);
-        VentanaManager.getInstance().mostrarVentana("inventario", ventanaInventario);
+        abrirFormHijo(ventanaInventario);
         jLInicio.setText("Paquetes");
     }// GEN-LAST:event_menuinventarioMouseClicked
 
     private void menuLogoutMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuLogoutMouseClicked
+        cambiarSeccionMenu(6);
         getToolkit().beep();
         int dialogButton = JOptionPane.YES_NO_OPTION;
         if (SessionManager.getInstance().isCambiarSesion()) { // Accede a cambiarSesion a través del Singleton
@@ -574,11 +548,10 @@ public class JFMenuConductor extends javax.swing.JFrame {
 
     private void menuIncidentesMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_menuIncidentesMouseClicked
         contenido.show(panelContent, "card1");
-        cambiarSeccionMenu(0);
+        cambiarSeccionMenu(1);
         menuinventario.setBackground(Color.decode("#494848"));
         JFrame ventanaIncidentes = new JFIncidenteConductor(inventario, conductor);
-
-        VentanaManager.getInstance().mostrarVentana("Incidentes", ventanaIncidentes);
+        abrirFormHijo(ventanaIncidentes);
         jLInicio.setText("Paquetes");
     }// GEN-LAST:event_menuIncidentesMouseClicked
 
@@ -621,25 +594,15 @@ public class JFMenuConductor extends javax.swing.JFrame {
     private javax.swing.JPanel Clicked5;
     private javax.swing.JPanel Clicked6;
     private javax.swing.JPanel Home;
-    private javax.swing.JPanel JPConductores;
-    private javax.swing.JPanel JPFyV;
-    private javax.swing.JPanel JPGPaquetes;
-    private javax.swing.JPanel JPIncidentes;
-    private javax.swing.JPanel JPRecepcionista;
-    private javax.swing.JPanel JPRemitente;
+    private javax.swing.JPanel JPGPanelContenedor;
     private javax.swing.JPanel PanelHome;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLInicio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel69;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel3;

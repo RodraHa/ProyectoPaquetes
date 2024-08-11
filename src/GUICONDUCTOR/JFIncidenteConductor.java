@@ -96,7 +96,6 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.CardLayout());
 
         JPIncidentes.setBackground(new java.awt.Color(245, 245, 245));
-        JPIncidentes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         JPIncidentes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPIncidentes.setMinimumSize(new java.awt.Dimension(1180, 680));
@@ -109,9 +108,14 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
             }
         });
 
+        jPRE1.setMinimumSize(new java.awt.Dimension(1085, 484));
+        jPRE1.setName(""); // NOI18N
+        jPRE1.setPreferredSize(new java.awt.Dimension(1085, 484));
+        jPRE1.setRequestFocusEnabled(false);
         jPRE1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Daño en el Paquete", "Error de Dirección", "Paquete Perdido", "Rechazo Entrega" }));
         seleccionIncidentes.addActionListener(new java.awt.event.ActionListener() {
@@ -119,10 +123,13 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
                 seleccionIncidentesActionPerformed(evt);
             }
         });
+        jPanel10.add(seleccionIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 70, 157, -1));
 
         jLabel133.setText("Tipo de incidente:");
+        jPanel10.add(jLabel133, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 73, 163, -1));
 
         jLabel134.setText("Código tracking");
+        jPanel10.add(jLabel134, new org.netbeans.lib.awtextra.AbsoluteConstraints(98, 20, 163, -1));
 
         jTCodigoTracking.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -139,6 +146,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
                 jTCodigoTrackingKeyReleased(evt);
             }
         });
+        jPanel10.add(jTCodigoTracking, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 17, 157, -1));
 
         jBConsultarPaquete.setText("Consultar");
         jBConsultarPaquete.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +154,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
                 jBConsultarPaqueteActionPerformed(evt);
             }
         });
+        jPanel10.add(jBConsultarPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 45, -1, -1));
 
         jTablaPaquete.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,65 +169,17 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
         ));
         jScrollPane7.setViewportView(jTablaPaquete);
 
+        jPanel10.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 110, 910, 237));
+
         jBRegistrarIncidente.setText("Registrar");
         jBRegistrarIncidente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBRegistrarIncidenteActionPerformed(evt);
             }
         });
+        jPanel10.add(jBRegistrarIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 360, 130, 30));
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel134, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel133, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTCodigoTracking, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(seleccionIncidentes, javax.swing.GroupLayout.Alignment.LEADING, 0, 157, Short.MAX_VALUE))
-                        .addGap(263, 263, 263))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addComponent(jBConsultarPaquete)
-                        .addGap(113, 113, 113))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel10Layout.createSequentialGroup()
-                    .addGap(302, 302, 302)
-                    .addComponent(jBRegistrarIncidente)
-                    .addContainerGap(307, Short.MAX_VALUE)))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel134)
-                    .addComponent(jTCodigoTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBConsultarPaquete)
-                .addGap(2, 2, 2)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel133)
-                    .addComponent(seleccionIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                    .addContainerGap(368, Short.MAX_VALUE)
-                    .addComponent(jBRegistrarIncidente)
-                    .addGap(10, 10, 10)))
-        );
-
-        jPRE1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 24, -1, -1));
+        jPRE1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 1060, 460));
 
         jTPEmpleados1.addTab("Registrar Incidente", jPRE1);
 
@@ -277,15 +238,15 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
                 jBResolverIncidenteActionPerformed(evt);
             }
         });
-        jPanel11.add(jBResolverIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 390, -1, -1));
+        jPanel11.add(jBResolverIncidente, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, 130, 30));
 
-        jPAE1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 28, 1000, 520));
+        jPAE1.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 28, 1050, 520));
 
         jTPEmpleados1.addTab("Resolver Incidente", jPAE1);
 
-        jPIncidentes.add(jTPEmpleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 6, -1, -1));
+        jPIncidentes.add(jTPEmpleados1, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 6, 1110, -1));
 
-        JPIncidentes.add(jPIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1160, 640));
+        JPIncidentes.add(jPIncidentes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 660));
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {

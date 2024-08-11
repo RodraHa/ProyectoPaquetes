@@ -112,7 +112,7 @@ public class JFIngresar extends javax.swing.JFrame {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
@@ -138,6 +138,7 @@ public class JFIngresar extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -156,6 +157,7 @@ public class JFIngresar extends javax.swing.JFrame {
                 jPanel1MousePressed(evt);
             }
         });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         exitP.setBackground(new java.awt.Color(146, 10, 48));
         exitP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -168,11 +170,9 @@ public class JFIngresar extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitTXTMouseClicked(evt);
             }
-
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 exitTXTMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 exitTXTMouseExited(evt);
             }
@@ -181,45 +181,24 @@ public class JFIngresar extends javax.swing.JFrame {
         javax.swing.GroupLayout exitPLayout = new javax.swing.GroupLayout(exitP);
         exitP.setLayout(exitPLayout);
         exitPLayout.setHorizontalGroup(
-                exitPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitPLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(exitTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 32,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
+            exitPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitPLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(exitTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
         exitPLayout.setVerticalGroup(
-                exitPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exitPLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(exitTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 24,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)));
+            exitPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(exitP, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, -1, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Inicio de sesión");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 8, 145, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 145,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277,
-                                        Short.MAX_VALUE)
-                                .addComponent(exitP, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)));
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(exitP, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel2))
-                                .addGap(0, 0, Short.MAX_VALUE)));
-
-        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, -1));
+        bg.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 30));
 
         jTFUser.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jTFUser.setForeground(new java.awt.Color(204, 204, 204));
@@ -235,7 +214,7 @@ public class JFIngresar extends javax.swing.JFrame {
                 jTFUserKeyTyped(evt);
             }
         });
-        bg.add(jTFUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 340, 20));
+        bg.add(jTFUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 340, 20));
 
         jTFPassword.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jTFPassword.setForeground(new java.awt.Color(204, 204, 204));
@@ -251,7 +230,7 @@ public class JFIngresar extends javax.swing.JFrame {
                 jTFPasswordKeyPressed(evt);
             }
         });
-        bg.add(jTFPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 340, 20));
+        bg.add(jTFPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 340, 20));
 
         jBIngresar.setBackground(new java.awt.Color(255, 250, 243));
         jBIngresar.setText("Ingresar");
@@ -261,7 +240,6 @@ public class JFIngresar extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jBIngresarMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jBIngresarMouseExited(evt);
             }
@@ -271,11 +249,11 @@ public class JFIngresar extends javax.swing.JFrame {
                 jBIngresarActionPerformed(evt);
             }
         });
-        bg.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 101, 30));
+        bg.add(jBIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 101, 30));
 
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         jLabel1.setText("Contraseña");
-        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jBMostrarC.setBackground(new java.awt.Color(255, 250, 243));
         jBMostrarC.setText("Mostrar Contraseña");
@@ -285,7 +263,6 @@ public class JFIngresar extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jBMostrarCMouseEntered(evt);
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jBMostrarCMouseExited(evt);
             }
@@ -295,7 +272,7 @@ public class JFIngresar extends javax.swing.JFrame {
                 jBMostrarCActionPerformed(evt);
             }
         });
-        bg.add(jBMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, 30));
+        bg.add(jBMostrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, 30));
 
         olvidasteContra.setForeground(new java.awt.Color(102, 153, 255));
         olvidasteContra.setText("¿Olvidaste tu contraseña o usuario?");
@@ -305,20 +282,20 @@ public class JFIngresar extends javax.swing.JFrame {
                 olvidasteContraMouseClicked(evt);
             }
         });
-        bg.add(olvidasteContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        bg.add(olvidasteContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/gestionDePaquetes.png"))); // NOI18N
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 460, 120));
+        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 440, 120));
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         jLabel4.setText("Iniciar sesión");
-        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
-        bg.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 340, 10));
+        bg.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        bg.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 340, 10));
 
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         jLabel5.setText("Usuario");
-        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
-        bg.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 340, -1));
+        bg.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        bg.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 340, -1));
 
         botonCliente.setForeground(new java.awt.Color(102, 153, 255));
         botonCliente.setText("Verificar paquete o quejas");
@@ -328,23 +305,9 @@ public class JFIngresar extends javax.swing.JFrame {
                 botonClienteMouseClicked(evt);
             }
         });
-        bg.add(botonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
+        bg.add(botonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap()));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 419,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)));
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 419));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
