@@ -9,6 +9,7 @@ import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import mod_facturacion.Factura;
 import mod_facturacion.Precio;
 import mod_transporte.Asignacion;
 import mod_transporte.Provincia;
@@ -21,6 +22,7 @@ import mod_transporte.Vehiculo;
 public class Recepcionista extends Usuario {
     private Paquete paqueteEnCotizacion;
     private Provincia sucursal;
+    private Cotizacion cotizacion;
 
     /**
      * Constructor que inicializa los datos del recepcionista y la sucursal a la que pertenece.
@@ -36,6 +38,7 @@ public class Recepcionista extends Usuario {
     public Recepcionista(String nombres, String apellidos, String identificacion, String direccion, String telefono, String email, Provincia sucursal) {
         super(nombres, apellidos, identificacion, direccion, telefono, email);
         this.sucursal = sucursal;
+        this.cotizacion = Cotizacion.obtenerInstancia();
     }
 
     /**
@@ -191,6 +194,16 @@ public class Recepcionista extends Usuario {
         Asignacion.obtenerInstancia().eliminarConductor(conductor);
         Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
         Asignacion.obtenerInstancia().guardarConductores();
+    }
+
+    public Factura buscarFactura(String codigoFactura) {
+        ArrayList<Factura> facturas = cotizacion.obtenerFacturas();
+        for (Factura factura : facturas){
+            if(factura.obtenerCodigo().equals(codigoFactura)){
+                return factura;
+            }
+        }
+        return null;
     }
     
 }
