@@ -30,5 +30,6 @@ public abstract class Incidente {
      * @return Una cadena que describe la resolución del incidente.
      */
     public abstract String resolver(Paquete paquete, String[] argumentos);
+    public abstract boolean sePuedeResolver();
     public abstract String getMensaje();
 }

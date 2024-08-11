@@ -41,4 +41,9 @@ public class ErrorDireccion extends Incidente {
     public String getMensaje() {
         return "Escriba la nueva dirección de entrega";
     }
+
+    @Override
+    public boolean sePuedeResolver() {
+        return true;
+    }
 }
