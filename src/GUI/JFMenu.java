@@ -44,7 +44,6 @@ public class JFMenu extends javax.swing.JFrame {
 
     // Conexión y auditoria
 
-    Connection cnx;
     // Paneles
     private JPanel[] clickedPanels = new JPanel[6];
     CardLayout contenido, contenido1;
