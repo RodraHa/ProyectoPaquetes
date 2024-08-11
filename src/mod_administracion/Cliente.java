@@ -46,18 +46,6 @@ public class Cliente extends Usuario {
         }
     }
 
-    /**
-     * Cambia el estado de un paquete basado en el código de seguimiento.
-     *
-     * @param codigoTracking el código de seguimiento del paquete cuyo estado se
-     *                       cambiará.
-     * @param estado         el nuevo estado del paquete.
-     */
-    @Override
-    public void cambiarEstadoPaquete(String codigoTracking, EstadoDelPaquete estado) {
-        // Implementar el cambio de estado aquí
-    }
-
     public boolean consultarPaquete(Paquete paquete) {
         return paquete.getRemitente().getCedula().equals(this.getCedula());
     }
