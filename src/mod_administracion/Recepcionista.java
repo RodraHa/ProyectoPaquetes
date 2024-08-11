@@ -67,19 +67,6 @@ public class Recepcionista extends Usuario {
     }
 
     /**
-     * Cambia el estado de un paquete basado en el código de seguimiento.
-     * Este método debe ser implementado para modificar el estado del paquete.
-     *
-     * @param codigoTracking el código de seguimiento del paquete cuyo estado se
-     *                       cambiará.
-     * @param estado         el nuevo estado del paquete.
-     */
-    @Override
-    public void cambiarEstadoPaquete(String codigoTracking, EstadoDelPaquete estado) {
-        // Implementar el cambio de estado aquí
-    }
-
-    /**
      * Consulta el precio del paquete actualmente registrado en la cotización.
      *
      * @return el precio del paquete, o {@code null} si no hay un paquete

@@ -69,18 +69,7 @@ public abstract class Usuario implements Serializable {
      *                       reporta el incidente.
      */
     public abstract void reportarIncidente(String codigoTracking);
-
-    /**
-     * Cambia el estado de un paquete basado en el código de seguimiento.
-     * Este método debe ser implementado por las clases concretas que extienden
-     * {@link Usuario}.
-     *
-     * @param codigoTracking el código de seguimiento del paquete cuyo estado se
-     *                       cambiará.
-     * @param estado         el nuevo estado del paquete.
-     */
-    public abstract void cambiarEstadoPaquete(String codigoTracking, EstadoDelPaquete estado);
-
+    
     /**
      * Obtiene el nombre del usuario.
      *

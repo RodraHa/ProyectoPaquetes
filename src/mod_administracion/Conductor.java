@@ -52,19 +52,6 @@ public class Conductor extends Usuario {
     }
 
     /**
-     * Cambia el estado de un paquete basado en el código de seguimiento.
-     * Este método debe ser implementado para modificar el estado del paquete.
-     *
-     * @param codigoTracking el código de seguimiento del paquete cuyo estado se
-     *                       cambiará.
-     * @param estado         el nuevo estado del paquete.
-     */
-    @Override
-    public void cambiarEstadoPaquete(String codigoTracking, EstadoDelPaquete estado) {
-        // Implementar el cambio de estado aquí
-    }
-
-    /**
      * Consulta los paquetes que están asignados al conductor.
      * Imprime la información de cada paquete asignado y devuelve una lista de
      * paquetes.
