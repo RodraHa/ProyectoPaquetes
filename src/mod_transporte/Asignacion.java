@@ -188,7 +188,6 @@ public class Asignacion {
             vehiculos = (ArrayList<Vehiculo>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
     
@@ -202,7 +201,6 @@ public class Asignacion {
             conductores = (ArrayList<Conductor>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
     public void guardarRelacionConductores() {
@@ -221,7 +219,6 @@ public class Asignacion {
             asignacionConductores = (HashMap<Conductor,Vehiculo>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
     
@@ -241,7 +238,6 @@ public class Asignacion {
             asignacionPaquetes = (HashMap<Vehiculo,ArrayList<Paquete>>) ois.readObject();
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("No existe el archivo");
         }
     }
     

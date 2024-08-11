@@ -8,7 +8,9 @@ import mod_paquetes.Paquete;
 import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import mod_facturacion.Factura;
 import mod_facturacion.Precio;
 import mod_transporte.Asignacion;
 import mod_transporte.Provincia;
@@ -21,6 +23,8 @@ import mod_transporte.Vehiculo;
 public class Recepcionista extends Usuario {
     private Paquete paqueteEnCotizacion;
     private Provincia sucursal;
+    private Cotizacion cotizacion;
+    private Asignacion asignacion;
 
     /**
      * Constructor que inicializa los datos del recepcionista y la sucursal a la que pertenece.
@@ -36,6 +40,8 @@ public class Recepcionista extends Usuario {
     public Recepcionista(String nombres, String apellidos, String identificacion, String direccion, String telefono, String email, Provincia sucursal) {
         super(nombres, apellidos, identificacion, direccion, telefono, email);
         this.sucursal = sucursal;
+        this.cotizacion = Cotizacion.obtenerInstancia();
+        this.asignacion = Asignacion.obtenerInstancia();
     }
 
     /**
@@ -94,7 +100,7 @@ public class Recepcionista extends Usuario {
         if (paqueteEnCotizacion == null) {
             return null;
         }
-        return Cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
+        return cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
     }
 
     /**
@@ -153,11 +159,11 @@ public class Recepcionista extends Usuario {
     }
 
     public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino){
-        return Asignacion.obtenerInstancia().asignarPaquetesAVehiculo(vehiculo, destino);             
+        return asignacion.asignarPaquetesAVehiculo(vehiculo, destino);             
     }
 
     public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
-        Asignacion.obtenerInstancia().asignarConductorAVehiculo(conductor,vehiculo);
+        asignacion.asignarConductorAVehiculo(conductor,vehiculo);
     }
 
     public ArrayList<Paquete> obtenerPaquetes() {
@@ -180,17 +186,34 @@ public class Recepcionista extends Usuario {
         return inventario.existePaquete(codigo);
     }
 
-    public void agregarConductor(String nombres, String apellidos, String cedula, String direccion, String telefono, String correo, String nombreUsuario, String clave) {
-        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, this.obtenerSucursal());
-        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
-        Asignacion.obtenerInstancia().agregarConductor(conductor);
+    public Factura buscarFactura(String codigoFactura) {
+        ArrayList<Factura> facturas = cotizacion.obtenerFacturas();
+        for (Factura factura : facturas){
+            if(factura.obtenerCodigo().equals(codigoFactura)){
+                return factura;
+            }
+        }
+        return null;
     }
 
-    public void eliminarConductor(String codigo) {
-        Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
-        Asignacion.obtenerInstancia().eliminarConductor(conductor);
-        Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
-        Asignacion.obtenerInstancia().guardarConductores();
+    public void emitirFacturaPaquete(Paquete paquete) {
+        cotizacion.emitirFacturaPaquete(paquete);
+    }
+
+    public String getSiguienteCodigoFactura() {
+        return cotizacion.getSiguienteCodigoFactura();
+    }
+
+    public Precio obtenerPrecioPaquete(Paquete paquete) {
+        return cotizacion.obtenerPrecioPaquete(paquete);
+    }
+
+    public Vehiculo obtenerVehiculo(String placa) {
+        return asignacion.obtenerVehiculo(placa);
+    }
+
+    public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
+        return asignacion.obtenerRelacionPaqueteVehiculo();
     }
     
 }

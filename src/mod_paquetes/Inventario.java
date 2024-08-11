@@ -6,10 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import mod_administracion.Usuario;
 
-public final class Inventario {
+public final class Inventario implements Serializable{
     private static Inventario instancia;
     private ArrayList<Paquete> paquetes;
 
