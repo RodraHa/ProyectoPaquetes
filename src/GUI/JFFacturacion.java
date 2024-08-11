@@ -518,11 +518,8 @@ public class JFFacturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jTCodigoPaqueteKeyTyped
 
     private void btnBuscarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPaqueteActionPerformed
-        
         String codigoTracking = jTCodigoPaquete.getText();
-        
-        Inventario inventario = Inventario.obtenerInstancia();
-        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
+        Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
         if(paquete == null){
             JOptionPane.showMessageDialog(null, "No existe paquete.", "PAPU", JOptionPane.ERROR_MESSAGE);
             return;
@@ -538,9 +535,8 @@ public class JFFacturacion extends javax.swing.JFrame {
         String direccionRemitente = remitente.getDireccion();
         String correoRemitente = remitente.getEmail();
         
-        Cotizacion cotizacion = Cotizacion.obtenerInstancia();
-        String codigoFactura = cotizacion.getSiguienteCodigoFactura();
-        Precio precioDelPaquete = cotizacion.obtenerPrecioPaquete(paquete);
+        String codigoFactura = recepcionista.getSiguienteCodigoFactura();
+        Precio precioDelPaquete = recepcionista.obtenerPrecioPaquete(paquete);
         ArrayList<CalculoPrecio> preciosIndividuales = precioDelPaquete.obtenerPreciosIndividuales();
         double precioPaquete = preciosIndividuales.get(0).obtenerMonto();
         double precioDistancia = preciosIndividuales.get(1).obtenerMonto();
@@ -575,11 +571,9 @@ public class JFFacturacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jTContenidoPaqueteKeyReleased
 
     private void jBGenerarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGenerarFacturaActionPerformed
-        Cotizacion cotizacion = Cotizacion.obtenerInstancia();
         String codigoTracking = jTCodigoPaquete.getText();
-        Inventario inventario = Inventario.obtenerInstancia();
-        Paquete paquete = inventario.obtenerPaquete(codigoTracking);
-        cotizacion.emitirFacturaPaquete(paquete);
+        Paquete paquete = recepcionista.obtenerPaquete(codigoTracking);
+        recepcionista.emitirFacturaPaquete(paquete);
         cargarFacturas();
         JOptionPane.showMessageDialog(null, "Se generó la factura existosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jBGenerarFacturaActionPerformed

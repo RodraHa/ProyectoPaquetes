@@ -97,7 +97,7 @@ public class Recepcionista extends Usuario {
         if (paqueteEnCotizacion == null) {
             return null;
         }
-        return Cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
+        return cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
     }
 
     /**
@@ -183,19 +183,6 @@ public class Recepcionista extends Usuario {
         return inventario.existePaquete(codigo);
     }
 
-    public void agregarConductor(String nombres, String apellidos, String cedula, String direccion, String telefono, String correo, String nombreUsuario, String clave) {
-        DataBase.obtenerInstancia().insertarConductor(nombres, apellidos, cedula, direccion, telefono, correo, nombreUsuario, clave, this.obtenerSucursal());
-        Conductor conductor = new Conductor(nombres, apellidos, cedula, direccion, telefono, correo);
-        Asignacion.obtenerInstancia().agregarConductor(conductor);
-    }
-
-    public void eliminarConductor(String codigo) {
-        Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorPorCedula(codigo);
-        Asignacion.obtenerInstancia().eliminarConductor(conductor);
-        Asignacion.obtenerInstancia().borrarRelacionConductorVehiculo(conductor);
-        Asignacion.obtenerInstancia().guardarConductores();
-    }
-
     public Factura buscarFactura(String codigoFactura) {
         ArrayList<Factura> facturas = cotizacion.obtenerFacturas();
         for (Factura factura : facturas){
@@ -204,6 +191,18 @@ public class Recepcionista extends Usuario {
             }
         }
         return null;
+    }
+
+    public void emitirFacturaPaquete(Paquete paquete) {
+        cotizacion.emitirFacturaPaquete(paquete);
+    }
+
+    public String getSiguienteCodigoFactura() {
+        return cotizacion.getSiguienteCodigoFactura();
+    }
+
+    public Precio obtenerPrecioPaquete(Paquete paquete) {
+        return cotizacion.obtenerPrecioPaquete(paquete);
     }
     
 }
