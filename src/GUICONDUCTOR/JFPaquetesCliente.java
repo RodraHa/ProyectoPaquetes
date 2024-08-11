@@ -286,8 +286,12 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
 
     private void jBInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertarActionPerformed
         Cliente cliente = DataBase.obtenerInstancia().obtenerclientePorCedula(jTCedula.getText());
-        Paquete paquete = Inventario.obtenerInstancia().obtenerPaquete(jTCodigo.getText());
-        if(cliente == null || paquete == null){
+        if(cliente == null){
+            JOptionPane.showMessageDialog(null, "No Existen datos","Alguno de los datos no se encontraron", JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        Paquete paquete = cliente.obtenerPaquete(jTCodigo.getText());
+        if(paquete == null){
             JOptionPane.showMessageDialog(null, "No Existen datos","Alguno de los datos no se encontraron", JOptionPane.ERROR_MESSAGE);
             return;
         } 
