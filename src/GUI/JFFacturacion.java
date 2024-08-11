@@ -38,18 +38,11 @@ public class JFFacturacion extends javax.swing.JFrame {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         JPFyV = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPConsultarFactura = new javax.swing.JPanel();
-        jScrollPane26 = new javax.swing.JScrollPane();
-        jTablaRegistrarFactura = new javax.swing.JTable();
-        btnAbrirFactura = new javax.swing.JButton();
-        jTCodigoFactura = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        btnBuscarFactura = new javax.swing.JButton();
         jPRegistrarFactura = new javax.swing.JPanel();
         jPDatosCliente = new javax.swing.JPanel();
         jTNombreCliente = new javax.swing.JTextField();
@@ -91,6 +84,13 @@ public class JFFacturacion extends javax.swing.JFrame {
         jLabel70 = new javax.swing.JLabel();
         jTPrecioDistancia = new javax.swing.JTextField();
         jLabel71 = new javax.swing.JLabel();
+        jPConsultarFactura = new javax.swing.JPanel();
+        jScrollPane26 = new javax.swing.JScrollPane();
+        jTablaRegistrarFactura = new javax.swing.JTable();
+        btnAbrirFactura = new javax.swing.JButton();
+        jTCodigoFactura = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        btnBuscarFactura = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel69 = new javax.swing.JLabel();
 
@@ -101,58 +101,6 @@ public class JFFacturacion extends javax.swing.JFrame {
 
         JPFyV.setBackground(new java.awt.Color(245, 245, 245));
         JPFyV.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPConsultarFactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTablaRegistrarFactura.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null, null, null, null, null, null },
-                        { null, null, null, null, null, null, null, null, null },
-                        { null, null, null, null, null, null, null, null, null },
-                        { null, null, null, null, null, null, null, null, null }
-                },
-                new String[] {
-                        "Código", "Contenido", "Remitente", "Destinario", "Provincia Origen", "Provincia Destino",
-                        "Dirección Destino", "Precio Total", "Fecha y Hora Emitida"
-                }) {
-            boolean[] canEdit = new boolean[] {
-                    false, false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
-            }
-        });
-        jTablaRegistrarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTablaRegistrarFacturaMouseClicked(evt);
-            }
-        });
-        jScrollPane26.setViewportView(jTablaRegistrarFactura);
-
-        jPConsultarFactura.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 1050, 390));
-
-        btnAbrirFactura.setText("Abrir");
-        btnAbrirFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirFacturaActionPerformed(evt);
-            }
-        });
-        jPConsultarFactura.add(btnAbrirFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 530, 90, 30));
-        jPConsultarFactura.add(jTCodigoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 160, -1));
-
-        jLabel1.setText("Código Factura");
-        jPConsultarFactura.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
-
-        btnBuscarFactura.setText("Buscar");
-        btnBuscarFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarFacturaActionPerformed(evt);
-            }
-        });
-        jPConsultarFactura.add(btnBuscarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
-
-        jTabbedPane1.addTab("Consultar facturas", jPConsultarFactura);
 
         jPRegistrarFactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -255,7 +203,6 @@ public class JFFacturacion extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTCodigoPaqueteKeyReleased(evt);
             }
-
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTCodigoPaqueteKeyTyped(evt);
             }
@@ -326,6 +273,58 @@ public class JFFacturacion extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Registrar factura", jPRegistrarFactura);
 
+        jPConsultarFactura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTablaRegistrarFactura.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Contenido", "Remitente", "Destinario", "Provincia Origen", "Provincia Destino", "Dirección Destino", "Precio Total", "Fecha y Hora Emitida"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTablaRegistrarFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablaRegistrarFacturaMouseClicked(evt);
+            }
+        });
+        jScrollPane26.setViewportView(jTablaRegistrarFactura);
+
+        jPConsultarFactura.add(jScrollPane26, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 1050, 390));
+
+        btnAbrirFactura.setText("Abrir");
+        btnAbrirFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirFacturaActionPerformed(evt);
+            }
+        });
+        jPConsultarFactura.add(btnAbrirFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 530, 90, 30));
+        jPConsultarFactura.add(jTCodigoFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 160, -1));
+
+        jLabel1.setText("Código Factura");
+        jPConsultarFactura.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+
+        btnBuscarFactura.setText("Buscar");
+        btnBuscarFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarFacturaActionPerformed(evt);
+            }
+        });
+        jPConsultarFactura.add(btnBuscarFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
+
+        jTabbedPane1.addTab("Consultar facturas", jPConsultarFactura);
+
         JPFyV.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 1150, 630));
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
@@ -343,7 +342,7 @@ public class JFFacturacion extends javax.swing.JFrame {
 
         jLabel69.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel69.setText("Gestion de Envios");
+        jLabel69.setText("Facturación");
         jPanel3.add(jLabel69, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         JPFyV.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 30));

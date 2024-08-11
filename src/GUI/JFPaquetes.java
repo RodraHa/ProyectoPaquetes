@@ -117,7 +117,7 @@ public class JFPaquetes extends javax.swing.JFrame {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
@@ -176,7 +176,6 @@ public class JFPaquetes extends javax.swing.JFrame {
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(1180, 690));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1180, 690));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(146, 10, 48));
@@ -340,14 +339,13 @@ public class JFPaquetes extends javax.swing.JFrame {
 
         jLabelPrecioDistancia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabelPrecioDistancia.setText("Precio distancia :");
-        jPanel2.add(jLabelPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, -1, -1));
+        jPanel2.add(jLabelPrecioDistancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, -1, -1));
 
         JLabelPrecioTotal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         JLabelPrecioTotal.setText("Precio total :");
         jPanel2.add(JLabelPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, -1));
 
-        JComboDestino.setModel(
-                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JComboDestino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JComboDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JComboDestinoActionPerformed(evt);
@@ -385,15 +383,16 @@ public class JFPaquetes extends javax.swing.JFrame {
 
         jTablaInventario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTablaInventario.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }));
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
         jTablaInventario.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane9.setViewportView(jTablaInventario);
 
@@ -406,24 +405,27 @@ public class JFPaquetes extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 903, Short.MAX_VALUE));
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 903, Short.MAX_VALUE)
+        );
         jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 474, Short.MAX_VALUE));
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 474, Short.MAX_VALUE)
+        );
 
         jPIA.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(982, 0, -1, -1));
 
         jTablaPaquete.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null },
-                        { null, null, null, null }
-                },
-                new String[] {
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }));
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
         jScrollPane7.setViewportView(jTablaPaquete);
 
         jPIA.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 650, 237));
