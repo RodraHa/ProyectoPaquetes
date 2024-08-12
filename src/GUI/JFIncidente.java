@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import mod_administracion.Recepcionista;
 import mod_administracion.ReporteNoPermitido;
+import mod_incidentes.DevolucionPaquete;
 import mod_incidentes.PaqueteNoTieneIncidente;
 import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Inventario;
@@ -489,6 +490,8 @@ public class JFIncidente extends javax.swing.JFrame {
             incidenteRegistrar = new PaqueteEstropeado();
         } else if (incidente.equals("Paquete Perdido")) {
             incidenteRegistrar = new PaquetePerdido();
+        } else if (incidente.equals("Devolución de Paquete")) {
+            incidenteRegistrar = new DevolucionPaquete();
         }
         int respuesta = JOptionPane.showConfirmDialog(
             null,
@@ -499,19 +502,22 @@ public class JFIncidente extends javax.swing.JFrame {
         if (respuesta == JOptionPane.YES_OPTION) {
             recepcionista.setIncidenteAManejar(incidenteRegistrar);
             String inputValue = "";
-            JTextField textField = new JTextField();
-            Object[] mensaje = {
-                recepcionista.getMensajeIncidente(),
-                textField
-            };
+            if (!(incidenteRegistrar instanceof DevolucionPaquete)) {
+                JTextField textField = new JTextField();
+                Object[] mensaje = {
+                    recepcionista.getMensajeIncidente(),
+                    textField
+                };
 
-            int option = JOptionPane.showConfirmDialog(null, mensaje, seguimiento.getIncidente(), JOptionPane.OK_CANCEL_OPTION);
+                int option = JOptionPane.showConfirmDialog(null, mensaje, seguimiento.getIncidente(), JOptionPane.OK_CANCEL_OPTION);
 
-            if (option == JOptionPane.OK_OPTION) {
-                inputValue = textField.getText();
-            } else {
-                return;
+                if (option == JOptionPane.OK_OPTION) {
+                    inputValue = textField.getText();
+                } else {
+                    return;
+                }
             }
+            
             try {
                 recepcionista.resolverIncidente(paquete, new String[] {inputValue});
             } catch (ReporteNoPermitido ex) {

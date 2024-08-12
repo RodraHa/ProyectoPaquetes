@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mod_administracion.Cliente;
 import mod_administracion.ReporteNoPermitido;
+import mod_incidentes.DevolucionPaquete;
 import mod_incidentes.ErrorDireccion;
 import mod_incidentes.GestorIncidente;
 import mod_incidentes.Incidente;
@@ -169,7 +170,7 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         jPanel1.add(jTCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 237, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 237, 10));
 
-        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "Paquete estropeado" }));
+        seleccionIncidentes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paquete estropeado", "Devolución paquete" }));
         seleccionIncidentes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 seleccionIncidentesActionPerformed(evt);
@@ -360,6 +361,8 @@ public class JFPaquetesCliente extends javax.swing.JFrame {
         Incidente incidenteRegistrar = new ErrorDireccion();
         if (incidente.equals("Paquete estropeado")) {
             incidenteRegistrar = new PaqueteEstropeado();
+        } else if (incidente.equals("Devolución paquete")) {
+            incidenteRegistrar = new DevolucionPaquete();
         }
         int respuesta = JOptionPane.showConfirmDialog(
             null,
