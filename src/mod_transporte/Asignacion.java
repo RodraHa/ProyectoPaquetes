@@ -94,19 +94,7 @@ public class Asignacion {
 
 
 
-    public ArrayList<Paquete> obtenerPaquetesDeConductor(Conductor conductor) {
-        Vehiculo vehiculo = null;
-        
-        if (vehiculo == null) {
-            return null;
-        }
-        for (Map.Entry<Vehiculo, ArrayList<Paquete>> entry : asignacionPaquetes.entrySet()) {
-            if (entry.getKey().getNumeroPlaca().equals(vehiculo.getNumeroPlaca())) {
-                return entry.getValue();
-            }
-        }
-        return null;
-    }
+
 
     public void guardarVehiculo() {
         conexionConSer(vehiculos, "FlotaVehiculos");
