@@ -24,7 +24,6 @@ import mod_transporte.Vehiculo;
  * para recepcionistas.
  */
 public class Recepcionista extends Usuario {
-    private Paquete paqueteEnCotizacion;
     private Provincia sucursal;
     private Cotizacion cotizacion;
 
@@ -72,36 +71,21 @@ public class Recepcionista extends Usuario {
      * @return el precio del paquete, o {@code null} si no hay un paquete
      *         registrado.
      */
-    public Precio consultarPrecioPaquete() {
+    public Precio consultarPrecioPaquete(Paquete paqueteEnCotizacion) {
         if (paqueteEnCotizacion == null) {
             return null;
         }
         return cotizacion.obtenerPrecioPaquete(paqueteEnCotizacion);
     }
 
-    /**
-     * Registra un paquete en la cotización.
-     *
-     * @param paquete el paquete a registrar.
-     */
-    public void registrarPaquete(Paquete paquete) {
-        paqueteEnCotizacion = paquete;
-    }
 
     /**
      * Agrega el paquete actualmente registrado al inventario.
      */
-    public void agregarPaqueteInventario() {
+    public void agregarPaqueteInventario(Paquete paqueteEnCotizacion) {
         if (paqueteEnCotizacion != null) {
             Inventario.obtenerInstancia().agregarPaquete(paqueteEnCotizacion);
         }
-    }
-
-    /**
-     * Elimina el paquete actualmente registrado en la cotización.
-     */
-    public void eliminarPaqueteRegistrado() {
-        paqueteEnCotizacion = null;
     }
 
     /**
