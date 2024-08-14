@@ -20,6 +20,7 @@ import mod_administracion.Recepcionista;
 import mod_paquetes.Paquete;
 import mod_transporte.Provincia;
 import mod_transporte.Asignacion;
+import mod_transporte.AsignacionConductor;
 import mod_transporte.Vehiculo;
 import validaciones.*;
 
@@ -72,10 +73,10 @@ public class JFVehiculo extends javax.swing.JFrame {
                 "Placa", "Capacidad", "Nombre Conductor", "Identificacion", "Telefono"
         };
         model.setColumnIdentifiers(columnNames);
-        Asignacion asignacion = Asignacion.obtenerInstancia();
+        
         model.setRowCount(0);
-        for (Vehiculo vehiculo : asignacion.obtenerVehiculos()) {
-            Conductor conductor = asignacion.obtenerConductorDeVehiculo(vehiculo);
+        for (Vehiculo vehiculo : Asignacion.obtenerInstancia().obtenerVehiculos()) {
+            Conductor conductor = recepcionista.obtenerConductorDeVehiculo(vehiculo);
             if (conductor != null) {
                 model.addRow(new Object[] {
                         vehiculo.getNumeroPlaca(),
@@ -637,7 +638,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Conductor conductor = asignacion.obtenerConductorPorCedula(cedula);
+            Conductor conductor = recepcionista.obtenerConductorPorCedula(cedula);
             if (conductor == null) {
                 JOptionPane.showMessageDialog(this, "No existe un conductor con la cedula " + cedula, "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -714,7 +715,7 @@ public class JFVehiculo extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Conductor conductor = Asignacion.obtenerInstancia().obtenerConductorDeVehiculo(vehiculo);
+            Conductor conductor = recepcionista.obtenerConductorDeVehiculo(vehiculo);
             jTCapacidad.setText(Double.toString(vehiculo.getCapacidad()));
             if (conductor != null) {
                 jTCedula3.setText(conductor.getCedula());

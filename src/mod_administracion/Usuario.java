@@ -45,6 +45,8 @@ public abstract class Usuario implements Serializable {
         this.email = email;
         this.inventario = Inventario.obtenerInstancia();
         this.gestorIncidente = new GestorIncidente();
+        this.asignacionConductor = new AsignacionConductor();
+        this.asignacionConductor.cargarRelacionConductores();
     }
 
     /**
