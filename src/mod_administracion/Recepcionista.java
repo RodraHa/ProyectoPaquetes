@@ -13,7 +13,6 @@ import mod_facturacion.Precio;
 import mod_incidentes.PaqueteNoTieneIncidente;
 import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Entregado;
-import mod_transporte.Asignacion;
 import mod_transporte.FlotaVehiculo;
 import mod_transporte.Provincia;
 import mod_transporte.Vehiculo;
@@ -28,7 +27,6 @@ public class Recepcionista extends Usuario {
     private Paquete paqueteEnCotizacion;
     private Provincia sucursal;
     private Cotizacion cotizacion;
-    private Asignacion asignacion;
 
     /**
      * Constructor que inicializa los datos del recepcionista y la sucursal a la que
@@ -48,7 +46,6 @@ public class Recepcionista extends Usuario {
         super(nombres, apellidos, identificacion, direccion, telefono, email);
         this.sucursal = sucursal;
         this.cotizacion = Cotizacion.obtenerInstancia();
-        this.asignacion = Asignacion.obtenerInstancia();
     }
 
     @Override
@@ -197,6 +194,8 @@ public class Recepcionista extends Usuario {
     public ArrayList<Conductor> obtenerConductores() {
         return asignacionConductor.obtenerConductores();
     }
+
+
 
 
 }

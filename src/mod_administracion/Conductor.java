@@ -3,7 +3,6 @@ package mod_administracion;
 import mod_paquetes.EnCurso;
 import mod_paquetes.EstadoDelPaquete;
 import mod_paquetes.Paquete;
-import mod_transporte.Asignacion;
 
 import java.util.ArrayList;
 import mod_incidentes.PaqueteNoTieneIncidente;

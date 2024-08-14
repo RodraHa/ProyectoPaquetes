@@ -91,7 +91,7 @@ public class AsignacionConductor {
     }
 
     public Conductor obtenerConductorPorCedula(String cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return flotaConductores.obtenerConductorPorCedula(cedula);
     }
 
     public void agregarConductor(Conductor conductor) {

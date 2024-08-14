@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.ImageIcon;
 import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
-import mod_transporte.Asignacion;
 import validaciones.*;
 
 /**

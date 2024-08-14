@@ -24,7 +24,6 @@ import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 import mod_paquetes.Pendiente;
 import mod_paquetes.Seguimiento;
-import mod_transporte.Asignacion;
 import validaciones.*;
 
 /**

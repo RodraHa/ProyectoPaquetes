@@ -6,7 +6,6 @@ package proyecto_paquetes;
 
 import mod_facturacion.Cotizacion;
 import mod_paquetes.Inventario;
-import mod_transporte.Asignacion;
 
 /**
  *
