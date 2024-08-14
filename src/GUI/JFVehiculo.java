@@ -75,7 +75,7 @@ public class JFVehiculo extends javax.swing.JFrame {
         model.setColumnIdentifiers(columnNames);
         
         model.setRowCount(0);
-        for (Vehiculo vehiculo : FlotaVehiculo.obtenerInstancia().obtenerVehiculos()) {
+        for (Vehiculo vehiculo : recepcionista.obtenerVehiculos()) {
             Conductor conductor = recepcionista.obtenerConductorDeVehiculo(vehiculo);
             if (conductor != null) {
                 model.addRow(new Object[] {
@@ -631,7 +631,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La cedula no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
-            Vehiculo vehiculo = FlotaVehiculo.obtenerInstancia().obtenerVehiculo(placa);
+            Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (vehiculo == null) {
                 JOptionPane.showMessageDialog(this, "No existe un vehículo con la placa " + placa, "Error",
                         JOptionPane.ERROR_MESSAGE);
@@ -777,7 +777,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             return;
         }
         Vehiculo vehiculo = new Vehiculo(placa, capacidad, this.recepcionista.obtenerSucursal());
-        FlotaVehiculo.obtenerInstancia().agregarVehiculo(vehiculo);
+        recepcionista.agregarVehiculo(vehiculo);
         JOptionPane.showMessageDialog(this, "El vehiculo se registro con exito");
         refrescarVehiculos();
     }// GEN-LAST:event_bRegistrarVehiculoActionPerformed
@@ -816,7 +816,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La placa no es válida.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
-            Vehiculo vehiculo = FlotaVehiculo.obtenerInstancia().obtenerVehiculo(placa);
+            Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (!recepcionista.asignarPaquetesAVehiculo(vehiculo, destino)) {
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
             }

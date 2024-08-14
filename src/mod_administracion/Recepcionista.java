@@ -148,7 +148,7 @@ public class Recepcionista extends Usuario {
     }
 
     public Vehiculo obtenerVehiculo(String placa) {
-        return FlotaVehiculo.obtenerInstancia().obtenerVehiculo(placa);
+        return asignacionPaquete.obtenerVehiculo(placa);
     }
 
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
@@ -177,6 +177,14 @@ public class Recepcionista extends Usuario {
 
     public ArrayList<Conductor> obtenerConductores() {
         return asignacionConductor.obtenerConductores();
+    }
+
+    public ArrayList<Vehiculo> obtenerVehiculos() {
+        return asignacionPaquete.obtenerVehiculos();
+    }
+
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        asignacionPaquete.agregarVehiculo(vehiculo);
     }
 
 

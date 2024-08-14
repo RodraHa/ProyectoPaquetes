@@ -14,20 +14,15 @@ import java.util.ArrayList;
 
 public class FlotaVehiculo implements Serializable {
     private ArrayList<Vehiculo> vehiculos;
-    private static FlotaVehiculo instancia;
     
-    private FlotaVehiculo() {
+    public FlotaVehiculo() {
         this.vehiculos = new ArrayList<Vehiculo>();
+        cargarVehiculos();
     }
     
-    public static FlotaVehiculo obtenerInstancia() {
-        if (instancia == null) {
-            instancia = new FlotaVehiculo();
-        }
-        return instancia;
-    }
+
     
-    public Iterable<Vehiculo> obtenerVehiculos() {
+    public ArrayList<Vehiculo> obtenerVehiculos() {
         return vehiculos;
     }
     

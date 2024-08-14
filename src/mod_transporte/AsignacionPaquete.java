@@ -23,7 +23,7 @@ public class AsignacionPaquete implements Serializable {
     
     public AsignacionPaquete() {
         this.asignacionPaquetes = new HashMap<Vehiculo, ArrayList<Paquete>>();
-        this.flotaVehiculo = FlotaVehiculo.obtenerInstancia();
+        this.flotaVehiculo = new FlotaVehiculo();
         cargarRelacionPaquetes();
     }
        
@@ -109,5 +109,17 @@ public class AsignacionPaquete implements Serializable {
     
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
         return asignacionPaquetes;
+    }
+
+    public Vehiculo obtenerVehiculo(String placa) {
+        return flotaVehiculo.obtenerVehiculo(placa);
+    }
+
+    public ArrayList<Vehiculo> obtenerVehiculos() {
+        return flotaVehiculo.obtenerVehiculos();
+    }
+
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        flotaVehiculo.agregarVehiculo(vehiculo);
     }
 }
