@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +20,7 @@ import mod_administracion.FlotaConductores;
  *
  * @author Rodrigo Haro
  */
-public class AsignacionConductor {
+public class AsignacionConductor implements Serializable {
     
     private HashMap<Conductor, Vehiculo> asignacionConductores;
     private final FlotaConductores flotaConductores;
