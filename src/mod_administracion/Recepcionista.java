@@ -8,8 +8,6 @@ import mod_paquetes.Pendiente;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import mod_facturacion.Factura;
 import mod_facturacion.Precio;
 import mod_incidentes.PaqueteNoTieneIncidente;

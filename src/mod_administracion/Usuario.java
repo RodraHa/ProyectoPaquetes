@@ -7,7 +7,8 @@ import mod_incidentes.PaqueteNoTieneIncidente;
 import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
-
+import mod_transporte.AsignacionConductor;
+import mod_transporte.AsignacionPaquete;
 /**
  * Representa a un usuario en el sistema. Esta clase es abstracta y sirve como
  * base para diferentes tipos de usuarios,
@@ -22,6 +23,8 @@ public abstract class Usuario implements Serializable {
     private String email;
     protected Inventario inventario;
     protected GestorIncidente gestorIncidente;
+    protected AsignacionPaquete asignacionPaquete;
+    protected AsignacionConductor asignacionConductor;
 
     /**
      * Constructor para crear un nuevo usuario con la información proporcionada.
