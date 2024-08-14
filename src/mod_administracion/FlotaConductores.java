@@ -21,6 +21,7 @@ public class FlotaConductores {
     
     public FlotaConductores(){
         conductores = new ArrayList<Conductor>();
+        cargarConductores();
     }
     
     public void agregarConductor(Conductor usuario) {
