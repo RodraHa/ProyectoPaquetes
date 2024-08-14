@@ -28,8 +28,7 @@ public class AsignacionConductor {
         asignacionConductores = new HashMap<Conductor, Vehiculo>();
         flotaConductores = new FlotaConductores();
         cargarRelacionConductores();
-        flotaConductores.cargarConductores();
-        
+      
     }
     
     
