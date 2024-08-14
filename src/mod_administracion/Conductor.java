@@ -10,6 +10,8 @@ import mod_incidentes.PaqueteNoTieneIncidente;
 import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Entregado;
 import mod_paquetes.Inventario;
+import mod_transporte.AsignacionConductor;
+import mod_transporte.Vehiculo;
 
 /**
  * Representa un conductor que puede reportar incidentes y consultar paquetes
@@ -60,7 +62,11 @@ public class Conductor extends Usuario {
      */
 
     public ArrayList<Paquete> consultarPaquetesAsignados() {
-        return Asignacion.obtenerInstancia().obtenerPaquetesDeConductor(this);
+        Vehiculo vehiculo = asignacionConductor.obtenerVehiculoDeConductor(this);
+        if(vehiculo == null){
+            return null;
+        }
+        return asignacionPaquete.obtenerPaquetesVehiculo(vehiculo);
     }
 
     public void entregarPaquete(String codigo) {

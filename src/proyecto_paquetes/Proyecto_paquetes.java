@@ -18,10 +18,7 @@ public class Proyecto_paquetes {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Asignacion.obtenerInstancia().cargarVehiculos();
-        Asignacion.obtenerInstancia().cargarConductores();
-        Asignacion.obtenerInstancia().cargarRelacionConductores();
-        Asignacion.obtenerInstancia().cargarRelacionPaquetes();
+
         Inventario.obtenerInstancia().cargarInventario();
         Cotizacion.obtenerInstancia().cargarCotizacion();
         JFIngresar loginForm = new JFIngresar();

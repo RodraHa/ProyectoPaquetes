@@ -121,7 +121,7 @@ public class Recepcionista extends Usuario {
     }
 
     public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
-        asignacion.asignarConductorAVehiculo(conductor, vehiculo);
+        asignacionConductor.asignarConductorAVehiculo(conductor, vehiculo);
     }
 
     public ArrayList<Paquete> obtenerPaquetes() {
@@ -173,4 +173,30 @@ public class Recepcionista extends Usuario {
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
         return asignacionPaquete.obtenerRelacionPaqueteVehiculo();
     }
+
+    public Conductor obtenerConductorPorCedula(String cedula) {
+        return asignacionConductor.obtenerConductorPorCedula(cedula);
+    }
+
+    public Conductor obtenerConductorDeVehiculo(Vehiculo vehiculo) {
+        return asignacionConductor.obtenerConductorDeVehiculo(vehiculo);
+    }
+
+    public void agregarConductor(Conductor conductor) {
+        asignacionConductor.agregarConductor(conductor);
+    }
+
+    public void eliminarConductor(Conductor conductor) {
+        asignacionConductor.eliminarConductor(conductor);
+    }
+
+    public void borrarRelacionConductorVehiculo(Conductor conductor) {
+        asignacionConductor.borrarRelacionConductorVehiculo(conductor);
+    }
+
+    public ArrayList<Conductor> obtenerConductores() {
+        return asignacionConductor.obtenerConductores();
+    }
+
+
 }
