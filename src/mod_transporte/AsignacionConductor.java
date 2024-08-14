@@ -28,7 +28,8 @@ public class AsignacionConductor implements Serializable {
     public AsignacionConductor(){
         asignacionConductores = new HashMap<Conductor, Vehiculo>();
         flotaConductores = new FlotaConductores();
-        flotaConductores.cargarConductores();
+        cargarRelacionConductores();
+      
     }
     
     
