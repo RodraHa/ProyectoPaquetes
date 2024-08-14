@@ -43,9 +43,9 @@ public class JFVehiculo extends javax.swing.JFrame {
         frame.getRootPane().setWindowDecorationStyle(JRootPane.NONE);
         setLocationRelativeTo(null);
         cargarProvincias();
+        this.recepcionista = recepcionista;
         refrescarVehiculos();
 
-        this.recepcionista = recepcionista;
         // Opcional: Deshabilita la edición manual del campo de texto
         modelo = new DefaultTableModel();
         jInventarioVehiculo.setModel(modelo);
