@@ -14,6 +14,7 @@ import mod_incidentes.PaqueteNoTieneIncidente;
 import mod_incidentes.PaqueteYaTieneIncidente;
 import mod_paquetes.Entregado;
 import mod_transporte.Asignacion;
+import mod_transporte.FlotaVehiculo;
 import mod_transporte.Provincia;
 import mod_transporte.Vehiculo;
 
@@ -116,7 +117,7 @@ public class Recepcionista extends Usuario {
     }
 
     public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
-        return asignacion.asignarPaquetesAVehiculo(vehiculo, destino);
+        return asignacionPaquete.asignarPaquetesAVehiculo(vehiculo, destino);
     }
 
     public void asignarConductorAVehiculo(Conductor conductor, Vehiculo vehiculo) {
@@ -166,10 +167,10 @@ public class Recepcionista extends Usuario {
     }
 
     public Vehiculo obtenerVehiculo(String placa) {
-        return asignacion.obtenerVehiculo(placa);
+        return FlotaVehiculo.obtenerInstancia().obtenerVehiculo(placa);
     }
 
     public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
-        return asignacion.obtenerRelacionPaqueteVehiculo();
+        return asignacionPaquete.obtenerRelacionPaqueteVehiculo();
     }
 }

@@ -68,6 +68,6 @@ public class Conductor extends Usuario {
         paqueteCambio.cambiarEstado(new Entregado(paqueteCambio));
 
         Inventario.obtenerInstancia().guardarInventario();
-        Asignacion.obtenerInstancia().guardarRelacionPaquetes();
+        asignacionPaquete.guardarRelacionPaquetes();
     }
 }

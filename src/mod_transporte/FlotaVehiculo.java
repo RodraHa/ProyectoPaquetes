@@ -4,13 +4,27 @@
  */
 package mod_transporte;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class FlotaVehiculo {
     private ArrayList<Vehiculo> vehiculos;
+    private static FlotaVehiculo instancia;
+    
+    private FlotaVehiculo() {
+        this.vehiculos = new ArrayList<Vehiculo>();
+    }
+    
+    public static FlotaVehiculo obtenerInstancia() {
+        if (instancia == null) {
+            instancia = new FlotaVehiculo();
+        }
+        return instancia;
+    }
     
     public Iterable<Vehiculo> obtenerVehiculos() {
         return vehiculos;
@@ -31,17 +45,21 @@ public class FlotaVehiculo {
     }
     
     public void guardarVehiculo() {
-        conexionConSer(vehiculos, "FlotaVehiculos");
-    }
-    
-    public void conexionConSer(ArrayList array, String ruta) {
-        String filePath = "src\\archivos\\" + ruta + ".ser";
+        String filePath = "src\\archivos\\FlotaVehiculos.ser";
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
-            oos.writeObject(array);
+            oos.writeObject(vehiculos);
             oos.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
+    public void cargarVehiculos() {
+        String filePath = "src\\archivos\\FlotaVehiculos.ser";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            vehiculos = (ArrayList<Vehiculo>) ois.readObject();
+            ois.close();
+        } catch (IOException | ClassNotFoundException e) {
+        }
+    }
 }

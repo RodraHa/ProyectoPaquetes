@@ -45,6 +45,7 @@ public abstract class Usuario implements Serializable {
         this.email = email;
         this.inventario = Inventario.obtenerInstancia();
         this.gestorIncidente = new GestorIncidente();
+        this.asignacionPaquete = new AsignacionPaquete();
     }
 
     /**
@@ -129,6 +130,10 @@ public abstract class Usuario implements Serializable {
     
     public String getMensajeIncidente() {
         return gestorIncidente.getMensaje();
+    }
+    
+    public AsignacionPaquete obtenerAsignacionPaquete() {
+        return this.asignacionPaquete;
     }
     
     public abstract void reportarIncidente(Paquete paquete) throws ReporteNoPermitido, PaqueteYaTieneIncidente;

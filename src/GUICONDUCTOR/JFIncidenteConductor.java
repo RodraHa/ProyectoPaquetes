@@ -390,7 +390,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
                 "Registro Exitoso",
                 JOptionPane.INFORMATION_MESSAGE);
             Inventario.obtenerInstancia().guardarInventario();
-            Asignacion.obtenerInstancia().guardarRelacionPaquetes();
+            conductor.obtenerAsignacionPaquete().guardarRelacionPaquetes();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTablaPaquete.getModel();
             modeloTabla.setRowCount(0);
         } else {
@@ -509,7 +509,7 @@ public class JFIncidenteConductor extends javax.swing.JFrame {
                 "Resolución Exitosa",
                 JOptionPane.INFORMATION_MESSAGE);
             Inventario.obtenerInstancia().guardarInventario();
-            Asignacion.obtenerInstancia().guardarRelacionPaquetes();
+            conductor.obtenerAsignacionPaquete().guardarRelacionPaquetes();
             DefaultTableModel modeloTabla = (DefaultTableModel) jTIncidente.getModel();
             modeloTabla.setRowCount(0);
         } else {

@@ -16,14 +16,16 @@ import mod_paquetes.EnCurso;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 
-/**
- *
- * @author Rodrigo Haro
- */
 public class AsignacionPaquete {
     private HashMap<Vehiculo, ArrayList<Paquete>> asignacionPaquetes;
-       
+    private FlotaVehiculo flotaVehiculo;
     
+    public AsignacionPaquete() {
+        this.asignacionPaquetes = new HashMap<Vehiculo, ArrayList<Paquete>>();
+        this.flotaVehiculo = FlotaVehiculo.obtenerInstancia();
+        cargarRelacionPaquetes();
+    }
+       
     public boolean asignarPaquetesAVehiculo(Vehiculo vehiculo, Provincia destino) {
         ArrayList<Paquete> paquetesPendientes = Inventario.obtenerInstancia().obtenerPaquetesPendientes();
         ArrayList<Paquete> paquetes;
@@ -67,10 +69,22 @@ public class AsignacionPaquete {
             asignacionPaquetes.remove(vehiculoAUsar);
             asignacionPaquetes.put(vehiculo, paquetes);
         }
-        //guardarVehiculo();
+        flotaVehiculo.guardarVehiculo();
         guardarRelacionPaquetes();
         Inventario.obtenerInstancia().guardarInventario();
         return true;
+    }
+    
+    public ArrayList<Paquete> obtenerPaquetesVehiculo(Vehiculo vehiculo) {
+        if (vehiculo == null) {
+            return null;
+        }
+        for (Map.Entry<Vehiculo, ArrayList<Paquete>> entry : asignacionPaquetes.entrySet()) {
+            if (entry.getKey().getNumeroPlaca().equals(vehiculo.getNumeroPlaca())) {
+                return entry.getValue();
+            }
+        }
+        return null;
     }
     
     public void guardarRelacionPaquetes() {
@@ -90,5 +104,9 @@ public class AsignacionPaquete {
             ois.close();
         } catch (IOException | ClassNotFoundException e) {
         }
+    }
+    
+    public HashMap<Vehiculo, ArrayList<Paquete>> obtenerRelacionPaqueteVehiculo() {
+        return asignacionPaquetes;
     }
 }
