@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ import mod_paquetes.EnCurso;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 
-public class AsignacionPaquete {
+public class AsignacionPaquete implements Serializable {
     private HashMap<Vehiculo, ArrayList<Paquete>> asignacionPaquetes;
     private FlotaVehiculo flotaVehiculo;
     
