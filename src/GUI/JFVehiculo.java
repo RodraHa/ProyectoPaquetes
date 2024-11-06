@@ -101,7 +101,7 @@ public class JFVehiculo extends javax.swing.JFrame {
 
         Vehiculo vehiculo = recepcionista.obtenerVehiculo(jTPlacaVehiculo3.getText());
         ArrayList<Paquete> paquetes = recepcionista.obtenerRelacionPaqueteVehiculo().get(vehiculo);
-
+        
         modelo.setRowCount(0);
         for (Paquete paquete : paquetes) {
             modelo.addRow(new Object[] {
@@ -819,6 +819,7 @@ public class JFVehiculo extends javax.swing.JFrame {
             Vehiculo vehiculo = recepcionista.obtenerVehiculo(placa);
             if (!recepcionista.asignarPaquetesAVehiculo(vehiculo, destino)) {
                 JOptionPane.showMessageDialog(this, "No existen paquetes", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
         }
         refrescarAsignacion();
