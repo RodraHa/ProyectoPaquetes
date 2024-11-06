@@ -4,54 +4,46 @@
  */
 package mod_incidentes;
 
+import java.io.Serializable;
 import mod_paquetes.Paquete;
-import mod_paquetes.Seguimiento;
 
 /**
  * La clase GestorIncidente maneja la creación y resolución de incidentes asociados a paquetes.
  * Utiliza una instancia de la clase Incidente para realizar las operaciones correspondientes.
  * 
- * @autor Rodrigo Haro
  */
-public class GestorIncidente {
+public class GestorIncidente implements Serializable {
     // Instancia de Incidente que será manejada por este gestor
     Incidente incidente;
     
-    /**
-     * Constructor de la clase GestorIncidente.
-     * 
-     * @param incidente Instancia de la clase Incidente que será gestionada.
-     */
-    public GestorIncidente(Incidente incidente) {
+    public void setIncidente(Incidente incidente) {
         this.incidente = incidente;
     }
-    
-    /**
-     * Método para crear un incidente asociado a un paquete.
-     * 
-     * @param paquete El paquete al cual se le asociará el incidente.
-     */
-    public void crearIncidente(Paquete paquete) {
-        // Registra el incidente utilizando el método registrar() de la instancia incidente
-        String registro = incidente.registrar();
-        // Obtiene el seguimiento del paquete
-        Seguimiento seguimiento = paquete.obtenerSeguimiento();
-        // Registra el incidente en el seguimiento del paquete
-        seguimiento.registrarIncidente(registro);
+
+    public void crearIncidente(Paquete paquete) throws PaqueteYaTieneIncidente {
+        if (this.incidente == null) {
+            return;
+        }
+        if(incidente.registrar(paquete)) {
+            return;
+        }
+        throw new PaqueteYaTieneIncidente();
     }
     
-    /**
-     * Método para resolver un incidente asociado a un paquete.
-     * 
-     * @param paquete El paquete al cual se le resolverá el incidente.
-     * @param argumentos Argumentos necesarios para resolver el incidente.
-     */
-    public void resolverIncidente(Paquete paquete, String ... argumentos) {
-        // Resuelve el incidente utilizando el método resolver() de la instancia incidente
-        String registro = incidente.resolver(argumentos);
-        // Obtiene el seguimiento del paquete
-        Seguimiento seguimiento = paquete.obtenerSeguimiento();
-        // Registra la resolución del incidente en el seguimiento del paquete
-        seguimiento.resolverIncidente(registro);
+    public void solucionarIncidente(Paquete paquete, String ... argumentos) throws PaqueteNoTieneIncidente {
+        if (this.incidente == null) {
+            return;
+        }
+        if(incidente.resolver(paquete, argumentos)) {
+            return;
+        }
+        throw new PaqueteNoTieneIncidente();
+    }
+    
+    public String getMensaje() {
+        if (this.incidente == null) {
+            return "";
+        }
+        return this.incidente.getMensajeSolicitud();
     }
 }

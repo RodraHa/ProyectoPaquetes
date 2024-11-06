@@ -4,6 +4,10 @@
  */
 package mod_incidentes;
 
+import mod_facturacion.Cotizacion;
+import mod_facturacion.Precio;
+import mod_paquetes.Paquete;
+
 /**
  * Clase que representa un incidente de paquete perdido.
  * Esta clase extiende la clase abstracta Incidente y proporciona
@@ -13,31 +17,33 @@ package mod_incidentes;
  */
 public class PaquetePerdido extends Incidente {
 
-    /**
-     * Registra el incidente de paquete perdido.
-     *
-     * @return Una cadena que describe el incidente registrado.
-     */
+    
     @Override
-    public String registrar() {
-        return "La ubicación de su paquete es desconocida";
+    public String getMensajeRegistro(Paquete paquete) {
+        return "El paquete ha sido reportado como perdido.";
     }
 
-    /**
-     * Resuelve el incidente de paquete perdido.
-     *
-     * @param argumentos Argumentos necesarios para resolver el incidente.
-     *                   El primer argumento debe ser una cadena que indica si la resolución
-     *                   es "Recuperado" o "Desconocido".
-     * @return Una cadena que describe la resolución del incidente.
-     */
     @Override
-    public String resolver(String[] argumentos) {
-        if (argumentos[0].equals("Recuperado")) {
-            return "Se ha recuperado su paquete y pronto se le será entregado";
-        } else if (argumentos[0].equals("Desconocido")) {
-            return "Su paquete no se ha podido encontrar, por favor, acérquese a la agencia más cercana para recibir una compensación";
-        }
-        return "";
+    public String getMensajeResolucion(Paquete paquete) {
+        return "Lamentamos informarle que su paquete se ha perdido. Se le proporcionará una compensación de $" + feedback + ".";
+    }
+
+    @Override
+    public String getMensajeSolicitud() {
+        return "Por favor, ingrese el porcentaje de compensación para la pérdida del paquete (por ejemplo: 100).";
+    }
+
+    @Override
+    public void manejar(Paquete paquete, String[] argumentos) {
+        Precio precio = Cotizacion.obtenerInstancia().obtenerPrecioPaquete(paquete);
+        double total = precio.getPrecioTotalPaquete();
+        int porcentaje = Integer.parseInt(argumentos[0]);
+        double valorCompensacion = (porcentaje / 100.0) * total;
+        feedback = Double.toString(valorCompensacion);
+    }
+
+    @Override
+    public String toString() {
+        return "Paquete Perdido";
     }
 }
