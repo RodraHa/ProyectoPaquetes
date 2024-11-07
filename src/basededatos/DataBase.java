@@ -107,7 +107,7 @@ public class DataBase {
                 if (rs.next()) {
                     try {
                         // Obtener la sucursal (provincia) del recepcionista
-                        enumClass = Class.forName("mod_paquetes.Provincia");
+                        enumClass = Class.forName("mod_transporte.Provincia");
                         sucursal = (Provincia) Enum.valueOf((Class<Enum>) enumClass, rs.getString("Provincia"));
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(JFPaquetes.class.getName()).log(Level.SEVERE, null, ex);

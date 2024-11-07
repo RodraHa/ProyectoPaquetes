@@ -4,28 +4,34 @@
  */
 package mod_incidentes;
 
-/**
- * La clase abstracta Incidente define el comportamiento general para manejar incidentes.
- * Esta clase debe ser extendida por clases concretas que implementen los métodos abstractos.
- * 
- * @autor Rodrigo Haro
- */
-public abstract class Incidente {
+import java.io.Serializable;
+import mod_paquetes.Paquete;
+import mod_paquetes.Seguimiento;
+
+public abstract class Incidente implements Serializable {
+    protected String feedback;
     
-    /**
-     * Método abstracto para registrar un incidente.
-     * Las clases que extiendan esta clase deben proporcionar una implementación concreta.
-     * 
-     * @return Una cadena que describe el registro del incidente.
-     */
-    public abstract String registrar();
+    public boolean registrar(Paquete paquete) {
+        Seguimiento seguimiento = paquete.obtenerSeguimiento();
+        if (seguimiento.tieneIncidente()) {
+            return false;
+        }
+        seguimiento.registrarIncidente(this.toString(), getMensajeRegistro(paquete));
+        return true;
+    }
+            
+    public boolean resolver(Paquete paquete, String[] argumentos) {
+        Seguimiento seguimiento = paquete.obtenerSeguimiento();
+        if (!seguimiento.tieneIncidente()) {
+            return false;
+        }
+        manejar(paquete, argumentos);
+        seguimiento.registrarResolucion(getMensajeResolucion(paquete));
+        return true;
+    }
     
-    /**
-     * Método abstracto para resolver un incidente.
-     * Las clases que extiendan esta clase deben proporcionar una implementación concreta.
-     * 
-     * @param argumentos Argumentos necesarios para resolver el incidente.
-     * @return Una cadena que describe la resolución del incidente.
-     */
-    public abstract String resolver(String[] argumentos);
+    public abstract String getMensajeRegistro(Paquete paquete);
+    public abstract String getMensajeResolucion(Paquete paquete);
+    public abstract String getMensajeSolicitud();
+    public abstract void manejar(Paquete paquete, String[] argumentos);
 }
