@@ -122,7 +122,7 @@ public class JFRecuperar extends javax.swing.JFrame {
                                         javax.swing.GroupLayout.PREFERRED_SIZE)));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Recuperar contraseña");
+        jLabel2.setText("No recuperar la contraseña");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -151,7 +151,7 @@ public class JFRecuperar extends javax.swing.JFrame {
 
         jTFCedula.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         jTFCedula.setForeground(new java.awt.Color(204, 204, 204));
-        jTFCedula.setText("Ingrese su documento de identidad");
+        jTFCedula.setText("Ingrese su cedula");
         jTFCedula.setBorder(null);
         jTFCedula.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
