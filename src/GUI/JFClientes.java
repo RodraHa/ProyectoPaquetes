@@ -103,16 +103,20 @@ public class JFClientes extends javax.swing.JFrame {
         jPPR1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel46.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Cliente"));
+        jPanel46.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel66.setText("Nombres");
+        jPanel46.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
 
         jTFNombresR.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTFNombresRFocusLost(evt);
             }
         });
+        jPanel46.add(jTFNombresR, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 182, -1));
 
         jLabel71.setText("Teléfono");
+        jPanel46.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, -1));
 
         jTFTelefonoR.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -124,8 +128,10 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFTelefonoRKeyReleased(evt);
             }
         });
+        jPanel46.add(jTFTelefonoR, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 165, -1));
 
         jLTipoCli.setText("CI");
+        jPanel46.add(jLTipoCli, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
 
         jTFCIRegistrarC.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -137,8 +143,10 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFCIRegistrarCKeyReleased(evt);
             }
         });
+        jPanel46.add(jTFCIRegistrarC, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 182, -1));
 
         jLabel73.setText("Dirección");
+        jPanel46.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
 
         jTFDireccionR.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -150,6 +158,7 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFDireccionRKeyReleased(evt);
             }
         });
+        jPanel46.add(jTFDireccionR, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, 165, -1));
 
         jTFApellidosR.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -161,8 +170,10 @@ public class JFClientes extends javax.swing.JFrame {
                 jTFApellidosRKeyReleased(evt);
             }
         });
+        jPanel46.add(jTFApellidosR, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 182, -1));
 
         jLabel89.setText("Apellidos");
+        jPanel46.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
         correoCli2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -174,73 +185,12 @@ public class JFClientes extends javax.swing.JFrame {
                 correoCli2KeyReleased(evt);
             }
         });
+        jPanel46.add(correoCli2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 182, -1));
 
         jLabel87.setText("Correo");
+        jPanel46.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 43, -1));
 
-        javax.swing.GroupLayout jPanel46Layout = new javax.swing.GroupLayout(jPanel46);
-        jPanel46.setLayout(jPanel46Layout);
-        jPanel46Layout.setHorizontalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel46Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel46Layout.createSequentialGroup()
-                        .addComponent(jLabel89)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel46Layout.createSequentialGroup()
-                        .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel87, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTFApellidosR, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                            .addComponent(correoCli2, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel46Layout.createSequentialGroup()
-                        .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTFCIRegistrarC, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel66)
-                                .addComponent(jTFNombresR, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLTipoCli)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                        .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFDireccionR, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel73)
-                            .addComponent(jTFTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel71))
-                        .addGap(45, 45, 45))))
-        );
-        jPanel46Layout.setVerticalGroup(
-            jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel46Layout.createSequentialGroup()
-                .addGroup(jPanel46Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel46Layout.createSequentialGroup()
-                        .addComponent(jLTipoCli)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTFCIRegistrarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel66)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFNombresR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel46Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel71)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel73)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTFDireccionR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel89)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFApellidosR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel87)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(correoCli2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
-
-        jPPR1.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, -1, 241));
+        jPPR1.add(jPanel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 51, 650, 270));
 
         jBRegistarCliente.setText("Registrar Cliente");
         jBRegistarCliente.addActionListener(new java.awt.event.ActionListener() {

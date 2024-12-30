@@ -17,31 +17,32 @@ import mod_administracion.Conductor;
 import mod_administracion.Recepcionista;
 import mod_administracion.Usuario;
 import mod_transporte.Provincia;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
 
 public class DataBase {
     private static DataBase instancia; // Instancia singleton de la clase
     private Connection conexion; // Conexión a la base de datos
+    private ConfigManager configManger;
     
     /**
      * Constructor privado para implementar el patrón Singleton
      */
     private DataBase() {
-        // Parámetros de conexión a la base de datos
-        String HOST = "localhost";
-        String PUERTO = "5432";
-        String DB = "paquetes";
-        String USER = "administrador";
-        String PASSWORD = "123";
-        
+        configManger = new ConfigManager();
+        String HOST = configManger.getProperty("db.host");
+        String PUERTO = configManger.getProperty("db.port");
+        String DB = configManger.getProperty("db.name");
+        String USER = configManger.getProperty("db.user");
+        String PASSWORD = configManger.getProperty("db.password");
+
         try {
-            // Cargar el driver de PostgreSQL
             Class.forName("org.postgresql.Driver");
-            // Crear la URL de conexión
-            String url ="jdbc:postgresql://"+HOST+":"+PUERTO+"/"+DB;
-            // Establecer la conexión
+            String url = "jdbc:postgresql://" + HOST + ":" + PUERTO + "/" + DB;
             conexion = DriverManager.getConnection(url, USER, PASSWORD);
         } catch (Exception e) {
-            // Mostrar un mensaje de error en caso de fallo en la conexión
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
