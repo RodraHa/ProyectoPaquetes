@@ -14,13 +14,13 @@ import javax.crypto.CipherInputStream;
  *
  * @author migue
  */
-public class ConfigManager {
-    private  Properties properties = new Properties();
-    private  final String ALGORITHM = "AES";
-    private  final String ENCRYPTED_FILE = "src/basededatos/config_encrypted.properties";
+public class GestorDeConfiguracion {
+    private  Properties propiedades = new Properties();
+    private  final String ALGORITMO = "AES";
+    private  final String ARCHIVO_CIFRADO = "src/basededatos/configuracionCifrada.properties";
 
     
-    public ConfigManager() {
+    public GestorDeConfiguracion() {
         try {
             // Obtén la clave desde una variable de entorno
             String keyBase64 = System.getenv("AES_SECRET_KEY");
@@ -29,10 +29,10 @@ public class ConfigManager {
             }
 
             SecretKey key = stringToKey(keyBase64);
-            File decryptedFile = File.createTempFile("config", ".properties");
-            decryptFile(ENCRYPTED_FILE, decryptedFile.getAbsolutePath(), key);
+            File decryptedFile = File.createTempFile("configuracion", ".properties");
+            desencriptarArchivo(ARCHIVO_CIFRADO, decryptedFile.getAbsolutePath(), key);
             try (FileInputStream fis = new FileInputStream(decryptedFile)) {
-                properties.load(fis);
+                propiedades.load(fis);
             }
             decryptedFile.deleteOnExit(); // Eliminar archivo temporal
         } catch (Exception e) {
@@ -42,11 +42,11 @@ public class ConfigManager {
     
 
     public String getProperty(String key) {
-        return properties.getProperty(key);
+        return propiedades.getProperty(key);
     }
 
-    private void decryptFile(String inputFile, String outputFile, SecretKey key) throws Exception {
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
+    private void desencriptarArchivo(String inputFile, String outputFile, SecretKey key) throws Exception {
+        Cipher cipher = Cipher.getInstance(ALGORITMO);
         cipher.init(Cipher.DECRYPT_MODE, key);
 
         try (FileInputStream fis = new FileInputStream(inputFile);
@@ -63,6 +63,6 @@ public class ConfigManager {
 
     private SecretKey stringToKey(String keyStr) {
         byte[] decodedKey = Base64.getDecoder().decode(keyStr);
-        return new SecretKeySpec(decodedKey, ALGORITHM);
+        return new SecretKeySpec(decodedKey, ALGORITMO);
     }
 }

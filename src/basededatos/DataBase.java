@@ -25,18 +25,18 @@ import java.util.Properties;
 public class DataBase {
     private static DataBase instancia; // Instancia singleton de la clase
     private Connection conexion; // Conexión a la base de datos
-    private ConfigManager configManger;
+    private GestorDeConfiguracion gestorDeConfiguracion;
     
     /**
      * Constructor privado para implementar el patrón Singleton
      */
     private DataBase() {
-        configManger = new ConfigManager();
-        String HOST = configManger.getProperty("db.host");
-        String PUERTO = configManger.getProperty("db.port");
-        String DB = configManger.getProperty("db.name");
-        String USER = configManger.getProperty("db.user");
-        String PASSWORD = configManger.getProperty("db.password");
+        gestorDeConfiguracion = new GestorDeConfiguracion();
+        String HOST = gestorDeConfiguracion.getProperty("db.host");
+        String PUERTO = gestorDeConfiguracion.getProperty("db.port");
+        String DB = gestorDeConfiguracion.getProperty("db.name");
+        String USER = gestorDeConfiguracion.getProperty("db.user");
+        String PASSWORD = gestorDeConfiguracion.getProperty("db.password");
 
         try {
             Class.forName("org.postgresql.Driver");
