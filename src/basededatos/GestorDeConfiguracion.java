@@ -17,7 +17,7 @@ import javax.crypto.CipherInputStream;
 public class GestorDeConfiguracion {
     private  Properties propiedades = new Properties();
     private  final String ALGORITMO = "AES";
-    private  final String ARCHIVO_CIFRADO = "src/basededatos/configuracionCifrada.properties";
+    private  final String ARCHIVO_CIFRADO = "src/basededatos/configuracion_cifrada.properties";
 
     
     public GestorDeConfiguracion() {
