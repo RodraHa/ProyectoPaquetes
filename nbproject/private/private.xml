@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/config_encrypted.properties</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/configuracion_cifrada.properties</file>
             <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/DataBase.java</file>
-            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/ConfigManager.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/GestorDeConfiguracion.java</file>
         </group>
     </open-files>
 </project-private>

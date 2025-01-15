@@ -12,7 +12,7 @@ import mod_transporte.FlotaVehiculo;
  *
  * @author Rodrigo Haro
  */
-public class Proyecto_paquetes {
+public class ProyectoPaquetes {
 
     /**
      * @param args the command line arguments
