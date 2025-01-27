@@ -75,4 +75,19 @@ public class Conductor extends Usuario {
         Inventario.obtenerInstancia().guardarInventario();
         asignacionPaquete.guardarRelacionPaquetes();
     }
+    
+   @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Conductor conductor = (Conductor) obj;
+
+        return cedula != null ? cedula.equals(conductor.cedula) : conductor.cedula == null;
+    }
+    
+     @Override
+    public int hashCode() {
+        return cedula != null ? cedula.hashCode() : 0;
+    }
 }

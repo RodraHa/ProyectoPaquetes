@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import mod_paquetes.Paquete;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Clase singleton que gestiona las cotizaciones y facturas en el sistema de
@@ -88,9 +89,11 @@ public final class Cotizacion {
     }
 
     public void eliminarFactura(String codigoTracking) {
-        for (Factura factura : facturas) {
+        Iterator<Factura> iterator = facturas.iterator();
+        while (iterator.hasNext()) {
+            Factura factura = iterator.next();
             if (factura.obtenerCodigoTracking().equals(codigoTracking)) {
-                facturas.remove(factura);
+                iterator.remove();
             }
         }
     }

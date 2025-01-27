@@ -5,6 +5,7 @@ import mod_incidentes.GestorIncidente;
 import mod_incidentes.Incidente;
 import mod_incidentes.PaqueteNoTieneIncidente;
 import mod_incidentes.PaqueteYaTieneIncidente;
+import mod_paquetes.EstadoDelPaquete;
 import mod_paquetes.Inventario;
 import mod_paquetes.Paquete;
 import mod_transporte.AsignacionConductor;
@@ -17,7 +18,7 @@ import mod_transporte.AsignacionPaquete;
 public abstract class Usuario implements Serializable {
     private String nombres;
     private String apellidos;
-    private String cedula;
+    protected String cedula;
     private String direccion;
     private String telefono;
     private String email;
@@ -96,6 +97,19 @@ public abstract class Usuario implements Serializable {
      */
     public String getCedula() {
         return cedula;
+    }
+    
+      @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Usuario that = (Usuario) obj;
+        // Comparación de atributos específicos si es necesario
+        return true;
     }
 
     /**

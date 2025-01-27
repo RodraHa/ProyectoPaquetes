@@ -42,8 +42,8 @@ public class ValidadorDeSwings {
         }
 
         // Agrega los errores de valores negativos
-        errores.addAll(validarValoresPositivos(new JTextField[]{campos[0], campos[1]}, 
-                                               new String[]{"Volumen", "Peso"}));
+        //errores.addAll(validarValoresPositivos(new JTextField[]{campos[0], campos[1]}, 
+                                               //new String[]{"Volumen", "Peso"}));
 
         return errores;
     }

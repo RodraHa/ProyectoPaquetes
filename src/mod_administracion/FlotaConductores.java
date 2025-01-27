@@ -30,10 +30,15 @@ public class FlotaConductores implements Serializable {
         guardarConductores();
     }
     
-    public void eliminarConductor(Conductor conductor) {
-        conductores.remove(conductor);
-        guardarConductores();
+   public void eliminarConductor(Conductor conductor) {
+    boolean removed = conductores.remove(conductor);
+    if (removed) {
+        System.out.println("Conductor eliminado correctamente.");
+    } else {
+        System.out.println("No se pudo eliminar el conductor.");
     }
+    guardarConductores();
+}   
     
     public void guardarConductores() {
         String filePath = "src\\archivos\\Conductores.ser";
@@ -66,5 +71,7 @@ public class FlotaConductores implements Serializable {
         }
         return null;
     }
+    
+
 }
 

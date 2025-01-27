@@ -2,6 +2,7 @@ package mod_paquetes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Seguimiento implements Serializable {
     private EstadoDelPaquete estadoActual;
@@ -52,5 +53,13 @@ public class Seguimiento implements Serializable {
     
     public String getIncidente() {
         return this.incidente;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Seguimiento that = (Seguimiento) o;
+        return Objects.equals(estadosAnteriores, that.estadosAnteriores);
     }
 }

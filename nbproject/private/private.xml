@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/configuracion_cifrada.properties</file>
-            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/DataBase.java</file>
-            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/basededatos/GestorDeConfiguracion.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/test/mod_facturacion/CotizacionTest.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/test/mod_administracion/FlotaConductoresTest.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/src/mod_facturacion/Cotizacion.java</file>
+            <file>file:/C:/Users/migue/Documents/GitHub/ProyectoPaquetes/test/mod_paquetes/PaqueteTest.java</file>
         </group>
     </open-files>
 </project-private>
